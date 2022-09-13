@@ -12,3 +12,11 @@ public protocol TransactionsStore {
     func save(transaction: Transaction) throws
     func delete(transaction: Transaction) throws
 }
+
+public class CoraDataTransactionsStore {
+    public init() {}
+    
+    public func retrieve() throws -> [Transaction] {
+        return []
+    }
+}
