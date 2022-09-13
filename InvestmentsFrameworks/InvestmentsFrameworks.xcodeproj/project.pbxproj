@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3AAAA7C028D051D000E0DF6B /* TransactionsStorageUsecaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA7BF28D051D000E0DF6B /* TransactionsStorageUsecaseTests.swift */; };
 		3AAAA7C128D051D000E0DF6B /* InvestmentsFrameworks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AAAA7AF28D0300A00E0DF6B /* InvestmentsFrameworks.framework */; };
+		3AAAA7C828D054B000E0DF6B /* TransactionsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA7C728D054B000E0DF6B /* TransactionsStorage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -25,6 +26,7 @@
 		3AAAA7AF28D0300A00E0DF6B /* InvestmentsFrameworks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = InvestmentsFrameworks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AAAA7BD28D051D000E0DF6B /* InvestmentsFrameworksTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InvestmentsFrameworksTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AAAA7BF28D051D000E0DF6B /* TransactionsStorageUsecaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsStorageUsecaseTests.swift; sourceTree = "<group>"; };
+		3AAAA7C728D054B000E0DF6B /* TransactionsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsStorage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 		3AAAA7B128D0300A00E0DF6B /* InvestmentsFrameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3AAAA7C728D054B000E0DF6B /* TransactionsStorage.swift */,
 			);
 			path = InvestmentsFrameworks;
 			sourceTree = "<group>";
@@ -140,6 +143,7 @@
 				TargetAttributes = {
 					3AAAA7AE28D0300A00E0DF6B = {
 						CreatedOnToolsVersion = 13.4;
+						LastSwiftMigration = 1340;
 					};
 					3AAAA7BC28D051D000E0DF6B = {
 						CreatedOnToolsVersion = 13.4;
@@ -187,6 +191,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3AAAA7C828D054B000E0DF6B /* TransactionsStorage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -331,6 +336,7 @@
 		3AAAA7B728D0300A00E0DF6B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -352,6 +358,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -359,6 +366,7 @@
 		3AAAA7B828D0300A00E0DF6B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -387,6 +395,7 @@
 		3AAAA7C528D051D000E0DF6B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 836WWF38RW;
@@ -403,6 +412,7 @@
 		3AAAA7C628D051D000E0DF6B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 836WWF38RW;
