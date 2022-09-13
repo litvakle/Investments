@@ -7,4 +7,4 @@
 
 import Foundation
 
-public struct Transaction:Equatable {}
+public struct Transaction: Equatable {}

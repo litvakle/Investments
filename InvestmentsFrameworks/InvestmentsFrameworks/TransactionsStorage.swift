@@ -18,12 +18,15 @@ public final class TransactionsStorage {
         self.store = store
     }
     
-    public func retrieve() throws -> [Transaction]? {
-        _ = try? store.retrieve()
-        throw RetrivalError.failed
+    public func retrieve() throws -> [Transaction] {
+        do {
+            return try store.retrieve()
+        } catch {
+            throw RetrivalError.failed
+        }
     }
 }
 
 public protocol TransactionsStore {
-    func retrieve() throws -> [Transaction]?
+    func retrieve() throws -> [Transaction]
 }

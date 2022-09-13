@@ -32,6 +32,14 @@ class TransactionsStorageUsecaseTests: XCTestCase {
         })
     }
     
+    func test_retrieve_deliversEmptyTransactionsListOnEmptyStoredTransactions() {
+        let (sut, store) = makeSUT()
+        
+        expect(sut, toCompleteRetrivalWith: .success([]), when: {
+            store.completeRetrival(with: [])
+        })
+    }
+    
     // MARK: - Herlpers
     
     private func makeSUT() -> (TransactionsStorage, StoreSpy) {
@@ -67,13 +75,17 @@ class TransactionsStorageUsecaseTests: XCTestCase {
             case retrieve
         }
         
-        func retrieve() throws -> [Transaction]? {
+        func retrieve() throws -> [Transaction] {
             requests.append(.retrieve)
-            return try retrivalResult?.get()
+            return try retrivalResult?.get() ?? []
         }
         
         func completeRetrival(withError error: Error) {
             retrivalResult = .failure(error)
+        }
+        
+        func completeRetrival(with transactions: [Transaction]) {
+            retrivalResult = .success(transactions)
         }
     }
     
