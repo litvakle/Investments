@@ -40,6 +40,22 @@ class TransactionsStorageUsecaseTests: XCTestCase {
         })
     }
     
+    func test_retrieve_deliversStoredTransactionsOnFoundStoredTransactions() {
+        let (sut, store) = makeSUT()
+        let transaction0 = Transaction(date: Date(), ticket: "VOO", type: .buy, quantity: 2.5, price: 200, sum: 500)
+        let transaction1 = Transaction(date: Date(), ticket: "QQQ", type: .buy, quantity: 1.5, price: 100, sum: 150)
+        let transaction2 = Transaction(date: Date(), ticket: "GXC", type: .buy, quantity: 0.5, price: 80, sum: 40)
+        let transactions = [transaction0, transaction1, transaction2]
+        
+        expect(sut, toCompleteRetrivalWith: .success(transactions), when: {
+            store.completeRetrival(with: transactions)
+        })
+        
+        expect(sut, toCompleteRetrivalWith: .success([]), when: {
+            store.completeRetrival(with: [])
+        })
+    }
+    
     // MARK: - Herlpers
     
     private func makeSUT() -> (TransactionsStorage, StoreSpy) {
