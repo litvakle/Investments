@@ -13,6 +13,12 @@ public final class TransactionsStorage {
     public init(store: TransactionsStore) {
         self.store = store
     }
+    
+    public func retrieve() {
+        store.retrieve()
+    }
 }
 
-public protocol TransactionsStore {}
+public protocol TransactionsStore {
+    func retrieve()
+}

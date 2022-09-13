@@ -15,6 +15,15 @@ class TransactionsStorageUsecaseTests: XCTestCase {
         XCTAssertEqual(store.requests, [])
     }
     
+    func test_retrieve_requestsStore() {
+        let (sut, store) = makeSUT()
+        
+        sut.retrieve()
+        sut.retrieve()
+        
+        XCTAssertEqual(store.requests, [.retrieve, .retrieve])
+    }
+    
     // MARK: - Herlpers
     
     private func makeSUT() -> (TransactionsStorage, StoreSpy) {
@@ -28,7 +37,11 @@ class TransactionsStorageUsecaseTests: XCTestCase {
         private(set) var requests = [Request]()
         
         enum Request: Equatable {
-            
+            case retrieve
+        }
+        
+        func retrieve() {
+            requests.append(.retrieve)
         }
     }
 }
