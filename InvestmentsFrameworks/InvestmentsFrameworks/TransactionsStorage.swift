@@ -10,15 +10,20 @@ import Foundation
 public final class TransactionsStorage {
     let store: TransactionsStore
     
+    public enum RetrivalError: Error {
+        case failed
+    }
+    
     public init(store: TransactionsStore) {
         self.store = store
     }
     
-    public func retrieve() {
-        store.retrieve()
+    public func retrieve() throws -> [Transaction]? {
+        _ = try? store.retrieve()
+        throw RetrivalError.failed
     }
 }
 
 public protocol TransactionsStore {
-    func retrieve()
+    func retrieve() throws -> [Transaction]?
 }
