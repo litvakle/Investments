@@ -114,17 +114,6 @@ class CoreDataTransactionsStoreTests: XCTestCase {
         return sut
     }
     
-    private func makeTransaction() -> Transaction {
-        return makeTransactions()[0]
-    }
-    
-    private func makeTransactions() -> [Transaction] {
-        return [
-            Transaction(date: Date(), ticket: "VOO", type: .buy, quantity: 2, price: 250, sum: 500),
-            Transaction(date: Date(), ticket: "QQQ", type: .sell, quantity: 1.5, price: 100, sum: 150)
-        ]
-    }
-    
     @discardableResult
     private func save(_ transaction: Transaction, to sut: CoreDataTransactionsStore) -> Error? {
         do {

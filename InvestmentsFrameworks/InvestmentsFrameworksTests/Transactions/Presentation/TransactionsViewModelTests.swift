@@ -11,6 +11,7 @@ import InvestmentsFrameworks
 class TransactionsViewModel: ObservableObject {
     private let store: TransactionsStore
     var error: Error?
+    var transactions = [Transaction]()
     
     init(store: TransactionsStore) {
         self.store = store
@@ -18,7 +19,7 @@ class TransactionsViewModel: ObservableObject {
     
     func retrieve() {
         do {
-            _ = try store.retrieve()
+            transactions = try store.retrieve()
         } catch {
             self.error = error
         }
@@ -47,6 +48,16 @@ class TransactionsViewModelTests: XCTestCase {
         sut.retrieve()
         
         XCTAssertEqual(sut.error as? NSError, anyNSError())
+    }
+    
+    func test_retrieve_receivesRetrievedTransactions() {
+        let (sut, store) = makeSUT()
+        let transactions = makeTransactions()
+        
+        store.completeRetrival(with: transactions)
+        sut.retrieve()
+        
+        XCTAssertEqual(sut.transactions, transactions)
     }
     
     // MARK: - Helpers
@@ -80,6 +91,10 @@ class TransactionsViewModelTests: XCTestCase {
         
         func completeRetrival(withError: Error) {
             retrivalResult = .failure(anyNSError())
+        }
+        
+        func completeRetrival(with transactions: [Transaction]) {
+            retrivalResult = .success(transactions)
         }
         
         func save(_ transaction: Transaction) throws {

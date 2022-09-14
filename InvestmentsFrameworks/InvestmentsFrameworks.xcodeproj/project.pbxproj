@@ -20,6 +20,7 @@
 		3AAAA7E228D1ED4400E0DF6B /* NSManagedObjectContext+Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA7E028D1ED2000E0DF6B /* NSManagedObjectContext+Stub.swift */; };
 		3AAAA7E528D1ED6300E0DF6B /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA7E428D1ED6300E0DF6B /* SharedTestHelpers.swift */; };
 		3AAAA7E928D2013B00E0DF6B /* TransactionsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA7E828D2013B00E0DF6B /* TransactionsViewModelTests.swift */; };
+		3AAAA7ED28D2189E00E0DF6B /* SharedTransactionsTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA7EC28D2189E00E0DF6B /* SharedTransactionsTestHelpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		3AAAA7E028D1ED2000E0DF6B /* NSManagedObjectContext+Stub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+Stub.swift"; sourceTree = "<group>"; };
 		3AAAA7E428D1ED6300E0DF6B /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
 		3AAAA7E828D2013B00E0DF6B /* TransactionsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsViewModelTests.swift; sourceTree = "<group>"; };
+		3AAAA7EC28D2189E00E0DF6B /* SharedTransactionsTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTransactionsTestHelpers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +188,7 @@
 		3AAAA7E628D200C300E0DF6B /* Transactions */ = {
 			isa = PBXGroup;
 			children = (
+				3AAAA7EB28D2188900E0DF6B /* Helpers */,
 				3AAAA7DB28D1E5AE00E0DF6B /* Storage */,
 				3AAAA7E728D2012800E0DF6B /* Presentation */,
 			);
@@ -198,6 +201,14 @@
 				3AAAA7E828D2013B00E0DF6B /* TransactionsViewModelTests.swift */,
 			);
 			path = Presentation;
+			sourceTree = "<group>";
+		};
+		3AAAA7EB28D2188900E0DF6B /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				3AAAA7EC28D2189E00E0DF6B /* SharedTransactionsTestHelpers.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -326,6 +337,7 @@
 				3AAAA7E928D2013B00E0DF6B /* TransactionsViewModelTests.swift in Sources */,
 				3AAAA7E528D1ED6300E0DF6B /* SharedTestHelpers.swift in Sources */,
 				3AAAA7C028D051D000E0DF6B /* CoreDataTransactionsStoreTests.swift in Sources */,
+				3AAAA7ED28D2189E00E0DF6B /* SharedTransactionsTestHelpers.swift in Sources */,
 				3AAAA7DF28D1E66700E0DF6B /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 				3AAAA7E228D1ED4400E0DF6B /* NSManagedObjectContext+Stub.swift in Sources */,
 			);
