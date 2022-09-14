@@ -30,6 +30,18 @@ class CoreDataTransactionsStoreTests: XCTestCase {
         XCTAssertEqual(retrievedTransactions, transactions)
     }
     
+    func test_save_overridesTwiceSavedTransaction() throws {
+        let sut = makeSUT()
+        let transactions = [Transaction(date: Date(), ticket: "VOO", type: .buy, quantity: 2, price: 250, sum: 500)]
+        
+        save(transactions, to: sut)
+        save(transactions, to: sut)
+        
+        let retrievedTransactions = try sut.retrieve()
+        
+        XCTAssertEqual(retrievedTransactions, transactions)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT() -> CoreDataTransactionsStore {
