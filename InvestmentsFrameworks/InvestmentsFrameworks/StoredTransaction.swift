@@ -29,12 +29,6 @@ extension TransactionType {
 }
 
 extension StoredTransaction {
-    static func find(in context: NSManagedObjectContext) throws -> StoredTransaction? {
-        let request = NSFetchRequest<StoredTransaction>(entityName: entity().name!)
-        request.returnsObjectsAsFaults = false
-        return try context.fetch(request).first
-    }
-    
     static func allTransactions(in context: NSManagedObjectContext) throws -> [Transaction] {
         let request = NSFetchRequest<StoredTransaction>(entityName: entity().name!)
         let sortByDate = NSSortDescriptor(key: "date", ascending: true)
