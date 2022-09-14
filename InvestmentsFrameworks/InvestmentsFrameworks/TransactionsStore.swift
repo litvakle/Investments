@@ -69,7 +69,7 @@ public class CoreDataTransactionsStore {
         try performSync { context in
             Result {
                 try transactions.forEach { transaction in
-                    let storedTransaction = try StoredTransaction.first(with: transaction.id, in: context)
+                    let storedTransaction = try StoredTransaction.first(with: transaction.id, in: context) ?? StoredTransaction(context: context)
                     storedTransaction.id = transaction.id
                     storedTransaction.date = transaction.date
                     storedTransaction.type = transaction.type.asString()
@@ -80,6 +80,16 @@ public class CoreDataTransactionsStore {
 
                     try context.save()
                 }
+            }
+        }
+    }
+    
+    public func delete(_ transaction: Transaction) throws {
+        try performSync { context in
+            Result {
+                try StoredTransaction.first(with: transaction.id, in: context)
+                    .map(context.delete)
+                    .map(context.save)
             }
         }
     }

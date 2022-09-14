@@ -34,13 +34,13 @@ extension StoredTransaction {
         return try context.fetch(request).map{ $0.transaction }
     }
     
-    static func first(with id: UUID, in context: NSManagedObjectContext) throws -> StoredTransaction {
+    static func first(with id: UUID, in context: NSManagedObjectContext) throws -> StoredTransaction? {
         let request = NSFetchRequest<StoredTransaction>(entityName: entity().name!)
         request.predicate = NSPredicate(format: "%K = %@", argumentArray: [#keyPath(StoredTransaction.id), id])
         request.returnsObjectsAsFaults = false
         request.fetchLimit = 1
         
-        return try context.fetch(request).first ?? StoredTransaction(context: context)
+        return try context.fetch(request).first
     }
     
     var transaction: Transaction {
