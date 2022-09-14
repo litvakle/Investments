@@ -14,6 +14,10 @@ class TransactionsViewModel {
     init(store: TransactionsStore) {
         self.store = store
     }
+    
+    func retrieve() {
+        _ = try? store.retrieve()
+    }
 }
 
 class TransactionsViewModelTests: XCTestCase {
@@ -21,6 +25,14 @@ class TransactionsViewModelTests: XCTestCase {
         let (_, store) = makeSUT()
         
         XCTAssertEqual(store.requests, [])
+    }
+    
+    func test_retrieve_requestsStoreToRetrieveTransactions() {
+        let (sut, store) = makeSUT()
+        
+        sut.retrieve()
+        
+        XCTAssertEqual(store.requests, [.retrieve])
     }
     
     // MARK: - Helpers
@@ -45,6 +57,7 @@ class TransactionsViewModelTests: XCTestCase {
         }
         
         func retrieve() throws -> [Transaction] {
+            requests.append(.retrieve)
             return []
         }
         
