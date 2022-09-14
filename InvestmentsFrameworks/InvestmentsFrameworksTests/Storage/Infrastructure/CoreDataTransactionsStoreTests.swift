@@ -19,14 +19,13 @@ class CoreDataTransactionsStoreTests: XCTestCase {
     
     func test_retreive_deliversStoredTransactionsOnNonEmptyStorage() throws {
         let sut = makeSUT()
-        let transaction0 = Transaction(date: Date(), ticket: "VOO", type: .buy, quantity: 2, price: 250, sum: 500)
-        let transaction1 = Transaction(date: Date(), ticket: "QQQ", type: .sell, quantity: 1.5, price: 100, sum: 150)
+        let transactions = makeTransactions()
         
-        save(transaction0, to: sut)
-        save(transaction1, to: sut)
+        save(transactions[0], to: sut)
+        save(transactions[1], to: sut)
         let retrievedTransactions = try sut.retrieve()
         
-        XCTAssertEqual(retrievedTransactions, [transaction0, transaction1])
+        XCTAssertEqual(retrievedTransactions, transactions)
     }
     
     func test_retrieve_deliversFailureOneRetrivalError() {
@@ -43,7 +42,7 @@ class CoreDataTransactionsStoreTests: XCTestCase {
     
     func test_save_overridesTwiceSavedTransaction() throws {
         let sut = makeSUT()
-        let transaction = Transaction(date: Date(), ticket: "VOO", type: .buy, quantity: 2, price: 250, sum: 500)
+        let transaction = makeTransaction()
         
         save(transaction, to: sut)
         save(transaction, to: sut)
@@ -54,7 +53,7 @@ class CoreDataTransactionsStoreTests: XCTestCase {
     }
     
     func test_save_deliversFailureOneSaveError() {
-        let transaction = Transaction(date: Date(), ticket: "VOO", type: .buy, quantity: 2, price: 250, sum: 500)
+        let transaction = makeTransaction()
         let stub = NSManagedObjectContext.alwaysFailingSaveStub()
         stub.startIntercepting()
         let sut = makeSUT()
@@ -68,7 +67,7 @@ class CoreDataTransactionsStoreTests: XCTestCase {
     
     func test_delete_doesNothingOnNotFoundTransaction() throws {
         let sut = makeSUT()
-        let transaction = Transaction(date: Date(), ticket: "VOO", type: .buy, quantity: 2, price: 250, sum: 500)
+        let transaction = makeTransaction()
         
         let deletionError = delete(transaction, from: sut)
         XCTAssertNil(deletionError)
@@ -79,21 +78,20 @@ class CoreDataTransactionsStoreTests: XCTestCase {
     
     func test_delete_removesFoundTransaction() throws {
         let sut = makeSUT()
-        let transaction0 = Transaction(date: Date(), ticket: "VOO", type: .buy, quantity: 2, price: 250, sum: 500)
-        let transaction1 = Transaction(date: Date(), ticket: "QQQ", type: .sell, quantity: 1.5, price: 100, sum: 150)
+        let transactions = makeTransactions()
         
-        save(transaction0, to: sut)
-        save(transaction1, to: sut)
+        save(transactions[0], to: sut)
+        save(transactions[1], to: sut)
         
-        let deletionError = delete(transaction0, from: sut)
+        let deletionError = delete(transactions[0], from: sut)
         XCTAssertNil(deletionError)
 
         let retrievedTransactions = try sut.retrieve()
-        XCTAssertEqual(retrievedTransactions, [transaction1])
+        XCTAssertEqual(retrievedTransactions, [transactions[1]])
     }
     
     func test_delete_deliversFailureOneDeletionError() {
-        let transaction = Transaction(date: Date(), ticket: "VOO", type: .buy, quantity: 2, price: 250, sum: 500)
+        let transaction = makeTransaction()
         let stub = NSManagedObjectContext.alwaysFailingDeleteStub()
         stub.startIntercepting()
         let sut = makeSUT()
@@ -114,6 +112,17 @@ class CoreDataTransactionsStoreTests: XCTestCase {
         trackForMemoryLeaks(sut, file: file, line: line)
         
         return sut
+    }
+    
+    private func makeTransaction() -> Transaction {
+        return makeTransactions()[0]
+    }
+    
+    private func makeTransactions() -> [Transaction] {
+        return [
+            Transaction(date: Date(), ticket: "VOO", type: .buy, quantity: 2, price: 250, sum: 500),
+            Transaction(date: Date(), ticket: "QQQ", type: .sell, quantity: 1.5, price: 100, sum: 150)
+        ]
     }
     
     @discardableResult
