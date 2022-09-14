@@ -17,9 +17,35 @@ class CoreDataTransactionsStoreTests: XCTestCase {
         XCTAssertEqual(retrievedTransactions, [])
     }
     
+    func test_retreive_deliversStoredTransactionsOnNonEmptyStorage() throws {
+        let sut = makeSUT()
+        let transactions = [
+            Transaction(date: Date(), ticket: "VOO", type: .buy, quantity: 2, price: 250, sum: 500),
+            Transaction(date: Date(), ticket: "QQQ", type: .sell, quantity: 1.5, price: 100, sum: 150)
+        ]
+        
+        save(transactions, to: sut)
+        let retrievedTransactions = try sut.retrieve()
+        
+        XCTAssertEqual(retrievedTransactions, transactions)
+    }
+    
     // MARK: - Helpers
     
-    private func makeSUT() -> CoraDataTransactionsStore {
-        return CoraDataTransactionsStore()
+    private func makeSUT() -> CoreDataTransactionsStore {
+        let storeURL = URL(fileURLWithPath: "/dev/null")
+        let sut = try! CoreDataTransactionsStore(storeURL: storeURL)
+        
+        return sut
+    }
+    
+    @discardableResult
+    private func save(_ transactions: [Transaction], to sut: CoreDataTransactionsStore) -> Error? {
+        do {
+            try sut.save(transactions)
+            return nil
+        } catch {
+            return error
+        }
     }
 }

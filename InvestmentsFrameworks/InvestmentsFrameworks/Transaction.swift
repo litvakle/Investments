@@ -8,6 +8,7 @@
 import Foundation
 
 public struct Transaction: Equatable {
+    let id: UUID
     let date: Date
     let ticket: String
     let type: TransactionType
@@ -15,7 +16,8 @@ public struct Transaction: Equatable {
     let price: Double
     let sum: Double
     
-    public init(date: Date, ticket: String, type: TransactionType, quantity: Double, price: Double, sum: Double) {
+    public init(id: UUID = UUID(), date: Date, ticket: String, type: TransactionType, quantity: Double, price: Double, sum: Double) {
+        self.id = id
         self.date = date
         self.ticket = ticket
         self.type = type
