@@ -69,9 +69,11 @@ class CoreDataTransactionsStoreTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT() -> CoreDataTransactionsStore {
+    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> CoreDataTransactionsStore {
         let storeURL = URL(fileURLWithPath: "/dev/null")
         let sut = try! CoreDataTransactionsStore(storeURL: storeURL)
+        
+        trackForMemoryLeaks(sut, file: file, line: line)
         
         return sut
     }

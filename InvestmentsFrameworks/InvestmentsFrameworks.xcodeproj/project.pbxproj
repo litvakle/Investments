@@ -16,6 +16,7 @@
 		3AAAA7D128D0B36D00E0DF6B /* CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA7D028D0B36D00E0DF6B /* CoreDataHelpers.swift */; };
 		3AAAA7D728D1E51F00E0DF6B /* CoreDataTransactionsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA7D628D1E51F00E0DF6B /* CoreDataTransactionsStore.swift */; };
 		3AAAA7D928D1E54300E0DF6B /* CoreDataTransactionsStore+TransactionsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA7D828D1E54300E0DF6B /* CoreDataTransactionsStore+TransactionsStore.swift */; };
+		3AAAA7DF28D1E66700E0DF6B /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA7DE28D1E66700E0DF6B /* XCTestCase+MemoryLeakTracking.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +40,7 @@
 		3AAAA7D028D0B36D00E0DF6B /* CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelpers.swift; sourceTree = "<group>"; };
 		3AAAA7D628D1E51F00E0DF6B /* CoreDataTransactionsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTransactionsStore.swift; sourceTree = "<group>"; };
 		3AAAA7D828D1E54300E0DF6B /* CoreDataTransactionsStore+TransactionsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreDataTransactionsStore+TransactionsStore.swift"; sourceTree = "<group>"; };
+		3AAAA7DE28D1E66700E0DF6B /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 		3AAAA7BE28D051D000E0DF6B /* InvestmentsFrameworksTests */ = {
 			isa = PBXGroup;
 			children = (
+				3AAAA7DD28D1E64C00E0DF6B /* Helpers */,
 				3AAAA7DB28D1E5AE00E0DF6B /* Storage */,
 			);
 			path = InvestmentsFrameworksTests;
@@ -154,6 +157,14 @@
 				3AAAA7BF28D051D000E0DF6B /* CoreDataTransactionsStoreTests.swift */,
 			);
 			path = Infrastructure;
+			sourceTree = "<group>";
+		};
+		3AAAA7DD28D1E64C00E0DF6B /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				3AAAA7DE28D1E66700E0DF6B /* XCTestCase+MemoryLeakTracking.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -280,6 +291,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AAAA7C028D051D000E0DF6B /* CoreDataTransactionsStoreTests.swift in Sources */,
+				3AAAA7DF28D1E66700E0DF6B /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
