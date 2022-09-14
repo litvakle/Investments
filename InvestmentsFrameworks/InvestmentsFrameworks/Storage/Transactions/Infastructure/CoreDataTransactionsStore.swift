@@ -12,7 +12,7 @@ public class CoreDataTransactionsStore {
     private static let model = NSManagedObjectModel.with(name: modelName, in: Bundle(for: CoreDataTransactionsStore.self))
     
     private let container: NSPersistentContainer
-    private let context: NSManagedObjectContext
+    let context: NSManagedObjectContext
     
     enum StoreError: Error {
         case modelNotFound
@@ -30,14 +30,6 @@ public class CoreDataTransactionsStore {
         } catch {
             throw StoreError.failedToLoadPersistentContainer(error)
         }
-    }
-    
-    func performSync<R>(_ action: (NSManagedObjectContext) -> Result<R, Error>) throws -> R {
-        let context = self.context
-        var result: Result<R, Error>!
-        context.performAndWait { result = action(context) }
-        
-        return try result.get()
     }
     
     private func cleanUpReferencesToPersistentStores() {

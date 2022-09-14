@@ -29,6 +29,18 @@ class CoreDataTransactionsStoreTests: XCTestCase {
         XCTAssertEqual(retrievedTransactions, [transaction0, transaction1])
     }
     
+    func test_retrieve_deliversFailureOneRetrivalError() {
+        let stub = NSManagedObjectContext.alwaysFailingFetchStub()
+        stub.startIntercepting()
+        let sut = makeSUT()
+        
+        do {
+            _ = try sut.retrieve()
+        } catch {
+            XCTAssertEqual(error as NSError, anyNSError())
+        }
+    }
+    
     func test_save_overridesTwiceSavedTransaction() throws {
         let sut = makeSUT()
         let transaction = Transaction(date: Date(), ticket: "VOO", type: .buy, quantity: 2, price: 250, sum: 500)
