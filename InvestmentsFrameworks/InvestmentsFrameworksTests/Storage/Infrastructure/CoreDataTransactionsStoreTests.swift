@@ -92,6 +92,19 @@ class CoreDataTransactionsStoreTests: XCTestCase {
         XCTAssertEqual(retrievedTransactions, [transaction1])
     }
     
+    func test_delete_deliversFailureOneDeletionError() {
+        let transaction = Transaction(date: Date(), ticket: "VOO", type: .buy, quantity: 2, price: 250, sum: 500)
+        let stub = NSManagedObjectContext.alwaysFailingDeleteStub()
+        stub.startIntercepting()
+        let sut = makeSUT()
+        
+        do {
+            _ = try sut.delete(transaction)
+        } catch {
+            XCTAssertEqual(error as NSError, anyNSError())
+        }
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> CoreDataTransactionsStore {
