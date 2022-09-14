@@ -8,15 +8,20 @@
 import XCTest
 import InvestmentsFrameworks
 
-class TransactionsViewModel {
+class TransactionsViewModel: ObservableObject {
     private let store: TransactionsStore
+    var error: Error?
     
     init(store: TransactionsStore) {
         self.store = store
     }
     
     func retrieve() {
-        _ = try? store.retrieve()
+        do {
+            _ = try store.retrieve()
+        } catch {
+            self.error = error
+        }
     }
 }
 
@@ -35,6 +40,15 @@ class TransactionsViewModelTests: XCTestCase {
         XCTAssertEqual(store.requests, [.retrieve])
     }
     
+    func test_retrieve_receivesErrorOnStoreRetrivalError() {
+        let (sut, store) = makeSUT()
+            
+        store.completeRetrival(withError: anyNSError())
+        sut.retrieve()
+        
+        XCTAssertEqual(sut.error as? NSError, anyNSError())
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (sut: TransactionsViewModel, store: StoreSpy) {
@@ -50,6 +64,8 @@ class TransactionsViewModelTests: XCTestCase {
     private class StoreSpy: TransactionsStore {
         private(set) var requests = [Request]()
         
+        private var retrivalResult: Result<[Transaction], Error>?
+        
         enum Request: Equatable {
             case retrieve
             case save(Transaction)
@@ -58,7 +74,12 @@ class TransactionsViewModelTests: XCTestCase {
         
         func retrieve() throws -> [Transaction] {
             requests.append(.retrieve)
-            return []
+            
+            return try retrivalResult?.get() ?? []
+        }
+        
+        func completeRetrival(withError: Error) {
+            retrivalResult = .failure(anyNSError())
         }
         
         func save(_ transaction: Transaction) throws {
@@ -68,7 +89,5 @@ class TransactionsViewModelTests: XCTestCase {
         func delete(_ transaction: Transaction) throws {
             
         }
-        
-        
     }
 }
