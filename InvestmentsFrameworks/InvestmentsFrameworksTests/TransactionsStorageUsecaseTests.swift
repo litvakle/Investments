@@ -19,27 +19,26 @@ class CoreDataTransactionsStoreTests: XCTestCase {
     
     func test_retreive_deliversStoredTransactionsOnNonEmptyStorage() throws {
         let sut = makeSUT()
-        let transactions = [
-            Transaction(date: Date(), ticket: "VOO", type: .buy, quantity: 2, price: 250, sum: 500),
-            Transaction(date: Date(), ticket: "QQQ", type: .sell, quantity: 1.5, price: 100, sum: 150)
-        ]
+        let transaction0 = Transaction(date: Date(), ticket: "VOO", type: .buy, quantity: 2, price: 250, sum: 500)
+        let transaction1 = Transaction(date: Date(), ticket: "QQQ", type: .sell, quantity: 1.5, price: 100, sum: 150)
         
-        save(transactions, to: sut)
+        save(transaction0, to: sut)
+        save(transaction1, to: sut)
         let retrievedTransactions = try sut.retrieve()
         
-        XCTAssertEqual(retrievedTransactions, transactions)
+        XCTAssertEqual(retrievedTransactions, [transaction0, transaction1])
     }
     
     func test_save_overridesTwiceSavedTransaction() throws {
         let sut = makeSUT()
-        let transactions = [Transaction(date: Date(), ticket: "VOO", type: .buy, quantity: 2, price: 250, sum: 500)]
+        let transaction = Transaction(date: Date(), ticket: "VOO", type: .buy, quantity: 2, price: 250, sum: 500)
         
-        save(transactions, to: sut)
-        save(transactions, to: sut)
+        save(transaction, to: sut)
+        save(transaction, to: sut)
         
         let retrievedTransactions = try sut.retrieve()
         
-        XCTAssertEqual(retrievedTransactions, transactions)
+        XCTAssertEqual(retrievedTransactions, [transaction])
     }
     
     func test_delete_doesNothingOnNotFoundTransaction() throws {
@@ -55,18 +54,17 @@ class CoreDataTransactionsStoreTests: XCTestCase {
     
     func test_delete_removesFoundTransaction() throws {
         let sut = makeSUT()
-        let transactions = [
-            Transaction(date: Date(), ticket: "VOO", type: .buy, quantity: 2, price: 250, sum: 500),
-            Transaction(date: Date(), ticket: "QQQ", type: .sell, quantity: 1.5, price: 100, sum: 150)
-        ]
+        let transaction0 = Transaction(date: Date(), ticket: "VOO", type: .buy, quantity: 2, price: 250, sum: 500)
+        let transaction1 = Transaction(date: Date(), ticket: "QQQ", type: .sell, quantity: 1.5, price: 100, sum: 150)
         
-        save(transactions, to: sut)
+        save(transaction0, to: sut)
+        save(transaction1, to: sut)
         
-        let deletionError = delete(transactions[0], from: sut)
+        let deletionError = delete(transaction0, from: sut)
         XCTAssertNil(deletionError)
 
         let retrievedTransactions = try sut.retrieve()
-        XCTAssertEqual(retrievedTransactions, [transactions[1]])
+        XCTAssertEqual(retrievedTransactions, [transaction1])
     }
     
     // MARK: - Helpers
@@ -79,9 +77,9 @@ class CoreDataTransactionsStoreTests: XCTestCase {
     }
     
     @discardableResult
-    private func save(_ transactions: [Transaction], to sut: CoreDataTransactionsStore) -> Error? {
+    private func save(_ transaction: Transaction, to sut: CoreDataTransactionsStore) -> Error? {
         do {
-            try sut.save(transactions)
+            try sut.save(transaction)
             return nil
         } catch {
             return error

@@ -65,21 +65,19 @@ public class CoreDataTransactionsStore {
         }
     }
     
-    public func save(_ transactions: [Transaction]) throws {
+    public func save(_ transaction: Transaction) throws {
         try performSync { context in
             Result {
-                try transactions.forEach { transaction in
-                    let storedTransaction = try StoredTransaction.first(with: transaction.id, in: context) ?? StoredTransaction(context: context)
-                    storedTransaction.id = transaction.id
-                    storedTransaction.date = transaction.date
-                    storedTransaction.type = transaction.type.asString()
-                    storedTransaction.ticket = transaction.ticket
-                    storedTransaction.quantity = transaction.quantity
-                    storedTransaction.price = transaction.price
-                    storedTransaction.sum = transaction.sum
+                let storedTransaction = try StoredTransaction.first(with: transaction.id, in: context) ?? StoredTransaction(context: context)
+                storedTransaction.id = transaction.id
+                storedTransaction.date = transaction.date
+                storedTransaction.type = transaction.type.asString()
+                storedTransaction.ticket = transaction.ticket
+                storedTransaction.quantity = transaction.quantity
+                storedTransaction.price = transaction.price
+                storedTransaction.sum = transaction.sum
 
-                    try context.save()
-                }
+                try context.save()
             }
         }
     }
