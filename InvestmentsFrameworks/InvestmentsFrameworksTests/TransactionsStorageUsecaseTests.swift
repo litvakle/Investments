@@ -53,6 +53,22 @@ class CoreDataTransactionsStoreTests: XCTestCase {
         XCTAssertEqual(retrievedTransactions, [])
     }
     
+    func test_delete_removesFoundTransaction() throws {
+        let sut = makeSUT()
+        let transactions = [
+            Transaction(date: Date(), ticket: "VOO", type: .buy, quantity: 2, price: 250, sum: 500),
+            Transaction(date: Date(), ticket: "QQQ", type: .sell, quantity: 1.5, price: 100, sum: 150)
+        ]
+        
+        save(transactions, to: sut)
+        
+        let deletionError = delete(transactions[0], from: sut)
+        XCTAssertNil(deletionError)
+
+        let retrievedTransactions = try sut.retrieve()
+        XCTAssertEqual(retrievedTransactions, [transactions[1]])
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT() -> CoreDataTransactionsStore {
