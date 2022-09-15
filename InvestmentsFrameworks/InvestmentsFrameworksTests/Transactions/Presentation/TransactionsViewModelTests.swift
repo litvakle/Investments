@@ -102,6 +102,17 @@ class TransactionsViewModelTests: XCTestCase {
         XCTAssertEqual(sut.error as? NSError, anyNSError())
     }
     
+    func test_delete_doesNotReceiveErrorOnNotFoundTransaction() {
+        let (sut, store) = makeSUT()
+        let transaction = makeTransaction()
+        
+        store.completeDeletionSuccessfully()
+        sut.delete(transaction)
+        
+        XCTAssertNil(sut.error)
+        XCTAssertEqual(sut.transactions, [])
+    }
+    
     func test_delete_deletesTransactions() {
         let (sut, store) = makeSUT()
         let transactions = makeTransactions()
