@@ -16,7 +16,7 @@ public struct Transaction: Equatable, Identifiable {
     public let price: Double
     public let sum: Double
     
-    public init(id: UUID = UUID(), date: Date, ticket: String, type: TransactionType, quantity: Double, price: Double, sum: Double) {
+    public init(id: UUID = UUID(), date: Date = Date(), ticket: String = "", type: TransactionType = .buy, quantity: Double = 0, price: Double = 0, sum: Double = 0) {
         self.id = id
         self.date = date
         self.ticket = ticket

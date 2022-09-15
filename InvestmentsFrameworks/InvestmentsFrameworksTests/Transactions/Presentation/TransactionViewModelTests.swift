@@ -64,19 +64,30 @@ class TransactionViewModelTests: XCTestCase {
     }
     
     func test_save_invokesOnlyIfThereAreNoErrors() {
-        let transaction = makeTransaction()
-        var savedTransactions = [Transaction]()
-        let sut = makeSUT(transaction: transaction) { transactionToSave in
-            savedTransactions.append(transactionToSave)
+        let transaction = Transaction()
+        var saveInvokesCount = 0
+        let sut = makeSUT(transaction: transaction) { _ in
+            saveInvokesCount += 1
         }
         
-        sut.ticket = incorrectTickets()[0]
         sut.save()
-        XCTAssertEqual(savedTransactions, [])
+        XCTAssertEqual(saveInvokesCount, 0)
         
-        sut.ticket = transaction.ticket
+        sut.ticket = incorrectTickets()[0]
+        sut.quantity = incorrectAmounts()[0]
+        sut.price = incorrectAmounts()[0]
+        sut.sum = incorrectAmounts()[0]
+
         sut.save()
-        XCTAssertEqual(savedTransactions, [transaction])
+        XCTAssertEqual(saveInvokesCount, 0)
+        
+        sut.ticket = correctTickets()[0]
+        sut.quantity = correctAmounts()[0]
+        sut.price = correctAmounts()[0]
+        sut.sum = correctAmounts()[0]
+        
+        sut.save()
+        XCTAssertEqual(saveInvokesCount, 1)
     }
     
     // MARK: - Helpers
