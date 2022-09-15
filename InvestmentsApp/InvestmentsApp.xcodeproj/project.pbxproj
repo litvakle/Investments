@@ -14,6 +14,8 @@
 		3AAAA83228D2DEA500E0DF6B /* InvestmentsFrameworks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AAAA83128D2DEA500E0DF6B /* InvestmentsFrameworks.framework */; };
 		3AAAA83328D2DEA500E0DF6B /* InvestmentsFrameworks.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3AAAA83128D2DEA500E0DF6B /* InvestmentsFrameworks.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3AAAA83628D303B400E0DF6B /* TransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA83528D303B300E0DF6B /* TransactionView.swift */; };
+		3AAAA83828D309B500E0DF6B /* Date+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA83728D309B500E0DF6B /* Date+Helpers.swift */; };
+		3AAAA83A28D30AE100E0DF6B /* Double+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA83928D30AE100E0DF6B /* Double+Helpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -38,6 +40,8 @@
 		3AAAA82528D2DDCB00E0DF6B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3AAAA83128D2DEA500E0DF6B /* InvestmentsFrameworks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = InvestmentsFrameworks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AAAA83528D303B300E0DF6B /* TransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionView.swift; sourceTree = "<group>"; };
+		3AAAA83728D309B500E0DF6B /* Date+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Helpers.swift"; sourceTree = "<group>"; };
+		3AAAA83928D30AE100E0DF6B /* Double+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Helpers.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +77,8 @@
 			isa = PBXGroup;
 			children = (
 				3AAAA81E28D2DDC900E0DF6B /* InvestmentsAppApp.swift */,
+				3AAAA83728D309B500E0DF6B /* Date+Helpers.swift */,
+				3AAAA83928D30AE100E0DF6B /* Double+Helpers.swift */,
 				3AAAA82028D2DDC900E0DF6B /* TransactionsView.swift */,
 				3AAAA83528D303B300E0DF6B /* TransactionView.swift */,
 				3AAAA82228D2DDCB00E0DF6B /* Assets.xcassets */,
@@ -169,6 +175,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AAAA82128D2DDC900E0DF6B /* TransactionsView.swift in Sources */,
+				3AAAA83828D309B500E0DF6B /* Date+Helpers.swift in Sources */,
+				3AAAA83A28D30AE100E0DF6B /* Double+Helpers.swift in Sources */,
 				3AAAA81F28D2DDC900E0DF6B /* InvestmentsAppApp.swift in Sources */,
 				3AAAA83628D303B400E0DF6B /* TransactionView.swift in Sources */,
 			);

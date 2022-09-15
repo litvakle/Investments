@@ -26,7 +26,25 @@ struct TransactionsList: View {
     var body: some View {
         List {
             ForEach(transactions) { transaction in
-                NavigationLink(transaction.ticket, destination: TransactionView(transaction))
+                NavigationLink {
+                    TransactionView(transaction)
+                } label: {
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text(transaction.date.asTransactionsListItem())
+                            Text(transaction.ticket)
+                        }
+                        
+                        Spacer()
+
+                        VStack(alignment: .trailing) {
+                            Text("\(transaction.quantity.asCurrencyString())")
+                            Text("\(transaction.sum.asCurrencyString())")
+                        }
+                    }
+                    
+                    
+                }
             }
             .onDelete(perform: delete)
         }
