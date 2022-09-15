@@ -9,6 +9,8 @@ import SwiftUI
 import CoreData
 import InvestmentsFrameworks
 
+typealias InvestmentTransaction = InvestmentsFrameworks.Transaction
+
 @main
 struct InvestmentsAppApp: App {
     @StateObject var transactionsViewModel = createTransactionsViewModel()

@@ -20,8 +20,8 @@ struct TransactionsView: View {
 }
 
 struct TransactionsList: View {
-    var transactions: [InvestmentsFrameworks.Transaction]
-    var onDeleteTransaction: (InvestmentsFrameworks.Transaction) -> Void
+    var transactions: [InvestmentTransaction]
+    var onDeleteTransaction: (InvestmentTransaction) -> Void
     
     var body: some View {
         List {
@@ -43,8 +43,8 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             TransactionsList(transactions: [
-                InvestmentsFrameworks.Transaction(date: Date(), ticket: "VOO", type: .buy, quantity: 2, price: 200, sum: 400),
-                InvestmentsFrameworks.Transaction(date: Date(), ticket: "QQQ", type: .sell, quantity: 1.5, price: 100, sum: 150)
+                InvestmentTransaction(date: Date(), ticket: "VOO", type: .buy, quantity: 2, price: 200, sum: 400),
+                InvestmentTransaction(date: Date(), ticket: "QQQ", type: .sell, quantity: 1.5, price: 100, sum: 150)
             ], onDeleteTransaction: { _ in })
             .navigationTitle("Transactions")
         }

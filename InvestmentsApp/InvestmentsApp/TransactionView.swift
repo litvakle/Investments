@@ -9,10 +9,10 @@ import SwiftUI
 import InvestmentsFrameworks
 
 struct TransactionView: View {
-    var transaction: InvestmentsFrameworks.Transaction
+    var transaction: InvestmentTransaction
     
     
-    init(_ transaction: InvestmentsFrameworks.Transaction) {
+    init(_ transaction: InvestmentTransaction) {
         self.transaction = transaction
     }
     var body: some View {
@@ -22,6 +22,6 @@ struct TransactionView: View {
 
 struct TransactionView_Previews: PreviewProvider {
     static var previews: some View {
-        TransactionView(InvestmentsFrameworks.Transaction(date: Date(), ticket: "VOO", type: .buy, quantity: 2, price: 100, sum: 200))
+        TransactionView(InvestmentTransaction(date: Date(), ticket: "VOO", type: .buy, quantity: 2, price: 100, sum: 200))
     }
 }
