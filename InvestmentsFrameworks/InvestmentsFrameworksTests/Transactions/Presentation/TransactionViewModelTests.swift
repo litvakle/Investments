@@ -9,67 +9,6 @@ import XCTest
 import InvestmentsFrameworks
 import Combine
 
-class TransactionViewModel: ObservableObject {
-    @Published private(set) var id: UUID
-    @Published var date: Date
-    @Published var type: TransactionType
-    @Published var ticket: String
-    @Published var quantity: Double
-    @Published var price: Double
-    @Published var sum: Double
-    
-    @Published private(set) var ticketErrorMessage: String?
-    @Published private(set) var quantityErrorMessage: String?
-    @Published private(set) var priceErrorMessage: String?
-    @Published private(set) var sumErrorMessage: String?
-    
-    init(transaction: Transaction) {
-        self.id = transaction.id
-        self.date = transaction.date
-        self.type = transaction.type
-        self.ticket = transaction.ticket
-        self.quantity = transaction.quantity
-        self.price = transaction.price
-        self.sum = transaction.sum
-        
-        setupSubsriptions()
-    }
-    
-    private func setupSubsriptions() {
-        $ticket
-            .dropFirst()
-            .map { [weak self] ticket in
-                self?.isCorrect(ticket: ticket) == true ? nil : "Ticket should contain 3 or 4 letters"
-            }
-            .assign(to: &$ticketErrorMessage)
-        
-        $quantity
-            .dropFirst()
-            .map { $0 <= 0 ? "Quantity should be below than zero" : nil }
-            .assign(to: &$quantityErrorMessage)
-        
-        $price
-            .dropFirst()
-            .map { $0 <= 0 ? "Price should be below than zero" : nil }
-            .assign(to: &$priceErrorMessage)
-        
-        $sum
-            .dropFirst()
-            .map { $0 <= 0 ? "Sum should be below than zero" : nil }
-            .assign(to: &$sumErrorMessage)
-    }
-    
-    private func isCorrect(ticket: String) -> Bool {
-        guard ticket.count == 3 || ticket.count == 4 else { return false }
-        
-        for char in ticket {
-            if !char.isLetter { return false }
-        }
-        
-        return true
-    }
-}
-
 class TransactionViewModelTests: XCTestCase {
     func test_init_fillsViewModelRequisites() {
         let transaction = makeTransaction()
@@ -124,13 +63,30 @@ class TransactionViewModelTests: XCTestCase {
         }
     }
     
+    func test_save_invokesOnlyIfThereAreNoErrors() {
+        let transaction = makeTransaction()
+        var savedTransactions = [Transaction]()
+        let sut = makeSUT(transaction: transaction) { transactionToSave in
+            savedTransactions.append(transactionToSave)
+        }
+        
+        sut.ticket = incorrectTickets()[0]
+        sut.save()
+        XCTAssertEqual(savedTransactions, [])
+        
+        sut.ticket = transaction.ticket
+        sut.save()
+        XCTAssertEqual(savedTransactions, [transaction])
+    }
+    
     // MARK: - Helpers
     private func makeSUT(
         transaction: Transaction,
+        onSave: @escaping (Transaction) -> Void = { _ in },
         file: StaticString = #filePath,
         line: UInt = #line
     ) -> TransactionViewModel {
-        let sut = TransactionViewModel(transaction: transaction)
+        let sut = TransactionViewModel(transaction: transaction, onSave: onSave)
         trackForMemoryLeaks(sut, file: file, line: line)
         return sut
     }
