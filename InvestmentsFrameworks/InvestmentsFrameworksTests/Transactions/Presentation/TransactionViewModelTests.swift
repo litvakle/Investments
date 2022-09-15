@@ -23,8 +23,6 @@ class TransactionViewModel: ObservableObject {
     @Published private(set) var priceErrorMessage: String?
     @Published private(set) var sumErrorMessage: String?
     
-    private var cancellables = Set<AnyCancellable>()
-    
     init(transaction: Transaction) {
         self.id = transaction.id
         self.date = transaction.date
@@ -39,32 +37,36 @@ class TransactionViewModel: ObservableObject {
     
     private func setupSubsriptions() {
         $ticket
-            .map { $0.count < 3 ? "Ticket should contain at least 3 symbols" : nil }
-            .sink { [weak self] message in
-                self?.ticketErrorMessage = message
+            .dropFirst()
+            .map { [weak self] ticket in
+                self?.isCorrect(ticket: ticket) == true ? nil : "Ticket should contain 3 or 4 letters"
             }
-            .store(in: &cancellables)
+            .assign(to: &$ticketErrorMessage)
         
         $quantity
+            .dropFirst()
             .map { $0 <= 0 ? "Quantity should be below than zero" : nil }
-            .sink { [weak self] message in
-                self?.quantityErrorMessage = message
-            }
-            .store(in: &cancellables)
+            .assign(to: &$quantityErrorMessage)
         
         $price
+            .dropFirst()
             .map { $0 <= 0 ? "Price should be below than zero" : nil }
-            .sink { [weak self] message in
-                self?.priceErrorMessage = message
-            }
-            .store(in: &cancellables)
+            .assign(to: &$priceErrorMessage)
         
         $sum
+            .dropFirst()
             .map { $0 <= 0 ? "Sum should be below than zero" : nil }
-            .sink { [weak self] message in
-                self?.sumErrorMessage = message
-            }
-            .store(in: &cancellables)
+            .assign(to: &$sumErrorMessage)
+    }
+    
+    private func isCorrect(ticket: String) -> Bool {
+        guard ticket.count == 3 || ticket.count == 4 else { return false }
+        
+        for char in ticket {
+            if !char.isLetter { return false }
+        }
+        
+        return true
     }
 }
 
@@ -82,30 +84,44 @@ class TransactionViewModelTests: XCTestCase {
         XCTAssertEqual(sut.sum, transaction.sum)
     }
     
-    func test_editRequisites_affectsOnCorrectionChecking() {
-        let transaction = makeTransaction()
+    func test_changeRequisites_leadsToChecksErrors() {
+        let transaction = Transaction(date: Date(), ticket: "", type: .buy, quantity: 0, price: 0, sum: 0)
         let sut = makeSUT(transaction: transaction)
         
-        sut.ticket = ""
-        XCTAssertNotNil(sut.ticketErrorMessage)
+        XCTAssertNil(sut.ticketErrorMessage, "Expected no error messages until start editing")
+        XCTAssertNil(sut.quantityErrorMessage, "Expected no error messages until start editing")
+        XCTAssertNil(sut.priceErrorMessage, "Expected no error messages until start editing")
+        XCTAssertNil(sut.sumErrorMessage, "Expected no error messages until start editing")
         
-        sut.quantity = 0
-        XCTAssertNotNil(sut.quantityErrorMessage)
+        incorrectTickets().forEach { incorrectTicket in
+            sut.ticket = incorrectTicket
+            XCTAssertNotNil(sut.ticketErrorMessage, "ticket \(incorrectTicket)")
+        }
         
-        sut.quantity = -1
-        XCTAssertNotNil(sut.quantityErrorMessage)
+        correctTickets().forEach { correctTicket in
+            sut.ticket = correctTicket
+            XCTAssertNil(sut.ticketErrorMessage, "ticket \(correctTicket)")
+        }
         
-        sut.price = 0
-        XCTAssertNotNil(sut.priceErrorMessage)
+        incorrectAmounts().forEach { incorrectAmount in
+            sut.price = incorrectAmount
+            sut.quantity = incorrectAmount
+            sut.sum = incorrectAmount
+            
+            XCTAssertNotNil(sut.quantityErrorMessage, "amount \(incorrectAmount)")
+            XCTAssertNotNil(sut.priceErrorMessage, "amount \(incorrectAmount)")
+            XCTAssertNotNil(sut.sumErrorMessage, "amount \(incorrectAmount)")
+        }
         
-        sut.price = -1
-        XCTAssertNotNil(sut.priceErrorMessage)
-        
-        sut.sum = 0
-        XCTAssertNotNil(sut.sumErrorMessage)
-        
-        sut.sum = -1
-        XCTAssertNotNil(sut.sumErrorMessage)
+        correctAmounts().forEach { correctAmount in
+            sut.price = correctAmount
+            sut.quantity = correctAmount
+            sut.sum = correctAmount
+            
+            XCTAssertNil(sut.quantityErrorMessage, "amount \(correctAmount)")
+            XCTAssertNil(sut.priceErrorMessage, "amount \(correctAmount)")
+            XCTAssertNil(sut.sumErrorMessage, "amount \(correctAmount)")
+        }
     }
     
     // MARK: - Helpers
@@ -117,5 +133,21 @@ class TransactionViewModelTests: XCTestCase {
         let sut = TransactionViewModel(transaction: transaction)
         trackForMemoryLeaks(sut, file: file, line: line)
         return sut
+    }
+    
+    private func incorrectTickets() -> [String] {
+        ["", "A", "AA", "A A", "AA0", "-RT"]
+    }
+    
+    private func correctTickets() -> [String] {
+        ["AAA", "BBB", "aaa"]
+    }
+    
+    private func incorrectAmounts() -> [Double] {
+        [0, -0.0001, -1, -100]
+    }
+    
+    private func correctAmounts() -> [Double] {
+        [0.0001, 1, 100]
     }
 }
