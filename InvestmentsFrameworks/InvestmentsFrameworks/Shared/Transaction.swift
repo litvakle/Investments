@@ -7,14 +7,14 @@
 
 import Foundation
 
-public struct Transaction: Equatable {
-    let id: UUID
-    let date: Date
-    let ticket: String
-    let type: TransactionType
-    let quantity: Double
-    let price: Double
-    let sum: Double
+public struct Transaction: Equatable, Identifiable {
+    public let id: UUID
+    public let date: Date
+    public let ticket: String
+    public let type: TransactionType
+    public let quantity: Double
+    public let price: Double
+    public let sum: Double
     
     public init(id: UUID = UUID(), date: Date, ticket: String, type: TransactionType, quantity: Double, price: Double, sum: Double) {
         self.id = id

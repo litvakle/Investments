@@ -6,13 +6,31 @@
 //
 
 import SwiftUI
+import CoreData
 import InvestmentsFrameworks
 
 @main
 struct InvestmentsAppApp: App {
+    @StateObject var transactionsViewModel = createTransactionsViewModel()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            TransactionsView(vm: transactionsViewModel)
         }
     }
+}
+
+private func createTransactionsViewModel() -> TransactionsViewModel {
+    let viewModel = TransactionsViewModel(store: createTransactionsStore())
+    viewModel.retrieve()
+    
+    return viewModel
+}
+
+private func createTransactionsStore() -> TransactionsStore {
+    return try! CoreDataTransactionsStore(
+        storeURL: NSPersistentContainer
+            .defaultDirectoryURL()
+            .appendingPathComponent("transactions-store.sqlite")
+    )
 }

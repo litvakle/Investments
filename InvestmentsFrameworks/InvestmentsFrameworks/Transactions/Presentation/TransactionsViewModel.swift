@@ -10,7 +10,7 @@ import Foundation
 public class TransactionsViewModel: ObservableObject {
     private let store: TransactionsStore
     public private(set) var error: Error?
-    public private(set) var transactions = [Transaction]()
+    @Published public private(set) var transactions = [Transaction]()
     
     public init(store: TransactionsStore) {
         self.store = store
