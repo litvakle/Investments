@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import InvestmentsFrameworks
 
 @main
 struct InvestmentsAppApp: App {
