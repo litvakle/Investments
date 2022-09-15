@@ -7,6 +7,7 @@
 
 import XCTest
 import InvestmentsFrameworks
+import CoreData
 
 class CoreDataTransactionsStoreTests: XCTestCase {
     func test_retreive_deliversEmptyTransactionsListOnEmptyStorage() throws {
