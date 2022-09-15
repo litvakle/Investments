@@ -16,6 +16,7 @@
 		3AAAA83628D303B400E0DF6B /* TransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA83528D303B300E0DF6B /* TransactionView.swift */; };
 		3AAAA83828D309B500E0DF6B /* Date+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA83728D309B500E0DF6B /* Date+Helpers.swift */; };
 		3AAAA83A28D30AE100E0DF6B /* Double+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA83928D30AE100E0DF6B /* Double+Helpers.swift */; };
+		3AAAA83F28D30D0C00E0DF6B /* TransactionsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA83E28D30D0C00E0DF6B /* TransactionsList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -42,6 +43,7 @@
 		3AAAA83528D303B300E0DF6B /* TransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionView.swift; sourceTree = "<group>"; };
 		3AAAA83728D309B500E0DF6B /* Date+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Helpers.swift"; sourceTree = "<group>"; };
 		3AAAA83928D30AE100E0DF6B /* Double+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Helpers.swift"; sourceTree = "<group>"; };
+		3AAAA83E28D30D0C00E0DF6B /* TransactionsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,10 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				3AAAA81E28D2DDC900E0DF6B /* InvestmentsAppApp.swift */,
-				3AAAA83728D309B500E0DF6B /* Date+Helpers.swift */,
-				3AAAA83928D30AE100E0DF6B /* Double+Helpers.swift */,
-				3AAAA82028D2DDC900E0DF6B /* TransactionsView.swift */,
-				3AAAA83528D303B300E0DF6B /* TransactionView.swift */,
+				3AAAA83B28D30CC200E0DF6B /* Transactions */,
 				3AAAA82228D2DDCB00E0DF6B /* Assets.xcassets */,
 				3AAAA82428D2DDCB00E0DF6B /* Preview Content */,
 			);
@@ -101,6 +100,34 @@
 				3AAAA83128D2DEA500E0DF6B /* InvestmentsFrameworks.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3AAAA83B28D30CC200E0DF6B /* Transactions */ = {
+			isa = PBXGroup;
+			children = (
+				3AAAA83C28D30CC900E0DF6B /* Helpers */,
+				3AAAA83D28D30CDC00E0DF6B /* Views */,
+			);
+			path = Transactions;
+			sourceTree = "<group>";
+		};
+		3AAAA83C28D30CC900E0DF6B /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				3AAAA83728D309B500E0DF6B /* Date+Helpers.swift */,
+				3AAAA83928D30AE100E0DF6B /* Double+Helpers.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		3AAAA83D28D30CDC00E0DF6B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3AAAA82028D2DDC900E0DF6B /* TransactionsView.swift */,
+				3AAAA83E28D30D0C00E0DF6B /* TransactionsList.swift */,
+				3AAAA83528D303B300E0DF6B /* TransactionView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -176,6 +203,7 @@
 			files = (
 				3AAAA82128D2DDC900E0DF6B /* TransactionsView.swift in Sources */,
 				3AAAA83828D309B500E0DF6B /* Date+Helpers.swift in Sources */,
+				3AAAA83F28D30D0C00E0DF6B /* TransactionsList.swift in Sources */,
 				3AAAA83A28D30AE100E0DF6B /* Double+Helpers.swift in Sources */,
 				3AAAA81F28D2DDC900E0DF6B /* InvestmentsAppApp.swift in Sources */,
 				3AAAA83628D303B400E0DF6B /* TransactionView.swift in Sources */,
