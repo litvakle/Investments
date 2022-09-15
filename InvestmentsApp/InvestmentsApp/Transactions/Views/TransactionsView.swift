@@ -15,18 +15,31 @@ struct TransactionsView: View {
         NavigationView {
             TransactionsList(transactions: vm.transactions, onDeleteTransaction: vm.delete)
                 .navigationTitle("Transactions")
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        NavigationLink {
+                            TransactionView(InvestmentTransaction(date: Date(), ticket: "XXX", type: .buy, quantity: 2, price: 200, sum: 400))
+                        } label: {
+                            Image(systemName: "plus")
+                                .padding(.horizontal)
+                        }
+
+                    }
+                }
         }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
+    class PreviewTransactionsStore: TransactionsStore {
+        func retrieve() throws -> [InvestmentTransaction] { return PreviewData.transactions }
+        func delete(_ transaction: InvestmentTransaction) throws {}
+        func save(_ transaction: InvestmentTransaction) throws {}
+    }
+    
     static var previews: some View {
-        NavigationView {
-            TransactionsList(transactions: [
-                InvestmentTransaction(date: Date(), ticket: "VOO", type: .buy, quantity: 2, price: 200, sum: 400),
-                InvestmentTransaction(date: Date(), ticket: "QQQ", type: .sell, quantity: 1.5, price: 100, sum: 150)
-            ], onDeleteTransaction: { _ in })
-            .navigationTitle("Transactions")
-        }
+        let viewModel = TransactionsViewModel(store: PreviewTransactionsStore())
+        viewModel.retrieve()
+        return TransactionsView(vm: viewModel)
     }
 }

@@ -17,6 +17,7 @@
 		3AAAA83828D309B500E0DF6B /* Date+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA83728D309B500E0DF6B /* Date+Helpers.swift */; };
 		3AAAA83A28D30AE100E0DF6B /* Double+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA83928D30AE100E0DF6B /* Double+Helpers.swift */; };
 		3AAAA83F28D30D0C00E0DF6B /* TransactionsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA83E28D30D0C00E0DF6B /* TransactionsList.swift */; };
+		3AAAA84128D3148A00E0DF6B /* PreviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA84028D3148A00E0DF6B /* PreviewData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -44,6 +45,7 @@
 		3AAAA83728D309B500E0DF6B /* Date+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Helpers.swift"; sourceTree = "<group>"; };
 		3AAAA83928D30AE100E0DF6B /* Double+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Helpers.swift"; sourceTree = "<group>"; };
 		3AAAA83E28D30D0C00E0DF6B /* TransactionsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsList.swift; sourceTree = "<group>"; };
+		3AAAA84028D3148A00E0DF6B /* PreviewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 			children = (
 				3AAAA83728D309B500E0DF6B /* Date+Helpers.swift */,
 				3AAAA83928D30AE100E0DF6B /* Double+Helpers.swift */,
+				3AAAA84028D3148A00E0DF6B /* PreviewData.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -205,6 +208,7 @@
 				3AAAA83828D309B500E0DF6B /* Date+Helpers.swift in Sources */,
 				3AAAA83F28D30D0C00E0DF6B /* TransactionsList.swift in Sources */,
 				3AAAA83A28D30AE100E0DF6B /* Double+Helpers.swift in Sources */,
+				3AAAA84128D3148A00E0DF6B /* PreviewData.swift in Sources */,
 				3AAAA81F28D2DDC900E0DF6B /* InvestmentsAppApp.swift in Sources */,
 				3AAAA83628D303B400E0DF6B /* TransactionView.swift in Sources */,
 			);

@@ -45,9 +45,6 @@ struct TransactionsList: View {
 
 struct TransactionsList_Previews: PreviewProvider {
     static var previews: some View {
-        TransactionsList(transactions: [
-            InvestmentTransaction(date: Date(), ticket: "VOO", type: .buy, quantity: 2, price: 200, sum: 400),
-            InvestmentTransaction(date: Date(), ticket: "QQQ", type: .sell, quantity: 1.5, price: 100, sum: 150)
-        ], onDeleteTransaction: { _ in })
+        TransactionsList(transactions: PreviewData.transactions, onDeleteTransaction: { _ in })
     }
 }
