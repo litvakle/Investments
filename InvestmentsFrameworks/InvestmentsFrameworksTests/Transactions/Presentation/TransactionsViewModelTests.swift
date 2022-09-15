@@ -24,6 +24,15 @@ class TransactionsViewModel: ObservableObject {
             self.error = error
         }
     }
+    
+    func save(_ transaction: Transaction) {
+        do {
+            try store.save(transaction)
+            transactions.append(transaction)
+        } catch {
+            self.error = error
+        }
+    }
 }
 
 class TransactionsViewModelTests: XCTestCase {
@@ -60,6 +69,35 @@ class TransactionsViewModelTests: XCTestCase {
         XCTAssertEqual(sut.transactions, transactions)
     }
     
+    func test_save_requestsStoreToSaveTransaction() {
+        let (sut, store) = makeSUT()
+        let transaction = makeTransaction()
+        
+        sut.save(transaction)
+        XCTAssertEqual(store.requests, [.save(transaction)])
+    }
+    
+    func test_save_receivesErrorOnStoreSavingError() {
+        let (sut, store) = makeSUT()
+        let transaction = makeTransaction()
+        
+        store.completeSaving(withError: anyNSError())
+        sut.save(transaction)
+        
+        XCTAssertEqual(sut.error as? NSError, anyNSError())
+    }
+    
+    func test_save_savesTransactions() {
+        let (sut, store) = makeSUT()
+        let transactions = makeTransactions()
+        
+        store.completeSavingSuccessfully()
+        sut.save(transactions[0])
+        sut.save(transactions[1])
+        
+        XCTAssertEqual(sut.transactions, transactions)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (sut: TransactionsViewModel, store: StoreSpy) {
@@ -76,6 +114,7 @@ class TransactionsViewModelTests: XCTestCase {
         private(set) var requests = [Request]()
         
         private var retrivalResult: Result<[Transaction], Error>?
+        private var saveResult: Result<Void, Error>?
         
         enum Request: Equatable {
             case retrieve
@@ -98,7 +137,18 @@ class TransactionsViewModelTests: XCTestCase {
         }
         
         func save(_ transaction: Transaction) throws {
-            
+            requests.append(.save(transaction))
+            if case let .failure(error) = saveResult {
+                throw error
+            }
+        }
+
+        func completeSavingSuccessfully() {
+            saveResult = .success(())
+        }
+        
+        func completeSaving(withError: Error) {
+            saveResult = .failure(anyNSError())
         }
         
         func delete(_ transaction: Transaction) throws {
