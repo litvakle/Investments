@@ -8,33 +8,6 @@
 import XCTest
 import InvestmentsFrameworks
 
-class TransactionsViewModel: ObservableObject {
-    private let store: TransactionsStore
-    var error: Error?
-    var transactions = [Transaction]()
-    
-    init(store: TransactionsStore) {
-        self.store = store
-    }
-    
-    func retrieve() {
-        do {
-            transactions = try store.retrieve()
-        } catch {
-            self.error = error
-        }
-    }
-    
-    func save(_ transaction: Transaction) {
-        do {
-            try store.save(transaction)
-            transactions.append(transaction)
-        } catch {
-            self.error = error
-        }
-    }
-}
-
 class TransactionsViewModelTests: XCTestCase {
     func test_init_doesNotRequestsStore() {
         let (_, store) = makeSUT()
@@ -98,6 +71,51 @@ class TransactionsViewModelTests: XCTestCase {
         XCTAssertEqual(sut.transactions, transactions)
     }
     
+    func test_save_overridesPreviouslyExistingTransactionWithTheSameID() {
+        let (sut, store) = makeSUT()
+        let id = UUID()
+        let transaction0 = Transaction(id: id, date: Date(), ticket: "VOO", type: .buy, quantity: 1, price: 100, sum: 100)
+        let transaction1 = Transaction(id: id, date: Date(), ticket: "XXX", type: .buy, quantity: 1, price: 100, sum: 100)
+        
+        store.completeSavingSuccessfully()
+        sut.save(transaction0)
+        sut.save(transaction1)
+        
+        XCTAssertEqual(sut.transactions, [transaction1])
+    }
+    
+    func test_delete_requestsStoreToDeleteTransaction() {
+        let (sut, store) = makeSUT()
+        let transaction = makeTransaction()
+        
+        sut.delete(transaction)
+        XCTAssertEqual(store.requests, [.delete(transaction)])
+    }
+    
+    func test_delete_receivesErrorOnStoreDeletionError() {
+        let (sut, store) = makeSUT()
+        let transaction = makeTransaction()
+        
+        store.completeDeletion(withError: anyNSError())
+        sut.delete(transaction)
+        
+        XCTAssertEqual(sut.error as? NSError, anyNSError())
+    }
+    
+    func test_delete_deletesTransactions() {
+        let (sut, store) = makeSUT()
+        let transactions = makeTransactions()
+        
+        store.completeSavingSuccessfully()
+        sut.save(transactions[0])
+        sut.save(transactions[1])
+        
+        store.completeDeletionSuccessfully()
+        sut.delete(transactions[0])
+        
+        XCTAssertEqual(sut.transactions, [transactions[1]])
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (sut: TransactionsViewModel, store: StoreSpy) {
@@ -115,6 +133,7 @@ class TransactionsViewModelTests: XCTestCase {
         
         private var retrivalResult: Result<[Transaction], Error>?
         private var saveResult: Result<Void, Error>?
+        private var deletionResult: Result<Void, Error>?
         
         enum Request: Equatable {
             case retrieve
@@ -128,12 +147,12 @@ class TransactionsViewModelTests: XCTestCase {
             return try retrivalResult?.get() ?? []
         }
         
-        func completeRetrival(withError: Error) {
-            retrivalResult = .failure(anyNSError())
-        }
-        
         func completeRetrival(with transactions: [Transaction]) {
             retrivalResult = .success(transactions)
+        }
+        
+        func completeRetrival(withError: Error) {
+            retrivalResult = .failure(anyNSError())
         }
         
         func save(_ transaction: Transaction) throws {
@@ -152,7 +171,18 @@ class TransactionsViewModelTests: XCTestCase {
         }
         
         func delete(_ transaction: Transaction) throws {
-            
+            requests.append(.delete(transaction))
+            if case let .failure(error) = deletionResult {
+                throw error
+            }
+        }
+        
+        func completeDeletionSuccessfully() {
+            deletionResult = .success(())
+        }
+        
+        func completeDeletion(withError: Error) {
+            deletionResult = .failure(anyNSError())
         }
     }
 }
