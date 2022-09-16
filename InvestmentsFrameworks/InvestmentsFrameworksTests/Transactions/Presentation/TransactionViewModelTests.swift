@@ -24,71 +24,56 @@ class TransactionViewModelTests: XCTestCase {
     }
     
     func test_calcSum_calculatesSumFromQuantityAndPrice() {
-        let transaction = Transaction()
-        let sut = makeSUT(transaction: transaction)
-
-        sut.quantity = 5
-        sut.price = 100
-        sut.calcSum()
-        XCTAssertEqual(sut.sum, 500)
-
-        sut.quantity = 5
-        sut.price = 0
-        sut.calcSum()
-        XCTAssertEqual(sut.sum, 0)
-
-        sut.quantity = 0
-        sut.price = 100
-        sut.calcSum()
-        XCTAssertEqual(sut.sum, 0)
+        let sut0 = makeSUT(transaction: Transaction(quantity: 5, price: 100, sum: 999))
+        let sut1 = makeSUT(transaction: Transaction(quantity: 5, price: 0, sum: 999))
+        let sut2 = makeSUT(transaction: Transaction(quantity: 0, price: 500, sum: 999))
+        
+        sut0.calcSum()
+        sut1.calcSum()
+        sut2.calcSum()
+        
+        XCTAssertEqual(sut0.sum, 500)
+        XCTAssertEqual(sut1.sum, 0)
+        XCTAssertEqual(sut2.sum, 0)
     }
     
     func test_calcQuantity_calculatesQuantityFromSumAndPrice() {
-        let transaction = Transaction()
-        let sut = makeSUT(transaction: transaction)
-
-        sut.price = 100
-        sut.sum = 500
-        sut.calcQuantity()
-        XCTAssertEqual(sut.quantity, 5)
-
-        sut.price = 0
-        sut.sum = 500
-        sut.calcQuantity()
-        XCTAssertEqual(sut.quantity, 0)
-
-        sut.price = 1000
-        sut.sum = 0
-        sut.calcQuantity()
-        XCTAssertEqual(sut.quantity, 0)
+        let sut0 = makeSUT(transaction: Transaction(quantity: 999, price: 100, sum: 500))
+        let sut1 = makeSUT(transaction: Transaction(quantity: 999, price: 0, sum: 500))
+        let sut2 = makeSUT(transaction: Transaction(quantity: 999, price: 1000, sum: 0))
+        
+        sut0.calcQuantity()
+        sut1.calcQuantity()
+        sut2.calcQuantity()
+        
+        XCTAssertEqual(sut0.quantity, 5)
+        XCTAssertEqual(sut1.quantity, 0)
+        XCTAssertEqual(sut2.quantity, 0)
     }
     
-    func test_checkErrors_detectsErrorsInRequisites() {
-        let transaction = Transaction(date: Date(), ticket: "", type: .buy, quantity: 0, price: 0, sum: 0)
-        let sut = makeSUT(transaction: transaction)
-
-        XCTAssertNil(sut.ticketErrorMessage, "Expected no error messages until check")
-        XCTAssertNil(sut.quantityErrorMessage, "Expected no error messages until check")
-        XCTAssertNil(sut.priceErrorMessage, "Expected no error messages until check")
-        XCTAssertNil(sut.sumErrorMessage, "Expected no error messages until check")
-        
+    func test_checkTicket_validatesTicket() {
         incorrectTickets().forEach { incorrectTicket in
-            sut.ticket = incorrectTicket
+            let sut = makeSUT(transaction: Transaction(ticket: incorrectTicket))
+            XCTAssertNil(sut.ticketErrorMessage, "Expected no error messages until check")
             sut.checkTicket()
             XCTAssertNotNil(sut.ticketErrorMessage, "ticket \(incorrectTicket)")
         }
 
         correctTickets().forEach { correctTicket in
-            sut.ticket = correctTicket
+            let sut = makeSUT(transaction: Transaction(ticket: correctTicket))
             sut.checkTicket()
             XCTAssertNil(sut.ticketErrorMessage, "ticket \(correctTicket)")
         }
-
+    }
+    
+    func test_checkNumberRequisites_validatesNumberRequisites() {
         incorrectAmounts().forEach { incorrectAmount in
-            sut.price = incorrectAmount
-            sut.quantity = incorrectAmount
-            sut.sum = incorrectAmount
+            let sut = makeSUT(transaction: Transaction(quantity: incorrectAmount, price: incorrectAmount, sum: incorrectAmount))
 
+            XCTAssertNil(sut.quantityErrorMessage, "Expected no error messages until check")
+            XCTAssertNil(sut.priceErrorMessage, "Expected no error messages until check")
+            XCTAssertNil(sut.sumErrorMessage, "Expected no error messages until check")
+            
             sut.checkPrice()
             sut.checkQuantity()
             sut.checkSum()
@@ -99,9 +84,7 @@ class TransactionViewModelTests: XCTestCase {
         }
 
         correctAmounts().forEach { correctAmount in
-            sut.price = correctAmount
-            sut.quantity = correctAmount
-            sut.sum = correctAmount
+            let sut = makeSUT(transaction: Transaction(quantity: correctAmount, price: correctAmount, sum: correctAmount))
             
             sut.checkPrice()
             sut.checkQuantity()
