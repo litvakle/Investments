@@ -65,6 +65,14 @@ Storage removal error (sad path)
 ##### Scenarios (acceptance criteria)
 
 > Given the user adding a new transaction
+When the user enters 'Quantity' and 'Price'
+The system calculates 'Sum'
+
+> Given the user adding a new transaction
+When the user enters 'Sum'
+The system calculates 'Price'
+
+> Given the user adding a new transaction
 When the user tap 'Save'
 The system checks the correcthness of all fields
 
