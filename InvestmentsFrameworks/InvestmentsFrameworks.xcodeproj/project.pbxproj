@@ -24,6 +24,7 @@
 		3AAAA7F028D2D99600E0DF6B /* TransactionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA7EF28D2D99600E0DF6B /* TransactionsViewModel.swift */; };
 		3AAAA84428D3335800E0DF6B /* TransactionViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA84328D3335800E0DF6B /* TransactionViewModelTests.swift */; };
 		3AAAA84628D348FD00E0DF6B /* TransactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA84528D348FC00E0DF6B /* TransactionViewModel.swift */; };
+		3AAAA84928D42BDD00E0DF6B /* CurrencyFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA84828D42BDD00E0DF6B /* CurrencyFormatterTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		3AAAA7EF28D2D99600E0DF6B /* TransactionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsViewModel.swift; sourceTree = "<group>"; };
 		3AAAA84328D3335800E0DF6B /* TransactionViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewModelTests.swift; sourceTree = "<group>"; };
 		3AAAA84528D348FC00E0DF6B /* TransactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewModel.swift; sourceTree = "<group>"; };
+		3AAAA84828D42BDD00E0DF6B /* CurrencyFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyFormatterTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				3AAAA7DD28D1E64C00E0DF6B /* Helpers */,
+				3AAAA84728D42BC100E0DF6B /* Shared */,
 				3AAAA7E628D200C300E0DF6B /* Transactions */,
 			);
 			path = InvestmentsFrameworksTests;
@@ -226,6 +229,14 @@
 				3AAAA84528D348FC00E0DF6B /* TransactionViewModel.swift */,
 			);
 			path = Presentation;
+			sourceTree = "<group>";
+		};
+		3AAAA84728D42BC100E0DF6B /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				3AAAA84828D42BDD00E0DF6B /* CurrencyFormatterTests.swift */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -354,6 +365,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AAAA7E928D2013B00E0DF6B /* TransactionsViewModelTests.swift in Sources */,
+				3AAAA84928D42BDD00E0DF6B /* CurrencyFormatterTests.swift in Sources */,
 				3AAAA7E528D1ED6300E0DF6B /* SharedTestHelpers.swift in Sources */,
 				3AAAA7C028D051D000E0DF6B /* CoreDataTransactionsStoreTests.swift in Sources */,
 				3AAAA84428D3335800E0DF6B /* TransactionViewModelTests.swift in Sources */,
