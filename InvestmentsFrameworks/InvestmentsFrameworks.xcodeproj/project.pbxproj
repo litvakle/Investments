@@ -25,6 +25,7 @@
 		3AAAA84428D3335800E0DF6B /* TransactionViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA84328D3335800E0DF6B /* TransactionViewModelTests.swift */; };
 		3AAAA84628D348FD00E0DF6B /* TransactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA84528D348FC00E0DF6B /* TransactionViewModel.swift */; };
 		3AAAA84928D42BDD00E0DF6B /* CurrencyFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA84828D42BDD00E0DF6B /* CurrencyFormatterTests.swift */; };
+		3AAAA84C28D430AB00E0DF6B /* NumberFormatter+Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA84B28D430AB00E0DF6B /* NumberFormatter+Currency.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		3AAAA84328D3335800E0DF6B /* TransactionViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewModelTests.swift; sourceTree = "<group>"; };
 		3AAAA84528D348FC00E0DF6B /* TransactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewModel.swift; sourceTree = "<group>"; };
 		3AAAA84828D42BDD00E0DF6B /* CurrencyFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyFormatterTests.swift; sourceTree = "<group>"; };
+		3AAAA84B28D430AB00E0DF6B /* NumberFormatter+Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NumberFormatter+Currency.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +158,7 @@
 		3AAAA7DA28D1E5A300E0DF6B /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				3AAAA84A28D4307A00E0DF6B /* Helpers */,
 				3AAAA7C928D05C3C00E0DF6B /* Transaction.swift */,
 			);
 			path = Shared;
@@ -237,6 +240,14 @@
 				3AAAA84828D42BDD00E0DF6B /* CurrencyFormatterTests.swift */,
 			);
 			path = Shared;
+			sourceTree = "<group>";
+		};
+		3AAAA84A28D4307A00E0DF6B /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				3AAAA84B28D430AB00E0DF6B /* NumberFormatter+Currency.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -354,6 +365,7 @@
 				3AAAA7D928D1E54300E0DF6B /* CoreDataTransactionsStore+TransactionsStore.swift in Sources */,
 				3AAAA7F028D2D99600E0DF6B /* TransactionsViewModel.swift in Sources */,
 				3AAAA7CA28D05C3C00E0DF6B /* Transaction.swift in Sources */,
+				3AAAA84C28D430AB00E0DF6B /* NumberFormatter+Currency.swift in Sources */,
 				3AAAA7CF28D0B13B00E0DF6B /* StoredTransaction.swift in Sources */,
 				3AAAA7C828D054B000E0DF6B /* TransactionsStore.swift in Sources */,
 				3AAAA7CD28D0B05F00E0DF6B /* TransactionsStore.xcdatamodeld in Sources */,

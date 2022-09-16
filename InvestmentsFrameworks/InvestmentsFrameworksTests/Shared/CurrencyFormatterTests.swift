@@ -7,24 +7,6 @@
 
 import XCTest
 
-extension NumberFormatter {
-    static func currencyFormatter(
-        fractionDigits: Int,
-        currencyCode: String,
-        locale: Locale = .current
-    ) -> NumberFormatter {
-        let formatter = NumberFormatter()
-        formatter.zeroSymbol = ""
-        formatter.numberStyle = .currency
-        formatter.currencyCode = currencyCode
-        formatter.locale = locale
-        formatter.minimumFractionDigits = fractionDigits
-        formatter.maximumFractionDigits = fractionDigits
-        
-        return formatter
-    }
-}
-
 class CurrencyFormatterTests: XCTestCase {
     func test_currencyFormatter_makesCorrectStrings() {
         let sut = NumberFormatter.currencyFormatter(
