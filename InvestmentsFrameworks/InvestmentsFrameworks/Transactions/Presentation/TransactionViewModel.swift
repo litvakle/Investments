@@ -38,36 +38,24 @@ public class TransactionViewModel: ObservableObject {
     }
     
     private func setupSubsriptions() {
-        $ticket
-            .dropFirst()
-            .map { [weak self] ticket in
-                self?.isCorrect(ticket: ticket) == true ? nil : "Ticket should contain 3 or 4 letters"
-            }
-            .assign(to: &$ticketErrorMessage)
-        
         $quantity
-            .dropFirst()
-            .map { [weak self] quantity in
-                self?.isCorrect(amount: quantity) == true ? nil : "Quantity should be greater than zero"
-            }
-            .assign(to: &$quantityErrorMessage)
+            .combineLatest($price)
+            .map { $0 * $1 }
+            .assign(to: &$sum)
         
-        $price
-            .dropFirst()
-            .map { [weak self] price in
-                self?.isCorrect(amount: price) == true ? nil : "Price should be greater than zero"
-            }
-            .assign(to: &$priceErrorMessage)
-        
-        $sum
-            .dropFirst()
-            .map { [weak self] sum in
-                self?.isCorrect(amount: sum) == true ? nil : "Sum should be greater than zero"
-            }
-            .assign(to: &$sumErrorMessage)
+//        $sum
+//            .dropFirst()
+//            .map { [weak self] sum in
+//                self?.isCorrect(amount: sum) == true ? nil : "Sum should be greater than zero"
+//            }
+//            .assign(to: &$sumErrorMessage)
     }
     
-    private func isCorrect(ticket: String) -> Bool {
+    func checkTicket() {
+        ticketErrorMessage = ticketIsCorrect() ? nil : "Ticket should contain 3 or 4 letters"
+    }
+    
+    private func ticketIsCorrect() -> Bool {
         guard ticket.count == 3 || ticket.count == 4 else { return false }
         
         for char in ticket {
@@ -75,6 +63,18 @@ public class TransactionViewModel: ObservableObject {
         }
         
         return true
+    }
+    
+    func checkQuantity() {
+        quantityErrorMessage = quantity > 0 ? nil : "Quantity should be greater than zero"
+    }
+    
+    func checkPrice() {
+        priceErrorMessage = price > 0 ? nil : "Price should be greater than zero"
+    }
+    
+    func checkSum() {
+        sumErrorMessage = sum > 0 ? nil : "Sum should be greater than zero"
     }
     
     private func isCorrect(amount: Double) -> Bool {
@@ -88,6 +88,6 @@ public class TransactionViewModel: ObservableObject {
     }
     
     private func everythingIsCorrect() -> Bool {
-        isCorrect(ticket: ticket) && isCorrect(amount: quantity) && isCorrect(amount: price) && isCorrect(amount: sum)
+        ticketIsCorrect() && isCorrect(amount: quantity) && isCorrect(amount: price) && isCorrect(amount: sum)
     }
 }
