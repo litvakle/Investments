@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Combine
 
 public class TransactionViewModel: ObservableObject {
     @Published private(set) public var id: UUID
@@ -33,25 +32,28 @@ public class TransactionViewModel: ObservableObject {
         self.price = transaction.price
         self.sum = transaction.sum
         self.onSave = onSave
-        
-        setupSubsriptions()
     }
     
-    private func setupSubsriptions() {
-        $quantity
-            .combineLatest($price)
-            .map { $0 * $1 }
-            .assign(to: &$sum)
+    public func save() {
+        checkEveryrhing()
+        guard everythingIsCorrect() else { return }
         
-//        $sum
-//            .dropFirst()
-//            .map { [weak self] sum in
-//                self?.isCorrect(amount: sum) == true ? nil : "Sum should be greater than zero"
-//            }
-//            .assign(to: &$sumErrorMessage)
+        onSave(Transaction(id: id, date: date, ticket: ticket, type: type, quantity: quantity, price: price, sum: sum))
     }
     
-    func checkTicket() {
+    public func calcSum() {
+        sum = quantity * price
+    }
+    
+    public func calcQuantity() {
+        quantity = (price > 0 ? sum / price : 0)
+    }
+}
+
+//MARK: - Validation
+
+extension TransactionViewModel {
+    public func checkTicket() {
         ticketErrorMessage = ticketIsCorrect() ? nil : "Ticket should contain 3 or 4 letters"
     }
     
@@ -65,29 +67,26 @@ public class TransactionViewModel: ObservableObject {
         return true
     }
     
-    func checkQuantity() {
+    public func checkQuantity() {
         quantityErrorMessage = quantity > 0 ? nil : "Quantity should be greater than zero"
     }
     
-    func checkPrice() {
+    public func checkPrice() {
         priceErrorMessage = price > 0 ? nil : "Price should be greater than zero"
     }
     
-    func checkSum() {
+    public func checkSum() {
         sumErrorMessage = sum > 0 ? nil : "Sum should be greater than zero"
     }
     
-    private func isCorrect(amount: Double) -> Bool {
-        return amount > 0
-    }
-    
-    public func save() {
-        guard everythingIsCorrect() else { return }
-        
-        onSave(Transaction(id: id, date: date, ticket: ticket, type: type, quantity: quantity, price: price, sum: sum))
+    private func checkEveryrhing() {
+        checkTicket()
+        checkQuantity()
+        checkPrice()
+        checkSum()
     }
     
     private func everythingIsCorrect() -> Bool {
-        ticketIsCorrect() && isCorrect(amount: quantity) && isCorrect(amount: price) && isCorrect(amount: sum)
+        ticketErrorMessage == nil && quantityErrorMessage == nil && priceErrorMessage == nil && sumErrorMessage == nil
     }
 }
