@@ -9,19 +9,157 @@ import SwiftUI
 import InvestmentsFrameworks
 
 struct TransactionView: View {
-    var transaction: InvestmentTransaction
+    @ObservedObject private var vm: TransactionViewModel
     
-    
-    init(_ transaction: InvestmentTransaction) {
-        self.transaction = transaction
+    init(_ viewModel: TransactionViewModel) {
+        self.vm = viewModel
     }
+    
     var body: some View {
-        Text(transaction.ticket)
+        List {
+            Group {
+                type
+                date
+                ticket
+                quantity
+                price
+                sum
+            }
+            .listRowSeparator(.hidden)
+        }
+        .navigationTitle("Transaction")
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button("Save", action: { vm.save() })
+            }
+        }
+    }
+    
+    private var type: some View {
+        Picker("Title", selection: $vm.type) {
+            Text("Buy")
+                .tag(TransactionType.buy)
+            
+            Text("Sell")
+                .tag(TransactionType.sell)
+        }
+        .pickerStyle(.segmented)
+    }
+    
+    private var date: some View {
+        DatePicker("Date", selection: $vm.date, in: ...Date(), displayedComponents: .date)
+    }
+    
+    private var ticket: some View {
+        VStack {
+            HStack {
+                Text("Ticket")
+                
+                TextField("XXX", text: $vm.ticket)
+                    .multilineTextAlignment(.trailing)
+                    .keyboardType(.alphabet)
+                    .textInputAutocapitalization(.characters)
+                    .disableAutocorrection(true)
+                    .onChange(of: vm.ticket) { _ in
+                        vm.checkTicket()
+                    }
+            }
+                
+            if let ticketErrorMessage = vm.ticketErrorMessage {
+                Text(ticketErrorMessage)
+                    .foregroundColor(.red)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            }
+        }
+    }
+    
+    private var quantity: some View {
+        VStack {
+            HStack {
+                Text("Quantity")
+                
+                TextField("", value: $vm.quantity, formatter: NumberFormatter.decimalFormatter(fractionDigits: 4, locale: .current))
+                    .multilineTextAlignment(.trailing)
+                    .keyboardType(.decimalPad)
+                    .onChange(of: vm.quantity) { _ in
+                        vm.checkQuantity()
+                        vm.calcSum()
+                    }
+            }
+            
+            if let quantityErrorMessage = vm.quantityErrorMessage {
+                Text(quantityErrorMessage)
+                    .foregroundColor(.red)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            }
+        }
+    }
+    
+    private var price: some View {
+        VStack {
+            HStack {
+                Text("Price")
+                
+                TextField("", value: $vm.price,
+                    formatter: NumberFormatter.currencyFormatter(
+                        fractionDigits: 2,
+                        currencyCode: "USD"
+                    )
+                )
+                .multilineTextAlignment(.trailing)
+                .keyboardType(.decimalPad)
+                .onChange(of: vm.price) { _ in
+                    vm.checkPrice()
+                    vm.calcSum()
+                }
+            }
+            
+            if let priceErrorMessage = vm.priceErrorMessage {
+                Text(priceErrorMessage)
+                    .foregroundColor(.red)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            }
+        }
+    }
+    
+    private var sum: some View {
+        VStack {
+            HStack {
+                Text("Sum")
+                
+                TextField("", value: $vm.sum,
+                    formatter: NumberFormatter.currencyFormatter(
+                        fractionDigits: 2,
+                        currencyCode: "USD"
+                    )
+                )
+                .multilineTextAlignment(.trailing)
+                .keyboardType(.decimalPad)
+                .onChange(of: vm.sum) { _ in
+                    vm.checkSum()
+                    vm.calcQuantity()
+                }
+            }
+            
+            if let sumErrorMessage = vm.sumErrorMessage {
+                Text(sumErrorMessage)
+                    .foregroundColor(.red)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            }
+        }
     }
 }
 
 struct TransactionView_Previews: PreviewProvider {
     static var previews: some View {
-        TransactionView(InvestmentTransaction(date: Date(), ticket: "VOO", type: .buy, quantity: 2, price: 100, sum: 200))
+        Group {
+            NavigationView {
+                TransactionView(TransactionViewModel(transaction: PreviewData.transactions[0], onSave: { _ in }))
+            }
+            
+            NavigationView {
+                TransactionView(TransactionViewModel(transaction: InvestmentTransaction(), onSave: { _ in }))
+            }
+        }
     }
 }

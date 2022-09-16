@@ -13,12 +13,12 @@ struct TransactionsView: View {
     
     var body: some View {
         NavigationView {
-            TransactionsList(transactions: vm.transactions, onDeleteTransaction: vm.delete)
+            TransactionsList(transactions: vm.transactions, onDeleteTransaction: vm.delete, onSaveTransaction: vm.save)
                 .navigationTitle("Transactions")
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         NavigationLink {
-                            TransactionView(InvestmentTransaction(date: Date(), ticket: "XXX", type: .buy, quantity: 2, price: 200, sum: 400))
+                            TransactionView(TransactionViewModel(transaction: InvestmentTransaction(), onSave: vm.save))
                         } label: {
                             Image(systemName: "plus")
                                 .padding(.horizontal)

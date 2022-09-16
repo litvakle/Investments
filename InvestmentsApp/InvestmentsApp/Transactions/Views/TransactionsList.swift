@@ -6,16 +6,18 @@
 //
 
 import SwiftUI
+import InvestmentsFrameworks
 
 struct TransactionsList: View {
     var transactions: [InvestmentTransaction]
     var onDeleteTransaction: (InvestmentTransaction) -> Void
+    var onSaveTransaction: (InvestmentTransaction) -> Void
     
     var body: some View {
         List {
             ForEach(transactions) { transaction in
                 NavigationLink {
-                    TransactionView(transaction)
+                    TransactionView(TransactionViewModel(transaction: transaction, onSave: onSaveTransaction))
                 } label: {
                     HStack {
                         VStack(alignment: .leading) {
@@ -45,6 +47,6 @@ struct TransactionsList: View {
 
 struct TransactionsList_Previews: PreviewProvider {
     static var previews: some View {
-        TransactionsList(transactions: PreviewData.transactions, onDeleteTransaction: { _ in })
+        TransactionsList(transactions: PreviewData.transactions, onDeleteTransaction: { _ in }, onSaveTransaction: { _ in })
     }
 }
