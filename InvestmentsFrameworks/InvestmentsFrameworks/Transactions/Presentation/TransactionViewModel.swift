@@ -48,21 +48,21 @@ public class TransactionViewModel: ObservableObject {
         $quantity
             .dropFirst()
             .map { [weak self] quantity in
-                self?.isCorrect(amount: quantity) == true ? nil : "Quantity should be below than zero"
+                self?.isCorrect(amount: quantity) == true ? nil : "Quantity should be greater than zero"
             }
             .assign(to: &$quantityErrorMessage)
         
         $price
             .dropFirst()
             .map { [weak self] price in
-                self?.isCorrect(amount: price) == true ? nil : "Price should be below than zero"
+                self?.isCorrect(amount: price) == true ? nil : "Price should be greater than zero"
             }
             .assign(to: &$priceErrorMessage)
         
         $sum
             .dropFirst()
             .map { [weak self] sum in
-                self?.isCorrect(amount: sum) == true ? nil : "Sum should be below than zero"
+                self?.isCorrect(amount: sum) == true ? nil : "Sum should be greater than zero"
             }
             .assign(to: &$sumErrorMessage)
     }
@@ -78,7 +78,7 @@ public class TransactionViewModel: ObservableObject {
     }
     
     private func isCorrect(amount: Double) -> Bool {
-        amount > 0
+        return amount > 0
     }
     
     public func save() {
