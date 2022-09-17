@@ -39,6 +39,14 @@ class TransactionViewModelTests: XCTestCase {
         XCTAssertEqual(sut.price, 0)
     }
     
+    func test_init_DoesNotValidateRequisitesForNewTransactions() {
+        let sut = makeSUT(transaction: Transaction())
+        
+        XCTAssertNil(sut.ticketErrorMessage, "Expected no error messages until check")
+        XCTAssertNil(sut.quantityErrorMessage, "Expected no error messages until check")
+        XCTAssertNil(sut.sumErrorMessage, "Expected no error messages until check")
+    }
+    
     func test_checkTicket_validatesTicket() {
         let sut = makeSUT(transaction: Transaction())
 
@@ -71,14 +79,6 @@ class TransactionViewModelTests: XCTestCase {
             sut.sum = correctAmount
             XCTAssertNil(sut.sumErrorMessage, "amount \(correctAmount)")
         }
-    }
-    
-    func test_init_DoesNotValidateRequisitesForNewTransactions() {
-        let sut = makeSUT(transaction: Transaction())
-        
-        XCTAssertNil(sut.ticketErrorMessage, "Expected no error messages until check")
-        XCTAssertNil(sut.quantityErrorMessage, "Expected no error messages until check")
-        XCTAssertNil(sut.sumErrorMessage, "Expected no error messages until check")
     }
     
     func test_save_invokesOnlyIfThereAreNoErrors() {
