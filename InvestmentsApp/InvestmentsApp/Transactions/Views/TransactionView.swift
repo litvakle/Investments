@@ -22,15 +22,18 @@ struct TransactionView: View {
                 date
                 ticket
                 quantity
-                price
                 sum
+                price
             }
             .listRowSeparator(.hidden)
         }
         .navigationTitle("Transaction")
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
-                Button("Save", action: { vm.save() })
+                Button("Save", action: {
+                    vm.save()
+                    
+                })
             }
         }
     }
@@ -60,9 +63,6 @@ struct TransactionView: View {
                     .keyboardType(.alphabet)
                     .textInputAutocapitalization(.characters)
                     .disableAutocorrection(true)
-                    .onChange(of: vm.ticket) { _ in
-                        vm.checkTicket()
-                    }
             }
                 
             if let ticketErrorMessage = vm.ticketErrorMessage {
@@ -74,17 +74,19 @@ struct TransactionView: View {
     }
     
     private var quantity: some View {
-        VStack {
+        let formatter = NumberFormatter.decimalFormatter(
+            minFractionDigits: 0,
+            maxFractionDigits: 4,
+            locale: .current
+        )
+        
+        return VStack {
             HStack {
                 Text("Quantity")
                 
-                TextField("", value: $vm.quantity, formatter: NumberFormatter.decimalFormatter(fractionDigits: 4, locale: .current))
+                TextField("", value: $vm.quantity, formatter: formatter)
                     .multilineTextAlignment(.trailing)
                     .keyboardType(.decimalPad)
-                    .onChange(of: vm.quantity) { _ in
-                        vm.checkQuantity()
-                        vm.calcSum()
-                    }
             }
             
             if let quantityErrorMessage = vm.quantityErrorMessage {
@@ -95,56 +97,44 @@ struct TransactionView: View {
         }
     }
     
-    private var price: some View {
-        VStack {
-            HStack {
-                Text("Price")
-                
-                TextField("", value: $vm.price,
-                    formatter: NumberFormatter.currencyFormatter(
-                        fractionDigits: 2,
-                        currencyCode: "USD"
-                    )
-                )
-                .multilineTextAlignment(.trailing)
-                .keyboardType(.decimalPad)
-                .onChange(of: vm.price) { _ in
-                    vm.checkPrice()
-                    vm.calcSum()
-                }
-            }
-            
-            if let priceErrorMessage = vm.priceErrorMessage {
-                Text(priceErrorMessage)
-                    .foregroundColor(.red)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-            }
-        }
-    }
-    
     private var sum: some View {
-        VStack {
+        let formatter = NumberFormatter.currencyFormatter(
+            minFractionDigits: 2,
+            maxFractionDigits: 2,
+            currencyCode: "USD"
+        )
+        
+        return VStack {
             HStack {
                 Text("Sum")
                 
-                TextField("", value: $vm.sum,
-                    formatter: NumberFormatter.currencyFormatter(
-                        fractionDigits: 2,
-                        currencyCode: "USD"
-                    )
-                )
+                TextField("", value: $vm.sum, formatter: formatter)
                 .multilineTextAlignment(.trailing)
                 .keyboardType(.decimalPad)
-                .onChange(of: vm.sum) { _ in
-                    vm.checkSum()
-                    vm.calcQuantity()
-                }
             }
             
             if let sumErrorMessage = vm.sumErrorMessage {
                 Text(sumErrorMessage)
                     .foregroundColor(.red)
                     .frame(maxWidth: .infinity, alignment: .leading)
+            }
+        }
+    }
+    
+    private var price: some View {
+        let formatter = NumberFormatter.currencyFormatter(
+            minFractionDigits: 2,
+            maxFractionDigits: 8,
+            currencyCode: "USD"
+        )
+        
+        return VStack {
+            HStack {
+                Text("Price")
+
+                Spacer()
+                
+                Text(NSNumber(value: vm.price), formatter: formatter)
             }
         }
     }
