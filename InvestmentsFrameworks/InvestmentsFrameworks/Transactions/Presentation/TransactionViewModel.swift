@@ -17,9 +17,9 @@ public class TransactionViewModel: ObservableObject {
     @Published public var price: Double
     @Published public var sum: Double
     
+    @Published private(set) public var priceErrorMessage: String?
     @Published private(set) public var ticketErrorMessage: String?
     @Published private(set) public var quantityErrorMessage: String?
-    @Published private(set) public var priceErrorMessage: String?
     @Published private(set) public var sumErrorMessage: String?
     
     private var onSave: (Transaction) -> Void
@@ -36,23 +36,9 @@ public class TransactionViewModel: ObservableObject {
         self.sum = transaction.sum
         self.onSave = onSave
         
-        Publishers.CombineLatest($quantity, $price)
-            .map { $0 * $1 }
-            .sink { [weak self] sum in
-                if self?.sum != sum {
-                    self?.sum = sum
-                }
-            }
-            .store(in: &cancellables)
-        
-        $sum
-            .sink(receiveValue: { [weak self] sum in
-                guard let self = self else { return }
-                guard self.quantity * self.price != sum else { return }
-                guard self.price != 0 else { return }
-                self.quantity = sum / self.price
-            })
-            .store(in: &cancellables)
+        Publishers.CombineLatest($quantity, $sum)
+            .map { $0 == 0 ? 0 : $1 / $0 }
+            .assign(to: &$price)
         
         $ticket
             .dropFirst()
