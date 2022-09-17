@@ -23,7 +23,7 @@ class TransactionViewModelTests: XCTestCase {
         XCTAssertEqual(sut.sum, transaction.sum)
     }
     
-    func test_quantityAndSumChange_leadsToCalcPrice() {
+    func test_quantityAndSumChange_leadsToCalcPriceForNewTransactions() {
         let sut = makeSUT(transaction: Transaction())
 
         sut.quantity = 100
@@ -37,6 +37,17 @@ class TransactionViewModelTests: XCTestCase {
         sut.quantity = 1000
         sut.sum = 0
         XCTAssertEqual(sut.price, 0)
+    }
+    
+    func test_quantityAndSumChange_leadsToCalcPriceForExistingTransactions() {
+        let sut0 = makeSUT(transaction: Transaction(quantity: 100))
+        let sut1 = makeSUT(transaction: Transaction(sum: 1000))
+        
+        sut0.sum = 500
+        XCTAssertEqual(sut0.price, 5)
+
+        sut1.quantity = 10
+        XCTAssertEqual(sut1.price, 100)
     }
     
     func test_init_DoesNotValidateRequisitesForNewTransactions() {
