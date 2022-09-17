@@ -9,7 +9,8 @@ import Foundation
 
 public extension NumberFormatter {
     static func currencyFormatter(
-        fractionDigits: Int,
+        minFractionDigits: Int = 0,
+        maxFractionDigits: Int = 0,
         currencyCode: String,
         locale: Locale = .current
     ) -> NumberFormatter {
@@ -17,18 +18,22 @@ public extension NumberFormatter {
         formatter.numberStyle = .currency
         formatter.currencyCode = currencyCode
         formatter.locale = locale
-        formatter.minimumFractionDigits = fractionDigits
-        formatter.maximumFractionDigits = fractionDigits
+        formatter.minimumFractionDigits = minFractionDigits
+        formatter.maximumFractionDigits = maxFractionDigits
         
         return formatter
     }
     
-    static func decimalFormatter(fractionDigits: Int, locale: Locale) -> NumberFormatter {
+    static func decimalFormatter(
+        minFractionDigits: Int = 0,
+        maxFractionDigits: Int = 0,
+        locale: Locale
+    ) -> NumberFormatter {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         formatter.locale = locale
-        formatter.minimumFractionDigits = fractionDigits
-        formatter.maximumFractionDigits = fractionDigits
+        formatter.minimumFractionDigits = minFractionDigits
+        formatter.maximumFractionDigits = maxFractionDigits
         
         return formatter
     }
