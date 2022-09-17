@@ -53,6 +53,13 @@ public class TransactionViewModel: ObservableObject {
                 self.quantity = sum / self.price
             })
             .store(in: &cancellables)
+        
+        $ticket
+            .dropFirst()
+            .map { [weak self] in
+                self?.isCorrect($0) == true ? nil : "Ticket should contain 3 or 4 letters"
+            }
+            .assign(to: &$ticketErrorMessage)
     }
     
     public func save() {
@@ -74,11 +81,7 @@ public class TransactionViewModel: ObservableObject {
 //MARK: - Validation
 
 extension TransactionViewModel {
-    public func checkTicket() {
-        ticketErrorMessage = ticketIsCorrect() ? nil : "Ticket should contain 3 or 4 letters"
-    }
-    
-    private func ticketIsCorrect() -> Bool {
+    private func isCorrect(_ ticket: String) -> Bool {
         guard ticket.count == 3 || ticket.count == 4 else { return false }
         
         for char in ticket {
@@ -101,7 +104,6 @@ extension TransactionViewModel {
     }
     
     private func checkEveryrhing() {
-        checkTicket()
         checkQuantity()
         checkPrice()
         checkSum()

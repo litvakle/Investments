@@ -56,16 +56,17 @@ class TransactionViewModelTests: XCTestCase {
     }
     
     func test_checkTicket_validatesTicket() {
+        let sut = makeSUT(transaction: Transaction())
+
+        XCTAssertNil(sut.ticketErrorMessage, "Expected no error messages until check")
+
         incorrectTickets().forEach { incorrectTicket in
-            let sut = makeSUT(transaction: Transaction(ticket: incorrectTicket))
-            XCTAssertNil(sut.ticketErrorMessage, "Expected no error messages until check")
-            sut.checkTicket()
+            sut.ticket = incorrectTicket
             XCTAssertNotNil(sut.ticketErrorMessage, "ticket \(incorrectTicket)")
         }
 
         correctTickets().forEach { correctTicket in
-            let sut = makeSUT(transaction: Transaction(ticket: correctTicket))
-            sut.checkTicket()
+            sut.ticket = correctTicket
             XCTAssertNil(sut.ticketErrorMessage, "ticket \(correctTicket)")
         }
     }
@@ -77,11 +78,11 @@ class TransactionViewModelTests: XCTestCase {
 //            XCTAssertNil(sut.quantityErrorMessage, "Expected no error messages until check")
 //            XCTAssertNil(sut.priceErrorMessage, "Expected no error messages until check")
 //            XCTAssertNil(sut.sumErrorMessage, "Expected no error messages until check")
-//            
+//
 //            sut.checkPrice()
 //            sut.checkQuantity()
 //            sut.checkSum()
-//            
+//
 //            XCTAssertNotNil(sut.quantityErrorMessage, "amount \(incorrectAmount)")
 //            XCTAssertNotNil(sut.priceErrorMessage, "amount \(incorrectAmount)")
 //            XCTAssertNotNil(sut.sumErrorMessage, "amount \(incorrectAmount)")
@@ -89,7 +90,7 @@ class TransactionViewModelTests: XCTestCase {
 //
 //        correctAmounts().forEach { correctAmount in
 //            let sut = makeSUT(transaction: Transaction(quantity: correctAmount, price: correctAmount, sum: correctAmount))
-//            
+//
 //            sut.checkPrice()
 //            sut.checkQuantity()
 //            sut.checkSum()
