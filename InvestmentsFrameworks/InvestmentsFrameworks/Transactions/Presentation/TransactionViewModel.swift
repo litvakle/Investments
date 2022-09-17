@@ -17,7 +17,6 @@ public class TransactionViewModel: ObservableObject {
     @Published public var price: Double
     @Published public var sum: Double
     
-    @Published private(set) public var priceErrorMessage: String?
     @Published private(set) public var ticketErrorMessage: String?
     @Published private(set) public var quantityErrorMessage: String?
     @Published private(set) public var sumErrorMessage: String?
@@ -36,20 +35,40 @@ public class TransactionViewModel: ObservableObject {
         self.sum = transaction.sum
         self.onSave = onSave
         
+        setupSubscriptions()
+    }
+    
+    private func setupSubscriptions() {
         Publishers.CombineLatest($quantity, $sum)
             .map { $0 == 0 ? 0 : $1 / $0 }
             .assign(to: &$price)
         
         $ticket
             .dropFirst()
-            .map { [weak self] in
-                self?.isCorrect($0) == true ? nil : "Ticket should contain 3 or 4 letters"
-            }
-            .assign(to: &$ticketErrorMessage)
+            .sink(receiveValue: { [weak self] ticket in
+                self?.checkTicket(ticket)
+            })
+            .store(in: &cancellables)
+        
+        $quantity
+            .dropFirst()
+            .sink(receiveValue: { [weak self] quantity in
+                self?.checkQuantity(quantity)
+            })
+            .store(in: &cancellables)
+        
+        $sum
+            .dropFirst()
+            .sink(receiveValue: { [weak self] sum in
+                self?.checkSum(sum)
+            })
+            .store(in: &cancellables)
     }
     
     public func save() {
-        checkEveryrhing()
+        checkTicket(ticket)
+        checkQuantity(quantity)
+        checkSum(sum)
         guard everythingIsCorrect() else { return }
         
         onSave(Transaction(id: id, date: date, ticket: ticket, type: type, quantity: quantity, price: price, sum: sum))
@@ -67,6 +86,10 @@ public class TransactionViewModel: ObservableObject {
 //MARK: - Validation
 
 extension TransactionViewModel {
+    private func checkTicket(_ ticket: String) {
+        ticketErrorMessage = isCorrect(ticket) ? nil : "Ticket should contain 3 or 4 letters"
+    }
+    
     private func isCorrect(_ ticket: String) -> Bool {
         guard ticket.count == 3 || ticket.count == 4 else { return false }
         
@@ -77,25 +100,15 @@ extension TransactionViewModel {
         return true
     }
     
-    public func checkQuantity() {
+    private func checkQuantity(_ quantity: Double) {
         quantityErrorMessage = quantity > 0 ? nil : "Quantity should be greater than zero"
     }
     
-    public func checkPrice() {
-        priceErrorMessage = price > 0 ? nil : "Price should be greater than zero"
-    }
-    
-    public func checkSum() {
+    private func checkSum(_ sum: Double) {
         sumErrorMessage = sum > 0 ? nil : "Sum should be greater than zero"
     }
-    
-    private func checkEveryrhing() {
-        checkQuantity()
-        checkPrice()
-        checkSum()
-    }
-    
+
     private func everythingIsCorrect() -> Bool {
-        ticketErrorMessage == nil && quantityErrorMessage == nil && priceErrorMessage == nil && sumErrorMessage == nil
+        ticketErrorMessage == nil && quantityErrorMessage == nil && sumErrorMessage == nil
     }
 }

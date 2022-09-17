@@ -55,35 +55,28 @@ class TransactionViewModelTests: XCTestCase {
         }
     }
     
-//    func test_checkNumberRequisites_validatesNumberRequisites() {
-//        let sut = makeSUT(transaction: Transaction())
-//
-//        XCTAssertNil(sut.quantityErrorMessage, "Expected no error messages until check")
-//        XCTAssertNil(sut.priceErrorMessage, "Expected no error messages until check")
-//        XCTAssertNil(sut.sumErrorMessage, "Expected no error messages until check")
-//
-//        incorrectAmounts().forEach { incorrectAmount in
-//            sut.quantity = incorrectAmount
-//            XCTAssertNotNil(sut.quantityErrorMessage, "amount \(incorrectAmount)")
-//
-//            sut.price = incorrectAmount
-//            XCTAssertNotNil(sut.priceErrorMessage, "amount \(incorrectAmount)")
-//
-//            sut.sum = incorrectAmount
-//            XCTAssertNotNil(sut.sumErrorMessage, "amount \(incorrectAmount)")
-//        }
-//
-//        correctAmounts().forEach { correctAmount in
-//            sut.quantity = correctAmount
-//            XCTAssertNil(sut.quantityErrorMessage, "amount \(correctAmount)")
-//
-//            sut.price = correctAmount
-//            XCTAssertNil(sut.priceErrorMessage, "amount \(correctAmount)")
-//
-//            sut.sum = correctAmount
-//            XCTAssertNil(sut.sumErrorMessage, "amount \(correctAmount)")
-//        }
-//    }
+    func test_checkNumberRequisites_validatesNumberRequisites() {
+        let sut = makeSUT(transaction: Transaction())
+
+        XCTAssertNil(sut.quantityErrorMessage, "Expected no error messages until check")
+        XCTAssertNil(sut.sumErrorMessage, "Expected no error messages until check")
+
+        incorrectAmounts().forEach { incorrectAmount in
+            sut.quantity = incorrectAmount
+            XCTAssertNotNil(sut.quantityErrorMessage, "amount \(incorrectAmount)")
+
+            sut.sum = incorrectAmount
+            XCTAssertNotNil(sut.sumErrorMessage, "amount \(incorrectAmount)")
+        }
+
+        correctAmounts().forEach { correctAmount in
+            sut.quantity = correctAmount
+            XCTAssertNil(sut.quantityErrorMessage, "amount \(correctAmount)")
+
+            sut.sum = correctAmount
+            XCTAssertNil(sut.sumErrorMessage, "amount \(correctAmount)")
+        }
+    }
     
     func test_save_invokesOnlyIfThereAreNoErrors() {
         let transaction = Transaction()
