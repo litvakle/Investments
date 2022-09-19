@@ -74,10 +74,6 @@ public class TransactionViewModel: ObservableObject {
         onSave(Transaction(id: id, date: date, ticket: ticket, type: type, quantity: quantity, price: price, sum: sum))
     }
     
-    public func calcSum() {
-        sum = quantity * price
-    }
-    
     public func calcQuantity() {
         quantity = (price > 0 ? sum / price : 0)
     }
