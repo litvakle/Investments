@@ -10,14 +10,14 @@ import InvestmentsFrameworks
 
 struct TransactionsList: View {
     var transactions: [InvestmentTransaction]
-    var onDeleteTransaction: (InvestmentTransaction) -> Void
-    var onSaveTransaction: (InvestmentTransaction) -> Void
+    var onTransactionSelect: ((InvestmentTransaction) -> Void)?
+    var onTransactionDelete: ((InvestmentTransaction) -> Void)?
     
     var body: some View {
         List {
             ForEach(transactions) { transaction in
-                NavigationLink {
-                    TransactionView(TransactionViewModel(transaction: transaction, onSave: onSaveTransaction))
+                Button {
+                    onTransactionSelect?(transaction)
                 } label: {
                     HStack {
                         VStack(alignment: .leading) {
@@ -32,7 +32,11 @@ struct TransactionsList: View {
                             Text("\(transaction.sum.asCurrencyString())")
                         }
                     }
+                    
+                    Image(systemName: "chevron.right")
+                        .foregroundColor(.secondary)
                 }
+                .buttonStyle(.plain)
             }
             .onDelete(perform: delete)
         }
@@ -40,13 +44,13 @@ struct TransactionsList: View {
     
     private func delete(indexSet: IndexSet) {
         if let index = indexSet.first {
-            onDeleteTransaction(transactions[index])
+            onTransactionDelete?(transactions[index])
         }
     }
 }
 
 struct TransactionsList_Previews: PreviewProvider {
     static var previews: some View {
-        TransactionsList(transactions: PreviewData.transactions, onDeleteTransaction: { _ in }, onSaveTransaction: { _ in })
+        TransactionsList(transactions: PreviewData.transactions)
     }
 }

@@ -8,24 +8,26 @@
 import SwiftUI
 import InvestmentsFrameworks
 
+
 struct TransactionsView: View {
     @ObservedObject private(set) var vm: TransactionsViewModel
+    var onTransactionSelect: ((InvestmentTransaction?) -> Void)?
     
     var body: some View {
-        NavigationView {
-            TransactionsList(transactions: vm.transactions, onDeleteTransaction: vm.delete, onSaveTransaction: vm.save)
-                .navigationTitle("Transactions")
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        NavigationLink {
-                            TransactionView(TransactionViewModel(transaction: InvestmentTransaction(), onSave: vm.save))
-                        } label: {
-                            Image(systemName: "plus")
-                                .padding(.horizontal)
-                        }
-
-                    }
+        TransactionsList(
+            transactions: vm.transactions,
+            onTransactionSelect: onTransactionSelect,
+            onTransactionDelete: vm.delete)
+        .navigationTitle("Transactions")
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button {
+                    onTransactionSelect?(.none)
+                } label: {
+                    Image(systemName: "plus")
+                        .padding(.horizontal)
                 }
+            }
         }
     }
 }
@@ -40,6 +42,16 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         let viewModel = TransactionsViewModel(store: PreviewTransactionsStore())
         viewModel.retrieve()
-        return TransactionsView(vm: viewModel)
+        return Group {
+            NavigationView {
+                TransactionsView(vm: viewModel)
+            }
+            
+            NavigationView {
+                TransactionsView(vm: viewModel)
+                    .preferredColorScheme(.dark)
+            }
+        }
+        
     }
 }

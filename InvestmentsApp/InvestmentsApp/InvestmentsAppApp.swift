@@ -17,7 +17,9 @@ struct InvestmentsAppApp: App {
     
     var body: some Scene {
         WindowGroup {
-            TransactionsView(vm: transactionsViewModel)
+            NavigationView {
+                TransactionsViewFactory.createView(viewModel: transactionsViewModel)
+            }
         }
     }
 }
@@ -35,4 +37,41 @@ private func createTransactionsStore() -> TransactionsStore {
             .defaultDirectoryURL()
             .appendingPathComponent("transactions-store.sqlite")
     )
+}
+
+enum TransactionsViewFactory {
+    static func createView(viewModel: TransactionsViewModel) -> some View {
+        var transaction: InvestmentTransaction?
+        let navigationState = NavigationState()
+        let navigationLink = ActivatableNavigationLink(state: navigationState) {
+            TransactionViewFactory.createView(
+                transaction: transaction ?? InvestmentTransaction(),
+                onTransactionSave: { transaction in
+                    viewModel.save(transaction)
+                    navigationState.deactivate()
+                }
+            )
+        }
+        
+        var view = TransactionsView(vm: viewModel)
+        view.onTransactionSelect = { selectedTransaction in
+            transaction = selectedTransaction
+            navigationState.activate()
+        }
+
+        return VStack {
+            view
+            navigationLink
+        }
+    }
+}
+
+enum TransactionViewFactory {
+    static func createView(
+        transaction: InvestmentTransaction,
+        onTransactionSave: @escaping (InvestmentTransaction) -> Void
+    ) -> some View {
+        let viewModel = TransactionViewModel(transaction: transaction, onSave: onTransactionSave)
+        return TransactionView(viewModel)
+    }
 }
