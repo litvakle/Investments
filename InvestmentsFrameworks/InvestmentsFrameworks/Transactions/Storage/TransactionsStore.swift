@@ -12,5 +12,3 @@ public protocol TransactionsStore {
     func save(_ transaction: Transaction) throws
     func delete(_ transaction: Transaction) throws
 }
-
-

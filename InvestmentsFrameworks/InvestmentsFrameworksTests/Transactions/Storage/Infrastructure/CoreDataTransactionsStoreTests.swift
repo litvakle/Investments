@@ -66,6 +66,18 @@ class CoreDataTransactionsStoreTests: XCTestCase {
         }
     }
     
+    func test_save_hasNoSideEffectsOnSaveError() throws {
+        let transaction = makeTransaction()
+        let stub = NSManagedObjectContext.alwaysFailingSaveStub()
+        stub.startIntercepting()
+        let sut = makeSUT()
+        
+        save(transaction, to: sut)
+        let retrievedTransactions = try sut.retrieve()
+        
+        XCTAssertEqual(retrievedTransactions, [])
+    }
+    
     func test_delete_doesNothingOnNotFoundTransaction() throws {
         let sut = makeSUT()
         let transaction = makeTransaction()

@@ -13,16 +13,21 @@ extension CoreDataTransactionsStore: TransactionsStore {
     }
 
     public func save(_ transaction: Transaction) throws {
-        let storedTransaction = try StoredTransaction.first(with: transaction.id, in: context) ?? StoredTransaction(context: context)
-        storedTransaction.id = transaction.id
-        storedTransaction.date = transaction.date
-        storedTransaction.type = transaction.type.asString()
-        storedTransaction.ticket = transaction.ticket
-        storedTransaction.quantity = transaction.quantity
-        storedTransaction.price = transaction.price
-        storedTransaction.sum = transaction.sum
+        do {
+            let storedTransaction = try StoredTransaction.first(with: transaction.id, in: context) ?? StoredTransaction(context: context)
+            storedTransaction.id = transaction.id
+            storedTransaction.date = transaction.date
+            storedTransaction.type = transaction.type.asString()
+            storedTransaction.ticket = transaction.ticket
+            storedTransaction.quantity = transaction.quantity
+            storedTransaction.price = transaction.price
+            storedTransaction.sum = transaction.sum
 
-        try context.save()
+            try context.save()
+        } catch {
+            context.rollback()
+            throw error
+        }
     }
 
     public func delete(_ transaction: Transaction) throws {
