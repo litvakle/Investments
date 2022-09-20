@@ -105,15 +105,33 @@ class CoreDataTransactionsStoreTests: XCTestCase {
     
     func test_delete_deliversFailureOneDeletionError() {
         let transaction = makeTransaction()
-        let stub = NSManagedObjectContext.alwaysFailingDeleteStub()
-        stub.startIntercepting()
+        let stub = NSManagedObjectContext.alwaysFailingSaveStub()
         let sut = makeSUT()
         
+        try? sut.save(transaction)
+        XCTAssertEqual(try sut.retrieve(), [transaction])
+        
+        stub.startIntercepting()
+
         do {
-            _ = try sut.delete(transaction)
+            try sut.delete(transaction)
         } catch {
             XCTAssertEqual(error as NSError, anyNSError())
         }
+    }
+    
+    func test_delete_hasNoSideEffectsOnDeletionError() {
+        let transaction = makeTransaction()
+        let stub = NSManagedObjectContext.alwaysFailingSaveStub()
+        let sut = makeSUT()
+        
+        try? sut.save(transaction)
+        XCTAssertEqual(try sut.retrieve(), [transaction])
+        
+        stub.startIntercepting()
+        
+        try? sut.delete(transaction)
+        XCTAssertEqual(try sut.retrieve(), [transaction])
     }
     
     // MARK: - Helpers

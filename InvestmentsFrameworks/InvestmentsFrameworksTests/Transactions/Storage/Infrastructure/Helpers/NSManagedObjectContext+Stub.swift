@@ -22,13 +22,6 @@ extension NSManagedObjectContext {
         )
     }
     
-    static func alwaysFailingDeleteStub() -> Stub {
-        Stub(
-            #selector(NSManagedObjectContext.delete),
-            #selector(Stub.delete)
-        )
-    }
-
     class Stub: NSObject {
         private let source: Selector
         private let destination: Selector
@@ -46,10 +39,6 @@ extension NSManagedObjectContext {
             throw anyNSError()
         }
         
-        @objc func delete() throws {
-            throw anyNSError()
-        }
-
         func startIntercepting() {
             method_exchangeImplementations(
                 class_getInstanceMethod(NSManagedObjectContext.self, source)!,

@@ -31,9 +31,14 @@ extension CoreDataTransactionsStore: TransactionsStore {
     }
 
     public func delete(_ transaction: Transaction) throws {
-        try StoredTransaction.first(with: transaction.id, in: context)
-            .map(context.delete)
-            .map(context.save)
+        do {
+            try StoredTransaction.first(with: transaction.id, in: context)
+                .map(context.delete)
+                .map(context.save)
+        } catch {
+            context.rollback()
+            throw error
+        }
     }
 
 }
