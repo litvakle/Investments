@@ -8,17 +8,32 @@
 import SwiftUI
 import CoreData
 import InvestmentsFrameworks
+import Combine
 
 typealias InvestmentTransaction = InvestmentsFrameworks.Transaction
 
 @main
 struct InvestmentsAppApp: App {
     @StateObject var transactionsViewModel = createTransactionsViewModel()
+    @StateObject var alertViewModel = AlertViewModel()
+    @StateObject var mainFlow = MainFlow()
     
     var body: some Scene {
         WindowGroup {
             NavigationView {
                 TransactionsViewFactory.createView(viewModel: transactionsViewModel)
+            }
+            .onAppear {
+                mainFlow.subscribeTo(
+                    transactionsViewModel: transactionsViewModel,
+                    alertViewModel: alertViewModel
+                )
+            }
+            .alert(isPresented: $alertViewModel.isActive) {
+                Alert(
+                    title: Text(alertViewModel.title),
+                    message: Text(alertViewModel.message)
+                )
             }
         }
     }

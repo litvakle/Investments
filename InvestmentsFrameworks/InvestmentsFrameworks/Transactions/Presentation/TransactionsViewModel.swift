@@ -9,7 +9,8 @@ import Foundation
 
 public class TransactionsViewModel: ObservableObject {
     private let store: TransactionsStore
-    public private(set) var error: Error?
+    
+    @Published public var error: Error?
     @Published public private(set) var transactions = [Transaction]()
     
     public init(store: TransactionsStore) {
