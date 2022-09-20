@@ -141,7 +141,7 @@ struct TransactionView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             NavigationView {
-                TransactionView(TransactionViewModel(transaction: PreviewData.transactions[0], onSave: { _ in }))
+                TransactionView(TransactionViewModel(transaction: InvestmentTransaction.previewData[0], onSave: { _ in }))
             }
             
             NavigationView {

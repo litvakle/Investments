@@ -78,22 +78,14 @@ struct TransactionRow: View {
 }
 
 struct ContentView_Previews: PreviewProvider {
-    class PreviewTransactionsStore: TransactionsStore {
-        func retrieve() throws -> [InvestmentTransaction] { return PreviewData.transactions }
-        func delete(_ transaction: InvestmentTransaction) throws {}
-        func save(_ transaction: InvestmentTransaction) throws {}
-    }
-    
     static var previews: some View {
-        let viewModel = TransactionsViewModel(store: PreviewTransactionsStore())
-        viewModel.retrieve()
         return Group {
             NavigationView {
-                TransactionsView(viewModel: viewModel)
+                TransactionsView(viewModel: TransactionsViewModel.previewModel())
             }
             
             NavigationView {
-                TransactionsView(viewModel: viewModel)
+                TransactionsView(viewModel: TransactionsViewModel.previewModel())
                     .preferredColorScheme(.dark)
             }
         }
