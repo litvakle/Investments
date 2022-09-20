@@ -27,6 +27,7 @@
 		3AAAA88828D9BDDA00E0DF6B /* TransactionViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA88728D9BDDA00E0DF6B /* TransactionViewFactory.swift */; };
 		3AAAA88C28D9C10B00E0DF6B /* NullTransactionsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA88B28D9C10B00E0DF6B /* NullTransactionsStore.swift */; };
 		3AAAA88E28D9C21E00E0DF6B /* TransactionsViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA88D28D9C21E00E0DF6B /* TransactionsViewModelFactory.swift */; };
+		3AAAA89128D9E3DC00E0DF6B /* ViewInspector in Frameworks */ = {isa = PBXBuildFile; productRef = 3AAAA89028D9E3DC00E0DF6B /* ViewInspector */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +84,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AAAA83228D2DEA500E0DF6B /* InvestmentsFrameworks.framework in Frameworks */,
+				3AAAA89128D9E3DC00E0DF6B /* ViewInspector in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,6 +230,9 @@
 			dependencies = (
 			);
 			name = InvestmentsApp;
+			packageProductDependencies = (
+				3AAAA89028D9E3DC00E0DF6B /* ViewInspector */,
+			);
 			productName = InvestmentsApp;
 			productReference = 3AAAA81B28D2DDC900E0DF6B /* InvestmentsApp.app */;
 			productType = "com.apple.product-type.application";
@@ -278,6 +283,9 @@
 				Base,
 			);
 			mainGroup = 3AAAA81228D2DDC900E0DF6B;
+			packageReferences = (
+				3AAAA88F28D9E3DB00E0DF6B /* XCRemoteSwiftPackageReference "ViewInspector" */,
+			);
 			productRefGroup = 3AAAA81C28D2DDC900E0DF6B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -588,6 +596,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3AAAA88F28D9E3DB00E0DF6B /* XCRemoteSwiftPackageReference "ViewInspector" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nalexn/ViewInspector";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3AAAA89028D9E3DC00E0DF6B /* ViewInspector */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3AAAA88F28D9E3DB00E0DF6B /* XCRemoteSwiftPackageReference "ViewInspector" */;
+			productName = ViewInspector;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3AAAA81328D2DDC900E0DF6B /* Project object */;
 }
