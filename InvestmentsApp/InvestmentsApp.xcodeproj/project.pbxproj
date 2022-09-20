@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3AA9C1A828D9E94200C1E37B /* ViewInspector in Frameworks */ = {isa = PBXBuildFile; productRef = 3AA9C1A728D9E94200C1E37B /* ViewInspector */; };
 		3AAAA81F28D2DDC900E0DF6B /* InvestmentsAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA81E28D2DDC900E0DF6B /* InvestmentsAppApp.swift */; };
 		3AAAA82128D2DDC900E0DF6B /* TransactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA82028D2DDC900E0DF6B /* TransactionsView.swift */; };
 		3AAAA82328D2DDCB00E0DF6B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AAAA82228D2DDCB00E0DF6B /* Assets.xcassets */; };
@@ -27,7 +28,7 @@
 		3AAAA88828D9BDDA00E0DF6B /* TransactionViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA88728D9BDDA00E0DF6B /* TransactionViewFactory.swift */; };
 		3AAAA88C28D9C10B00E0DF6B /* NullTransactionsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA88B28D9C10B00E0DF6B /* NullTransactionsStore.swift */; };
 		3AAAA88E28D9C21E00E0DF6B /* TransactionsViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA88D28D9C21E00E0DF6B /* TransactionsViewModelFactory.swift */; };
-		3AAAA89128D9E3DC00E0DF6B /* ViewInspector in Frameworks */ = {isa = PBXBuildFile; productRef = 3AAAA89028D9E3DC00E0DF6B /* ViewInspector */; };
+		3AAAA89328D9E4B800E0DF6B /* TransactionsViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA89228D9E4B800E0DF6B /* TransactionsViewTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +77,7 @@
 		3AAAA88728D9BDDA00E0DF6B /* TransactionViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewFactory.swift; sourceTree = "<group>"; };
 		3AAAA88B28D9C10B00E0DF6B /* NullTransactionsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NullTransactionsStore.swift; sourceTree = "<group>"; };
 		3AAAA88D28D9C21E00E0DF6B /* TransactionsViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsViewModelFactory.swift; sourceTree = "<group>"; };
+		3AAAA89228D9E4B800E0DF6B /* TransactionsViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsViewTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,7 +86,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AAAA83228D2DEA500E0DF6B /* InvestmentsFrameworks.framework in Frameworks */,
-				3AAAA89128D9E3DC00E0DF6B /* ViewInspector in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,6 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3AA9C1A828D9E94200C1E37B /* ViewInspector in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,6 +203,7 @@
 			children = (
 				3AAAA87D28D9B72600E0DF6B /* AlertViewModelTests.swift */,
 				3AAAA88128D9B93000E0DF6B /* MainFlowTests.swift */,
+				3AAAA89228D9E4B800E0DF6B /* TransactionsViewTests.swift */,
 			);
 			path = InvestmentsAppTests;
 			sourceTree = "<group>";
@@ -231,7 +234,6 @@
 			);
 			name = InvestmentsApp;
 			packageProductDependencies = (
-				3AAAA89028D9E3DC00E0DF6B /* ViewInspector */,
 			);
 			productName = InvestmentsApp;
 			productReference = 3AAAA81B28D2DDC900E0DF6B /* InvestmentsApp.app */;
@@ -251,6 +253,9 @@
 				3AAAA87928D9B6C100E0DF6B /* PBXTargetDependency */,
 			);
 			name = InvestmentsAppTests;
+			packageProductDependencies = (
+				3AA9C1A728D9E94200C1E37B /* ViewInspector */,
+			);
 			productName = InvestmentsAppTests;
 			productReference = 3AAAA87428D9B6C000E0DF6B /* InvestmentsAppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -284,7 +289,7 @@
 			);
 			mainGroup = 3AAAA81228D2DDC900E0DF6B;
 			packageReferences = (
-				3AAAA88F28D9E3DB00E0DF6B /* XCRemoteSwiftPackageReference "ViewInspector" */,
+				3AA9C1A628D9E94200C1E37B /* XCRemoteSwiftPackageReference "ViewInspector" */,
 			);
 			productRefGroup = 3AAAA81C28D2DDC900E0DF6B /* Products */;
 			projectDirPath = "";
@@ -342,6 +347,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AAAA88228D9B93000E0DF6B /* MainFlowTests.swift in Sources */,
+				3AAAA89328D9E4B800E0DF6B /* TransactionsViewTests.swift in Sources */,
 				3AAAA87E28D9B72600E0DF6B /* AlertViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -598,20 +604,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		3AAAA88F28D9E3DB00E0DF6B /* XCRemoteSwiftPackageReference "ViewInspector" */ = {
+		3AA9C1A628D9E94200C1E37B /* XCRemoteSwiftPackageReference "ViewInspector" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/nalexn/ViewInspector";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.9.2;
+				kind = exactVersion;
+				version = 0.9.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		3AAAA89028D9E3DC00E0DF6B /* ViewInspector */ = {
+		3AA9C1A728D9E94200C1E37B /* ViewInspector */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3AAAA88F28D9E3DB00E0DF6B /* XCRemoteSwiftPackageReference "ViewInspector" */;
+			package = 3AA9C1A628D9E94200C1E37B /* XCRemoteSwiftPackageReference "ViewInspector" */;
 			productName = ViewInspector;
 		};
 /* End XCSwiftPackageProductDependency section */
