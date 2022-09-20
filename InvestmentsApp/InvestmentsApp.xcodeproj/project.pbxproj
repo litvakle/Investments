@@ -16,7 +16,6 @@
 		3AAAA83628D303B400E0DF6B /* TransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA83528D303B300E0DF6B /* TransactionView.swift */; };
 		3AAAA83828D309B500E0DF6B /* Date+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA83728D309B500E0DF6B /* Date+Helpers.swift */; };
 		3AAAA83A28D30AE100E0DF6B /* Double+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA83928D30AE100E0DF6B /* Double+Helpers.swift */; };
-		3AAAA83F28D30D0C00E0DF6B /* TransactionsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA83E28D30D0C00E0DF6B /* TransactionsList.swift */; };
 		3AAAA84128D3148A00E0DF6B /* TransactionsPreviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA84028D3148A00E0DF6B /* TransactionsPreviewData.swift */; };
 		3AAAA86D28D7562000E0DF6B /* ActivatableNavigationLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA86C28D7561F00E0DF6B /* ActivatableNavigationLink.swift */; };
 /* End PBXBuildFile section */
@@ -45,7 +44,6 @@
 		3AAAA83528D303B300E0DF6B /* TransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionView.swift; sourceTree = "<group>"; };
 		3AAAA83728D309B500E0DF6B /* Date+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Helpers.swift"; sourceTree = "<group>"; };
 		3AAAA83928D30AE100E0DF6B /* Double+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Helpers.swift"; sourceTree = "<group>"; };
-		3AAAA83E28D30D0C00E0DF6B /* TransactionsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsList.swift; sourceTree = "<group>"; };
 		3AAAA84028D3148A00E0DF6B /* TransactionsPreviewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsPreviewData.swift; sourceTree = "<group>"; };
 		3AAAA86C28D7561F00E0DF6B /* ActivatableNavigationLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivatableNavigationLink.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -130,7 +128,6 @@
 			children = (
 				3AAAA86B28D755EF00E0DF6B /* Helpers */,
 				3AAAA82028D2DDC900E0DF6B /* TransactionsView.swift */,
-				3AAAA83E28D30D0C00E0DF6B /* TransactionsList.swift */,
 				3AAAA83528D303B300E0DF6B /* TransactionView.swift */,
 			);
 			path = Views;
@@ -225,7 +222,6 @@
 			files = (
 				3AAAA82128D2DDC900E0DF6B /* TransactionsView.swift in Sources */,
 				3AAAA83828D309B500E0DF6B /* Date+Helpers.swift in Sources */,
-				3AAAA83F28D30D0C00E0DF6B /* TransactionsList.swift in Sources */,
 				3AAAA83A28D30AE100E0DF6B /* Double+Helpers.swift in Sources */,
 				3AAAA84128D3148A00E0DF6B /* TransactionsPreviewData.swift in Sources */,
 				3AAAA81F28D2DDC900E0DF6B /* InvestmentsAppApp.swift in Sources */,

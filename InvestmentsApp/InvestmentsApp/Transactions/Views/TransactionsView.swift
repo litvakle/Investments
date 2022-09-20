@@ -10,24 +10,69 @@ import InvestmentsFrameworks
 
 
 struct TransactionsView: View {
-    @ObservedObject private(set) var vm: TransactionsViewModel
+    var viewModel: TransactionsViewModel
     var onTransactionSelect: ((InvestmentTransaction?) -> Void)?
+    var onTransactionDelete: ((InvestmentTransaction) -> Void)?
     
     var body: some View {
-        TransactionsList(
-            transactions: vm.transactions,
-            onTransactionSelect: onTransactionSelect,
-            onTransactionDelete: vm.delete)
+        transactionsList
         .navigationTitle("Transactions")
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
-                Button {
-                    onTransactionSelect?(.none)
-                } label: {
-                    Image(systemName: "plus")
-                        .padding(.horizontal)
-                }
+                addNewButton
             }
+        }
+    }
+    
+    private var transactionsList: some View {
+        List {
+            ForEach(viewModel.transactions) { transaction in
+                Button {
+                    onTransactionSelect?(transaction)
+                } label: {
+                    TransactionRow(transaction: transaction)
+                }
+                .buttonStyle(.plain)
+            }
+            .onDelete(perform: delete)
+        }
+    }
+        
+    private func delete(indexSet: IndexSet) {
+        if let index = indexSet.first {
+            onTransactionDelete?(viewModel.transactions[index])
+        }
+    }
+    
+    private var addNewButton: some View {
+        Button {
+            onTransactionSelect?(.none)
+        } label: {
+            Image(systemName: "plus")
+                .padding(.horizontal)
+        }
+    }
+}
+
+struct TransactionRow: View {
+    var transaction: InvestmentTransaction
+    
+    var body: some View {
+        HStack {
+            VStack(alignment: .leading) {
+                Text(transaction.date.asTransactionsListItem())
+                Text(transaction.ticket)
+            }
+            
+            Spacer()
+
+            VStack(alignment: .trailing) {
+                Text("\(transaction.quantity.asCurrencyString())")
+                Text("\(transaction.sum.asCurrencyString())")
+            }
+            
+            Image(systemName: "chevron.right")
+                .foregroundColor(.secondary)
         }
     }
 }
@@ -44,11 +89,11 @@ struct ContentView_Previews: PreviewProvider {
         viewModel.retrieve()
         return Group {
             NavigationView {
-                TransactionsView(vm: viewModel)
+                TransactionsView(viewModel: viewModel)
             }
             
             NavigationView {
-                TransactionsView(vm: viewModel)
+                TransactionsView(viewModel: viewModel)
                     .preferredColorScheme(.dark)
             }
         }

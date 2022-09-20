@@ -30,10 +30,7 @@ struct TransactionView: View {
         .navigationTitle("Transaction")
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
-                Button("Save", action: {
-                    vm.save()
-                    
-                })
+                Button("Save", action: { vm.save() })
             }
         }
     }

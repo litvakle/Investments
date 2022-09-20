@@ -53,11 +53,12 @@ enum TransactionsViewFactory {
             )
         }
         
-        var view = TransactionsView(vm: viewModel)
+        var view = TransactionsView(viewModel: viewModel)
         view.onTransactionSelect = { selectedTransaction in
             transaction = selectedTransaction
             navigationState.activate()
         }
+        view.onTransactionDelete = viewModel.delete
 
         return VStack {
             view
