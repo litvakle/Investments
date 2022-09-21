@@ -31,6 +31,7 @@ struct TransactionView: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button("Save", action: { vm.save() })
+                    .accessibilityIdentifier("SAVE_TRANSACTION")
             }
         }
     }

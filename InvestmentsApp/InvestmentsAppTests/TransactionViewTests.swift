@@ -41,6 +41,19 @@ class TransactionViewTests: XCTestCase {
         XCTAssertNoThrow(try sut.sumErrorMessage())
     }
     
+    func test_transactionView_handlesSaveTransaction() throws {
+        var savedTransactions = [Transaction?]()
+        let transaction = correctTransaction()
+        let (sut, _) = makeSUT(for: transaction) { savedTransaction in
+            savedTransactions.append(savedTransaction)
+        }
+        
+        try sut.saveTransaction().tap()
+        try sut.saveTransaction().tap()
+        
+        XCTAssertEqual(savedTransactions, [transaction, transaction])
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(
@@ -59,6 +72,10 @@ class TransactionViewTests: XCTestCase {
     
     private func newTransaction() -> Transaction {
         Transaction(ticket: "", type: .buy, quantity: 0, price: 0, sum: 0)
+    }
+    
+    private func correctTransaction() -> Transaction {
+        Transaction(ticket: "VOO", type: .buy, quantity: 10, price: 20, sum: 200)
     }
     
     private var incorrectTicket: String { " " }
@@ -101,5 +118,9 @@ private extension TransactionView {
     
     func sumErrorMessage() throws -> InspectableView<ViewType.Text> {
         try self.inspect().find(viewWithAccessibilityIdentifier: "SUM_ERROR_MESSAGE").text()
+    }
+    
+    func saveTransaction() throws -> InspectableView<ViewType.Button> {
+        try self.inspect().find(viewWithAccessibilityIdentifier: "SAVE_TRANSACTION").button()
     }
 }
