@@ -51,6 +51,7 @@ struct TransactionsView: View {
             Image(systemName: "plus")
                 .padding(.horizontal)
         }
+        .accessibilityIdentifier("ADD_NEW_TRANSACTION")
     }
 }
 

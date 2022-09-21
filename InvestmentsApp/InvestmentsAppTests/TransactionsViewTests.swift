@@ -18,7 +18,7 @@ class TransactionsViewTests: XCTestCase {
         
         viewModel.retrieve()
         
-        XCTAssertEqual(try sut.transactionsList().count, store.transactions.count)
+        XCTAssertEqual(try sut.transactions().count, store.transactions.count)
     }
     
     func test_transactionView_handlesTransactionSelect() throws {
@@ -29,8 +29,8 @@ class TransactionsViewTests: XCTestCase {
         
         viewModel.retrieve()
         
-        let firstRowButton = try sut.transactionsList().button(0)
-        let secondRowButton = try sut.transactionsList().button(1)
+        let firstRowButton = try sut.transactions().button(0)
+        let secondRowButton = try sut.transactions().button(1)
         
         try firstRowButton.tap()
         try firstRowButton.tap()
@@ -39,10 +39,25 @@ class TransactionsViewTests: XCTestCase {
         XCTAssertEqual(selectedTransactions, [store.transactions[0], store.transactions[0], store.transactions[1]])
     }
     
+    func test_transactionView_handlesTransactionDelete() throws {
+        var deletedTransactions = [Transaction]()
+        let (sut, viewModel, store) = makeSUT(onDelete: { deletedTransaction in
+            deletedTransactions.append(deletedTransaction)
+        })
+        
+        viewModel.retrieve()
+        
+        let indexSet: IndexSet = [0]
+        try sut.transactions().callOnDelete(indexSet)
+        
+        XCTAssertEqual(deletedTransactions, [store.transactions[0]])
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(
         onSelect: @escaping (Transaction?) -> Void = { _ in },
+        onDelete: @escaping (Transaction) -> Void = { _ in },
         file: StaticString = #filePath,
         line: UInt = #line
     ) -> (sut: TransactionsView, viewModel: TransactionsViewModel, store: InMemoryTransactionsStore) {
@@ -51,7 +66,7 @@ class TransactionsViewTests: XCTestCase {
         let sut = TransactionsView(
             viewModel: viewModel,
             onTransactionSelect: onSelect,
-            onTransactionDelete: { _ in })
+            onTransactionDelete: onDelete)
         
         return (sut, viewModel, store)
     }
@@ -83,7 +98,7 @@ class TransactionsViewTests: XCTestCase {
 }
 
 private extension TransactionsView {
-    func transactionsList() throws -> InspectableView<ViewType.ForEach> {
-        try self.inspect().find(viewWithAccessibilityIdentifier: "TRANSACTIONS").forEach(0)
+    func transactions() throws -> InspectableView<ViewType.ForEach> {
+        try self.inspect().find(viewWithAccessibilityIdentifier: "TRANSACTIONS").forEach()
     }
 }
