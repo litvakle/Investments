@@ -12,6 +12,8 @@
 		3AA9C1AD28DAE56B00C1E37B /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA9C1AC28DAE56B00C1E37B /* XCTestCase+MemoryLeakTracking.swift */; };
 		3AA9C1AF28DB1DC100C1E37B /* TransactionsAcceptanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA9C1AE28DB1DC100C1E37B /* TransactionsAcceptanceTests.swift */; };
 		3AA9C1B128DB40E200C1E37B /* InMemoryTransactionsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA9C1B028DB40E200C1E37B /* InMemoryTransactionsStore.swift */; };
+		3AA9C1B328DB4B1A00C1E37B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA9C1B228DB4B1A00C1E37B /* ContentView.swift */; };
+		3AA9C1B528DB4BEB00C1E37B /* TransactionsStoreFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA9C1B428DB4BEB00C1E37B /* TransactionsStoreFactory.swift */; };
 		3AAAA81F28D2DDC900E0DF6B /* InvestmentsAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA81E28D2DDC900E0DF6B /* InvestmentsAppApp.swift */; };
 		3AAAA82128D2DDC900E0DF6B /* TransactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA82028D2DDC900E0DF6B /* TransactionsView.swift */; };
 		3AAAA82328D2DDCB00E0DF6B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AAAA82228D2DDCB00E0DF6B /* Assets.xcassets */; };
@@ -64,6 +66,8 @@
 		3AA9C1AC28DAE56B00C1E37B /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 		3AA9C1AE28DB1DC100C1E37B /* TransactionsAcceptanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsAcceptanceTests.swift; sourceTree = "<group>"; };
 		3AA9C1B028DB40E200C1E37B /* InMemoryTransactionsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryTransactionsStore.swift; sourceTree = "<group>"; };
+		3AA9C1B228DB4B1A00C1E37B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		3AA9C1B428DB4BEB00C1E37B /* TransactionsStoreFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsStoreFactory.swift; sourceTree = "<group>"; };
 		3AAAA81B28D2DDC900E0DF6B /* InvestmentsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InvestmentsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AAAA81E28D2DDC900E0DF6B /* InvestmentsAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentsAppApp.swift; sourceTree = "<group>"; };
 		3AAAA82028D2DDC900E0DF6B /* TransactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsView.swift; sourceTree = "<group>"; };
@@ -142,6 +146,7 @@
 				3AAAA88928D9C07D00E0DF6B /* Helpers */,
 				3AAAA81E28D2DDC900E0DF6B /* InvestmentsAppApp.swift */,
 				3AAAA88328D9B95000E0DF6B /* MainFlow.swift */,
+				3AA9C1B228DB4B1A00C1E37B /* ContentView.swift */,
 				3AAAA87F28D9B7B400E0DF6B /* AlertViewModel.swift */,
 				3AAAA83B28D30CC200E0DF6B /* Transactions */,
 				3AAAA82228D2DDCB00E0DF6B /* Assets.xcassets */,
@@ -182,6 +187,7 @@
 				3AAAA83728D309B500E0DF6B /* Date+Helpers.swift */,
 				3AAAA83928D30AE100E0DF6B /* Double+Helpers.swift */,
 				3AAAA88D28D9C21E00E0DF6B /* TransactionsViewModelFactory.swift */,
+				3AA9C1B428DB4BEB00C1E37B /* TransactionsStoreFactory.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -352,10 +358,12 @@
 				3AAAA88828D9BDDA00E0DF6B /* TransactionViewFactory.swift in Sources */,
 				3AAAA88028D9B7B400E0DF6B /* AlertViewModel.swift in Sources */,
 				3AAAA83A28D30AE100E0DF6B /* Double+Helpers.swift in Sources */,
+				3AA9C1B528DB4BEB00C1E37B /* TransactionsStoreFactory.swift in Sources */,
 				3AAAA88628D9BDAB00E0DF6B /* TransactionsViewFactory.swift in Sources */,
 				3AAAA84128D3148A00E0DF6B /* Transaction+PreviewData.swift in Sources */,
 				3AAAA81F28D2DDC900E0DF6B /* InvestmentsAppApp.swift in Sources */,
 				3AAAA83628D303B400E0DF6B /* TransactionView.swift in Sources */,
+				3AA9C1B328DB4B1A00C1E37B /* ContentView.swift in Sources */,
 				3AAAA88C28D9C10B00E0DF6B /* NullTransactionsStore.swift in Sources */,
 				3AAAA88E28D9C21E00E0DF6B /* TransactionsViewModelFactory.swift in Sources */,
 				3AAAA86D28D7562000E0DF6B /* ActivatableNavigationLink.swift in Sources */,
