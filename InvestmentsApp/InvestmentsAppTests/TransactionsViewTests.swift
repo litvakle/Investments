@@ -11,6 +11,7 @@ import ViewInspector
 @testable import InvestmentsFrameworks
 
 extension TransactionsView: Inspectable {}
+extension TransactionRow: Inspectable {}
 
 class TransactionsViewTests: XCTestCase {
     func test_transactionView_rendersTransactions() throws {
@@ -19,6 +20,17 @@ class TransactionsViewTests: XCTestCase {
         viewModel.retrieve()
         
         XCTAssertEqual(try sut.transactions().count, store.transactions.count)
+    }
+    
+    func test_transactionView_rendersTransactionProperties() throws {
+        let (sut, viewModel, _) = makeSUT()
+        
+        viewModel.retrieve()
+        
+        XCTAssertFalse(try sut.ticket(at: 0).string().isEmpty)
+        XCTAssertFalse(try sut.date(at: 0).string().isEmpty)
+        XCTAssertFalse(try sut.quantity(at: 0).string().isEmpty)
+        XCTAssertFalse(try sut.sum(at: 0).string().isEmpty)
     }
     
     func test_transactionView_handlesTransactionSelect() throws {
@@ -116,5 +128,25 @@ private extension TransactionsView {
     
     func addNewTransaction() throws -> InspectableView<ViewType.Button> {
         try self.inspect().find(viewWithAccessibilityIdentifier: "ADD_NEW_TRANSACTION").button()
+    }
+    
+    func ticket(at row: Int) throws -> InspectableView<ViewType.Text> {
+        return try transaction(at: row).find(viewWithAccessibilityIdentifier: "TICKET").text()
+    }
+    
+    func date(at row: Int) throws -> InspectableView<ViewType.Text> {
+        return try transaction(at: row).find(viewWithAccessibilityIdentifier: "DATE").text()
+    }
+    
+    func quantity(at row: Int) throws -> InspectableView<ViewType.Text> {
+        return try transaction(at: row).find(viewWithAccessibilityIdentifier: "QUANTITY").text()
+    }
+    
+    func sum(at row: Int) throws -> InspectableView<ViewType.Text> {
+        return try transaction(at: row).find(viewWithAccessibilityIdentifier: "SUM").text()
+    }
+    
+    private func transaction(at index: Int) throws -> InspectableView<ViewType.View<TransactionRow>> {
+        try self.transactions().button(index).labelView().view(TransactionRow.self)
     }
 }

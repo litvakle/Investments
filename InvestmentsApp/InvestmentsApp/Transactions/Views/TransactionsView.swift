@@ -62,14 +62,18 @@ struct TransactionRow: View {
         HStack {
             VStack(alignment: .leading) {
                 Text(transaction.date.asTransactionsListItem())
+                    .accessibilityIdentifier("DATE")
                 Text(transaction.ticket)
+                    .accessibilityIdentifier("TICKET")
             }
             
             Spacer()
 
             VStack(alignment: .trailing) {
                 Text("\(transaction.quantity.asCurrencyString())")
+                    .accessibilityIdentifier("QUANTITY")
                 Text("\(transaction.sum.asCurrencyString())")
+                    .accessibilityIdentifier("SUM")
             }
             
             Image(systemName: "chevron.right")
