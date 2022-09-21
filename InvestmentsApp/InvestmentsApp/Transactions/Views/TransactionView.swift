@@ -44,10 +44,12 @@ struct TransactionView: View {
                 .tag(TransactionType.sell)
         }
         .pickerStyle(.segmented)
+        .accessibilityIdentifier("TYPE")
     }
     
     private var date: some View {
         DatePicker("Date", selection: $vm.date, in: ...Date(), displayedComponents: .date)
+            .accessibilityIdentifier("DATE")
     }
     
     private var ticket: some View {
@@ -60,6 +62,7 @@ struct TransactionView: View {
                     .keyboardType(.alphabet)
                     .textInputAutocapitalization(.characters)
                     .disableAutocorrection(true)
+                    .accessibilityIdentifier("TICKET")
             }
                 
             if let ticketErrorMessage = vm.ticketErrorMessage {
@@ -84,6 +87,7 @@ struct TransactionView: View {
                 TextField("", value: $vm.quantity, formatter: formatter)
                     .multilineTextAlignment(.trailing)
                     .keyboardType(.decimalPad)
+                    .accessibilityIdentifier("QUANTITY")
             }
             
             if let quantityErrorMessage = vm.quantityErrorMessage {
@@ -108,6 +112,7 @@ struct TransactionView: View {
                 TextField("", value: $vm.sum, formatter: formatter)
                 .multilineTextAlignment(.trailing)
                 .keyboardType(.decimalPad)
+                .accessibilityIdentifier("SUM")
             }
             
             if let sumErrorMessage = vm.sumErrorMessage {
@@ -132,6 +137,7 @@ struct TransactionView: View {
                 Spacer()
                 
                 Text(NSNumber(value: vm.price), formatter: formatter)
+                    .accessibilityIdentifier("PRICE")
             }
         }
     }
