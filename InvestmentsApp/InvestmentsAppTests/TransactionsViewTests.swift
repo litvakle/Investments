@@ -53,6 +53,18 @@ class TransactionsViewTests: XCTestCase {
         XCTAssertEqual(deletedTransactions, [store.transactions[0]])
     }
     
+    func test_transactionView_handlesAddNewTransaction() throws {
+        var addNewTransactionInvokesCount = 0
+        let (sut, _, _) = makeSUT(onSelect: { _ in
+            addNewTransactionInvokesCount += 1
+        })
+        
+        try sut.addNewTransaction().tap()
+        try sut.addNewTransaction().tap()
+        
+        XCTAssertEqual(addNewTransactionInvokesCount, 2)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(
@@ -100,5 +112,9 @@ class TransactionsViewTests: XCTestCase {
 private extension TransactionsView {
     func transactions() throws -> InspectableView<ViewType.ForEach> {
         try self.inspect().find(viewWithAccessibilityIdentifier: "TRANSACTIONS").forEach()
+    }
+    
+    func addNewTransaction() throws -> InspectableView<ViewType.Button> {
+        try self.inspect().find(viewWithAccessibilityIdentifier: "ADD_NEW_TRANSACTION").button()
     }
 }
