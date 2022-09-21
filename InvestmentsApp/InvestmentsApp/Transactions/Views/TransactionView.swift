@@ -69,6 +69,7 @@ struct TransactionView: View {
                 Text(ticketErrorMessage)
                     .foregroundColor(.red)
                     .frame(maxWidth: .infinity, alignment: .leading)
+                    .accessibilityIdentifier("TICKET_ERROR_MESSAGE")
             }
         }
     }
@@ -94,6 +95,7 @@ struct TransactionView: View {
                 Text(quantityErrorMessage)
                     .foregroundColor(.red)
                     .frame(maxWidth: .infinity, alignment: .leading)
+                    .accessibilityIdentifier("QUANTITY_ERROR_MESSAGE")
             }
         }
     }
@@ -119,6 +121,7 @@ struct TransactionView: View {
                 Text(sumErrorMessage)
                     .foregroundColor(.red)
                     .frame(maxWidth: .infinity, alignment: .leading)
+                    .accessibilityIdentifier("SUM_ERROR_MESSAGE")
             }
         }
     }

@@ -24,6 +24,23 @@ class TransactionViewTests: XCTestCase {
         XCTAssertNoThrow(try sut.price())
     }
     
+    func test_transactionView_rendersErrorsViewsOnErrors() throws {
+        let (sut, viewModel) = makeSUT(for: newTransaction())
+        
+        XCTAssertThrowsError(try sut.ticketErrorMessage())
+        XCTAssertThrowsError(try sut.quantityErrorMessage())
+        XCTAssertThrowsError(try sut.sumErrorMessage())
+        
+        viewModel.ticket = incorrectTicket
+        XCTAssertNoThrow(try sut.ticketErrorMessage())
+        
+        viewModel.quantity = incorrectQuantity
+        XCTAssertNoThrow(try sut.quantityErrorMessage())
+        
+        viewModel.sum = incorrectSum
+        XCTAssertNoThrow(try sut.sumErrorMessage())
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(
@@ -43,6 +60,10 @@ class TransactionViewTests: XCTestCase {
     private func newTransaction() -> Transaction {
         Transaction(ticket: "", type: .buy, quantity: 0, price: 0, sum: 0)
     }
+    
+    private var incorrectTicket: String { " " }
+    private var incorrectQuantity: Double { 0.0 }
+    private var incorrectSum: Double { 0.0 }
 }
 
 private extension TransactionView {
@@ -68,5 +89,17 @@ private extension TransactionView {
     
     func price() throws -> InspectableView<ViewType.Text> {
         try self.inspect().find(viewWithAccessibilityIdentifier: "PRICE").text()
+    }
+    
+    func ticketErrorMessage() throws -> InspectableView<ViewType.Text> {
+        try self.inspect().find(viewWithAccessibilityIdentifier: "TICKET_ERROR_MESSAGE").text()
+    }
+    
+    func quantityErrorMessage() throws -> InspectableView<ViewType.Text> {
+        try self.inspect().find(viewWithAccessibilityIdentifier: "QUANTITY_ERROR_MESSAGE").text()
+    }
+    
+    func sumErrorMessage() throws -> InspectableView<ViewType.Text> {
+        try self.inspect().find(viewWithAccessibilityIdentifier: "SUM_ERROR_MESSAGE").text()
     }
 }
