@@ -92,6 +92,9 @@ class TransactionsViewTests: XCTestCase {
             onTransactionSelect: onSelect,
             onTransactionDelete: onDelete)
         
+        trackForMemoryLeaks(store, file: file, line: line)
+        trackForMemoryLeaks(viewModel, file: file, line: line)
+        
         return (sut, viewModel, store)
     }
     
