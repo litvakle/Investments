@@ -14,6 +14,7 @@
 		3AA9C1B128DB40E200C1E37B /* InMemoryTransactionsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA9C1B028DB40E200C1E37B /* InMemoryTransactionsStore.swift */; };
 		3AA9C1B328DB4B1A00C1E37B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA9C1B228DB4B1A00C1E37B /* ContentView.swift */; };
 		3AA9C1B528DB4BEB00C1E37B /* TransactionsStoreFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA9C1B428DB4BEB00C1E37B /* TransactionsStoreFactory.swift */; };
+		3AA9C1B928DB533F00C1E37B /* TransactionsView+ViewInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA9C1B828DB533F00C1E37B /* TransactionsView+ViewInspector.swift */; };
 		3AAAA81F28D2DDC900E0DF6B /* InvestmentsAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA81E28D2DDC900E0DF6B /* InvestmentsAppApp.swift */; };
 		3AAAA82128D2DDC900E0DF6B /* TransactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA82028D2DDC900E0DF6B /* TransactionsView.swift */; };
 		3AAAA82328D2DDCB00E0DF6B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AAAA82228D2DDCB00E0DF6B /* Assets.xcassets */; };
@@ -68,6 +69,7 @@
 		3AA9C1B028DB40E200C1E37B /* InMemoryTransactionsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryTransactionsStore.swift; sourceTree = "<group>"; };
 		3AA9C1B228DB4B1A00C1E37B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		3AA9C1B428DB4BEB00C1E37B /* TransactionsStoreFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsStoreFactory.swift; sourceTree = "<group>"; };
+		3AA9C1B828DB533F00C1E37B /* TransactionsView+ViewInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TransactionsView+ViewInspector.swift"; sourceTree = "<group>"; };
 		3AAAA81B28D2DDC900E0DF6B /* InvestmentsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InvestmentsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AAAA81E28D2DDC900E0DF6B /* InvestmentsAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentsAppApp.swift; sourceTree = "<group>"; };
 		3AAAA82028D2DDC900E0DF6B /* TransactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsView.swift; sourceTree = "<group>"; };
@@ -117,6 +119,25 @@
 			children = (
 				3AA9C1AC28DAE56B00C1E37B /* XCTestCase+MemoryLeakTracking.swift */,
 				3AA9C1B028DB40E200C1E37B /* InMemoryTransactionsStore.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		3AA9C1B628DB52DC00C1E37B /* Transactions */ = {
+			isa = PBXGroup;
+			children = (
+				3AA9C1B728DB52F200C1E37B /* Helpers */,
+				3AAAA89228D9E4B800E0DF6B /* TransactionsViewTests.swift */,
+				3AA9C1A928DAE4FC00C1E37B /* TransactionViewTests.swift */,
+				3AA9C1AE28DB1DC100C1E37B /* TransactionsAcceptanceTests.swift */,
+			);
+			path = Transactions;
+			sourceTree = "<group>";
+		};
+		3AA9C1B728DB52F200C1E37B /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				3AA9C1B828DB533F00C1E37B /* TransactionsView+ViewInspector.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -227,9 +248,7 @@
 				3AA9C1AB28DAE55400C1E37B /* Helpers */,
 				3AAAA87D28D9B72600E0DF6B /* AlertViewModelTests.swift */,
 				3AAAA88128D9B93000E0DF6B /* MainFlowTests.swift */,
-				3AAAA89228D9E4B800E0DF6B /* TransactionsViewTests.swift */,
-				3AA9C1A928DAE4FC00C1E37B /* TransactionViewTests.swift */,
-				3AA9C1AE28DB1DC100C1E37B /* TransactionsAcceptanceTests.swift */,
+				3AA9C1B628DB52DC00C1E37B /* Transactions */,
 			);
 			path = InvestmentsAppTests;
 			sourceTree = "<group>";
@@ -374,6 +393,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3AA9C1B928DB533F00C1E37B /* TransactionsView+ViewInspector.swift in Sources */,
 				3AAAA88228D9B93000E0DF6B /* MainFlowTests.swift in Sources */,
 				3AA9C1AF28DB1DC100C1E37B /* TransactionsAcceptanceTests.swift in Sources */,
 				3AA9C1AA28DAE4FC00C1E37B /* TransactionViewTests.swift in Sources */,
