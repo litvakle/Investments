@@ -8,7 +8,6 @@
 import SwiftUI
 import InvestmentsFrameworks
 
-
 struct TransactionsView: View {
     var viewModel: TransactionsViewModel
     var onTransactionSelect: ((InvestmentTransaction?) -> Void)?
@@ -34,6 +33,7 @@ struct TransactionsView: View {
                 }
                 .buttonStyle(.plain)
             }
+            .accessibilityIdentifier("TRANSACTIONS")
             .onDelete(perform: delete)
         }
     }

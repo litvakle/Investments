@@ -18,7 +18,7 @@ class TransactionsViewTests: XCTestCase {
         
         viewModel.retrieve()
         
-        XCTAssertEqual(try sut.inspect().list().forEach(0).count, store.transactions.count)
+        XCTAssertEqual(try sut.transactionsList().count, store.transactions.count)
     }
     
     func test_transactionView_handlesTransactionSelect() throws {
@@ -28,9 +28,13 @@ class TransactionsViewTests: XCTestCase {
         })
         
         viewModel.retrieve()
-        try sut.inspect().list().forEach(0).button(0).tap()
-        try sut.inspect().list().forEach(0).button(0).tap()
-        try sut.inspect().list().forEach(0).button(1).tap()
+        
+        let firstRowButton = try sut.transactionsList().button(0)
+        let secondRowButton = try sut.transactionsList().button(1)
+        
+        try firstRowButton.tap()
+        try firstRowButton.tap()
+        try secondRowButton.tap()
         
         XCTAssertEqual(selectedTransactions, [store.transactions[0], store.transactions[0], store.transactions[1]])
     }
@@ -75,5 +79,11 @@ class TransactionsViewTests: XCTestCase {
                 transactions.remove(at: index)
             }
         }
+    }
+}
+
+private extension TransactionsView {
+    func transactionsList() throws -> InspectableView<ViewType.ForEach> {
+        try self.inspect().find(viewWithAccessibilityIdentifier: "TRANSACTIONS").forEach(0)
     }
 }

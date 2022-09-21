@@ -608,8 +608,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/nalexn/ViewInspector";
 			requirement = {
-				kind = exactVersion;
-				version = 0.9.1;
+				kind = revision;
+				revision = 6fea120e47f88eacf199522c4b4692017cff92bf;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
