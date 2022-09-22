@@ -8,21 +8,34 @@
 import XCTest
 import ViewInspector
 @testable import InvestmentsApp
+@testable import InvestmentsFrameworks
 
 extension ContentView: Inspectable {}
 
 class TransactionsAcceptanceTests: XCTestCase {
     func test_onLaunch_displaysStoredTransactions() throws {
-        let sut = makeSUT()
+        let (sut, _) = makeSUT()
         
         let transactionsView = try sut.transactionsView()
         
         XCTAssertEqual(try transactionsView.transactions().count, 2)
     }
     
+    func test_onSaveTransaction_displaysSavedTransaction() throws {
+        let (sut, transactionsViewModel) = makeSUT()
+        let transactionsView = try sut.transactionsView()
+        
+        transactionsViewModel.save(Transaction())
+
+        XCTAssertEqual(try transactionsView.transactions().count, 3)
+    }
+    
     // MARK: - Helpers
     
-    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> ContentView {
+    private func makeSUT(
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) -> (sut: ContentView, transactionsViewModel: TransactionsViewModel) {
         let store = InMemoryTransactionsStore()
         let transactionsViewModel = TransactionsViewModelFactory.createViewModel(store: store)
         let alertViewModel = AlertViewModel()
@@ -38,7 +51,7 @@ class TransactionsAcceptanceTests: XCTestCase {
         trackForMemoryLeaks(alertViewModel, file: file, line: line)
         trackForMemoryLeaks(mainFlow, file: file, line: line)
         
-        return sut
+        return (sut, transactionsViewModel)
     }
 }
 
