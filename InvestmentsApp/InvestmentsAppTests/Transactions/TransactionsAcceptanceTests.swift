@@ -30,6 +30,15 @@ class TransactionsAcceptanceTests: XCTestCase {
         XCTAssertEqual(try transactionsView.transactions().count, 3)
     }
     
+    func test_onDeleteTransaction_doesNotDisplaysDeletedTransaction() throws {
+        let (sut, transactionsViewModel) = makeSUT()
+        let transactionsView = try sut.transactionsView()
+        
+        transactionsViewModel.delete(transactionsViewModel.transactions[0])
+
+        XCTAssertEqual(try transactionsView.transactions().count, 1)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(
