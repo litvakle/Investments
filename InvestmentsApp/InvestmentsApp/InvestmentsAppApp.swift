@@ -14,9 +14,16 @@ typealias InvestmentTransaction = InvestmentsFrameworks.Transaction
 
 @main
 struct InvestmentsAppApp: App {
+    @StateObject var transactionsViewModel = TransactionsViewModelFactory.createViewModel(store: TransactionsStoreFactory.create())
+    @StateObject var alertViewModel = AlertViewModel()
+    @StateObject var mainFlow = MainFlow()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView(store: TransactionsStoreFactory.create())
+            ContentView(
+                transactionsViewModel: transactionsViewModel,
+                alertViewModel: alertViewModel,
+                mainFlow: mainFlow)
         }
     }
 }
