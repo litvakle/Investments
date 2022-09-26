@@ -111,3 +111,37 @@ Primary course (happy path)
 
 Storage saving error (sad path)
 1. System delivers error for each of velidating fields
+
+
+### Story: Portfolio
+
+#### Narrative
+
+>As a user of the App
+>I want to see summary information about my portfolio
+>So I can simply understand what tickets I own and how much money I spent
+
+##### Scenarios (acceptance criteria)
+
+> Given the user with no transactions
+When the user opens 'Portfolio'
+He sees an empty view
+
+> Given the user with stored transactions
+When the user enters 'Portflio'
+He sees a tickets list with total spent some for each ticket
+
+## Use cases
+
+### Display portfolio
+
+Data:
+- Date interval
+
+Primary course (happy path)
+1. Retrieve transactions from storage
+2. Calculate total spent for each ticket
+3. System delivers successful result
+
+Storage retrival error (sad path)
+1. System delivers retrival error
