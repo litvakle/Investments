@@ -83,7 +83,7 @@ class TransactionViewTests: XCTestCase {
     private var incorrectSum: Double { 0.0 }
 }
 
-private extension TransactionView {
+extension TransactionView {
     func type() throws -> InspectableView<ViewType.Picker> {
         try self.inspect().find(viewWithAccessibilityIdentifier: "TYPE").picker()
     }

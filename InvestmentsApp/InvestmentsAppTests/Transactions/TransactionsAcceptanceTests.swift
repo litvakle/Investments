@@ -54,6 +54,24 @@ class TransactionsAcceptanceTests: XCTestCase {
         XCTAssertTrue(mainFlow.navigationState.isActive)
     }
     
+    func test_onSaveNewTransaction_rendersSavedTransaction() throws {
+        let (sut, mainFlow, transactionsViewModel) = makeSUT()
+        let transactionsView = try sut.transactionsView()
+        
+        mainFlow.selectedTransaction = Transaction(ticket: "MMM", type: .buy, quantity: 10, price:2, sum: 20)
+        mainFlow.navigationState.activate()
+        
+        let transactionView = try sut.transactionView()
+        
+        XCTAssertEqual(transactionsViewModel.transactions.count, 2)
+        XCTAssertEqual(try transactionsView.transactions().count, 2)
+        
+        try transactionView.saveTransaction().tap()
+        
+        XCTAssertEqual(transactionsViewModel.transactions.count, 3)
+        XCTAssertEqual(try transactionsView.transactions().count, 3)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(
@@ -85,6 +103,11 @@ private extension ContentView {
     }
     
     func transactionView() throws -> TransactionView {
-        try self.inspect().find(ViewType.NavigationLink.self).view(TransactionView.self).actualView()
+        try self.inspect().find(viewWithAccessibilityIdentifier: "NAVIGATION_LINK_TO_TRANSACTION_VIEW")
+            .view(ActivatableNavigationLink<TransactionView>.self)
+            .find(ViewType.NavigationLink.self)
+            .view(TransactionView.self).actualView()
     }
+    
+    
 }

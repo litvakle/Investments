@@ -41,6 +41,7 @@ class MainFlow: ObservableObject {
         return VStack {
             view
             navigationLink
+                .accessibilityIdentifier("NAVIGATION_LINK_TO_TRANSACTION_VIEW")
         }
     }
     
