@@ -41,7 +41,7 @@ public class TransactionsViewModel: ObservableObject {
     public func delete(_ transaction: Transaction) {
         do {
             try store.delete(transaction)
-            if let index = transactions.firstIndex(of: transaction) {
+            if let index = transactions.firstIndex(where: { $0.id == transaction.id }) {
                 transactions.remove(at: index)
             }
         } catch {
