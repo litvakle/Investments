@@ -15,7 +15,7 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            TransactionsViewFactory.createView(viewModel: transactionsViewModel)
+            mainFlow.showTransactionsView(transactionsViewModel: transactionsViewModel)
         }
         .alert(isPresented: $alertViewModel.isActive) {
             Alert(
