@@ -32,15 +32,19 @@ class TransactionsAcceptanceTests: XCTestCase {
     }
     
     func test_onDeleteTransaction_doesNotRenderDeletedTransaction() throws {
-        let (sut, _, _) = makeSUT()
+        let (sut, _, transactionsViewModel) = makeSUT()
         let transactionsView = try sut.transactionsView()
         
         XCTAssertEqual(try transactionsView.transactions().count, 2)
         
         let indexSet: IndexSet = [0]
         try transactionsView.transactions().callOnDelete(indexSet)
-
         XCTAssertEqual(try transactionsView.transactions().count, 1)
+        XCTAssertEqual(transactionsViewModel.transactions.count, 1)
+        
+        try transactionsView.transactions().callOnDelete(indexSet)
+        XCTAssertEqual(try transactionsView.transactions().count, 0)
+        XCTAssertEqual(transactionsViewModel.transactions.count, 0)
     }
     
     func test_onAddNewTransaction_navigatesToTransactionView() throws {
