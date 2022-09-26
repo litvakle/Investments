@@ -9,7 +9,7 @@ import SwiftUI
 import InvestmentsFrameworks
 
 struct TransactionsView: View {
-    var viewModel: TransactionsViewModel
+    @ObservedObject var viewModel: TransactionsViewModel
     var onTransactionSelect: ((InvestmentTransaction?) -> Void)?
     var onTransactionDelete: ((InvestmentTransaction) -> Void)?
     
