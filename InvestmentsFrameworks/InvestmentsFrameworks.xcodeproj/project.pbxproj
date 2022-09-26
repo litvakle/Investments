@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3A14586928E1C3DB00AD1EF5 /* PortfolioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A14586828E1C3DB00AD1EF5 /* PortfolioTests.swift */; };
 		3A14586C28E1CE9800AD1EF5 /* PortfolioViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A14586B28E1CE9800AD1EF5 /* PortfolioViewModel.swift */; };
+		3A7648E228E1E76700B810B7 /* PortfolioTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7648E128E1E76700B810B7 /* PortfolioTestHelpers.swift */; };
 		3AAAA7C028D051D000E0DF6B /* CoreDataTransactionsStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA7BF28D051D000E0DF6B /* CoreDataTransactionsStoreTests.swift */; };
 		3AAAA7C128D051D000E0DF6B /* InvestmentsFrameworks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AAAA7AF28D0300A00E0DF6B /* InvestmentsFrameworks.framework */; };
 		3AAAA7C828D054B000E0DF6B /* TransactionsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA7C728D054B000E0DF6B /* TransactionsStore.swift */; };
@@ -43,6 +44,7 @@
 /* Begin PBXFileReference section */
 		3A14586828E1C3DB00AD1EF5 /* PortfolioTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioTests.swift; sourceTree = "<group>"; };
 		3A14586B28E1CE9800AD1EF5 /* PortfolioViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioViewModel.swift; sourceTree = "<group>"; };
+		3A7648E128E1E76700B810B7 /* PortfolioTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioTestHelpers.swift; sourceTree = "<group>"; };
 		3AAAA7AF28D0300A00E0DF6B /* InvestmentsFrameworks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = InvestmentsFrameworks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AAAA7BD28D051D000E0DF6B /* InvestmentsFrameworksTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InvestmentsFrameworksTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AAAA7BF28D051D000E0DF6B /* CoreDataTransactionsStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTransactionsStoreTests.swift; sourceTree = "<group>"; };
@@ -111,9 +113,18 @@
 		3A14586E28E1CF6200AD1EF5 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				3A7648E028E1E71200B810B7 /* Helpers */,
 				3A14586828E1C3DB00AD1EF5 /* PortfolioTests.swift */,
 			);
 			path = Presentation;
+			sourceTree = "<group>";
+		};
+		3A7648E028E1E71200B810B7 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				3A7648E128E1E76700B810B7 /* PortfolioTestHelpers.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		3AAAA7A528D0300A00E0DF6B = {
@@ -423,6 +434,7 @@
 				3AAAA7ED28D2189E00E0DF6B /* SharedTransactionsTestHelpers.swift in Sources */,
 				3AAAA7DF28D1E66700E0DF6B /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 				3AAAA7E228D1ED4400E0DF6B /* NSManagedObjectContext+Stub.swift in Sources */,
+				3A7648E228E1E76700B810B7 /* PortfolioTestHelpers.swift in Sources */,
 				3A14586928E1C3DB00AD1EF5 /* PortfolioTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

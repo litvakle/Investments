@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3A14587128E1D00400AD1EF5 /* PortfolioViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A14587028E1D00400AD1EF5 /* PortfolioViewTests.swift */; };
 		3A14587628E1D25C00AD1EF5 /* PortfolioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A14587528E1D25C00AD1EF5 /* PortfolioView.swift */; };
+		3A7648E628E1E96C00B810B7 /* PortfolioTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7648E528E1E96C00B810B7 /* PortfolioTestHelpers.swift */; };
 		3AA9C1A828D9E94200C1E37B /* ViewInspector in Frameworks */ = {isa = PBXBuildFile; productRef = 3AA9C1A728D9E94200C1E37B /* ViewInspector */; };
 		3AA9C1AA28DAE4FC00C1E37B /* TransactionViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA9C1A928DAE4FC00C1E37B /* TransactionViewTests.swift */; };
 		3AA9C1AD28DAE56B00C1E37B /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA9C1AC28DAE56B00C1E37B /* XCTestCase+MemoryLeakTracking.swift */; };
@@ -66,6 +67,7 @@
 /* Begin PBXFileReference section */
 		3A14587028E1D00400AD1EF5 /* PortfolioViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioViewTests.swift; sourceTree = "<group>"; };
 		3A14587528E1D25C00AD1EF5 /* PortfolioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioView.swift; sourceTree = "<group>"; };
+		3A7648E528E1E96C00B810B7 /* PortfolioTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioTestHelpers.swift; sourceTree = "<group>"; };
 		3AA9C1A928DAE4FC00C1E37B /* TransactionViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewTests.swift; sourceTree = "<group>"; };
 		3AA9C1AC28DAE56B00C1E37B /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 		3AA9C1AE28DB1DC100C1E37B /* TransactionsAcceptanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsAcceptanceTests.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 		3A14586F28E1CFDA00AD1EF5 /* Portfolio */ = {
 			isa = PBXGroup;
 			children = (
+				3A7648E328E1E95700B810B7 /* Helpers */,
 				3A14587028E1D00400AD1EF5 /* PortfolioViewTests.swift */,
 			);
 			path = Portfolio;
@@ -138,6 +141,14 @@
 				3A14587528E1D25C00AD1EF5 /* PortfolioView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		3A7648E328E1E95700B810B7 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				3A7648E528E1E96C00B810B7 /* PortfolioTestHelpers.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		3AA9C1AB28DAE55400C1E37B /* Helpers */ = {
@@ -420,6 +431,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AA9C1B928DB533F00C1E37B /* TransactionsView+ViewInspector.swift in Sources */,
+				3A7648E628E1E96C00B810B7 /* PortfolioTestHelpers.swift in Sources */,
 				3AAAA88228D9B93000E0DF6B /* MainFlowTests.swift in Sources */,
 				3AA9C1AF28DB1DC100C1E37B /* TransactionsAcceptanceTests.swift in Sources */,
 				3A14587128E1D00400AD1EF5 /* PortfolioViewTests.swift in Sources */,
