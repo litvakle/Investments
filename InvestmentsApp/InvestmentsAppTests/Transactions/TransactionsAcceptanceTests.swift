@@ -58,7 +58,7 @@ class TransactionsAcceptanceTests: XCTestCase {
         XCTAssertTrue(mainFlow.navigationState.isActive)
     }
     
-    func test_onSaveNewTransaction_rendersSavedTransaction() throws {
+    func test_onSaveNewTransaction_dismissesTransactionViewAndRendersSavedTransaction() throws {
         let (sut, mainFlow, transactionsViewModel) = makeSUT()
         let transactionsView = try sut.transactionsView()
         
@@ -67,11 +67,13 @@ class TransactionsAcceptanceTests: XCTestCase {
         
         let transactionView = try sut.transactionView()
         
+        XCTAssertTrue(mainFlow.navigationState.isActive)
         XCTAssertEqual(transactionsViewModel.transactions.count, 2)
         XCTAssertEqual(try transactionsView.transactions().count, 2)
         
         try transactionView.saveTransaction().tap()
         
+        XCTAssertFalse(mainFlow.navigationState.isActive)
         XCTAssertEqual(transactionsViewModel.transactions.count, 3)
         XCTAssertEqual(try transactionsView.transactions().count, 3)
     }

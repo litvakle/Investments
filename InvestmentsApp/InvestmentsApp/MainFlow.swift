@@ -33,11 +33,9 @@ class MainFlow: ObservableObject {
                 self?.navigationState.deactivate()
             }
         )
-        let navigationLink = ActivatableNavigationLink(state: navigationState) {
-            destination
-        }
-
+        let navigationLink = ActivatableNavigationLink(state: navigationState) { destination }
         let view = makeTransactionsView(transactionsViewModel: transactionsViewModel)
+
         return VStack {
             view
             navigationLink
