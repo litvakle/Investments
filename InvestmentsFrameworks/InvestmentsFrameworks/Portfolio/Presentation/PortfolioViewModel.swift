@@ -7,8 +7,8 @@
 
 import Foundation
 
-public class PortfolioViewModel {
-    private(set) public var items = [PortfolioItem]()
+public class PortfolioViewModel: ObservableObject {
+    @Published private(set) public var items = [PortfolioItem]()
     
     public init() {}
     
@@ -25,10 +25,14 @@ public class PortfolioViewModel {
     }
 }
 
-public struct PortfolioItem: Equatable {
+public struct PortfolioItem: Equatable, Identifiable {
     public let ticket: String
     public let quantity: Double
     public let sum: Double
+    
+    public var id: String {
+        ticket
+    }
     
     public init(ticket: String, quantity: Double, sum: Double) {
         self.ticket = ticket

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A14587128E1D00400AD1EF5 /* PortfolioViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A14587028E1D00400AD1EF5 /* PortfolioViewTests.swift */; };
+		3A14587628E1D25C00AD1EF5 /* PortfolioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A14587528E1D25C00AD1EF5 /* PortfolioView.swift */; };
 		3AA9C1A828D9E94200C1E37B /* ViewInspector in Frameworks */ = {isa = PBXBuildFile; productRef = 3AA9C1A728D9E94200C1E37B /* ViewInspector */; };
 		3AA9C1AA28DAE4FC00C1E37B /* TransactionViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA9C1A928DAE4FC00C1E37B /* TransactionViewTests.swift */; };
 		3AA9C1AD28DAE56B00C1E37B /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA9C1AC28DAE56B00C1E37B /* XCTestCase+MemoryLeakTracking.swift */; };
@@ -62,6 +64,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3A14587028E1D00400AD1EF5 /* PortfolioViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioViewTests.swift; sourceTree = "<group>"; };
+		3A14587528E1D25C00AD1EF5 /* PortfolioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioView.swift; sourceTree = "<group>"; };
 		3AA9C1A928DAE4FC00C1E37B /* TransactionViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewTests.swift; sourceTree = "<group>"; };
 		3AA9C1AC28DAE56B00C1E37B /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 		3AA9C1AE28DB1DC100C1E37B /* TransactionsAcceptanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsAcceptanceTests.swift; sourceTree = "<group>"; };
@@ -112,6 +116,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A14586F28E1CFDA00AD1EF5 /* Portfolio */ = {
+			isa = PBXGroup;
+			children = (
+				3A14587028E1D00400AD1EF5 /* PortfolioViewTests.swift */,
+			);
+			path = Portfolio;
+			sourceTree = "<group>";
+		};
+		3A14587228E1D23E00AD1EF5 /* Portfolio */ = {
+			isa = PBXGroup;
+			children = (
+				3A14587328E1D24900AD1EF5 /* Views */,
+			);
+			path = Portfolio;
+			sourceTree = "<group>";
+		};
+		3A14587328E1D24900AD1EF5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3A14587528E1D25C00AD1EF5 /* PortfolioView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		3AA9C1AB28DAE55400C1E37B /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -168,6 +196,7 @@
 				3AA9C1B228DB4B1A00C1E37B /* ContentView.swift */,
 				3AAAA87F28D9B7B400E0DF6B /* AlertViewModel.swift */,
 				3AAAA83B28D30CC200E0DF6B /* Transactions */,
+				3A14587228E1D23E00AD1EF5 /* Portfolio */,
 				3AAAA82228D2DDCB00E0DF6B /* Assets.xcassets */,
 				3AAAA82428D2DDCB00E0DF6B /* Preview Content */,
 			);
@@ -246,6 +275,7 @@
 				3AAAA88128D9B93000E0DF6B /* MainFlowTests.swift */,
 				3AA9C1BA28E1830700C1E37B /* SharedTestHelpers.swift */,
 				3AA9C1B628DB52DC00C1E37B /* Transactions */,
+				3A14586F28E1CFDA00AD1EF5 /* Portfolio */,
 			);
 			path = InvestmentsAppTests;
 			sourceTree = "<group>";
@@ -368,6 +398,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AAAA86F28D98D9C00E0DF6B /* TransactionsViewModel+Preview.swift in Sources */,
+				3A14587628E1D25C00AD1EF5 /* PortfolioView.swift in Sources */,
 				3AAAA82128D2DDC900E0DF6B /* TransactionsView.swift in Sources */,
 				3AAAA88428D9B95000E0DF6B /* MainFlow.swift in Sources */,
 				3AAAA83828D309B500E0DF6B /* Date+Helpers.swift in Sources */,
@@ -391,6 +422,7 @@
 				3AA9C1B928DB533F00C1E37B /* TransactionsView+ViewInspector.swift in Sources */,
 				3AAAA88228D9B93000E0DF6B /* MainFlowTests.swift in Sources */,
 				3AA9C1AF28DB1DC100C1E37B /* TransactionsAcceptanceTests.swift in Sources */,
+				3A14587128E1D00400AD1EF5 /* PortfolioViewTests.swift in Sources */,
 				3AA9C1AA28DAE4FC00C1E37B /* TransactionViewTests.swift in Sources */,
 				3AAAA89328D9E4B800E0DF6B /* TransactionsViewTests.swift in Sources */,
 				3AA9C1BB28E1830700C1E37B /* SharedTestHelpers.swift in Sources */,
