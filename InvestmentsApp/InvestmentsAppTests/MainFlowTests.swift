@@ -15,7 +15,7 @@ class MainFlowTests: XCTestCase {
         let transactionsViewModel = TransactionsViewModel(store: store)
         let alertViewModel = AlertViewModel()
         let sut = MainFlow()
-        sut.subscribeTo(
+        sut.setupSubscriptions(
             transactionsViewModel: transactionsViewModel,
             alertViewModel: alertViewModel
         )

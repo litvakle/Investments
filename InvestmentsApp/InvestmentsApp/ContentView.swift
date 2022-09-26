@@ -23,7 +23,7 @@ struct ContentView: View {
             Text(alertViewModel.message)
         })
         .onAppear {
-            mainFlow.subscribeTo(
+            mainFlow.setupSubscriptions(
                 transactionsViewModel: transactionsViewModel,
                 alertViewModel: alertViewModel
             )

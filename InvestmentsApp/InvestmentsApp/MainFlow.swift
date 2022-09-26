@@ -15,7 +15,7 @@ class MainFlow: ObservableObject {
     
     var cancellables = Set<AnyCancellable>()
     
-    func subscribeTo(transactionsViewModel: TransactionsViewModel, alertViewModel: AlertViewModel) {
+    func setupSubscriptions(transactionsViewModel: TransactionsViewModel, alertViewModel: AlertViewModel) {
         transactionsViewModel.$error
             .dropFirst()
             .map { $0 != nil }
