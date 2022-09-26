@@ -8,28 +8,6 @@
 import XCTest
 import InvestmentsFrameworks
 
-class PortfolioViewModel {
-    var items = [PortfolioItem]()
-    
-    func createItems(for transactions: [Transaction]) {
-        var totalData = [String: (quantity: Double, sum: Double)]()
-        transactions.forEach { transaction in
-            let quantity = totalData[transaction.ticket]?.quantity ?? 0
-            let sum = totalData[transaction.ticket]?.sum ?? 0
-            totalData[transaction.ticket] = (quantity + transaction.quantity, sum + transaction.sum)
-        }
-        
-        items = totalData.map { PortfolioItem(ticket: $0.key, quantity: $0.value.quantity, sum: $0.value.sum)}
-            .sorted(by: { $0.ticket < $1.ticket })
-    }
-}
-
-struct PortfolioItem: Equatable {
-    let ticket: String
-    let quantity: Double
-    let sum: Double
-}
-
 class PortfolioTests: XCTestCase {
     func test_createItems_calculatesTotalParametersForAllTickets() {
         let sut = PortfolioViewModel()
