@@ -24,7 +24,7 @@ class MainFlowTests: XCTestCase {
         XCTAssertTrue(alertViewModel.title.isEmpty)
         XCTAssertTrue(alertViewModel.message.isEmpty)
         
-        transactionsViewModel.error = NSError(domain: "Any error", code: 0)
+        transactionsViewModel.error = anyNSError()
         
         XCTAssertEqual(alertViewModel.isActive, true)
         XCTAssertFalse(alertViewModel.title.isEmpty)
