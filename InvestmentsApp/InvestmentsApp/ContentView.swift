@@ -17,12 +17,11 @@ struct ContentView: View {
         NavigationView {
             mainFlow.showTransactionsView(transactionsViewModel: transactionsViewModel)
         }
-        .alert(isPresented: $alertViewModel.isActive) {
-            Alert(
-                title: Text(alertViewModel.title),
-                message: Text(alertViewModel.message)
-            )
-        }
+        .alert(alertViewModel.title, isPresented: $alertViewModel.isActive, actions: {
+            Button("OK", action: {})
+        }, message: {
+            Text(alertViewModel.message)
+        })
         .onAppear {
             mainFlow.subscribeTo(
                 transactionsViewModel: transactionsViewModel,
