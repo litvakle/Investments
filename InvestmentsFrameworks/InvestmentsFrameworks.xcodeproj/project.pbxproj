@@ -186,7 +186,7 @@
 		3A7648FA28E3126C00B810B7 /* API */ = {
 			isa = PBXGroup;
 			children = (
-				3A7648FB28E3127100B810B7 /* CurrentPrice */,
+				3A7648FC28E3129400B810B7 /* CurrentPriceMapperTests.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -194,7 +194,7 @@
 		3A7648FB28E3127100B810B7 /* CurrentPrice */ = {
 			isa = PBXGroup;
 			children = (
-				3A7648FC28E3129400B810B7 /* CurrentPriceMapperTests.swift */,
+				3A7648FA28E3126C00B810B7 /* API */,
 			);
 			path = CurrentPrice;
 			sourceTree = "<group>";
@@ -202,7 +202,7 @@
 		3A7648FE28E320BA00B810B7 /* API */ = {
 			isa = PBXGroup;
 			children = (
-				3A7648FF28E320CA00B810B7 /* CurrentPrice */,
+				3A76490228E3212500B810B7 /* CurrentPriceMapper.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -210,7 +210,7 @@
 		3A7648FF28E320CA00B810B7 /* CurrentPrice */ = {
 			isa = PBXGroup;
 			children = (
-				3A76490228E3212500B810B7 /* CurrentPriceMapper.swift */,
+				3A7648FE28E320BA00B810B7 /* API */,
 			);
 			path = CurrentPrice;
 			sourceTree = "<group>";
@@ -237,7 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				3AAAA7DA28D1E5A300E0DF6B /* Shared */,
-				3A7648FE28E320BA00B810B7 /* API */,
+				3A7648FF28E320CA00B810B7 /* CurrentPrice */,
 				3AAAA7D328D1E4B900E0DF6B /* Transactions */,
 				3A14586A28E1CE7C00AD1EF5 /* Portfolio */,
 			);
@@ -249,7 +249,7 @@
 			children = (
 				3AAAA7DD28D1E64C00E0DF6B /* Helpers */,
 				3AAAA84728D42BC100E0DF6B /* Shared */,
-				3A7648FA28E3126C00B810B7 /* API */,
+				3A7648FB28E3127100B810B7 /* CurrentPrice */,
 				3AAAA7E628D200C300E0DF6B /* Transactions */,
 				3A14586728E1C16700AD1EF5 /* Portfolio */,
 			);
