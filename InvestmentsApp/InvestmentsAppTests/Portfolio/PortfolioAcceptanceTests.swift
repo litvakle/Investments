@@ -11,13 +11,17 @@ import ViewInspector
 @testable import InvestmentsApp
 
 class PortfolioAcceptanceTests: XCTestCase {
-    func test_onLaunch_rendersPortfolioForStoredTransactions() throws {
-        let (sut, transactionsViewModel) = makeSUT(transactions: makePortfolioTransactions())
-        
+    func test_portfolio_rendersAccordingToTransactions() throws {
+        let (sut, transactionsViewModel) = makeSUT(transactions: [])
         try sut.callOnAppear()
-        transactionsViewModel.retrieve()
+
+        XCTAssertEqual(try sut.portfolioView().items().count, 0, "Expected empty list for empty store")
         
-        XCTAssertEqual(try sut.portfolioView().items().count, 2)
+        makePortfolioTransactions().forEach { transactionsViewModel.save($0) }
+        XCTAssertEqual(try sut.portfolioView().items().count, 2, "Expected non-empty list for non-empty store")
+        
+        transactionsViewModel.save(Transaction(ticket: "CCC", quantity: 10, price: 20, sum: 200))
+        XCTAssertEqual(try sut.portfolioView().items().count, 3, "Expected updated list including ticket for new transaction")
     }
     
     // MARK: - Helpers
