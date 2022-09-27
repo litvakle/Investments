@@ -35,6 +35,14 @@ class CurrentPriceMapperTests: XCTestCase {
         }
     }
     
+    func test_map_throwsErrorOn200HTTPResponseWithInvalidJSON() {
+        let invalidJSON = Data("invalid json".utf8)
+        
+        XCTAssertThrowsError(
+            try CurrentPriceMapper.map(invalidJSON, from: HTTPURLResponse(statusCode: 200))
+        )
+    }
+    
     // MARK: - Helpers
     
     func makeJSON(_ data: [String: Any]) -> Data {
