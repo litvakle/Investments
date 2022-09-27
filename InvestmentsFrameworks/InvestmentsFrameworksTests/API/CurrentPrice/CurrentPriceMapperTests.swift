@@ -37,23 +37,27 @@ class CurrentPriceMapper {
 }
 
 class CurrentPriceMapperTests: XCTestCase {
-    func test_map_throwsErrorOnNon200HTTPResponse() throws {
+    func test_map_throwsConnectionErrorOnNon200HTTPResponse() throws {
         let json = makeJSON([:])
         let samples = [199, 201, 300, 400, 500]
 
-        try samples.forEach { code in
-            XCTAssertThrowsError(
-                try CurrentPriceMapper.map(json, from: HTTPURLResponse(statusCode: code))
-            )
+        samples.forEach { code in
+            do {
+                _ = try CurrentPriceMapper.map(json, from: HTTPURLResponse(statusCode: code))
+            } catch {
+                XCTAssertEqual(error as! CurrentPriceMapper.Error, CurrentPriceMapper.Error.connectionError)
+            }
         }
     }
     
-    func test_map_throwsErrorOn200HTTPResponseWithInvalidJSON() {
+    func test_map_throwsInvalidDataErrorOn200HTTPResponseWithInvalidJSON() {
         let invalidJSON = Data("invalid json".utf8)
-        
-        XCTAssertThrowsError(
-            try CurrentPriceMapper.map(invalidJSON, from: HTTPURLResponse(statusCode: 200))
-        )
+
+        do {
+            _ = try CurrentPriceMapper.map(invalidJSON, from: HTTPURLResponse(statusCode: 200))
+        } catch {
+            XCTAssertEqual(error as! CurrentPriceMapper.Error, CurrentPriceMapper.Error.invalidData)
+        }
     }
     
     func test_map_deliversCurrentPriceOn200HTTPResponseWithCorrectJSON() throws {
