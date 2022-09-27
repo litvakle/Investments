@@ -62,10 +62,6 @@ private extension ContentView {
         try self.inspect().find(PortfolioView.self).actualView()
     }
     
-    func portfolioViewCount() throws -> Int {
-        try self.inspect().find(PortfolioView.self).find(ViewType.ForEach.self).count
-    }
-    
     func callOnAppear() throws {
         try self.inspect().find(viewWithAccessibilityIdentifier: "MAIN_TAB_VIEW").tabView().callOnAppear()
     }
