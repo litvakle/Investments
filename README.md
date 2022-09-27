@@ -131,6 +131,10 @@ He sees an empty view
 When the user enters 'Portflio'
 He sees a tickets list with total spent some for each ticket
 
+> Given the user with stored transactions
+When the user saves new transaction and enters 'Portflio'
+He sees an updated portfolio
+
 ## Use cases
 
 ### Display portfolio
