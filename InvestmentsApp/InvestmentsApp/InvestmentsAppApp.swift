@@ -17,13 +17,17 @@ struct InvestmentsAppApp: App {
     @StateObject var transactionsViewModel = TransactionsViewModelFactory.createViewModel(store: TransactionsStoreFactory.create())
     @StateObject var alertViewModel = AlertViewModel()
     @StateObject var mainFlow = MainFlow()
+    @StateObject var portfolioFlow = PortfolioFlow()
+    @StateObject var portfolioViewModel = PortfolioViewModel()
     
     var body: some Scene {
         WindowGroup {
             ContentView(
                 transactionsViewModel: transactionsViewModel,
+                portfolioViewModel: portfolioViewModel,
                 alertViewModel: alertViewModel,
-                mainFlow: mainFlow)
+                mainFlow: mainFlow,
+                portfolioFlow: portfolioFlow)
         }
     }
 }

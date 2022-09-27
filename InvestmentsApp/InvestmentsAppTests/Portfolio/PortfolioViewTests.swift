@@ -32,7 +32,7 @@ class PortfolioViewTests: XCTestCase {
     }
 }
 
-private extension PortfolioView {
+extension PortfolioView {
     func items() throws -> InspectableView<ViewType.ForEach> {
         try self.inspect().find(viewWithAccessibilityIdentifier: "PORTFOLIO_ITEMS").forEach()
     }
