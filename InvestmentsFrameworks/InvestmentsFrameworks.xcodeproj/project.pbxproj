@@ -10,6 +10,10 @@
 		3A14586928E1C3DB00AD1EF5 /* PortfolioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A14586828E1C3DB00AD1EF5 /* PortfolioTests.swift */; };
 		3A14586C28E1CE9800AD1EF5 /* PortfolioViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A14586B28E1CE9800AD1EF5 /* PortfolioViewModel.swift */; };
 		3A7648E228E1E76700B810B7 /* PortfolioTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7648E128E1E76700B810B7 /* PortfolioTestHelpers.swift */; };
+		3A7648EF28E309AE00B810B7 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7648EE28E309AE00B810B7 /* HTTPClient.swift */; };
+		3A7648F228E309EB00B810B7 /* URLSessionHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7648F128E309EB00B810B7 /* URLSessionHTTPClient.swift */; };
+		3A7648F628E30A3E00B810B7 /* URLSessionHTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7648F528E30A3E00B810B7 /* URLSessionHTTPClientTests.swift */; };
+		3A7648F928E30A6A00B810B7 /* URLProtocolStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7648F828E30A6A00B810B7 /* URLProtocolStub.swift */; };
 		3AAAA7C028D051D000E0DF6B /* CoreDataTransactionsStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA7BF28D051D000E0DF6B /* CoreDataTransactionsStoreTests.swift */; };
 		3AAAA7C128D051D000E0DF6B /* InvestmentsFrameworks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AAAA7AF28D0300A00E0DF6B /* InvestmentsFrameworks.framework */; };
 		3AAAA7C828D054B000E0DF6B /* TransactionsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA7C728D054B000E0DF6B /* TransactionsStore.swift */; };
@@ -45,6 +49,10 @@
 		3A14586828E1C3DB00AD1EF5 /* PortfolioTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioTests.swift; sourceTree = "<group>"; };
 		3A14586B28E1CE9800AD1EF5 /* PortfolioViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioViewModel.swift; sourceTree = "<group>"; };
 		3A7648E128E1E76700B810B7 /* PortfolioTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioTestHelpers.swift; sourceTree = "<group>"; };
+		3A7648EE28E309AE00B810B7 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
+		3A7648F128E309EB00B810B7 /* URLSessionHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClient.swift; sourceTree = "<group>"; };
+		3A7648F528E30A3E00B810B7 /* URLSessionHTTPClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClientTests.swift; sourceTree = "<group>"; };
+		3A7648F828E30A6A00B810B7 /* URLProtocolStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolStub.swift; sourceTree = "<group>"; };
 		3AAAA7AF28D0300A00E0DF6B /* InvestmentsFrameworks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = InvestmentsFrameworks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AAAA7BD28D051D000E0DF6B /* InvestmentsFrameworksTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InvestmentsFrameworksTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AAAA7BF28D051D000E0DF6B /* CoreDataTransactionsStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTransactionsStoreTests.swift; sourceTree = "<group>"; };
@@ -123,6 +131,48 @@
 			isa = PBXGroup;
 			children = (
 				3A7648E128E1E76700B810B7 /* PortfolioTestHelpers.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		3A7648ED28E3096E00B810B7 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				3A7648F028E309CE00B810B7 /* Infrastructure */,
+				3A7648EE28E309AE00B810B7 /* HTTPClient.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		3A7648F028E309CE00B810B7 /* Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+				3A7648F128E309EB00B810B7 /* URLSessionHTTPClient.swift */,
+			);
+			path = Infrastructure;
+			sourceTree = "<group>";
+		};
+		3A7648F328E30A2200B810B7 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				3A7648F428E30A2700B810B7 /* Infrastructure */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		3A7648F428E30A2700B810B7 /* Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+				3A7648F728E30A6000B810B7 /* Helpers */,
+				3A7648F528E30A3E00B810B7 /* URLSessionHTTPClientTests.swift */,
+			);
+			path = Infrastructure;
+			sourceTree = "<group>";
+		};
+		3A7648F728E30A6000B810B7 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				3A7648F828E30A6A00B810B7 /* URLProtocolStub.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -208,6 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				3AAAA84A28D4307A00E0DF6B /* Helpers */,
+				3A7648ED28E3096E00B810B7 /* API */,
 				3AAAA7C928D05C3C00E0DF6B /* Transaction.swift */,
 			);
 			path = Shared;
@@ -286,6 +337,7 @@
 		3AAAA84728D42BC100E0DF6B /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				3A7648F328E30A2200B810B7 /* API */,
 				3AAAA84828D42BDD00E0DF6B /* NumberFormatterTests.swift */,
 			);
 			path = Shared;
@@ -410,9 +462,11 @@
 			files = (
 				3AAAA7D128D0B36D00E0DF6B /* CoreDataHelpers.swift in Sources */,
 				3AAAA7D728D1E51F00E0DF6B /* CoreDataTransactionsStore.swift in Sources */,
+				3A7648EF28E309AE00B810B7 /* HTTPClient.swift in Sources */,
 				3AAAA84628D348FD00E0DF6B /* TransactionViewModel.swift in Sources */,
 				3AAAA7D928D1E54300E0DF6B /* CoreDataTransactionsStore+TransactionsStore.swift in Sources */,
 				3AAAA7F028D2D99600E0DF6B /* TransactionsViewModel.swift in Sources */,
+				3A7648F228E309EB00B810B7 /* URLSessionHTTPClient.swift in Sources */,
 				3AAAA7CA28D05C3C00E0DF6B /* Transaction.swift in Sources */,
 				3AAAA84C28D430AB00E0DF6B /* NumberFormatter+Formatters.swift in Sources */,
 				3AAAA7CF28D0B13B00E0DF6B /* StoredTransaction.swift in Sources */,
@@ -430,8 +484,10 @@
 				3AAAA84928D42BDD00E0DF6B /* NumberFormatterTests.swift in Sources */,
 				3AAAA7E528D1ED6300E0DF6B /* SharedTestHelpers.swift in Sources */,
 				3AAAA7C028D051D000E0DF6B /* CoreDataTransactionsStoreTests.swift in Sources */,
+				3A7648F628E30A3E00B810B7 /* URLSessionHTTPClientTests.swift in Sources */,
 				3AAAA84428D3335800E0DF6B /* TransactionViewModelTests.swift in Sources */,
 				3AAAA7ED28D2189E00E0DF6B /* SharedTransactionsTestHelpers.swift in Sources */,
+				3A7648F928E30A6A00B810B7 /* URLProtocolStub.swift in Sources */,
 				3AAAA7DF28D1E66700E0DF6B /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 				3AAAA7E228D1ED4400E0DF6B /* NSManagedObjectContext+Stub.swift in Sources */,
 				3A7648E228E1E76700B810B7 /* PortfolioTestHelpers.swift in Sources */,
