@@ -8,18 +8,31 @@
 import XCTest
 import Foundation
 
-struct CurrentPrice {
+struct CurrentPrice: Equatable {
     let price: Double
 }
 
 class CurrentPriceMapper {
+    struct CurrentPriceAPI: Decodable {
+        let c: Double
+        
+        var currentPrice: CurrentPrice {
+            CurrentPrice(price: c)
+        }
+    }
+    
     public enum Error: Swift.Error {
         case invalidData
         case connectionError
     }
     
+    static var isOK: Int { 200 }
+    
     static func map(_ data: Data, from response: HTTPURLResponse) throws -> CurrentPrice {
-        throw Error.connectionError
+        guard response.statusCode == isOK else { throw Error.connectionError }
+        guard let decoded = try? JSONDecoder().decode(CurrentPriceAPI.self, from: data) else { throw Error.invalidData }
+        
+        return decoded.currentPrice
     }
 }
 
@@ -41,6 +54,15 @@ class CurrentPriceMapperTests: XCTestCase {
         XCTAssertThrowsError(
             try CurrentPriceMapper.map(invalidJSON, from: HTTPURLResponse(statusCode: 200))
         )
+    }
+    
+    func test_map_deliversCurrentPriceOn200HTTPResponseWithCorrectJSON() throws {
+        let currentPrice = CurrentPrice(price: 100.00)
+        let json = makeJSON(["c": 100.00])
+        
+        let result = try CurrentPriceMapper.map(json, from: HTTPURLResponse(statusCode: 200))
+        
+        XCTAssertEqual(result, currentPrice)
     }
     
     // MARK: - Helpers
