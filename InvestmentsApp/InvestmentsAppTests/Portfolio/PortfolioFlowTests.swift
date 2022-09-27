@@ -20,6 +20,14 @@ class PortfolioFlowTests: XCTestCase {
         XCTAssertEqual(portfolioViewModel.items, makePortfolioItems())
     }
     
+    func test_initWithStoredTransactions_createsPotrfolioItems() {
+        let (sut, transactionsViewModel, portfolioViewModel) = makeSUT(transactions: makePortfolioTransactions())
+        
+        sut.setupSubscriptions(portfolioViewModel: portfolioViewModel, transactionsViewModel: transactionsViewModel)
+        
+        XCTAssertEqual(portfolioViewModel.items, makePortfolioItems())
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(
