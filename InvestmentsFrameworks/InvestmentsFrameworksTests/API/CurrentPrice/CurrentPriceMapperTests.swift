@@ -7,34 +7,7 @@
 
 import XCTest
 import Foundation
-
-struct CurrentPrice: Equatable {
-    let price: Double
-}
-
-class CurrentPriceMapper {
-    struct CurrentPriceAPI: Decodable {
-        let c: Double
-        
-        var currentPrice: CurrentPrice {
-            CurrentPrice(price: c)
-        }
-    }
-    
-    public enum Error: Swift.Error {
-        case invalidData
-        case connectionError
-    }
-    
-    static var isOK: Int { 200 }
-    
-    static func map(_ data: Data, from response: HTTPURLResponse) throws -> CurrentPrice {
-        guard response.statusCode == isOK else { throw Error.connectionError }
-        guard let decoded = try? JSONDecoder().decode(CurrentPriceAPI.self, from: data) else { throw Error.invalidData }
-        
-        return decoded.currentPrice
-    }
-}
+import InvestmentsFrameworks
 
 class CurrentPriceMapperTests: XCTestCase {
     func test_map_throwsConnectionErrorOnNon200HTTPResponse() throws {

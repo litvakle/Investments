@@ -15,6 +15,8 @@
 		3A7648F628E30A3E00B810B7 /* URLSessionHTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7648F528E30A3E00B810B7 /* URLSessionHTTPClientTests.swift */; };
 		3A7648F928E30A6A00B810B7 /* URLProtocolStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7648F828E30A6A00B810B7 /* URLProtocolStub.swift */; };
 		3A7648FD28E3129400B810B7 /* CurrentPriceMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7648FC28E3129400B810B7 /* CurrentPriceMapperTests.swift */; };
+		3A76490128E320ED00B810B7 /* CurrentPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A76490028E320ED00B810B7 /* CurrentPrice.swift */; };
+		3A76490328E3212500B810B7 /* CurrentPriceMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A76490228E3212500B810B7 /* CurrentPriceMapper.swift */; };
 		3AAAA7C028D051D000E0DF6B /* CoreDataTransactionsStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA7BF28D051D000E0DF6B /* CoreDataTransactionsStoreTests.swift */; };
 		3AAAA7C128D051D000E0DF6B /* InvestmentsFrameworks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AAAA7AF28D0300A00E0DF6B /* InvestmentsFrameworks.framework */; };
 		3AAAA7C828D054B000E0DF6B /* TransactionsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA7C728D054B000E0DF6B /* TransactionsStore.swift */; };
@@ -55,6 +57,8 @@
 		3A7648F528E30A3E00B810B7 /* URLSessionHTTPClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClientTests.swift; sourceTree = "<group>"; };
 		3A7648F828E30A6A00B810B7 /* URLProtocolStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolStub.swift; sourceTree = "<group>"; };
 		3A7648FC28E3129400B810B7 /* CurrentPriceMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentPriceMapperTests.swift; sourceTree = "<group>"; };
+		3A76490028E320ED00B810B7 /* CurrentPrice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentPrice.swift; sourceTree = "<group>"; };
+		3A76490228E3212500B810B7 /* CurrentPriceMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentPriceMapper.swift; sourceTree = "<group>"; };
 		3AAAA7AF28D0300A00E0DF6B /* InvestmentsFrameworks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = InvestmentsFrameworks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AAAA7BD28D051D000E0DF6B /* InvestmentsFrameworksTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InvestmentsFrameworksTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AAAA7BF28D051D000E0DF6B /* CoreDataTransactionsStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTransactionsStoreTests.swift; sourceTree = "<group>"; };
@@ -195,6 +199,22 @@
 			path = CurrentPrice;
 			sourceTree = "<group>";
 		};
+		3A7648FE28E320BA00B810B7 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				3A7648FF28E320CA00B810B7 /* CurrentPrice */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		3A7648FF28E320CA00B810B7 /* CurrentPrice */ = {
+			isa = PBXGroup;
+			children = (
+				3A76490228E3212500B810B7 /* CurrentPriceMapper.swift */,
+			);
+			path = CurrentPrice;
+			sourceTree = "<group>";
+		};
 		3AAAA7A528D0300A00E0DF6B = {
 			isa = PBXGroup;
 			children = (
@@ -217,6 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				3AAAA7DA28D1E5A300E0DF6B /* Shared */,
+				3A7648FE28E320BA00B810B7 /* API */,
 				3AAAA7D328D1E4B900E0DF6B /* Transactions */,
 				3A14586A28E1CE7C00AD1EF5 /* Portfolio */,
 			);
@@ -279,6 +300,7 @@
 				3AAAA84A28D4307A00E0DF6B /* Helpers */,
 				3A7648ED28E3096E00B810B7 /* API */,
 				3AAAA7C928D05C3C00E0DF6B /* Transaction.swift */,
+				3A76490028E320ED00B810B7 /* CurrentPrice.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -482,6 +504,7 @@
 				3AAAA7D128D0B36D00E0DF6B /* CoreDataHelpers.swift in Sources */,
 				3AAAA7D728D1E51F00E0DF6B /* CoreDataTransactionsStore.swift in Sources */,
 				3A7648EF28E309AE00B810B7 /* HTTPClient.swift in Sources */,
+				3A76490128E320ED00B810B7 /* CurrentPrice.swift in Sources */,
 				3AAAA84628D348FD00E0DF6B /* TransactionViewModel.swift in Sources */,
 				3AAAA7D928D1E54300E0DF6B /* CoreDataTransactionsStore+TransactionsStore.swift in Sources */,
 				3AAAA7F028D2D99600E0DF6B /* TransactionsViewModel.swift in Sources */,
@@ -491,6 +514,7 @@
 				3AAAA7CF28D0B13B00E0DF6B /* StoredTransaction.swift in Sources */,
 				3AAAA7C828D054B000E0DF6B /* TransactionsStore.swift in Sources */,
 				3AAAA7CD28D0B05F00E0DF6B /* TransactionsStore.xcdatamodeld in Sources */,
+				3A76490328E3212500B810B7 /* CurrentPriceMapper.swift in Sources */,
 				3A14586C28E1CE9800AD1EF5 /* PortfolioViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
