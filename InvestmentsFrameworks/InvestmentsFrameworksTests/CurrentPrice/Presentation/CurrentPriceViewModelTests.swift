@@ -8,7 +8,7 @@
 import XCTest
 
 protocol CurrentPriceLoader {
-    func load(forTickets tickets: [String])
+    func loadPrice(for ticket: String)
 }
 
 class CurrentPriceViewModel: ObservableObject {
@@ -18,8 +18,8 @@ class CurrentPriceViewModel: ObservableObject {
         self.loader = loader
     }
     
-    func loadPrices(forTickets tickets: [String]) {
-        loader.load(forTickets: tickets)
+    func loadPrices(for tickets: [String]) {
+        tickets.forEach { loader.loadPrice(for: $0) }
     }
 }
 
@@ -27,7 +27,7 @@ class CurrentPriceViewModelTests: XCTestCase {
     func test_init_doesNotRequestLoader() {
         let (_, loader) = makeSUT()
         
-        XCTAssertEqual(loader.requests, [])
+        XCTAssertEqual(loader.requested, [])
     }
     
     func test_loadPrices_requestsLoader() {
@@ -35,10 +35,10 @@ class CurrentPriceViewModelTests: XCTestCase {
         let tickets0 = ["AAA", "BBB"]
         let tickets1 = ["CCC"]
         
-        sut.loadPrices(forTickets: tickets0)
-        sut.loadPrices(forTickets: tickets1)
+        sut.loadPrices(for: tickets0)
+        sut.loadPrices(for: tickets1)
         
-        XCTAssertEqual(loader.requests, [.get(tickets0), .get(tickets1)])
+        XCTAssertEqual(loader.requested, [tickets0[0], tickets0[1], tickets1[0]])
     }
     
     // MARK: - Helpers
@@ -57,14 +57,10 @@ class CurrentPriceViewModelTests: XCTestCase {
     }
     
     private class LoaderSpy: CurrentPriceLoader {
-        var requests = [Request]()
+        var requested = [String]()
         
-        enum Request: Equatable {
-            case get(_ tickets: [String])
-        }
-        
-        func load(forTickets tickets: [String]) {
-            requests.append(.get(tickets))
+        func loadPrice(for ticket: String) {
+            requested.append(ticket)
         }
     }
 }
