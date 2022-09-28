@@ -11,7 +11,7 @@ import CoreData
 enum TransactionsStoreFactory {
     static func create() -> TransactionsStore {
         do {
-            return try CoreDataTransactionsStore(
+            return try CoreDataStore(
                 storeURL: NSPersistentContainer
                     .defaultDirectoryURL()
                     .appendingPathComponent("transactions-store.sqlite")

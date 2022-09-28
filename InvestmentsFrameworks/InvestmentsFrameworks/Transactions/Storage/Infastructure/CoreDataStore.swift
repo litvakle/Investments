@@ -1,5 +1,5 @@
 //
-//  CoreDataTransactionsStore.swift
+//  CoreDataStore.swift
 //  InvestmentsFrameworks
 //
 //  Created by Lev Litvak on 14.09.2022.
@@ -7,9 +7,9 @@
 
 import CoreData
 
-public class CoreDataTransactionsStore {
+public class CoreDataStore {
     private static let modelName = "TransactionsStore"
-    private static let model = NSManagedObjectModel.with(name: modelName, in: Bundle(for: CoreDataTransactionsStore.self))
+    private static let model = NSManagedObjectModel.with(name: modelName, in: Bundle(for: CoreDataStore.self))
     
     private let container: NSPersistentContainer
     let context: NSManagedObjectContext

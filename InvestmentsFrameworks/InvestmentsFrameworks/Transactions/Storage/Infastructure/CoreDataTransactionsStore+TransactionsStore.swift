@@ -7,7 +7,7 @@
 
 import CoreData
 
-extension CoreDataTransactionsStore: TransactionsStore {
+extension CoreDataStore: TransactionsStore {
     public func retrieve() throws -> [Transaction] {
         return try StoredTransaction.allTransactions(in: context)
     }

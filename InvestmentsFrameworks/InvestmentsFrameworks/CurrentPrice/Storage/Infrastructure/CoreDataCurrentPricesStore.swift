@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension CoreDataTransactionsStore: CurrentPricesStore {
+extension CoreDataStore: CurrentPricesStore {
     public func retrieve() throws -> CurrentPrices {
         return CurrentPrices(prices: [:])
     }

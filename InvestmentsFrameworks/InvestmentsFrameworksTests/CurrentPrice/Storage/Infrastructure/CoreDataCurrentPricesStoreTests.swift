@@ -80,9 +80,9 @@ class CoreDataCurrentPricesStoreTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> CoreDataTransactionsStore {
+    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> CoreDataStore {
         let storeURL = URL(fileURLWithPath: "/dev/null")
-        let sut = try! CoreDataTransactionsStore(storeURL: storeURL)
+        let sut = try! CoreDataStore(storeURL: storeURL)
         
         trackForMemoryLeaks(sut, file: file, line: line)
         
@@ -90,7 +90,7 @@ class CoreDataCurrentPricesStoreTests: XCTestCase {
     }
     
     @discardableResult
-    private func save(_ transaction: Transaction, to sut: CoreDataTransactionsStore) -> Error? {
+    private func save(_ transaction: Transaction, to sut: CoreDataStore) -> Error? {
         do {
             try sut.save(transaction)
             return nil
@@ -100,7 +100,7 @@ class CoreDataCurrentPricesStoreTests: XCTestCase {
     }
     
     @discardableResult
-    private func delete(_ transaction: Transaction, from sut: CoreDataTransactionsStore) -> Error? {
+    private func delete(_ transaction: Transaction, from sut: CoreDataStore) -> Error? {
         do {
             try sut.delete(transaction)
             return nil
