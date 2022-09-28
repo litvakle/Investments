@@ -269,8 +269,18 @@
 			children = (
 				3AAAA7D528D1E4E300E0DF6B /* Helpers */,
 				3AAAA7D628D1E51F00E0DF6B /* CoreDataStore.swift */,
+				3AAAA7CB28D0B05F00E0DF6B /* TransactionsStore.xcdatamodeld */,
 			);
 			path = Infrastructure;
+			sourceTree = "<group>";
+		};
+		3A76491328E4230400B810B7 /* Feature */ = {
+			isa = PBXGroup;
+			children = (
+				3AAAA7C928D05C3C00E0DF6B /* Transaction.swift */,
+				3A76490028E320ED00B810B7 /* CurrentPrice.swift */,
+			);
+			path = Feature;
 			sourceTree = "<group>";
 		};
 		3AAAA7A528D0300A00E0DF6B = {
@@ -337,7 +347,6 @@
 			children = (
 				3AAAA7D828D1E54300E0DF6B /* CoreDataTransactionsStore+TransactionsStore.swift */,
 				3AAAA7CE28D0B13B00E0DF6B /* StoredTransaction.swift */,
-				3AAAA7CB28D0B05F00E0DF6B /* TransactionsStore.xcdatamodeld */,
 			);
 			path = Infastructure;
 			sourceTree = "<group>";
@@ -356,8 +365,7 @@
 				3AAAA84A28D4307A00E0DF6B /* Helpers */,
 				3A7648ED28E3096E00B810B7 /* API */,
 				3A76491128E422BD00B810B7 /* Storage */,
-				3AAAA7C928D05C3C00E0DF6B /* Transaction.swift */,
-				3A76490028E320ED00B810B7 /* CurrentPrice.swift */,
+				3A76491328E4230400B810B7 /* Feature */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
