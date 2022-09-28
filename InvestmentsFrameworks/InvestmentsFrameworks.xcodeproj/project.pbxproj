@@ -23,6 +23,8 @@
 		3A76491B28E437AE00B810B7 /* APIEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A76491A28E437AE00B810B7 /* APIEndToEndTests.swift */; };
 		3A76491C28E437AE00B810B7 /* InvestmentsFrameworks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AAAA7AF28D0300A00E0DF6B /* InvestmentsFrameworks.framework */; platformFilter = ios; };
 		3A76492228E438A200B810B7 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA7DE28D1E66700E0DF6B /* XCTestCase+MemoryLeakTracking.swift */; };
+		3A76492428E44BE400B810B7 /* CurrentPriceEndPointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A76492328E44BE400B810B7 /* CurrentPriceEndPointTests.swift */; };
+		3A76492628E44F1700B810B7 /* CurrentPriceEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A76492528E44F1700B810B7 /* CurrentPriceEndPoint.swift */; };
 		3AAAA7C028D051D000E0DF6B /* CoreDataTransactionsStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA7BF28D051D000E0DF6B /* CoreDataTransactionsStoreTests.swift */; };
 		3AAAA7C128D051D000E0DF6B /* InvestmentsFrameworks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AAAA7AF28D0300A00E0DF6B /* InvestmentsFrameworks.framework */; };
 		3AAAA7C828D054B000E0DF6B /* TransactionsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA7C728D054B000E0DF6B /* TransactionsStore.swift */; };
@@ -77,6 +79,8 @@
 		3A76490F28E41C9F00B810B7 /* CoreDataCurrentPricesStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataCurrentPricesStore.swift; sourceTree = "<group>"; };
 		3A76491828E437AE00B810B7 /* APIEndToEndTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = APIEndToEndTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A76491A28E437AE00B810B7 /* APIEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndToEndTests.swift; sourceTree = "<group>"; };
+		3A76492328E44BE400B810B7 /* CurrentPriceEndPointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentPriceEndPointTests.swift; sourceTree = "<group>"; };
+		3A76492528E44F1700B810B7 /* CurrentPriceEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentPriceEndPoint.swift; sourceTree = "<group>"; };
 		3AAAA7AF28D0300A00E0DF6B /* InvestmentsFrameworks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = InvestmentsFrameworks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AAAA7BD28D051D000E0DF6B /* InvestmentsFrameworksTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InvestmentsFrameworksTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AAAA7BF28D051D000E0DF6B /* CoreDataTransactionsStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTransactionsStoreTests.swift; sourceTree = "<group>"; };
@@ -213,6 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				3A7648FC28E3129400B810B7 /* CurrentPriceMapperTests.swift */,
+				3A76492328E44BE400B810B7 /* CurrentPriceEndPointTests.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -230,6 +235,7 @@
 			isa = PBXGroup;
 			children = (
 				3A76490228E3212500B810B7 /* CurrentPriceMapper.swift */,
+				3A76492528E44F1700B810B7 /* CurrentPriceEndPoint.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -648,6 +654,7 @@
 				3AAAA84C28D430AB00E0DF6B /* NumberFormatter+Formatters.swift in Sources */,
 				3AAAA7CF28D0B13B00E0DF6B /* StoredTransaction.swift in Sources */,
 				3AAAA7C828D054B000E0DF6B /* TransactionsStore.swift in Sources */,
+				3A76492628E44F1700B810B7 /* CurrentPriceEndPoint.swift in Sources */,
 				3AAAA7CD28D0B05F00E0DF6B /* TransactionsStore.xcdatamodeld in Sources */,
 				3A76490328E3212500B810B7 /* CurrentPriceMapper.swift in Sources */,
 				3A14586C28E1CE9800AD1EF5 /* PortfolioViewModel.swift in Sources */,
@@ -661,6 +668,7 @@
 				3AAAA7E928D2013B00E0DF6B /* TransactionsViewModelTests.swift in Sources */,
 				3AAAA84928D42BDD00E0DF6B /* NumberFormatterTests.swift in Sources */,
 				3AAAA7E528D1ED6300E0DF6B /* SharedTestHelpers.swift in Sources */,
+				3A76492428E44BE400B810B7 /* CurrentPriceEndPointTests.swift in Sources */,
 				3AAAA7C028D051D000E0DF6B /* CoreDataTransactionsStoreTests.swift in Sources */,
 				3A7648F628E30A3E00B810B7 /* URLSessionHTTPClientTests.swift in Sources */,
 				3AAAA84428D3335800E0DF6B /* TransactionViewModelTests.swift in Sources */,
