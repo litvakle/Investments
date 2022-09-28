@@ -1,15 +1,15 @@
 //
-//  InvestmentsFrameworksTests.swift
+//  CoreDataCurrentPricesStoreTests.swift
 //  InvestmentsFrameworksTests
 //
-//  Created by Lev Litvak on 13.09.2022.
+//  Created by Lev Litvak on 28.09.2022.
 //
 
 import XCTest
 import InvestmentsFrameworks
 import CoreData
 
-class CoreDataTransactionsStoreTests: XCTestCase {
+class CoreDataCurrentPricesStoreTests: XCTestCase {
     func test_retreive_deliversEmptyTransactionsListOnEmptyStorage() throws {
         let sut = makeSUT()
         
@@ -76,62 +76,6 @@ class CoreDataTransactionsStoreTests: XCTestCase {
         let retrievedTransactions: [Transaction] = try sut.retrieve()
         
         XCTAssertEqual(retrievedTransactions, [])
-    }
-    
-    func test_delete_doesNothingOnNotFoundTransaction() throws {
-        let sut = makeSUT()
-        let transaction = makeTransaction()
-        
-        let deletionError = delete(transaction, from: sut)
-        XCTAssertNil(deletionError)
-
-        let retrievedTransactions: [Transaction] = try sut.retrieve()
-        XCTAssertEqual(retrievedTransactions, [])
-    }
-    
-    func test_delete_removesFoundTransaction() throws {
-        let sut = makeSUT()
-        let transactions = makeTransactions()
-        
-        save(transactions[0], to: sut)
-        save(transactions[1], to: sut)
-        
-        let deletionError = delete(transactions[0], from: sut)
-        XCTAssertNil(deletionError)
-
-        let retrievedTransactions: [Transaction] = try sut.retrieve()
-        XCTAssertEqual(retrievedTransactions, [transactions[1]])
-    }
-    
-    func test_delete_deliversFailureOneDeletionError() {
-        let transaction = makeTransaction()
-        let stub = NSManagedObjectContext.alwaysFailingSaveStub()
-        let sut = makeSUT()
-        
-        try? sut.save(transaction)
-        XCTAssertEqual(try sut.retrieve(), [transaction])
-        
-        stub.startIntercepting()
-
-        do {
-            try sut.delete(transaction)
-        } catch {
-            XCTAssertEqual(error as NSError, anyNSError())
-        }
-    }
-    
-    func test_delete_hasNoSideEffectsOnDeletionError() {
-        let transaction = makeTransaction()
-        let stub = NSManagedObjectContext.alwaysFailingSaveStub()
-        let sut = makeSUT()
-        
-        try? sut.save(transaction)
-        XCTAssertEqual(try sut.retrieve(), [transaction])
-        
-        stub.startIntercepting()
-        
-        try? sut.delete(transaction)
-        XCTAssertEqual(try sut.retrieve(), [transaction])
     }
     
     // MARK: - Helpers
