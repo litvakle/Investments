@@ -9,7 +9,7 @@ import Foundation
 
 extension CoreDataStore: CurrentPricesStore {
     public func retrieve() throws -> CurrentPrices {
-        return CurrentPrices(prices: [:])
+        return CurrentPrices()
     }
 
     public func save(_ currentPrice: CurrentPrice) throws {

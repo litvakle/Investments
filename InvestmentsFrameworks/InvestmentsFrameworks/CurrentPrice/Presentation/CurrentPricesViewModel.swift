@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 public class CurrentPricesViewModel: ObservableObject {
-    @Published public var currentPrices = [String: CurrentPrice]()
+    @Published public var currentPrices = CurrentPrices()
     @Published public private(set) var loadingTickets = Set<String>()
     @Published public private(set) var error: String?
 

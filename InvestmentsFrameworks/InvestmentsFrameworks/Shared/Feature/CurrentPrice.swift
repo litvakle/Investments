@@ -7,13 +7,7 @@
 
 import Foundation
 
-public struct CurrentPrices {
-    public let prices: [String: CurrentPrice]
-    
-    public init(prices: [String: CurrentPrice]) {
-        self.prices = prices
-    }
-}
+public typealias CurrentPrices = [String: CurrentPrice]
 
 public struct CurrentPrice: Equatable {
     public let price: Double
