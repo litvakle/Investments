@@ -9,37 +9,6 @@ import XCTest
 import Combine
 import InvestmentsFrameworks
 
-class CurrentPriceViewModel: ObservableObject {
-    @Published var currentPrices = [String: CurrentPrice]()
-    @Published var loadingTickets = Set<String>()
-    @Published var error: String?
-
-    let loader: () -> AnyPublisher<CurrentPrice, Error>
-    var cancellables = Set<AnyCancellable>()
-    
-    init(loader: @escaping () -> AnyPublisher<CurrentPrice, Error>) {
-        self.loader = loader
-    }
-    
-    func loadPrices(for tickets: [String]) {
-        error = nil
-        
-        tickets.forEach { [weak self] ticket in
-            self?.loadingTickets.insert(ticket)
-            loader()
-                .sink { completion in
-                    if case .failure = completion {
-                        self?.error = "Error loading prices"
-                    }
-                    self?.loadingTickets.remove(ticket)
-                } receiveValue: { price in
-                    self?.currentPrices[ticket] = price
-                }
-                .store(in: &cancellables)
-        }
-    }
-}
-
 class CurrentPriceViewModelTests: XCTestCase {
     func test_init_doesNotRequestLoader() {
         let (_, loader) = makeSUT()
@@ -143,9 +112,9 @@ class CurrentPriceViewModelTests: XCTestCase {
     private func makeSUT(
         file: StaticString = #filePath,
         line: UInt = #line
-    ) -> (CurrentPriceViewModel, LoaderSpy) {
+    ) -> (CurrentPricesViewModel, LoaderSpy) {
         let loader = LoaderSpy()
-        let sut = CurrentPriceViewModel(loader: loader.loadPublisher)
+        let sut = CurrentPricesViewModel(loader: loader.loadPublisher)
         
         trackForMemoryLeaks(loader, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
