@@ -54,13 +54,13 @@ class CoreDataCurrentPricesStoreTests: XCTestCase {
     }
     
     func test_save_deliversFailureOneSaveError() {
-        let transaction = makeTransaction()
+        let currentPrice = CurrentPrice(price: 100)
         let stub = NSManagedObjectContext.alwaysFailingSaveStub()
         stub.startIntercepting()
         let sut = makeSUT()
         
         do {
-            _ = try sut.save(transaction)
+            _ = try sut.save(currentPrice, for: "AAA")
         } catch {
             XCTAssertEqual(error as NSError, anyNSError())
         }
