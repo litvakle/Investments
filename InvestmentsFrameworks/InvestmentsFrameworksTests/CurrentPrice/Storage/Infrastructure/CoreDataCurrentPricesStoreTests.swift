@@ -90,26 +90,6 @@ class CoreDataCurrentPricesStoreTests: XCTestCase {
     }
     
     @discardableResult
-    private func save(_ transaction: Transaction, to sut: CoreDataStore) -> Error? {
-        do {
-            try sut.save(transaction)
-            return nil
-        } catch {
-            return error
-        }
-    }
-    
-    @discardableResult
-    private func delete(_ transaction: Transaction, from sut: CoreDataStore) -> Error? {
-        do {
-            try sut.delete(transaction)
-            return nil
-        } catch {
-            return error
-        }
-    }
-    
-    @discardableResult
     private func save(_ currentPrice: CurrentPrice, for ticket: String, to sut: CoreDataStore) -> Error? {
         do {
             try sut.save(currentPrice, for: ticket)
