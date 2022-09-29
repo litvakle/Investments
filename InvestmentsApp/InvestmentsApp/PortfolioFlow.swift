@@ -18,7 +18,7 @@ class PortfolioFlow: ObservableObject {
         transactionsViewModel.$transactions
             .removeDuplicates()
             .sink { transactions in
-                portfolioViewModel.createItems(for: transactions)
+                portfolioViewModel.createItems(for: transactions, with: CurrentPrices())
             }
             .store(in: &cancellables)
     }

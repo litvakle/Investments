@@ -71,6 +71,9 @@ struct PortfolioView_Previews: PreviewProvider {
             InvestmentTransaction(ticket: "AAA", type: .buy, quantity: 2, price: 20, sum: 20),
             InvestmentTransaction(ticket: "AAA", type: .buy, quantity: 3, price: 10, sum: 30),
             InvestmentTransaction(ticket: "BBB", type: .buy, quantity: 2, price: 20, sum: 20)
+        ], with: [
+            "AAA": CurrentPrice(price: 25),
+            "BBB": CurrentPrice(price: 30)
         ])
         
         return viewModel
