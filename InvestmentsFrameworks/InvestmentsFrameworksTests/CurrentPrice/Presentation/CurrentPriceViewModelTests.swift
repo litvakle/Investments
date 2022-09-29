@@ -6,20 +6,24 @@
 //
 
 import XCTest
+import Combine
+import InvestmentsFrameworks
 
 protocol CurrentPriceLoader {
     func loadPrice(for ticket: String)
 }
 
 class CurrentPriceViewModel: ObservableObject {
-    let loader: CurrentPriceLoader
+    let loader: () -> AnyPublisher<CurrentPrice, Error>
     
-    init(loader: CurrentPriceLoader) {
+    init(loader: @escaping () -> AnyPublisher<CurrentPrice, Error>) {
         self.loader = loader
     }
     
     func loadPrices(for tickets: [String]) {
-        tickets.forEach { loader.loadPrice(for: $0) }
+        tickets.forEach { ticket in
+            _ = loader()
+        }
     }
 }
 
@@ -27,7 +31,7 @@ class CurrentPriceViewModelTests: XCTestCase {
     func test_init_doesNotRequestLoader() {
         let (_, loader) = makeSUT()
         
-        XCTAssertEqual(loader.requested, [])
+        XCTAssertTrue(loader.requests.isEmpty)
     }
     
     func test_loadPrices_requestsLoader() {
@@ -38,7 +42,7 @@ class CurrentPriceViewModelTests: XCTestCase {
         sut.loadPrices(for: tickets0)
         sut.loadPrices(for: tickets1)
         
-        XCTAssertEqual(loader.requested, [tickets0[0], tickets0[1], tickets1[0]])
+        XCTAssertEqual(loader.requests.count, 3)
     }
     
     // MARK: - Helpers
@@ -48,7 +52,7 @@ class CurrentPriceViewModelTests: XCTestCase {
         line: UInt = #line
     ) -> (CurrentPriceViewModel, LoaderSpy) {
         let loader = LoaderSpy()
-        let sut = CurrentPriceViewModel(loader: loader)
+        let sut = CurrentPriceViewModel(loader: loader.loadPublisher)
         
         trackForMemoryLeaks(loader, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
@@ -56,11 +60,17 @@ class CurrentPriceViewModelTests: XCTestCase {
         return (sut, loader)
     }
     
-    private class LoaderSpy: CurrentPriceLoader {
-        var requested = [String]()
+    private class LoaderSpy {
+        var requests = [PassthroughSubject<CurrentPrice, Error>]()
         
-        func loadPrice(for ticket: String) {
-            requested.append(ticket)
+        var loadFeedCallCount: Int {
+            return requests.count
+        }
+        
+        func loadPublisher() -> AnyPublisher<CurrentPrice, Error> {
+            let publisher = PassthroughSubject<CurrentPrice, Error>()
+            requests.append(publisher)
+            return publisher.eraseToAnyPublisher()
         }
     }
 }
