@@ -104,6 +104,23 @@ class CurrentPriceViewModelTests: XCTestCase {
         XCTAssertEqual(sut.currentPrices["CCC"]?.price, 20)
     }
     
+    func test_loadPrices_updatesPreviouslyLoadedPricesOnlyOnSuccessfulLoads() {
+        let (sut, loader) = makeSUT()
+        sut.currentPrices["AAA"] = CurrentPrice(price: 10)
+        sut.currentPrices["BBB"] = CurrentPrice(price: 20)
+        sut.currentPrices["CCC"] = CurrentPrice(price: 30)
+        let tickets = ["AAA", "BBB", "CCC"]
+        
+        sut.loadPrices(for: tickets)
+        loader.completeCurrentPriceLoading(with: CurrentPrice(price: 100), at: 0)
+        loader.completeCurrentPriceLoading(with: CurrentPrice(price: 200), at: 1)
+        loader.completeCurrentPriceLoadingWithError(at: 2)
+        
+        XCTAssertEqual(sut.currentPrices["AAA"]?.price, 100)
+        XCTAssertEqual(sut.currentPrices["BBB"]?.price, 200)
+        XCTAssertEqual(sut.currentPrices["CCC"]?.price, 30)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(
