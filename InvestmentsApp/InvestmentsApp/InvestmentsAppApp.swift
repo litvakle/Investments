@@ -12,6 +12,10 @@ import Combine
 
 typealias InvestmentTransaction = InvestmentsFrameworks.Transaction
 
+func currentPriceLoader() -> AnyPublisher<CurrentPrice, Error> {
+    PassthroughSubject<CurrentPrice, Error>().eraseToAnyPublisher()
+}
+
 @main
 struct InvestmentsAppApp: App {
     @StateObject var transactionsViewModel = TransactionsViewModelFactory.createViewModel(store: TransactionsStoreFactory.create())
@@ -19,12 +23,14 @@ struct InvestmentsAppApp: App {
     @StateObject var mainFlow = MainFlow()
     @StateObject var portfolioFlow = PortfolioFlow()
     @StateObject var portfolioViewModel = PortfolioViewModel()
+    @StateObject var currentPricesViewModel = CurrentPricesViewModel(loader: currentPriceLoader)
     
     var body: some Scene {
         WindowGroup {
             ContentView(
                 transactionsViewModel: transactionsViewModel,
                 portfolioViewModel: portfolioViewModel,
+                currentPricesViewModel: currentPricesViewModel,
                 alertViewModel: alertViewModel,
                 mainFlow: mainFlow,
                 portfolioFlow: portfolioFlow)

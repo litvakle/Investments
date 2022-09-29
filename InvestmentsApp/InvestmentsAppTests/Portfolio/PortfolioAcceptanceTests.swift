@@ -6,6 +6,7 @@
 //
 
 import XCTest
+import Combine
 import InvestmentsFrameworks
 import ViewInspector
 @testable import InvestmentsApp
@@ -18,10 +19,10 @@ class PortfolioAcceptanceTests: XCTestCase {
         XCTAssertEqual(try sut.portfolioView().items().count, 0, "Expected empty list for empty store")
         
         makePortfolioTransactions().forEach { transactionsViewModel.save($0) }
-        XCTAssertEqual(try sut.portfolioView().items().count, 2, "Expected non-empty list for non-empty store")
+        XCTAssertEqual(try sut.portfolioView().items().count, 3, "Expected non-empty list for non-empty store")
         
-        transactionsViewModel.save(Transaction(ticket: "CCC", quantity: 10, price: 20, sum: 200))
-        XCTAssertEqual(try sut.portfolioView().items().count, 3, "Expected updated list including ticket for new transaction")
+        transactionsViewModel.save(Transaction(ticket: "DDD", quantity: 10, price: 20, sum: 200))
+        XCTAssertEqual(try sut.portfolioView().items().count, 4, "Expected updated list including ticket for new transaction")
     }
     
     // MARK: - Helpers
@@ -41,6 +42,7 @@ class PortfolioAcceptanceTests: XCTestCase {
         let sut = ContentView(
             transactionsViewModel: transactionsViewModel,
             portfolioViewModel: portfolioViewModel,
+            currentPricesViewModel: CurrentPricesViewModel(loader: currentPriceLoader),
             alertViewModel: alertViewModel,
             mainFlow: mainFlow,
             portfolioFlow: portfolioFlow
@@ -54,6 +56,10 @@ class PortfolioAcceptanceTests: XCTestCase {
         trackForMemoryLeaks(portfolioFlow, file: file, line: line)
         
         return (sut, transactionsViewModel)
+    }
+    
+    private func currentPriceLoader() -> AnyPublisher<CurrentPrice, Error> {
+        PassthroughSubject<CurrentPrice, Error>().eraseToAnyPublisher()
     }
 }
 

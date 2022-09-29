@@ -7,6 +7,7 @@
 
 import XCTest
 import ViewInspector
+import Combine
 @testable import InvestmentsApp
 @testable import InvestmentsFrameworks
 
@@ -93,6 +94,7 @@ class TransactionsAcceptanceTests: XCTestCase {
         let sut = ContentView(
             transactionsViewModel: transactionsViewModel,
             portfolioViewModel: portfolioViewModel,
+            currentPricesViewModel: CurrentPricesViewModel(loader: currentPriceLoader),
             alertViewModel: alertViewModel,
             mainFlow: mainFlow,
             portfolioFlow: portfolioFlow
@@ -106,6 +108,10 @@ class TransactionsAcceptanceTests: XCTestCase {
         trackForMemoryLeaks(portfolioFlow, file: file, line: line)
         
         return (sut, mainFlow, transactionsViewModel)
+    }
+    
+    private func currentPriceLoader() -> AnyPublisher<CurrentPrice, Error> {
+        PassthroughSubject<CurrentPrice, Error>().eraseToAnyPublisher()
     }
 }
 

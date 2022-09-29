@@ -22,7 +22,7 @@ class PortfolioViewTests: XCTestCase {
 
         viewModel.createItems(for: transactions, with: CurrentPrices())
         
-        XCTAssertEqual(try sut.items().count, 2)
+        XCTAssertEqual(try sut.items().count, 3)
         XCTAssertEqual(try sut.ticket(at: 0).string(), expectedPortfolio[0].ticket)
         XCTAssertEqual(try sut.ticket(at: 1).string(), expectedPortfolio[1].ticket)
         XCTAssertNoThrow(try sut.quantity(at: 0))

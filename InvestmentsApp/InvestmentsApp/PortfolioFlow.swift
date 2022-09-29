@@ -14,11 +14,10 @@ class PortfolioFlow: ObservableObject {
     
     init() {}
     
-    func setupSubscriptions(portfolioViewModel: PortfolioViewModel, transactionsViewModel: TransactionsViewModel) {
-        transactionsViewModel.$transactions
-            .removeDuplicates()
-            .sink { transactions in
-                portfolioViewModel.createItems(for: transactions, with: CurrentPrices())
+    func setupSubscriptions(portfolioViewModel: PortfolioViewModel, transactionsViewModel: TransactionsViewModel, currentPricesViewModel: CurrentPricesViewModel) {
+        Publishers.CombineLatest(transactionsViewModel.$transactions, currentPricesViewModel.$currentPrices)
+            .sink { transactions, currentPrices in
+                portfolioViewModel.createItems(for: transactions, with: currentPrices)
             }
             .store(in: &cancellables)
     }

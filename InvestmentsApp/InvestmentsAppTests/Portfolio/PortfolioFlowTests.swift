@@ -7,13 +7,15 @@
 
 import XCTest
 import InvestmentsFrameworks
+import Combine
 @testable import InvestmentsApp
 
 class PortfolioFlowTests: XCTestCase {
     func test_saveTransaction_leadsToUpdatePortfolio() {
-        let (sut, transactionsViewModel, portfolioViewModel) = makeSUT(transactions: [])
+        let (sut, transactionsViewModel, portfolioViewModel, currentPricesViewModel) = makeSUT(transactions: [])
         
-        sut.setupSubscriptions(portfolioViewModel: portfolioViewModel, transactionsViewModel: transactionsViewModel)
+        sut.setupSubscriptions(portfolioViewModel: portfolioViewModel, transactionsViewModel: transactionsViewModel, currentPricesViewModel: currentPricesViewModel)
+        currentPricesViewModel.currentPrices = makeCurrentPrices()
         
         XCTAssertEqual(portfolioViewModel.items, [])
         makePortfolioTransactions().forEach { transactionsViewModel.save($0) }
@@ -21,9 +23,10 @@ class PortfolioFlowTests: XCTestCase {
     }
     
     func test_initWithStoredTransactions_createsPotrfolioItems() {
-        let (sut, transactionsViewModel, portfolioViewModel) = makeSUT(transactions: makePortfolioTransactions())
+        let (sut, transactionsViewModel, portfolioViewModel, currentPricesViewModel) = makeSUT(transactions: makePortfolioTransactions())
         
-        sut.setupSubscriptions(portfolioViewModel: portfolioViewModel, transactionsViewModel: transactionsViewModel)
+        sut.setupSubscriptions(portfolioViewModel: portfolioViewModel, transactionsViewModel: transactionsViewModel, currentPricesViewModel: currentPricesViewModel)
+        currentPricesViewModel.currentPrices = makeCurrentPrices()
         
         XCTAssertEqual(portfolioViewModel.items, makePortfolioItems())
     }
@@ -34,19 +37,25 @@ class PortfolioFlowTests: XCTestCase {
         transactions: [Transaction],
         file: StaticString = #filePath,
         line: UInt = #line
-    ) -> (PortfolioFlow, TransactionsViewModel, PortfolioViewModel) {
+    ) -> (PortfolioFlow, TransactionsViewModel, PortfolioViewModel, CurrentPricesViewModel) {
         let store = InMemoryTransactionsStore()
         store.transactions = transactions
         let transactionsViewModel = TransactionsViewModel(store: store)
         transactionsViewModel.retrieve()
         let portfolioViewModel = PortfolioViewModel()
+        let currentPricesViewModel = CurrentPricesViewModel(loader: currentPricesLoader)
         let sut = PortfolioFlow()
         
         trackForMemoryLeaks(store, file: file, line: line)
         trackForMemoryLeaks(transactionsViewModel, file: file, line: line)
         trackForMemoryLeaks(portfolioViewModel, file: file, line: line)
+        trackForMemoryLeaks(currentPricesViewModel, file: file, line: line)
         trackForMemoryLeaks(sut, file: file, line: line)
         
-        return (sut, transactionsViewModel, portfolioViewModel)
+        return (sut, transactionsViewModel, portfolioViewModel, currentPricesViewModel)
+    }
+    
+    private func currentPricesLoader() -> AnyPublisher<CurrentPrice, Error> {
+        PassthroughSubject<CurrentPrice, Error>().eraseToAnyPublisher()
     }
 }

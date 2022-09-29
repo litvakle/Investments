@@ -11,6 +11,7 @@ import InvestmentsFrameworks
 struct ContentView: View {
     @ObservedObject var transactionsViewModel: TransactionsViewModel
     @ObservedObject var portfolioViewModel: PortfolioViewModel
+    @ObservedObject var currentPricesViewModel: CurrentPricesViewModel
     @ObservedObject var alertViewModel: AlertViewModel
     @ObservedObject var mainFlow: MainFlow
     @ObservedObject var portfolioFlow: PortfolioFlow
@@ -41,7 +42,8 @@ struct ContentView: View {
             )
             portfolioFlow.setupSubscriptions(
                 portfolioViewModel: portfolioViewModel,
-                transactionsViewModel: transactionsViewModel
+                transactionsViewModel: transactionsViewModel,
+                currentPricesViewModel: currentPricesViewModel
             )
         }
     }
