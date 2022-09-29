@@ -6,7 +6,7 @@
 //
 
 public protocol CurrentPricesStore {
-    func retrieve() throws -> CurrentPrices
+    func retrieve(for ticket: String) throws -> CurrentPrice?
     func save(_ currentPrice: CurrentPrice) throws
 }
 

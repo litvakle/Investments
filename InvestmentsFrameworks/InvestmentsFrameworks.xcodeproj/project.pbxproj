@@ -137,6 +137,7 @@
 		3A14586728E1C16700AD1EF5 /* Portfolio */ = {
 			isa = PBXGroup;
 			children = (
+				3A76492E28E5CD3C00B810B7 /* Storage */,
 				3A14586E28E1CF6200AD1EF5 /* Presentation */,
 			);
 			path = Portfolio;
@@ -337,6 +338,21 @@
 				3A76492C28E5A45700B810B7 /* CurrentPricesViewModel.swift */,
 			);
 			path = Presentation;
+			sourceTree = "<group>";
+		};
+		3A76492E28E5CD3C00B810B7 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				3A76492F28E5CD4200B810B7 /* Infrastructure */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		3A76492F28E5CD4200B810B7 /* Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Infrastructure;
 			sourceTree = "<group>";
 		};
 		3AAAA7A528D0300A00E0DF6B = {

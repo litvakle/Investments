@@ -10,12 +10,13 @@ import InvestmentsFrameworks
 import CoreData
 
 class CoreDataCurrentPricesStoreTests: XCTestCase {
-    func test_retreive_deliversEmptyTransactionsListOnEmptyStorage() throws {
+    func test_retreive_deliversNilOnNotFoundInStorage() throws {
         let sut = makeSUT()
+        let ticket = "AAA"
         
-        let retrievedTransactions: [Transaction] = try sut.retrieve()
+        let retrievedPrice = try sut.retrieve(for: ticket)
         
-        XCTAssertEqual(retrievedTransactions, [])
+        XCTAssertNil(retrievedPrice)
     }
     
     func test_retreive_deliversStoredTransactionsOnNonEmptyStorage() throws {

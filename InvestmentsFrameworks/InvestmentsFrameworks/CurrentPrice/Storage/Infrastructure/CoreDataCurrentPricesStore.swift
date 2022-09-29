@@ -8,8 +8,8 @@
 import Foundation
 
 extension CoreDataStore: CurrentPricesStore {
-    public func retrieve() throws -> CurrentPrices {
-        return CurrentPrices()
+    public func retrieve(for ticket: String) throws -> CurrentPrice? {
+        return nil
     }
 
     public func save(_ currentPrice: CurrentPrice) throws {
