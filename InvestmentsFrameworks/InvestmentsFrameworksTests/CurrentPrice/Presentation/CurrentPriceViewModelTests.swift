@@ -14,6 +14,7 @@ protocol CurrentPriceLoader {
 }
 
 class CurrentPriceViewModel: ObservableObject {
+    @Published var currentPrices = [String: CurrentPrice]()
     let loader: () -> AnyPublisher<CurrentPrice, Error>
     var error: String?
     var cancellables = Set<AnyCancellable>()
@@ -31,8 +32,8 @@ class CurrentPriceViewModel: ObservableObject {
                     if case .failure = completion {
                         self?.error = "Error loading prices"
                     }
-                } receiveValue: { _ in
-                    
+                } receiveValue: { price in
+                    self?.currentPrices[ticket] = price
                 }
                 .store(in: &cancellables)
         }
@@ -87,6 +88,20 @@ class CurrentPriceViewModelTests: XCTestCase {
         loader.completeCurrentPriceLoading(with: CurrentPrice(price: 0), at: 3)
         
         XCTAssertNil(sut.error)
+    }
+    
+    func test_loadPrices_deliversCurrentPricesForSuccessfulLoads() {
+        let (sut, loader) = makeSUT()
+        let tickets = ["AAA", "BBB", "CCC"]
+        
+        sut.loadPrices(for: tickets)
+        loader.completeCurrentPriceLoadingWithError(at: 0)
+        loader.completeCurrentPriceLoading(with: CurrentPrice(price: 10), at: 1)
+        loader.completeCurrentPriceLoading(with: CurrentPrice(price: 20), at: 2)
+        
+        XCTAssertNil(sut.currentPrices["AAA"])
+        XCTAssertEqual(sut.currentPrices["BBB"]?.price, 10)
+        XCTAssertEqual(sut.currentPrices["CCC"]?.price, 20)
     }
     
     // MARK: - Helpers
