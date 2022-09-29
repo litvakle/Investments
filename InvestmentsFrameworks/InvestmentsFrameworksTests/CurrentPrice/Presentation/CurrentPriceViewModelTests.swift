@@ -15,14 +15,24 @@ protocol CurrentPriceLoader {
 
 class CurrentPriceViewModel: ObservableObject {
     let loader: () -> AnyPublisher<CurrentPrice, Error>
+    var error: String?
+    var cancellables = Set<AnyCancellable>()
     
     init(loader: @escaping () -> AnyPublisher<CurrentPrice, Error>) {
         self.loader = loader
     }
     
     func loadPrices(for tickets: [String]) {
-        tickets.forEach { ticket in
-            _ = loader()
+        tickets.forEach { [weak self] ticket in
+            loader()
+                .sink { completion in
+                    if case .failure = completion {
+                        self?.error = "Error loading prices"
+                    }
+                } receiveValue: { _ in
+                    
+                }
+                .store(in: &cancellables)
         }
     }
 }
@@ -43,6 +53,23 @@ class CurrentPriceViewModelTests: XCTestCase {
         sut.loadPrices(for: tickets1)
         
         XCTAssertEqual(loader.requests.count, 3)
+    }
+    
+    func test_loadPrices_deliversErrorOnErrorWithAtLeastOneTicket() {
+        let (sut, loader) = makeSUT()
+        let tickets = ["AAA", "BBB", "CCC", "DDD", "EEE"]
+        
+        XCTAssertNil(sut.error)
+        
+        sut.loadPrices(for: tickets)
+        loader.completeCurrentPriceLoading(with: CurrentPrice(price: 0), at: 0)
+        loader.completeCurrentPriceLoading(with: CurrentPrice(price: 0), at: 1)
+        loader.completeCurrentPriceLoadingWithError(at: 2)
+        loader.completeCurrentPriceLoading(with: CurrentPrice(price: 0), at: 3)
+        loader.completeCurrentPriceLoading(with: CurrentPrice(price: 0), at: 4)
+        
+        XCTAssertNotNil(sut.error)
+        
     }
     
     // MARK: - Helpers
@@ -72,7 +99,14 @@ class CurrentPriceViewModelTests: XCTestCase {
             requests.append(publisher)
             return publisher.eraseToAnyPublisher()
         }
+        
+        func completeCurrentPriceLoadingWithError(at index: Int = 0) {
+            requests[index].send(completion: .failure(anyNSError()))
+        }
+        
+        func completeCurrentPriceLoading(with currentPrice: CurrentPrice, at index: Int = 0) {
+            requests[index].send(currentPrice)
+            requests[index].send(completion: .finished)
+        }
     }
 }
-
-
