@@ -67,15 +67,15 @@ class CoreDataCurrentPricesStoreTests: XCTestCase {
     }
     
     func test_save_hasNoSideEffectsOnSaveError() throws {
-        let transaction = makeTransaction()
+        let currentPrice = CurrentPrice(price: 100)
+        let ticket = "AAA"
         let stub = NSManagedObjectContext.alwaysFailingSaveStub()
         stub.startIntercepting()
         let sut = makeSUT()
         
-        save(transaction, to: sut)
-        let retrievedTransactions: [Transaction] = try sut.retrieve()
+        save(currentPrice, for: ticket, to: sut)
         
-        XCTAssertEqual(retrievedTransactions, [])
+        XCTAssertNil(try sut.retrieve(for: ticket))
     }
     
     // MARK: - Helpers
