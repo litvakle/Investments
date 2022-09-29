@@ -35,7 +35,7 @@ class CoreDataCurrentPricesStoreTests: XCTestCase {
         let sut = makeSUT()
         
         do {
-            let _: [Transaction] = try sut.retrieve()
+            _ = try sut.retrieve(for: "AAA")
         } catch {
             XCTAssertEqual(error as NSError, anyNSError())
         }
