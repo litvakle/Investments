@@ -15,8 +15,10 @@ protocol CurrentPriceLoader {
 
 class CurrentPriceViewModel: ObservableObject {
     @Published var currentPrices = [String: CurrentPrice]()
+    @Published var loadingTickets = Set<String>()
+    @Published var error: String?
+
     let loader: () -> AnyPublisher<CurrentPrice, Error>
-    var error: String?
     var cancellables = Set<AnyCancellable>()
     
     init(loader: @escaping () -> AnyPublisher<CurrentPrice, Error>) {
@@ -27,11 +29,13 @@ class CurrentPriceViewModel: ObservableObject {
         error = nil
         
         tickets.forEach { [weak self] ticket in
+            self?.loadingTickets.insert(ticket)
             loader()
                 .sink { completion in
                     if case .failure = completion {
                         self?.error = "Error loading prices"
                     }
+                    self?.loadingTickets.remove(ticket)
                 } receiveValue: { price in
                     self?.currentPrices[ticket] = price
                 }
@@ -119,6 +123,23 @@ class CurrentPriceViewModelTests: XCTestCase {
         XCTAssertEqual(sut.currentPrices["AAA"]?.price, 100)
         XCTAssertEqual(sut.currentPrices["BBB"]?.price, 200)
         XCTAssertEqual(sut.currentPrices["CCC"]?.price, 30)
+    }
+    
+    func test_loadPrices_makesLoadingIndicatorsForEachTicketOnAtStartAndOffAfterLoading() {
+        let (sut, loader) = makeSUT()
+        let tickets = ["AAA", "BBB", "CCC"]
+        
+        sut.loadPrices(for: tickets)
+        XCTAssertEqual(sut.loadingTickets, ["AAA", "BBB", "CCC"])
+        
+        loader.completeCurrentPriceLoading(with: CurrentPrice(price: 100), at: 1)
+        XCTAssertEqual(sut.loadingTickets, ["AAA", "CCC"])
+        
+        loader.completeCurrentPriceLoadingWithError(at: 2)
+        XCTAssertEqual(sut.loadingTickets, ["AAA"])
+        
+        loader.completeCurrentPriceLoading(with: CurrentPrice(price: 100), at: 0)
+        XCTAssertEqual(sut.loadingTickets, [])
     }
     
     // MARK: - Helpers
