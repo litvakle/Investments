@@ -27,6 +27,7 @@
 		3A76492628E44F1700B810B7 /* CurrentPriceEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A76492528E44F1700B810B7 /* CurrentPriceEndPoint.swift */; };
 		3A76492A28E4757900B810B7 /* CurrentPriceViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A76492928E4757900B810B7 /* CurrentPriceViewModelTests.swift */; };
 		3A76492D28E5A45700B810B7 /* CurrentPricesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A76492C28E5A45700B810B7 /* CurrentPricesViewModel.swift */; };
+		3A76493128E5D8A000B810B7 /* StoredCurrentPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A76493028E5D8A000B810B7 /* StoredCurrentPrice.swift */; };
 		3AAAA7C028D051D000E0DF6B /* CoreDataTransactionsStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA7BF28D051D000E0DF6B /* CoreDataTransactionsStoreTests.swift */; };
 		3AAAA7C128D051D000E0DF6B /* InvestmentsFrameworks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AAAA7AF28D0300A00E0DF6B /* InvestmentsFrameworks.framework */; };
 		3AAAA7C828D054B000E0DF6B /* TransactionsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA7C728D054B000E0DF6B /* TransactionsStore.swift */; };
@@ -85,6 +86,7 @@
 		3A76492528E44F1700B810B7 /* CurrentPriceEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentPriceEndPoint.swift; sourceTree = "<group>"; };
 		3A76492928E4757900B810B7 /* CurrentPriceViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentPriceViewModelTests.swift; sourceTree = "<group>"; };
 		3A76492C28E5A45700B810B7 /* CurrentPricesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentPricesViewModel.swift; sourceTree = "<group>"; };
+		3A76493028E5D8A000B810B7 /* StoredCurrentPrice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoredCurrentPrice.swift; sourceTree = "<group>"; };
 		3AAAA7AF28D0300A00E0DF6B /* InvestmentsFrameworks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = InvestmentsFrameworks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AAAA7BD28D051D000E0DF6B /* InvestmentsFrameworksTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InvestmentsFrameworksTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AAAA7BF28D051D000E0DF6B /* CoreDataTransactionsStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTransactionsStoreTests.swift; sourceTree = "<group>"; };
@@ -285,6 +287,7 @@
 			isa = PBXGroup;
 			children = (
 				3A76490F28E41C9F00B810B7 /* CoreDataCurrentPricesStore.swift */,
+				3A76493028E5D8A000B810B7 /* StoredCurrentPrice.swift */,
 			);
 			path = Infrastructure;
 			sourceTree = "<group>";
@@ -696,6 +699,7 @@
 				3AAAA7CD28D0B05F00E0DF6B /* TransactionsStore.xcdatamodeld in Sources */,
 				3A76490328E3212500B810B7 /* CurrentPriceMapper.swift in Sources */,
 				3A14586C28E1CE9800AD1EF5 /* PortfolioViewModel.swift in Sources */,
+				3A76493128E5D8A000B810B7 /* StoredCurrentPrice.swift in Sources */,
 				3A76492D28E5A45700B810B7 /* CurrentPricesViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

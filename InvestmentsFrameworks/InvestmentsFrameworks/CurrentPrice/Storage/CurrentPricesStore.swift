@@ -7,6 +7,6 @@
 
 public protocol CurrentPricesStore {
     func retrieve(for ticket: String) throws -> CurrentPrice?
-    func save(_ currentPrice: CurrentPrice) throws
+    func save(_ currentPrice: CurrentPrice, for ticket: String) throws
 }
 

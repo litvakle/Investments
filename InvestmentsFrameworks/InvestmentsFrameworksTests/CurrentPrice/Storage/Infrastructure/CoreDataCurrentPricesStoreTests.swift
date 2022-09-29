@@ -19,15 +19,14 @@ class CoreDataCurrentPricesStoreTests: XCTestCase {
         XCTAssertNil(retrievedPrice)
     }
     
-    func test_retreive_deliversStoredTransactionsOnNonEmptyStorage() throws {
+    func test_retreive_deliversStoredCurrentPriceOnFoundInStore() throws {
         let sut = makeSUT()
-        let transactions = makeTransactions()
         
-        save(transactions[0], to: sut)
-        save(transactions[1], to: sut)
-        let retrievedTransactions: [Transaction] = try sut.retrieve()
+        save(CurrentPrice(price: 100), for: "AAA", to: sut)
+        save(CurrentPrice(price: 200), for: "BBB", to: sut)
         
-        XCTAssertEqual(retrievedTransactions, transactions)
+        XCTAssertEqual(try sut.retrieve(for: "AAA")?.price, 100)
+        XCTAssertEqual(try sut.retrieve(for: "BBB")?.price, 200)
     }
     
     func test_retrieve_deliversFailureOneRetrivalError() {
@@ -104,6 +103,16 @@ class CoreDataCurrentPricesStoreTests: XCTestCase {
     private func delete(_ transaction: Transaction, from sut: CoreDataStore) -> Error? {
         do {
             try sut.delete(transaction)
+            return nil
+        } catch {
+            return error
+        }
+    }
+    
+    @discardableResult
+    private func save(_ currentPrice: CurrentPrice, for ticket: String, to sut: CoreDataStore) -> Error? {
+        do {
+            try sut.save(currentPrice, for: ticket)
             return nil
         } catch {
             return error
