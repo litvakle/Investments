@@ -9,10 +9,6 @@ import XCTest
 import Combine
 import InvestmentsFrameworks
 
-protocol CurrentPriceLoader {
-    func loadPrice(for ticket: String)
-}
-
 class CurrentPriceViewModel: ObservableObject {
     @Published var currentPrices = [String: CurrentPrice]()
     @Published var loadingTickets = Set<String>()
