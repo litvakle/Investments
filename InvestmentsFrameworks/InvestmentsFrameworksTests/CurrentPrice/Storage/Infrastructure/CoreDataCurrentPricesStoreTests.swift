@@ -41,16 +41,16 @@ class CoreDataCurrentPricesStoreTests: XCTestCase {
         }
     }
     
-    func test_save_overridesTwiceSavedTransaction() throws {
+    func test_save_overridesPreviouslySavedPrice() throws {
         let sut = makeSUT()
-        let transaction = makeTransaction()
+        let ticket = "AAA"
+        let currentPrice0 = CurrentPrice(price: 100)
+        let currentPrice1 = CurrentPrice(price: 200)
         
-        save(transaction, to: sut)
-        save(transaction, to: sut)
+        save(currentPrice0, for: ticket, to: sut)
+        save(currentPrice1, for: ticket, to: sut)
         
-        let retrievedTransactions: [Transaction] = try sut.retrieve()
-        
-        XCTAssertEqual(retrievedTransactions, [transaction])
+        XCTAssertEqual(try sut.retrieve(for: ticket), currentPrice1)
     }
     
     func test_save_deliversFailureOneSaveError() {
