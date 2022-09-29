@@ -23,6 +23,8 @@ class CurrentPriceViewModel: ObservableObject {
     }
     
     func loadPrices(for tickets: [String]) {
+        error = nil
+        
         tickets.forEach { [weak self] ticket in
             loader()
                 .sink { completion in
@@ -69,7 +71,22 @@ class CurrentPriceViewModelTests: XCTestCase {
         loader.completeCurrentPriceLoading(with: CurrentPrice(price: 0), at: 4)
         
         XCTAssertNotNil(sut.error)
+    }
+    
+    func test_loadPrices_doesNotDeliverErrorOnSuccessfulLoadAfterLoadWithError() {
+        let (sut, loader) = makeSUT()
+        let tickets0 = ["AAA", "BBB"]
+        let tickets1 = ["CCC", "DDD"]
         
+        sut.loadPrices(for: tickets0)
+        loader.completeCurrentPriceLoadingWithError(at: 0)
+        loader.completeCurrentPriceLoading(with: CurrentPrice(price: 0), at: 1)
+        
+        sut.loadPrices(for: tickets1)
+        loader.completeCurrentPriceLoading(with: CurrentPrice(price: 0), at: 2)
+        loader.completeCurrentPriceLoading(with: CurrentPrice(price: 0), at: 3)
+        
+        XCTAssertNil(sut.error)
     }
     
     // MARK: - Helpers
