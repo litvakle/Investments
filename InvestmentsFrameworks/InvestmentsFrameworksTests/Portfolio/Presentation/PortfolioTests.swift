@@ -12,9 +12,10 @@ class PortfolioTests: XCTestCase {
     func test_createItems_calculatesTotalParametersForAllTickets() {
         let sut = PortfolioViewModel()
         let transactions = makePortfolioTransactions()
-        let expectedPortfolio = makePortfolioItems()
+        let currentPrices = makeCurrentPrices()
+        let expectedPortfolio = makePortfolioItems(with: currentPrices)
         
-        sut.createItems(for: transactions)
+        sut.createItems(for: transactions, with: currentPrices)
         
         XCTAssertEqual(sut.items, expectedPortfolio)
     }

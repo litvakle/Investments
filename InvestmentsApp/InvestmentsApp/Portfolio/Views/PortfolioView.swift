@@ -56,7 +56,7 @@ struct PortfolioRow: View {
     var sum: some View {
         let formatter = NumberFormatter.currencyFormatter(minFractionDigits: 2, maxFractionDigits: 2, currencyCode: "USD", locale: .current)
         
-        return Text(NSNumber(value: item.sum), formatter: formatter)
+        return Text(NSNumber(value: item.cost), formatter: formatter)
             .multilineTextAlignment(.trailing)
             .accessibilityIdentifier("SUM")
     }
