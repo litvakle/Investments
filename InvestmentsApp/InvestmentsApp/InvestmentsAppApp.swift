@@ -24,6 +24,7 @@ struct InvestmentsAppApp: App {
     @StateObject var portfolioFlow = PortfolioFlow()
     @StateObject var portfolioViewModel = PortfolioViewModel()
     @StateObject var currentPricesViewModel = CurrentPricesViewModel(loader: currentPriceLoader)
+    @StateObject var currentPricesFlow = CurrentPricesFlow()
     
     var body: some Scene {
         WindowGroup {
@@ -33,7 +34,8 @@ struct InvestmentsAppApp: App {
                 currentPricesViewModel: currentPricesViewModel,
                 alertViewModel: alertViewModel,
                 mainFlow: mainFlow,
-                portfolioFlow: portfolioFlow)
+                portfolioFlow: portfolioFlow,
+                currentPricesFlow: currentPricesFlow)
         }
     }
 }

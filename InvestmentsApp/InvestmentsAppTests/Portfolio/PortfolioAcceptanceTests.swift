@@ -39,13 +39,15 @@ class PortfolioAcceptanceTests: XCTestCase {
         let mainFlow = MainFlow()
         let portfolioViewModel = PortfolioViewModel()
         let portfolioFlow = PortfolioFlow()
+        let currentPricesFlow = CurrentPricesFlow()
         let sut = ContentView(
             transactionsViewModel: transactionsViewModel,
             portfolioViewModel: portfolioViewModel,
             currentPricesViewModel: CurrentPricesViewModel(loader: currentPriceLoader),
             alertViewModel: alertViewModel,
             mainFlow: mainFlow,
-            portfolioFlow: portfolioFlow
+            portfolioFlow: portfolioFlow,
+            currentPricesFlow: currentPricesFlow
         )
         
         trackForMemoryLeaks(store, file: file, line: line)
@@ -54,6 +56,7 @@ class PortfolioAcceptanceTests: XCTestCase {
         trackForMemoryLeaks(alertViewModel, file: file, line: line)
         trackForMemoryLeaks(mainFlow, file: file, line: line)
         trackForMemoryLeaks(portfolioFlow, file: file, line: line)
+        trackForMemoryLeaks(currentPricesFlow, file: file, line: line)
         
         return (sut, transactionsViewModel)
     }

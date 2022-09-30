@@ -15,6 +15,7 @@ struct ContentView: View {
     @ObservedObject var alertViewModel: AlertViewModel
     @ObservedObject var mainFlow: MainFlow
     @ObservedObject var portfolioFlow: PortfolioFlow
+    @ObservedObject var currentPricesFlow: CurrentPricesFlow
     
     var body: some View {
         TabView {
@@ -44,6 +45,10 @@ struct ContentView: View {
                 portfolioViewModel: portfolioViewModel,
                 transactionsViewModel: transactionsViewModel,
                 currentPricesViewModel: currentPricesViewModel
+            )
+            currentPricesFlow.setupSubscriptions(
+                currentPricesViewModel: currentPricesViewModel,
+                transactionsViewModel: transactionsViewModel
             )
         }
     }

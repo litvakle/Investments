@@ -12,25 +12,32 @@ import InvestmentsFrameworks
 
 class CurrentPricesAcceptranceTests: XCTestCase {
     func test_refreshPortfolio_leadsToRefreshCurrentPricesForAllTickets() throws {
-        let (sut, currentPricesViewModel, currentPriceLoader) = makeSUT(transactions: [])
+        let (sut, _, currentPricesViewModel, currentPriceLoader) = makeSUT(transactions: [])
         try sut.callOnAppear()
-        currentPricesViewModel.currentPrices = [
-            "AAA": CurrentPrice(price: 100),
-            "BBB": CurrentPrice(price: 200),
-            "CCC": CurrentPrice(price: 300)
-        ]
+        currentPricesViewModel.currentPrices = makeCurrentPrices()
         let portfolioView = try sut.portfolioView()
         
         portfolioView.onRefresh()
         
-        XCTAssertEqual(currentPriceLoader.requests.count, 3)
+        XCTAssertEqual(currentPriceLoader.requests.count, 2)
+    }
+    
+    func test_saveTransactionWithNewTicket_leadsToLoadCurrentPriceForTheTicket() throws {
+        let (sut, transactionsVewModel, currentPricesViewModel, currentPriceLoader) = makeSUT(transactions: [])
+        try sut.callOnAppear()
+        currentPricesViewModel.currentPrices = makeCurrentPrices()
+
+        transactionsVewModel.save(Transaction(ticket: "AAA"))
+        transactionsVewModel.save(Transaction(ticket: "DDD"))
+        
+        XCTAssertEqual(currentPriceLoader.requests.count, 1)
     }
     
     private func makeSUT(
         transactions: [Transaction],
         file: StaticString = #filePath,
         line: UInt = #line
-    ) -> (ContentView, CurrentPricesViewModel, CurrentPriceLoaderSpy) {
+    ) -> (ContentView, TransactionsViewModel, CurrentPricesViewModel, CurrentPriceLoaderSpy) {
         let store = InMemoryTransactionsStore()
         store.transactions = transactions
         let transactionsViewModel = TransactionsViewModelFactory.createViewModel(store: store)
@@ -40,13 +47,15 @@ class CurrentPricesAcceptranceTests: XCTestCase {
         let portfolioFlow = PortfolioFlow()
         let currentPriceLoader = CurrentPriceLoaderSpy()
         let currentPricesViewModel = CurrentPricesViewModel(loader: currentPriceLoader.loadPublisher)
+        let currentPricesFlow = CurrentPricesFlow()
         let sut = ContentView(
             transactionsViewModel: transactionsViewModel,
             portfolioViewModel: portfolioViewModel,
             currentPricesViewModel: currentPricesViewModel,
             alertViewModel: alertViewModel,
             mainFlow: mainFlow,
-            portfolioFlow: portfolioFlow
+            portfolioFlow: portfolioFlow,
+            currentPricesFlow: currentPricesFlow
         )
         
         trackForMemoryLeaks(store, file: file, line: line)
@@ -56,6 +65,6 @@ class CurrentPricesAcceptranceTests: XCTestCase {
         trackForMemoryLeaks(mainFlow, file: file, line: line)
         trackForMemoryLeaks(portfolioFlow, file: file, line: line)
         
-        return (sut, currentPricesViewModel, currentPriceLoader)
+        return (sut, transactionsViewModel, currentPricesViewModel, currentPriceLoader)
     }
 }

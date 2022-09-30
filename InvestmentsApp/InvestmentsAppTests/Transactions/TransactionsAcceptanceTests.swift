@@ -91,13 +91,15 @@ class TransactionsAcceptanceTests: XCTestCase {
         let mainFlow = MainFlow()
         let portfolioFlow = PortfolioFlow()
         let portfolioViewModel = PortfolioViewModel()
+        let currentPricesFlow = CurrentPricesFlow()
         let sut = ContentView(
             transactionsViewModel: transactionsViewModel,
             portfolioViewModel: portfolioViewModel,
             currentPricesViewModel: CurrentPricesViewModel(loader: currentPriceLoader),
             alertViewModel: alertViewModel,
             mainFlow: mainFlow,
-            portfolioFlow: portfolioFlow
+            portfolioFlow: portfolioFlow,
+            currentPricesFlow: currentPricesFlow
         )
 
         trackForMemoryLeaks(store, file: file, line: line)
