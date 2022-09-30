@@ -10,6 +10,7 @@ import InvestmentsFrameworks
 
 struct PortfolioView: View {
     @ObservedObject var viewModel: PortfolioViewModel
+    let onRefresh: () -> Void
     
     var body: some View {
         List {
@@ -18,6 +19,20 @@ struct PortfolioView: View {
             }
             .accessibilityIdentifier("PORTFOLIO_ITEMS")
         }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                refresh
+            }
+        }
+    }
+    
+    var refresh: some View {
+        Button {
+            onRefresh()
+        } label: {
+            Image(systemName: "arrow.clockwise")
+        }
+        .accessibilityIdentifier("REFRESH")
     }
 }
 
@@ -116,7 +131,8 @@ struct PortfolioView_Previews: PreviewProvider {
         
         return viewModel
     }
+    
     static var previews: some View {
-        PortfolioView(viewModel: viewModel)
+        PortfolioView(viewModel: viewModel, onRefresh: {})
     }
 }

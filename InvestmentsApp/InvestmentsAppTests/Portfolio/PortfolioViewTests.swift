@@ -15,10 +15,9 @@ extension PortfolioRow: Inspectable {}
 
 class PortfolioViewTests: XCTestCase {
     func test_portfolioView_rendersPortfolioItems() throws {
-        let viewModel = PortfolioViewModel()
+        let (sut, viewModel) = makeSUT()
         let transactions = makePortfolioTransactions()
         let expectedPortfolio = makePortfolioItems()
-        let sut = PortfolioView(viewModel: viewModel)
 
         viewModel.createItems(for: transactions, with: CurrentPrices())
         
@@ -35,6 +34,33 @@ class PortfolioViewTests: XCTestCase {
         XCTAssertNoThrow(try sut.profit(at: 1))
         XCTAssertNoThrow(try sut.profitPercent(at: 0))
         XCTAssertNoThrow(try sut.profitPercent(at: 1))
+    }
+    
+    func test_refresh_invokesOnRefresh() throws {
+        var onRefreshInvokesCount = 0
+        let (sut, _) = makeSUT {
+            onRefreshInvokesCount += 1
+        }
+        
+        try sut.refresh().tap()
+        try sut.refresh().tap()
+        
+        XCTAssertEqual(onRefreshInvokesCount, 2)
+    }
+    
+    // MARK: - Helpers
+    
+    private func makeSUT(
+        onRefresh: @escaping () -> Void = { },
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) -> (PortfolioView, PortfolioViewModel) {
+        let viewModel = PortfolioViewModel()
+        let sut = PortfolioView(viewModel: viewModel, onRefresh: onRefresh)
+        
+        trackForMemoryLeaks(viewModel, file: file, line: line)
+        
+        return (sut, viewModel)
     }
 }
 
@@ -69,5 +95,9 @@ extension PortfolioView {
     
     func item(at row: Int) throws -> InspectableView<ViewType.View<PortfolioRow>> {
         try self.items().view(PortfolioRow.self, row)
+    }
+    
+    func refresh() throws -> InspectableView<ViewType.Button> {
+        try self.inspect().find(viewWithAccessibilityIdentifier: "REFRESH").button()
     }
 }

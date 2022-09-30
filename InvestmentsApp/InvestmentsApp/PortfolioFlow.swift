@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 import InvestmentsFrameworks
+import SwiftUI
 
 class PortfolioFlow: ObservableObject {
     var cancellables = Set<AnyCancellable>()
@@ -20,5 +21,9 @@ class PortfolioFlow: ObservableObject {
                 portfolioViewModel.createItems(for: transactions, with: currentPrices)
             }
             .store(in: &cancellables)
+    }
+    
+    func showPortfolioView(portfolioViewModel: PortfolioViewModel) -> some View {
+        PortfolioView(viewModel: portfolioViewModel, onRefresh: {})
     }
 }
