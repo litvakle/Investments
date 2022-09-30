@@ -18,7 +18,7 @@ struct ContentView: View {
     
     var body: some View {
         TabView {
-            portfolioFlow.showPortfolioView(portfolioViewModel: portfolioViewModel)
+            portfolioFlow.showPortfolioView(portfolioViewModel: portfolioViewModel, currentPricesViewModel: currentPricesViewModel)
                 .tabItem {
                     Text("Portf")
                 }

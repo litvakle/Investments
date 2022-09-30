@@ -63,7 +63,7 @@ class PortfolioAcceptanceTests: XCTestCase {
     }
 }
 
-private extension ContentView {
+extension ContentView {
     func portfolioView() throws -> PortfolioView {
         try self.inspect().find(PortfolioView.self).actualView()
     }

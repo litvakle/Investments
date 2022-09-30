@@ -23,7 +23,10 @@ class PortfolioFlow: ObservableObject {
             .store(in: &cancellables)
     }
     
-    func showPortfolioView(portfolioViewModel: PortfolioViewModel) -> some View {
-        PortfolioView(viewModel: portfolioViewModel, onRefresh: {})
+    func showPortfolioView(
+        portfolioViewModel: PortfolioViewModel,
+        currentPricesViewModel: CurrentPricesViewModel
+    ) -> some View {
+        PortfolioView(viewModel: portfolioViewModel, onRefresh: currentPricesViewModel.refreshPrices)
     }
 }
