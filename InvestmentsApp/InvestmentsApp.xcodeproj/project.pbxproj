@@ -13,6 +13,8 @@
 		3A7648E828E2A65500B810B7 /* PortfolioFlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7648E728E2A65500B810B7 /* PortfolioFlowTests.swift */; };
 		3A7648EA28E2A77C00B810B7 /* PortfolioFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7648E928E2A77C00B810B7 /* PortfolioFlow.swift */; };
 		3A7648EC28E2ACE200B810B7 /* PortfolioAcceptanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7648EB28E2ACE200B810B7 /* PortfolioAcceptanceTests.swift */; };
+		3A76493428E6A81900B810B7 /* CurrentPricesFlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A76493328E6A81900B810B7 /* CurrentPricesFlowTests.swift */; };
+		3A76493728E6C04300B810B7 /* CurrentPricesFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A76493628E6C04300B810B7 /* CurrentPricesFlow.swift */; };
 		3AA9C1A828D9E94200C1E37B /* ViewInspector in Frameworks */ = {isa = PBXBuildFile; productRef = 3AA9C1A728D9E94200C1E37B /* ViewInspector */; };
 		3AA9C1AA28DAE4FC00C1E37B /* TransactionViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA9C1A928DAE4FC00C1E37B /* TransactionViewTests.swift */; };
 		3AA9C1AD28DAE56B00C1E37B /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA9C1AC28DAE56B00C1E37B /* XCTestCase+MemoryLeakTracking.swift */; };
@@ -74,6 +76,8 @@
 		3A7648E728E2A65500B810B7 /* PortfolioFlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioFlowTests.swift; sourceTree = "<group>"; };
 		3A7648E928E2A77C00B810B7 /* PortfolioFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioFlow.swift; sourceTree = "<group>"; };
 		3A7648EB28E2ACE200B810B7 /* PortfolioAcceptanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioAcceptanceTests.swift; sourceTree = "<group>"; };
+		3A76493328E6A81900B810B7 /* CurrentPricesFlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentPricesFlowTests.swift; sourceTree = "<group>"; };
+		3A76493628E6C04300B810B7 /* CurrentPricesFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentPricesFlow.swift; sourceTree = "<group>"; };
 		3AA9C1A928DAE4FC00C1E37B /* TransactionViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewTests.swift; sourceTree = "<group>"; };
 		3AA9C1AC28DAE56B00C1E37B /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 		3AA9C1AE28DB1DC100C1E37B /* TransactionsAcceptanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsAcceptanceTests.swift; sourceTree = "<group>"; };
@@ -159,6 +163,22 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		3A76493228E6A7EF00B810B7 /* CurrentPrices */ = {
+			isa = PBXGroup;
+			children = (
+				3A76493328E6A81900B810B7 /* CurrentPricesFlowTests.swift */,
+			);
+			path = CurrentPrices;
+			sourceTree = "<group>";
+		};
+		3A76493528E6C01D00B810B7 /* CurrentPrices */ = {
+			isa = PBXGroup;
+			children = (
+				3A76493628E6C04300B810B7 /* CurrentPricesFlow.swift */,
+			);
+			path = CurrentPrices;
+			sourceTree = "<group>";
+		};
 		3AA9C1AB28DAE55400C1E37B /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -217,6 +237,7 @@
 				3AAAA87F28D9B7B400E0DF6B /* AlertViewModel.swift */,
 				3AAAA83B28D30CC200E0DF6B /* Transactions */,
 				3A14587228E1D23E00AD1EF5 /* Portfolio */,
+				3A76493528E6C01D00B810B7 /* CurrentPrices */,
 				3AAAA82228D2DDCB00E0DF6B /* Assets.xcassets */,
 				3AAAA82428D2DDCB00E0DF6B /* Preview Content */,
 			);
@@ -296,6 +317,7 @@
 				3AA9C1BA28E1830700C1E37B /* SharedTestHelpers.swift */,
 				3AA9C1B628DB52DC00C1E37B /* Transactions */,
 				3A14586F28E1CFDA00AD1EF5 /* Portfolio */,
+				3A76493228E6A7EF00B810B7 /* CurrentPrices */,
 			);
 			path = InvestmentsAppTests;
 			sourceTree = "<group>";
@@ -429,6 +451,7 @@
 				3AAAA84128D3148A00E0DF6B /* Transaction+PreviewData.swift in Sources */,
 				3AAAA81F28D2DDC900E0DF6B /* InvestmentsAppApp.swift in Sources */,
 				3AAAA83628D303B400E0DF6B /* TransactionView.swift in Sources */,
+				3A76493728E6C04300B810B7 /* CurrentPricesFlow.swift in Sources */,
 				3AA9C1B328DB4B1A00C1E37B /* ContentView.swift in Sources */,
 				3AAAA88C28D9C10B00E0DF6B /* NullTransactionsStore.swift in Sources */,
 				3AAAA88E28D9C21E00E0DF6B /* TransactionsViewModelFactory.swift in Sources */,
@@ -453,6 +476,7 @@
 				3A7648EC28E2ACE200B810B7 /* PortfolioAcceptanceTests.swift in Sources */,
 				3AA9C1B128DB40E200C1E37B /* InMemoryTransactionsStore.swift in Sources */,
 				3AA9C1AD28DAE56B00C1E37B /* XCTestCase+MemoryLeakTracking.swift in Sources */,
+				3A76493428E6A81900B810B7 /* CurrentPricesFlowTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

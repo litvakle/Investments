@@ -11,9 +11,9 @@ import Combine
 public class CurrentPricesViewModel: ObservableObject {
     @Published public var currentPrices = CurrentPrices()
     @Published public private(set) var loadingTickets = Set<String>()
-    @Published public private(set) var error: String?
+    @Published public var error: String?
 
-    let loader: () -> AnyPublisher<CurrentPrice, Error>
+    public let loader: () -> AnyPublisher<CurrentPrice, Error>
     var cancellables = Set<AnyCancellable>()
     
     public init(loader: @escaping () -> AnyPublisher<CurrentPrice, Error>) {
