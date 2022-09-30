@@ -29,13 +29,26 @@ struct PortfolioRow: View {
     }
     
     var body: some View {
-        HStack {
-            VStack {
+        VStack(alignment: .leading) {
+            HStack {
                 ticket
-                quantity
+                Spacer()
+                cost
             }
-            Spacer()
-            sum
+            .padding(.bottom, 3)
+            
+            HStack {
+                quantity
+                Spacer()
+                price
+            }
+            .padding(.bottom, 3)
+            
+            HStack {
+                profit
+                Spacer()
+                profitPercent
+            }
         }
     }
     
@@ -48,17 +61,42 @@ struct PortfolioRow: View {
     var quantity: some View {
         let formatter = NumberFormatter.decimalFormatter(minFractionDigits: 2, maxFractionDigits: 4, locale: .current)
         
-        return Text(NSNumber(value: item.quantity), formatter: formatter)
-            .font(.subheadline)
+        return (Text("Quantity: ") + Text(NSNumber(value: item.quantity), formatter: formatter))
             .accessibilityIdentifier("QUANTITY")
     }
     
-    var sum: some View {
+    var price: some View {
         let formatter = NumberFormatter.currencyFormatter(minFractionDigits: 2, maxFractionDigits: 2, currencyCode: "USD", locale: .current)
         
-        return Text(NSNumber(value: item.cost), formatter: formatter)
+        return (Text("Price: ") + Text(NSNumber(value: item.price), formatter: formatter))
             .multilineTextAlignment(.trailing)
-            .accessibilityIdentifier("SUM")
+            .accessibilityIdentifier("PRICE")
+    }
+    
+    var cost: some View {
+        let formatter = NumberFormatter.currencyFormatter(minFractionDigits: 2, maxFractionDigits: 2, currencyCode: "USD", locale: .current)
+        
+        return (Text("Cost: ") + Text(NSNumber(value: item.cost), formatter: formatter))
+            .accessibilityIdentifier("COST")
+    }
+    
+    var profit: some View {
+        let formatter = NumberFormatter.currencyFormatter(minFractionDigits: 2, maxFractionDigits: 2, currencyCode: "USD", locale: .current)
+        
+        return (Text("Profit: ") + Text(NSNumber(value: item.profit), formatter: formatter))
+            .multilineTextAlignment(.trailing)
+            .foregroundColor(item.profit >= 0 ? .green : .red)
+            .accessibilityIdentifier("PROFIT")
+    }
+    
+    var profitPercent: some View {
+        let formatter = NumberFormatter.percentFormatter(minFractionDigits: 2, maxFractionDigits: 2, locale: .current)
+        let sign = item.profitPercent >= 0 ? "+" : ""
+        
+        return (Text(sign) + Text(NSNumber(value: item.profitPercent), formatter: formatter))
+            .multilineTextAlignment(.trailing)
+            .foregroundColor(item.profit >= 0 ? .green : .red)
+            .accessibilityIdentifier("PROFIT_PERCENT")
     }
 }
 
@@ -73,7 +111,7 @@ struct PortfolioView_Previews: PreviewProvider {
             InvestmentTransaction(ticket: "BBB", type: .buy, quantity: 2, price: 20, sum: 20)
         ], with: [
             "AAA": CurrentPrice(price: 25),
-            "BBB": CurrentPrice(price: 30)
+            "BBB": CurrentPrice(price: 5)
         ])
         
         return viewModel

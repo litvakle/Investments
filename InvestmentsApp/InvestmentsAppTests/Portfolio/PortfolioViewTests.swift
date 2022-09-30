@@ -27,8 +27,14 @@ class PortfolioViewTests: XCTestCase {
         XCTAssertEqual(try sut.ticket(at: 1).string(), expectedPortfolio[1].ticket)
         XCTAssertNoThrow(try sut.quantity(at: 0))
         XCTAssertNoThrow(try sut.quantity(at: 1))
-        XCTAssertNoThrow(try sut.sum(at: 0))
-        XCTAssertNoThrow(try sut.sum(at: 1))
+        XCTAssertNoThrow(try sut.cost(at: 0))
+        XCTAssertNoThrow(try sut.cost(at: 1))
+        XCTAssertNoThrow(try sut.price(at: 0))
+        XCTAssertNoThrow(try sut.price(at: 1))
+        XCTAssertNoThrow(try sut.profit(at: 0))
+        XCTAssertNoThrow(try sut.profit(at: 1))
+        XCTAssertNoThrow(try sut.profitPercent(at: 0))
+        XCTAssertNoThrow(try sut.profitPercent(at: 1))
     }
 }
 
@@ -41,12 +47,24 @@ extension PortfolioView {
         try item(at: row).find(viewWithAccessibilityIdentifier: "TICKET").text()
     }
     
-    func sum(at row: Int) throws -> InspectableView<ViewType.Text> {
-        try item(at: row).find(viewWithAccessibilityIdentifier: "SUM").text()
+    func cost(at row: Int) throws -> InspectableView<ViewType.Text> {
+        try item(at: row).find(viewWithAccessibilityIdentifier: "COST").text()
     }
     
     func quantity(at row: Int) throws -> InspectableView<ViewType.Text> {
         try item(at: row).find(viewWithAccessibilityIdentifier: "QUANTITY").text()
+    }
+    
+    func price(at row: Int) throws -> InspectableView<ViewType.Text> {
+        try item(at: row).find(viewWithAccessibilityIdentifier: "PRICE").text()
+    }
+    
+    func profit(at row: Int) throws -> InspectableView<ViewType.Text> {
+        try item(at: row).find(viewWithAccessibilityIdentifier: "PROFIT").text()
+    }
+    
+    func profitPercent(at row: Int) throws -> InspectableView<ViewType.Text> {
+        try item(at: row).find(viewWithAccessibilityIdentifier: "PROFIT_PERCENT").text()
     }
     
     func item(at row: Int) throws -> InspectableView<ViewType.View<PortfolioRow>> {
