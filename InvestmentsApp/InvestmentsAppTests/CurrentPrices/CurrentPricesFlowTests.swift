@@ -11,24 +11,16 @@ import InvestmentsFrameworks
 @testable import InvestmentsApp
 
 class CurrentPricesFlowTests: XCTestCase {
-    func test_transactionsUpdate_leadsToUpdateCurrentPricesOnlyForNewTickets() {
+    func test_transactionsUpdate_leadsToUpdateCurrentPricesOnlyForTicketsWithoutPrices() {
         let (sut, transactionsViewModel, currentPricesViewModel, currentPriceLoader) = makeSUT(transactions: [])
         sut.setupSubscriptions(currentPricesViewModel: currentPricesViewModel, transactionsViewModel: transactionsViewModel)
-        let expectedPrices: CurrentPrices = [
-            "BBB": CurrentPrice(price: 200),
+        currentPricesViewModel.currentPrices = [
             "AAA": CurrentPrice(price: 100),
-            "CCC": CurrentPrice(price: 300)
+            "BBB": CurrentPrice(price: 200)
         ]
         
-        XCTAssertTrue(currentPricesViewModel.currentPrices.isEmpty)
         makePortfolioTransactions().forEach { transactionsViewModel.save($0) }
-        XCTAssertEqual(currentPriceLoader.loadFeedCallCount, 3)
-        
-        currentPriceLoader.completeCurrentPriceLoading(with: CurrentPrice(price: 200), at: 0)
-        currentPriceLoader.completeCurrentPriceLoading(with: CurrentPrice(price: 100), at: 1)
-        currentPriceLoader.completeCurrentPriceLoading(with: CurrentPrice(price: 300), at: 2)
-        
-        XCTAssertEqual(currentPricesViewModel.currentPrices, expectedPrices)
+        XCTAssertEqual(currentPriceLoader.loadFeedCallCount, 1, "Expected only one load for 'CCC' ticket")
     }
     
     // MARK: - Helpers
