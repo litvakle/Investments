@@ -37,4 +37,18 @@ public extension NumberFormatter {
         
         return formatter
     }
+    
+    static func percentFormatter(
+        minFractionDigits: Int = 0,
+        maxFractionDigits: Int = 0,
+        locale: Locale
+    ) -> NumberFormatter {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .percent
+        formatter.locale = locale
+        formatter.minimumFractionDigits = minFractionDigits
+        formatter.maximumFractionDigits = maxFractionDigits
+        
+        return formatter
+    }
 }
