@@ -37,4 +37,8 @@ public class CurrentPricesViewModel: ObservableObject {
                 .store(in: &cancellables)
         }
     }
+    
+    public func refreshPrices() {
+        loadPrices(for: Array(currentPrices.keys))
+    }
 }
