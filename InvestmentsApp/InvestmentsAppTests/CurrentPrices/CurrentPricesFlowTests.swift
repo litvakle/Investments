@@ -37,12 +37,12 @@ class CurrentPricesFlowTests: XCTestCase {
         transactions: [Transaction],
         file: StaticString = #filePath,
         line: UInt = #line
-    ) -> (CurrentPricesFlow, TransactionsViewModel, CurrentPricesViewModel, LoaderSpy) {
+    ) -> (CurrentPricesFlow, TransactionsViewModel, CurrentPricesViewModel, CurrentPriceLoaderSpy) {
         let store = InMemoryTransactionsStore()
         store.transactions = transactions
         let transactionsViewModel = TransactionsViewModel(store: store)
         transactionsViewModel.retrieve()
-        let currentPriceLoader = LoaderSpy()
+        let currentPriceLoader = CurrentPriceLoaderSpy()
         let currentPricesViewModel = CurrentPricesViewModel(loader: currentPriceLoader.loadPublisher)
         let sut = CurrentPricesFlow()
         
@@ -53,28 +53,5 @@ class CurrentPricesFlowTests: XCTestCase {
         trackForMemoryLeaks(sut, file: file, line: line)
         
         return (sut, transactionsViewModel, currentPricesViewModel, currentPriceLoader)
-    }
-    
-    private class LoaderSpy {
-        var requests = [PassthroughSubject<CurrentPrice, Error>]()
-        
-        var loadFeedCallCount: Int {
-            return requests.count
-        }
-        
-        func loadPublisher() -> AnyPublisher<CurrentPrice, Error> {
-            let publisher = PassthroughSubject<CurrentPrice, Error>()
-            requests.append(publisher)
-            return publisher.eraseToAnyPublisher()
-        }
-        
-        func completeCurrentPriceLoadingWithError(at index: Int = 0) {
-            requests[index].send(completion: .failure(anyNSError()))
-        }
-        
-        func completeCurrentPriceLoading(with currentPrice: CurrentPrice, at index: Int = 0) {
-            requests[index].send(currentPrice)
-            requests[index].send(completion: .finished)
-        }
     }
 }

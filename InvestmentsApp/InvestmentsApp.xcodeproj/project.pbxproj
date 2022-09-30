@@ -16,6 +16,7 @@
 		3A76493428E6A81900B810B7 /* CurrentPricesFlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A76493328E6A81900B810B7 /* CurrentPricesFlowTests.swift */; };
 		3A76493728E6C04300B810B7 /* CurrentPricesFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A76493628E6C04300B810B7 /* CurrentPricesFlow.swift */; };
 		3A76493928E6DC6400B810B7 /* CurrentPricesAcceptranceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A76493828E6DC6400B810B7 /* CurrentPricesAcceptranceTests.swift */; };
+		3A76493C28E6F63300B810B7 /* CurrentPriceLoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A76493B28E6F63300B810B7 /* CurrentPriceLoaderSpy.swift */; };
 		3AA9C1A828D9E94200C1E37B /* ViewInspector in Frameworks */ = {isa = PBXBuildFile; productRef = 3AA9C1A728D9E94200C1E37B /* ViewInspector */; };
 		3AA9C1AA28DAE4FC00C1E37B /* TransactionViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA9C1A928DAE4FC00C1E37B /* TransactionViewTests.swift */; };
 		3AA9C1AD28DAE56B00C1E37B /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA9C1AC28DAE56B00C1E37B /* XCTestCase+MemoryLeakTracking.swift */; };
@@ -80,6 +81,7 @@
 		3A76493328E6A81900B810B7 /* CurrentPricesFlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentPricesFlowTests.swift; sourceTree = "<group>"; };
 		3A76493628E6C04300B810B7 /* CurrentPricesFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentPricesFlow.swift; sourceTree = "<group>"; };
 		3A76493828E6DC6400B810B7 /* CurrentPricesAcceptranceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentPricesAcceptranceTests.swift; sourceTree = "<group>"; };
+		3A76493B28E6F63300B810B7 /* CurrentPriceLoaderSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentPriceLoaderSpy.swift; sourceTree = "<group>"; };
 		3AA9C1A928DAE4FC00C1E37B /* TransactionViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewTests.swift; sourceTree = "<group>"; };
 		3AA9C1AC28DAE56B00C1E37B /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 		3AA9C1AE28DB1DC100C1E37B /* TransactionsAcceptanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsAcceptanceTests.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 		3A76493228E6A7EF00B810B7 /* CurrentPrices */ = {
 			isa = PBXGroup;
 			children = (
+				3A76493A28E6F62300B810B7 /* Helpers */,
 				3A76493328E6A81900B810B7 /* CurrentPricesFlowTests.swift */,
 				3A76493828E6DC6400B810B7 /* CurrentPricesAcceptranceTests.swift */,
 			);
@@ -180,6 +183,14 @@
 				3A76493628E6C04300B810B7 /* CurrentPricesFlow.swift */,
 			);
 			path = CurrentPrices;
+			sourceTree = "<group>";
+		};
+		3A76493A28E6F62300B810B7 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				3A76493B28E6F63300B810B7 /* CurrentPriceLoaderSpy.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		3AA9C1AB28DAE55400C1E37B /* Helpers */ = {
@@ -481,6 +492,7 @@
 				3AA9C1AD28DAE56B00C1E37B /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 				3A76493928E6DC6400B810B7 /* CurrentPricesAcceptranceTests.swift in Sources */,
 				3A76493428E6A81900B810B7 /* CurrentPricesFlowTests.swift in Sources */,
+				3A76493C28E6F63300B810B7 /* CurrentPriceLoaderSpy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

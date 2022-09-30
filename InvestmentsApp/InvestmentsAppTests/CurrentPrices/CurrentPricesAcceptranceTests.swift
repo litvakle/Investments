@@ -30,7 +30,7 @@ class CurrentPricesAcceptranceTests: XCTestCase {
         transactions: [Transaction],
         file: StaticString = #filePath,
         line: UInt = #line
-    ) -> (ContentView, CurrentPricesViewModel, LoaderSpy) {
+    ) -> (ContentView, CurrentPricesViewModel, CurrentPriceLoaderSpy) {
         let store = InMemoryTransactionsStore()
         store.transactions = transactions
         let transactionsViewModel = TransactionsViewModelFactory.createViewModel(store: store)
@@ -38,7 +38,7 @@ class CurrentPricesAcceptranceTests: XCTestCase {
         let mainFlow = MainFlow()
         let portfolioViewModel = PortfolioViewModel()
         let portfolioFlow = PortfolioFlow()
-        let currentPriceLoader = LoaderSpy()
+        let currentPriceLoader = CurrentPriceLoaderSpy()
         let currentPricesViewModel = CurrentPricesViewModel(loader: currentPriceLoader.loadPublisher)
         let sut = ContentView(
             transactionsViewModel: transactionsViewModel,
@@ -57,19 +57,5 @@ class CurrentPricesAcceptranceTests: XCTestCase {
         trackForMemoryLeaks(portfolioFlow, file: file, line: line)
         
         return (sut, currentPricesViewModel, currentPriceLoader)
-    }
-    
-    private class LoaderSpy {
-        var requests = [PassthroughSubject<CurrentPrice, Error>]()
-        
-        var loadFeedCallCount: Int {
-            return requests.count
-        }
-        
-        func loadPublisher() -> AnyPublisher<CurrentPrice, Error> {
-            let publisher = PassthroughSubject<CurrentPrice, Error>()
-            requests.append(publisher)
-            return publisher.eraseToAnyPublisher()
-        }
     }
 }
