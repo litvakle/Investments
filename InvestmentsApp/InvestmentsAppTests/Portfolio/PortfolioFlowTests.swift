@@ -31,6 +31,17 @@ class PortfolioFlowTests: XCTestCase {
         XCTAssertEqual(portfolioViewModel.items, makePortfolioItems())
     }
     
+    func test_currentPricesUpdate_leadsToUpdatePortfolio() {
+        let transactions = makePortfolioTransactions()
+        let (sut, transactionsViewModel, portfolioViewModel, currentPricesViewModel) = makeSUT(transactions: transactions)
+        
+        sut.setupSubscriptions(portfolioViewModel: portfolioViewModel, transactionsViewModel: transactionsViewModel, currentPricesViewModel: currentPricesViewModel)
+        currentPricesViewModel.currentPrices = makeCurrentPrices()
+        currentPricesViewModel.currentPrices["AAA"] = CurrentPrice(price: 5)
+        
+        XCTAssertNotEqual(portfolioViewModel.items, makePortfolioItems())
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(
