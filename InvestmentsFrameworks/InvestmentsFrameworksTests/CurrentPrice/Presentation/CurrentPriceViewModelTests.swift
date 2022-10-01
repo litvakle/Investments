@@ -136,25 +136,25 @@ class CurrentPriceViewModelTests: XCTestCase {
     }
     
     private class LoaderSpy {
-        var requests = [PassthroughSubject<CurrentPrice, Error>]()
+        var requests = [(ticket: String, publisher: PassthroughSubject<CurrentPrice, Error>)]()
         
         var loadFeedCallCount: Int {
             return requests.count
         }
         
-        func loadPublisher() -> AnyPublisher<CurrentPrice, Error> {
+        func loadPublisher(for ticket: String) -> AnyPublisher<CurrentPrice, Error> {
             let publisher = PassthroughSubject<CurrentPrice, Error>()
-            requests.append(publisher)
+            requests.append((ticket, publisher))
             return publisher.eraseToAnyPublisher()
         }
         
         func completeCurrentPriceLoadingWithError(at index: Int = 0) {
-            requests[index].send(completion: .failure(anyNSError()))
+            requests[index].publisher.send(completion: .failure(anyNSError()))
         }
         
         func completeCurrentPriceLoading(with currentPrice: CurrentPrice, at index: Int = 0) {
-            requests[index].send(currentPrice)
-            requests[index].send(completion: .finished)
+            requests[index].publisher.send(currentPrice)
+            requests[index].publisher.send(completion: .finished)
         }
     }
 }

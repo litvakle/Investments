@@ -54,7 +54,8 @@ class PortfolioFlowTests: XCTestCase {
         let transactionsViewModel = TransactionsViewModel(store: store)
         transactionsViewModel.retrieve()
         let portfolioViewModel = PortfolioViewModel()
-        let currentPricesViewModel = CurrentPricesViewModel(loader: currentPricesLoader)
+        let currentPriceLoader = CurrentPriceLoaderSpy()
+        let currentPricesViewModel = CurrentPricesViewModel(loader: currentPriceLoader.loadPublisher)
         let sut = PortfolioFlow()
         
         trackForMemoryLeaks(store, file: file, line: line)
@@ -64,9 +65,5 @@ class PortfolioFlowTests: XCTestCase {
         trackForMemoryLeaks(sut, file: file, line: line)
         
         return (sut, transactionsViewModel, portfolioViewModel, currentPricesViewModel)
-    }
-    
-    private func currentPricesLoader() -> AnyPublisher<CurrentPrice, Error> {
-        PassthroughSubject<CurrentPrice, Error>().eraseToAnyPublisher()
     }
 }

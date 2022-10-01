@@ -8,15 +8,17 @@
 import Foundation
 import Combine
 
+public typealias CurrentPriceLoader = (String) -> AnyPublisher<CurrentPrice, Error>
+
 public class CurrentPricesViewModel: ObservableObject {
     @Published public var currentPrices = CurrentPrices()
     @Published public private(set) var loadingTickets = Set<String>()
     @Published public var error: String?
 
-    public let loader: () -> AnyPublisher<CurrentPrice, Error>
+    public let loader: CurrentPriceLoader
     var cancellables = Set<AnyCancellable>()
     
-    public init(loader: @escaping () -> AnyPublisher<CurrentPrice, Error>) {
+    public init(loader: @escaping CurrentPriceLoader) {
         self.loader = loader
     }
     
@@ -25,7 +27,7 @@ public class CurrentPricesViewModel: ObservableObject {
         
         tickets.forEach { [weak self] ticket in
             self?.loadingTickets.insert(ticket)
-            loader()
+            loader(ticket)
                 .sink { completion in
                     if case .failure = completion {
                         self?.error = "Error loading prices"
