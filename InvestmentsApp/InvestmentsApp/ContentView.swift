@@ -21,15 +21,15 @@ struct ContentView: View {
         TabView {
             NavigationView {
                 portfolioFlow.showPortfolioView(portfolioViewModel: portfolioViewModel, currentPricesViewModel: currentPricesViewModel)
-                    .tabItem {
-                        Text("Portf")
-                    }
+            }
+            .tabItem {
+                Image(systemName: "dollarsign.circle")
             }
             
             NavigationView {
                 mainFlow.showTransactionsView(transactionsViewModel: transactionsViewModel)
             }.tabItem {
-                Text("Trans")
+                Image(systemName: "list.bullet.circle")
             }
         }
         .alert(alertViewModel.title, isPresented: $alertViewModel.isActive, actions: {
