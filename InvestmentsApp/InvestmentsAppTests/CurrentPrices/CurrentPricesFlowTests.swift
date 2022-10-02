@@ -23,12 +23,14 @@ class CurrentPricesFlowTests: XCTestCase {
         XCTAssertEqual(currentPriceLoader.loadFeedCallCount, 1, "Expected only one load for 'CCC' ticket")
     }
     
-    func test_currentPricesError_activatesErrorMessage() throws {
+    func test_currentPricesFlow_activatesErrorMessageOnlyOnError() throws {
         let (sut, transactionsViewModel, currentPricesViewModel, _, alertViewModel) = makeSUT(transactions: [])
         sut.setupSubscriptions(currentPricesViewModel: currentPricesViewModel, transactionsViewModel: transactionsViewModel, alertViewModel: alertViewModel)
+
+        currentPricesViewModel.error = nil
+        XCTAssertFalse(alertViewModel.isActive)
         
         currentPricesViewModel.error = "Any error"
-       
         XCTAssertTrue(alertViewModel.isActive)
     }
     

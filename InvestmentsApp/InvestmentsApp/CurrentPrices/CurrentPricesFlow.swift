@@ -22,15 +22,14 @@ public class CurrentPricesFlow: ObservableObject {
             }
             .filter { !$0.isEmpty }
             .sink { tickets in
-                print(tickets)
                 currentPricesViewModel.loadPrices(for: tickets)
             }
             .store(in: &cancellables)
         
         currentPricesViewModel.$error
             .dropFirst()
-            .map { $0 != nil }
-            .sink { showError in
+            .filter { $0 != nil }
+            .sink { _ in
                 alertViewModel.showAlert(title: "Error", message: "Error loading current prices")
             }
             .store(in: &cancellables)
