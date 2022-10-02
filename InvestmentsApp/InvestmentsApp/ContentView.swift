@@ -19,10 +19,12 @@ struct ContentView: View {
     
     var body: some View {
         TabView {
-            portfolioFlow.showPortfolioView(portfolioViewModel: portfolioViewModel, currentPricesViewModel: currentPricesViewModel)
-                .tabItem {
-                    Text("Portf")
-                }
+            NavigationView {
+                portfolioFlow.showPortfolioView(portfolioViewModel: portfolioViewModel, currentPricesViewModel: currentPricesViewModel)
+                    .tabItem {
+                        Text("Portf")
+                    }
+            }
             
             NavigationView {
                 mainFlow.showTransactionsView(transactionsViewModel: transactionsViewModel)
