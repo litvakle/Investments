@@ -9,10 +9,11 @@ import XCTest
 import Combine
 import InvestmentsFrameworks
 @testable import InvestmentsApp
+@testable import ViewInspector
 
 class CurrentPricesAcceptranceTests: XCTestCase {
     func test_refreshPortfolio_leadsToRefreshCurrentPricesForAllTickets() throws {
-        let (sut, _, currentPricesViewModel, currentPriceLoader) = makeSUT(transactions: [])
+        let (sut, _, currentPricesViewModel, currentPriceLoader, _) = makeSUT(transactions: [])
         try sut.callOnAppear()
         currentPricesViewModel.currentPrices = makeCurrentPrices()
         let portfolioView = try sut.portfolioView()
@@ -23,7 +24,7 @@ class CurrentPricesAcceptranceTests: XCTestCase {
     }
     
     func test_saveTransactionWithNewTicket_leadsToLoadCurrentPriceForTheTicket() throws {
-        let (sut, transactionsVewModel, currentPricesViewModel, currentPriceLoader) = makeSUT(transactions: [])
+        let (sut, transactionsVewModel, currentPricesViewModel, currentPriceLoader, _) = makeSUT(transactions: [])
         try sut.callOnAppear()
         currentPricesViewModel.currentPrices = makeCurrentPrices()
 
@@ -33,11 +34,20 @@ class CurrentPricesAcceptranceTests: XCTestCase {
         XCTAssertEqual(currentPriceLoader.requests.count, 1)
     }
     
+    func test_currentPriceLoadError_leadsToActivateErrorMessage() throws {
+        let (sut, _, currentPricesViewModel, _, alertViewModel) = makeSUT(transactions: [])
+        try sut.callOnAppear()
+        
+        currentPricesViewModel.error = "Any error"
+        
+        XCTAssertTrue(alertViewModel.isActive)
+    }
+    
     private func makeSUT(
         transactions: [Transaction],
         file: StaticString = #filePath,
         line: UInt = #line
-    ) -> (ContentView, TransactionsViewModel, CurrentPricesViewModel, CurrentPriceLoaderSpy) {
+    ) -> (ContentView, TransactionsViewModel, CurrentPricesViewModel, CurrentPriceLoaderSpy, AlertViewModel) {
         let store = InMemoryTransactionsStore()
         store.transactions = transactions
         let transactionsViewModel = TransactionsViewModelFactory.createViewModel(store: store)
@@ -65,6 +75,6 @@ class CurrentPricesAcceptranceTests: XCTestCase {
         trackForMemoryLeaks(mainFlow, file: file, line: line)
         trackForMemoryLeaks(portfolioFlow, file: file, line: line)
         
-        return (sut, transactionsViewModel, currentPricesViewModel, currentPriceLoader)
+        return (sut, transactionsViewModel, currentPricesViewModel, currentPriceLoader, alertViewModel)
     }
 }
