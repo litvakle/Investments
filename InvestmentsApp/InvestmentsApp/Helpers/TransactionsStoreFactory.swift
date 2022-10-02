@@ -8,7 +8,7 @@
 import InvestmentsFrameworks
 import CoreData
 
-enum TransactionsStoreFactory {
+enum StoreFactory {
     static func create() -> TransactionsStore & CurrentPricesStore {
         do {
             return try CoreDataStore(
