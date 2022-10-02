@@ -9,7 +9,7 @@ import InvestmentsFrameworks
 import CoreData
 
 enum TransactionsStoreFactory {
-    static func create() -> TransactionsStore {
+    static func create() -> TransactionsStore & CurrentPricesStore {
         do {
             return try CoreDataStore(
                 storeURL: NSPersistentContainer
@@ -17,7 +17,7 @@ enum TransactionsStoreFactory {
                     .appendingPathComponent("transactions-store.sqlite")
                 )
         } catch {
-            return NullTransactionsStore()
+            return NullStore()
         }
     }
 }
