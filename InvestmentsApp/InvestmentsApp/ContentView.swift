@@ -50,7 +50,8 @@ struct ContentView: View {
             )
             currentPricesFlow.setupSubscriptions(
                 currentPricesViewModel: currentPricesViewModel,
-                transactionsViewModel: transactionsViewModel
+                transactionsViewModel: transactionsViewModel,
+                alertViewModel: alertViewModel
             )
         }
     }

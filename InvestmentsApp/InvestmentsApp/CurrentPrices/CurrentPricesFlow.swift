@@ -13,7 +13,7 @@ public class CurrentPricesFlow: ObservableObject {
     
     init() {}
     
-    public func setupSubscriptions(currentPricesViewModel: CurrentPricesViewModel, transactionsViewModel: TransactionsViewModel) {
+    public func setupSubscriptions(currentPricesViewModel: CurrentPricesViewModel, transactionsViewModel: TransactionsViewModel, alertViewModel: AlertViewModel) {
         transactionsViewModel.$transactions
             .map { updatedTransactions -> [String] in
                 let ticketsInTransactions = Set(updatedTransactions.map { $0.ticket })
@@ -24,6 +24,14 @@ public class CurrentPricesFlow: ObservableObject {
             .sink { tickets in
                 print(tickets)
                 currentPricesViewModel.loadPrices(for: tickets)
+            }
+            .store(in: &cancellables)
+        
+        currentPricesViewModel.$error
+            .dropFirst()
+            .map { $0 != nil }
+            .sink { showError in
+                alertViewModel.showAlert(title: "Error", message: "Error loading current prices")
             }
             .store(in: &cancellables)
     }
