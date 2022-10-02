@@ -19,6 +19,7 @@ struct PortfolioView: View {
             }
             .accessibilityIdentifier("PORTFOLIO_ITEMS")
         }
+        .navigationTitle("Portfolio")
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 refresh
