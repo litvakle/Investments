@@ -17,6 +17,8 @@
 		3A76493728E6C04300B810B7 /* CurrentPricesFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A76493628E6C04300B810B7 /* CurrentPricesFlow.swift */; };
 		3A76493928E6DC6400B810B7 /* CurrentPricesAcceptranceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A76493828E6DC6400B810B7 /* CurrentPricesAcceptranceTests.swift */; };
 		3A76493C28E6F63300B810B7 /* CurrentPriceLoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A76493B28E6F63300B810B7 /* CurrentPriceLoaderSpy.swift */; };
+		3A76493E28EACC6D00B810B7 /* CurrentPricesLoaderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A76493D28EACC6D00B810B7 /* CurrentPricesLoaderFactory.swift */; };
+		3A76494028EACCD800B810B7 /* CombineHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A76493F28EACCD800B810B7 /* CombineHelpers.swift */; };
 		3AA9C1A828D9E94200C1E37B /* ViewInspector in Frameworks */ = {isa = PBXBuildFile; productRef = 3AA9C1A728D9E94200C1E37B /* ViewInspector */; };
 		3AA9C1AA28DAE4FC00C1E37B /* TransactionViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA9C1A928DAE4FC00C1E37B /* TransactionViewTests.swift */; };
 		3AA9C1AD28DAE56B00C1E37B /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA9C1AC28DAE56B00C1E37B /* XCTestCase+MemoryLeakTracking.swift */; };
@@ -26,7 +28,7 @@
 		3AA9C1B528DB4BEB00C1E37B /* TransactionsStoreFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA9C1B428DB4BEB00C1E37B /* TransactionsStoreFactory.swift */; };
 		3AA9C1B928DB533F00C1E37B /* TransactionsView+ViewInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA9C1B828DB533F00C1E37B /* TransactionsView+ViewInspector.swift */; };
 		3AA9C1BB28E1830700C1E37B /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA9C1BA28E1830700C1E37B /* SharedTestHelpers.swift */; };
-		3AAAA81F28D2DDC900E0DF6B /* InvestmentsAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA81E28D2DDC900E0DF6B /* InvestmentsAppApp.swift */; };
+		3AAAA81F28D2DDC900E0DF6B /* InvestmentsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA81E28D2DDC900E0DF6B /* InvestmentsApp.swift */; };
 		3AAAA82128D2DDC900E0DF6B /* TransactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA82028D2DDC900E0DF6B /* TransactionsView.swift */; };
 		3AAAA82328D2DDCB00E0DF6B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AAAA82228D2DDCB00E0DF6B /* Assets.xcassets */; };
 		3AAAA82628D2DDCB00E0DF6B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AAAA82528D2DDCB00E0DF6B /* Preview Assets.xcassets */; };
@@ -82,6 +84,8 @@
 		3A76493628E6C04300B810B7 /* CurrentPricesFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentPricesFlow.swift; sourceTree = "<group>"; };
 		3A76493828E6DC6400B810B7 /* CurrentPricesAcceptranceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentPricesAcceptranceTests.swift; sourceTree = "<group>"; };
 		3A76493B28E6F63300B810B7 /* CurrentPriceLoaderSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentPriceLoaderSpy.swift; sourceTree = "<group>"; };
+		3A76493D28EACC6D00B810B7 /* CurrentPricesLoaderFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentPricesLoaderFactory.swift; sourceTree = "<group>"; };
+		3A76493F28EACCD800B810B7 /* CombineHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineHelpers.swift; sourceTree = "<group>"; };
 		3AA9C1A928DAE4FC00C1E37B /* TransactionViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewTests.swift; sourceTree = "<group>"; };
 		3AA9C1AC28DAE56B00C1E37B /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 		3AA9C1AE28DB1DC100C1E37B /* TransactionsAcceptanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsAcceptanceTests.swift; sourceTree = "<group>"; };
@@ -91,7 +95,7 @@
 		3AA9C1B828DB533F00C1E37B /* TransactionsView+ViewInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TransactionsView+ViewInspector.swift"; sourceTree = "<group>"; };
 		3AA9C1BA28E1830700C1E37B /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
 		3AAAA81B28D2DDC900E0DF6B /* InvestmentsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InvestmentsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		3AAAA81E28D2DDC900E0DF6B /* InvestmentsAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentsAppApp.swift; sourceTree = "<group>"; };
+		3AAAA81E28D2DDC900E0DF6B /* InvestmentsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestmentsApp.swift; sourceTree = "<group>"; };
 		3AAAA82028D2DDC900E0DF6B /* TransactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsView.swift; sourceTree = "<group>"; };
 		3AAAA82228D2DDCB00E0DF6B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3AAAA82528D2DDCB00E0DF6B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -181,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				3A76493628E6C04300B810B7 /* CurrentPricesFlow.swift */,
+				3A76493D28EACC6D00B810B7 /* CurrentPricesLoaderFactory.swift */,
 			);
 			path = CurrentPrices;
 			sourceTree = "<group>";
@@ -244,7 +249,7 @@
 			isa = PBXGroup;
 			children = (
 				3AAAA88928D9C07D00E0DF6B /* Helpers */,
-				3AAAA81E28D2DDC900E0DF6B /* InvestmentsAppApp.swift */,
+				3AAAA81E28D2DDC900E0DF6B /* InvestmentsApp.swift */,
 				3AAAA88328D9B95000E0DF6B /* MainFlow.swift */,
 				3AA9C1B228DB4B1A00C1E37B /* ContentView.swift */,
 				3A7648E928E2A77C00B810B7 /* PortfolioFlow.swift */,
@@ -339,6 +344,7 @@
 			isa = PBXGroup;
 			children = (
 				3AA9C1B428DB4BEB00C1E37B /* TransactionsStoreFactory.swift */,
+				3A76493F28EACCD800B810B7 /* CombineHelpers.swift */,
 				3AAAA88B28D9C10B00E0DF6B /* NullStore.swift */,
 			);
 			path = Helpers;
@@ -455,6 +461,8 @@
 			files = (
 				3AAAA86F28D98D9C00E0DF6B /* TransactionsViewModel+Preview.swift in Sources */,
 				3A14587628E1D25C00AD1EF5 /* PortfolioView.swift in Sources */,
+				3A76494028EACCD800B810B7 /* CombineHelpers.swift in Sources */,
+				3A76493E28EACC6D00B810B7 /* CurrentPricesLoaderFactory.swift in Sources */,
 				3AAAA82128D2DDC900E0DF6B /* TransactionsView.swift in Sources */,
 				3AAAA88428D9B95000E0DF6B /* MainFlow.swift in Sources */,
 				3A7648EA28E2A77C00B810B7 /* PortfolioFlow.swift in Sources */,
@@ -463,7 +471,7 @@
 				3AAAA83A28D30AE100E0DF6B /* Double+Helpers.swift in Sources */,
 				3AA9C1B528DB4BEB00C1E37B /* TransactionsStoreFactory.swift in Sources */,
 				3AAAA84128D3148A00E0DF6B /* Transaction+PreviewData.swift in Sources */,
-				3AAAA81F28D2DDC900E0DF6B /* InvestmentsAppApp.swift in Sources */,
+				3AAAA81F28D2DDC900E0DF6B /* InvestmentsApp.swift in Sources */,
 				3AAAA83628D303B400E0DF6B /* TransactionView.swift in Sources */,
 				3A76493728E6C04300B810B7 /* CurrentPricesFlow.swift in Sources */,
 				3AA9C1B328DB4B1A00C1E37B /* ContentView.swift in Sources */,

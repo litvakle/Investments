@@ -28,6 +28,7 @@ public class CurrentPricesViewModel: ObservableObject {
         tickets.forEach { [weak self] ticket in
             self?.loadingTickets.insert(ticket)
             loader(ticket)
+                .receive(on: DispatchQueue.main)
                 .sink { completion in
                     if case .failure = completion {
                         self?.error = "Error loading prices"

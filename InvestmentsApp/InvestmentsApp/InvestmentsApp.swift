@@ -11,19 +11,19 @@ import InvestmentsFrameworks
 import Combine
 
 typealias InvestmentTransaction = InvestmentsFrameworks.Transaction
-
-func currentPriceLoader() -> AnyPublisher<CurrentPrice, Error> {
-    PassthroughSubject<CurrentPrice, Error>().eraseToAnyPublisher()
-}
+private let httpClient = URLSessionHTTPClient(session: URLSession(configuration: .ephemeral))
+private let baseURL = URL(string: "https://finnhub.io/api")!
+private let token = "ccfe31iad3ifmhk0t53g"
+private let store = StoreFactory.create()
 
 @main
-struct InvestmentsAppApp: App {
-    @StateObject var transactionsViewModel = TransactionsViewModelFactory.createViewModel(store: TransactionsStoreFactory.create())
+struct InvestmentsApp: App {
+    @StateObject var transactionsViewModel = TransactionsViewModelFactory.createViewModel(store: store)
     @StateObject var alertViewModel = AlertViewModel()
     @StateObject var mainFlow = MainFlow()
     @StateObject var portfolioFlow = PortfolioFlow()
     @StateObject var portfolioViewModel = PortfolioViewModel()
-    @StateObject var currentPricesViewModel = CurrentPricesViewModel(loader: currentPriceLoader)
+    @StateObject var currentPricesViewModel = CurrentPricesViewModel(loader: CurrentPricesLoaderFactory(httpClient: httpClient, baseURL: baseURL, token: token, store: store).makeRemoteCurrentPriceLoader)
     @StateObject var currentPricesFlow = CurrentPricesFlow()
     
     var body: some Scene {
