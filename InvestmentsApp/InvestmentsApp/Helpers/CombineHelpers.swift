@@ -12,7 +12,7 @@ import InvestmentsFrameworks
 public extension CurrentPricesStore {
     typealias Publisher = AnyPublisher<Data, Error>
     
-    func loadCurrentPricePublisher(from ticket: String) -> AnyPublisher<CurrentPrice, Error> {
+    func loadCurrentPricePublisher(for ticket: String) -> AnyPublisher<CurrentPrice, Error> {
         return Deferred {
             Future { completion in
                 completion(Result {

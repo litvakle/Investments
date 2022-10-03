@@ -22,6 +22,15 @@ class CurrentPricesLoaderFactory {
         self.store = store
     }
     
+    func makeRemoteCurrentPriceLoaderWithLocalFeedback(for ticket: String) -> AnyPublisher<CurrentPrice, Error> {
+        makeRemoteCurrentPriceLoader(for: ticket)
+            .caching(to: store, for: ticket)
+            .fallback(to: { [store] in
+                store.loadCurrentPricePublisher(for: ticket)
+            })
+            .eraseToAnyPublisher()
+    }
+    
     func makeRemoteCurrentPriceLoader(for ticket: String) -> AnyPublisher<CurrentPrice, Error> {
         let url = CurrentPriceEndPoint.get(forTicket: ticket).url(baseURL: baseURL, token: token)
 

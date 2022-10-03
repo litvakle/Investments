@@ -50,15 +50,40 @@ class CurrentPricesAcceptranceTests: XCTestCase {
         
         let exp = expectation(description: "Wait for load prices")
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             exp.fulfill()
         }
         
-        wait(for: [exp], timeout: 1)
+        wait(for: [exp], timeout: 0.5)
         
         XCTAssertTrue((try sut.portfolioView().price(at: 0).string()).contains("100"))
         XCTAssertTrue((try sut.portfolioView().price(at: 1).string()).contains("200"))
         XCTAssertTrue((try sut.portfolioView().price(at: 2).string()).contains("300"))
+    }
+    
+    func test_onLaunch_loadsCachedCurrentPricesWhenUserHasNoConnectivity() throws {
+        let sharedStore = InMemoryStore.withStoredData
+        let onlineSUT = launch(httpClient: .online(response), store: sharedStore)
+        try onlineSUT.callOnAppear()
+        
+        let exp0 = expectation(description: "Wait for load and cache prices")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            exp0.fulfill()
+        }
+        wait(for: [exp0], timeout: 0.5)
+        
+        let offlineSUT = launch(httpClient: .offline, store: sharedStore)
+        try offlineSUT.callOnAppear()
+        
+        let exp1 = expectation(description: "Wait for load prices")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            exp1.fulfill()
+        }
+        wait(for: [exp1], timeout: 1)
+
+        XCTAssertTrue((try offlineSUT.portfolioView().price(at: 0).string()).contains("100"))
+        XCTAssertTrue((try offlineSUT.portfolioView().price(at: 1).string()).contains("200"))
+        XCTAssertTrue((try offlineSUT.portfolioView().price(at: 2).string()).contains("300"))
     }
     
     private func makeSUT(
@@ -111,7 +136,7 @@ class CurrentPricesAcceptranceTests: XCTestCase {
             token: "token",
             store: store
         )
-        let currentPricesViewModel = CurrentPricesViewModel(loader: loaderFactory.makeRemoteCurrentPriceLoader)
+        let currentPricesViewModel = CurrentPricesViewModel(loader: loaderFactory.makeRemoteCurrentPriceLoaderWithLocalFeedback)
         let currentPricesFlow = CurrentPricesFlow()
         let sut = ContentView(
             transactionsViewModel: transactionsViewModel,
