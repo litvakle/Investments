@@ -23,6 +23,14 @@ class CurrentPricesFlowTests: XCTestCase {
         XCTAssertEqual(currentPriceLoader.loadFeedCallCount, 1, "Expected only one load for 'CCC' ticket")
     }
     
+    func test_currentPricesFlow_loadsCurrentPricesForStoredTransactionTickets() {
+        let (sut, transactionsViewModel, currentPricesViewModel, currentPriceLoader, alertViewModel) = makeSUT(store: .withStoredData)
+
+        sut.setupSubscriptions(currentPricesViewModel: currentPricesViewModel, transactionsViewModel: transactionsViewModel, alertViewModel: alertViewModel)
+        
+        XCTAssertEqual(currentPriceLoader.loadFeedCallCount, 3, "Expected load for each ticket")
+    }
+    
     func test_currentPricesFlow_activatesErrorMessageOnlyOnError() throws {
         let (sut, transactionsViewModel, currentPricesViewModel, _, alertViewModel) = makeSUT()
         sut.setupSubscriptions(currentPricesViewModel: currentPricesViewModel, transactionsViewModel: transactionsViewModel, alertViewModel: alertViewModel)
