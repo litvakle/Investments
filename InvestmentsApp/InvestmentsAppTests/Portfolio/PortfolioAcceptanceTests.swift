@@ -25,6 +25,14 @@ class PortfolioAcceptanceTests: XCTestCase {
         XCTAssertEqual(try sut.portfolioView().items().count, 4, "Expected updated list including ticket for new transaction")
     }
     
+    func test_portfolio_rendersItemsForStoredTransactions() throws {
+        let (sut, _) = makeSUT(store: .withStoredData)
+        
+        try sut.callOnAppear()
+
+        XCTAssertEqual(try sut.portfolioView().items().count, 3)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(
