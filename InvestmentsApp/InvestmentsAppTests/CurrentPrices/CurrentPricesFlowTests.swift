@@ -12,7 +12,7 @@ import InvestmentsFrameworks
 
 class CurrentPricesFlowTests: XCTestCase {
     func test_transactionsUpdate_leadsToUpdateCurrentPricesOnlyForTicketsWithoutPrices() {
-        let (sut, transactionsViewModel, currentPricesViewModel, currentPriceLoader, alertViewModel) = makeSUT(transactions: [])
+        let (sut, transactionsViewModel, currentPricesViewModel, currentPriceLoader, alertViewModel) = makeSUT()
         sut.setupSubscriptions(currentPricesViewModel: currentPricesViewModel, transactionsViewModel: transactionsViewModel, alertViewModel: alertViewModel)
         currentPricesViewModel.currentPrices = [
             "AAA": CurrentPrice(price: 100),
@@ -24,7 +24,7 @@ class CurrentPricesFlowTests: XCTestCase {
     }
     
     func test_currentPricesFlow_activatesErrorMessageOnlyOnError() throws {
-        let (sut, transactionsViewModel, currentPricesViewModel, _, alertViewModel) = makeSUT(transactions: [])
+        let (sut, transactionsViewModel, currentPricesViewModel, _, alertViewModel) = makeSUT()
         sut.setupSubscriptions(currentPricesViewModel: currentPricesViewModel, transactionsViewModel: transactionsViewModel, alertViewModel: alertViewModel)
 
         currentPricesViewModel.error = nil
@@ -37,12 +37,10 @@ class CurrentPricesFlowTests: XCTestCase {
     // MARK: - Helpers
     
     private func makeSUT(
-        transactions: [Transaction],
+        store: InMemoryStore = .empty,
         file: StaticString = #filePath,
         line: UInt = #line
     ) -> (CurrentPricesFlow, TransactionsViewModel, CurrentPricesViewModel, CurrentPriceLoaderSpy, AlertViewModel) {
-        let store = InMemoryTransactionsStore()
-        store.transactions = transactions
         let transactionsViewModel = TransactionsViewModel(store: store)
         transactionsViewModel.retrieve()
         let currentPriceLoader = CurrentPriceLoaderSpy()

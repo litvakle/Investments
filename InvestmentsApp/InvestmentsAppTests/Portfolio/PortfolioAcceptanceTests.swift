@@ -13,7 +13,7 @@ import ViewInspector
 
 class PortfolioAcceptanceTests: XCTestCase {
     func test_portfolio_rendersAccordingToTransactions() throws {
-        let (sut, transactionsViewModel) = makeSUT(transactions: [])
+        let (sut, transactionsViewModel) = makeSUT()
         try sut.callOnAppear()
 
         XCTAssertEqual(try sut.portfolioView().items().count, 0, "Expected empty list for empty store")
@@ -28,12 +28,10 @@ class PortfolioAcceptanceTests: XCTestCase {
     // MARK: - Helpers
     
     private func makeSUT(
-        transactions: [Transaction],
+        store: InMemoryStore = .empty,
         file: StaticString = #filePath,
         line: UInt = #line
     ) -> (ContentView, TransactionsViewModel) {
-        let store = InMemoryTransactionsStore()
-        store.transactions = transactions
         let transactionsViewModel = TransactionsViewModelFactory.createViewModel(store: store)
         let alertViewModel = AlertViewModel()
         let mainFlow = MainFlow()

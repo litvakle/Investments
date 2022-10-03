@@ -84,8 +84,8 @@ class TransactionsViewTests: XCTestCase {
         onDelete: @escaping (Transaction) -> Void = { _ in },
         file: StaticString = #filePath,
         line: UInt = #line
-    ) -> (sut: TransactionsView, viewModel: TransactionsViewModel, store: InMemoryTransactionsStore) {
-        let store = InMemoryTransactionsStore()
+    ) -> (sut: TransactionsView, viewModel: TransactionsViewModel, store: InMemoryStore) {
+        let store = InMemoryStore.withStoredData
         let viewModel = TransactionsViewModel(store: store)
         let sut = TransactionsView(
             viewModel: viewModel,

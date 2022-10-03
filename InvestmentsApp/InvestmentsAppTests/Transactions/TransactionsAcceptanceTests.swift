@@ -82,10 +82,10 @@ class TransactionsAcceptanceTests: XCTestCase {
     // MARK: - Helpers
     
     private func makeSUT(
+        store: InMemoryStore = storeWithStoredTransactions,
         file: StaticString = #filePath,
         line: UInt = #line
     ) -> (sut: ContentView, mainFlow: MainFlow, transactionsViewModel: TransactionsViewModel) {
-        let store = InMemoryTransactionsStore()
         let transactionsViewModel = TransactionsViewModelFactory.createViewModel(store: store)
         let alertViewModel = AlertViewModel()
         let mainFlow = MainFlow()
@@ -119,6 +119,15 @@ class TransactionsAcceptanceTests: XCTestCase {
     private func currentPriceLoader() -> AnyPublisher<CurrentPrice, Error> {
         PassthroughSubject<CurrentPrice, Error>().eraseToAnyPublisher()
     }
+    
+    static private var storeWithStoredTransactions: InMemoryStore {
+        InMemoryStore(
+            transactions: [
+                Transaction(ticket: "AAA", quantity: 2, price: 10, sum: 20),
+                Transaction(ticket: "BBB", quantity: 1, price: 30, sum: 30)
+            ]
+        )
+    }
 }
 
 private extension ContentView {
@@ -132,6 +141,4 @@ private extension ContentView {
             .find(ViewType.NavigationLink.self)
             .view(TransactionView.self).actualView()
     }
-    
-    
 }

@@ -21,7 +21,7 @@
 		3AA9C1AA28DAE4FC00C1E37B /* TransactionViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA9C1A928DAE4FC00C1E37B /* TransactionViewTests.swift */; };
 		3AA9C1AD28DAE56B00C1E37B /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA9C1AC28DAE56B00C1E37B /* XCTestCase+MemoryLeakTracking.swift */; };
 		3AA9C1AF28DB1DC100C1E37B /* TransactionsAcceptanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA9C1AE28DB1DC100C1E37B /* TransactionsAcceptanceTests.swift */; };
-		3AA9C1B128DB40E200C1E37B /* InMemoryTransactionsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA9C1B028DB40E200C1E37B /* InMemoryTransactionsStore.swift */; };
+		3AA9C1B128DB40E200C1E37B /* InMemoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA9C1B028DB40E200C1E37B /* InMemoryStore.swift */; };
 		3AA9C1B328DB4B1A00C1E37B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA9C1B228DB4B1A00C1E37B /* ContentView.swift */; };
 		3AA9C1B528DB4BEB00C1E37B /* TransactionsStoreFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA9C1B428DB4BEB00C1E37B /* TransactionsStoreFactory.swift */; };
 		3AA9C1B928DB533F00C1E37B /* TransactionsView+ViewInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA9C1B828DB533F00C1E37B /* TransactionsView+ViewInspector.swift */; };
@@ -85,7 +85,7 @@
 		3AA9C1A928DAE4FC00C1E37B /* TransactionViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewTests.swift; sourceTree = "<group>"; };
 		3AA9C1AC28DAE56B00C1E37B /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 		3AA9C1AE28DB1DC100C1E37B /* TransactionsAcceptanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsAcceptanceTests.swift; sourceTree = "<group>"; };
-		3AA9C1B028DB40E200C1E37B /* InMemoryTransactionsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryTransactionsStore.swift; sourceTree = "<group>"; };
+		3AA9C1B028DB40E200C1E37B /* InMemoryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryStore.swift; sourceTree = "<group>"; };
 		3AA9C1B228DB4B1A00C1E37B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		3AA9C1B428DB4BEB00C1E37B /* TransactionsStoreFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsStoreFactory.swift; sourceTree = "<group>"; };
 		3AA9C1B828DB533F00C1E37B /* TransactionsView+ViewInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TransactionsView+ViewInspector.swift"; sourceTree = "<group>"; };
@@ -197,7 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				3AA9C1AC28DAE56B00C1E37B /* XCTestCase+MemoryLeakTracking.swift */,
-				3AA9C1B028DB40E200C1E37B /* InMemoryTransactionsStore.swift */,
+				3AA9C1B028DB40E200C1E37B /* InMemoryStore.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -488,7 +488,7 @@
 				3A7648E828E2A65500B810B7 /* PortfolioFlowTests.swift in Sources */,
 				3AAAA87E28D9B72600E0DF6B /* AlertViewModelTests.swift in Sources */,
 				3A7648EC28E2ACE200B810B7 /* PortfolioAcceptanceTests.swift in Sources */,
-				3AA9C1B128DB40E200C1E37B /* InMemoryTransactionsStore.swift in Sources */,
+				3AA9C1B128DB40E200C1E37B /* InMemoryStore.swift in Sources */,
 				3AA9C1AD28DAE56B00C1E37B /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 				3A76493928E6DC6400B810B7 /* CurrentPricesAcceptranceTests.swift in Sources */,
 				3A76493428E6A81900B810B7 /* CurrentPricesFlowTests.swift in Sources */,

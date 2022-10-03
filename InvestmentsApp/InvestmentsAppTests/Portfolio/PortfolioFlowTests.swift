@@ -12,7 +12,7 @@ import Combine
 
 class PortfolioFlowTests: XCTestCase {
     func test_saveTransaction_leadsToUpdatePortfolio() {
-        let (sut, transactionsViewModel, portfolioViewModel, currentPricesViewModel) = makeSUT(transactions: [])
+        let (sut, transactionsViewModel, portfolioViewModel, currentPricesViewModel) = makeSUT(store: .empty)
         
         sut.setupSubscriptions(portfolioViewModel: portfolioViewModel, transactionsViewModel: transactionsViewModel, currentPricesViewModel: currentPricesViewModel)
         currentPricesViewModel.currentPrices = makeCurrentPrices()
@@ -23,7 +23,7 @@ class PortfolioFlowTests: XCTestCase {
     }
     
     func test_initWithStoredTransactions_createsPotrfolioItems() {
-        let (sut, transactionsViewModel, portfolioViewModel, currentPricesViewModel) = makeSUT(transactions: makePortfolioTransactions())
+        let (sut, transactionsViewModel, portfolioViewModel, currentPricesViewModel) = makeSUT()
         
         sut.setupSubscriptions(portfolioViewModel: portfolioViewModel, transactionsViewModel: transactionsViewModel, currentPricesViewModel: currentPricesViewModel)
         currentPricesViewModel.currentPrices = makeCurrentPrices()
@@ -32,8 +32,7 @@ class PortfolioFlowTests: XCTestCase {
     }
     
     func test_currentPricesUpdate_leadsToUpdatePortfolio() {
-        let transactions = makePortfolioTransactions()
-        let (sut, transactionsViewModel, portfolioViewModel, currentPricesViewModel) = makeSUT(transactions: transactions)
+        let (sut, transactionsViewModel, portfolioViewModel, currentPricesViewModel) = makeSUT()
         
         sut.setupSubscriptions(portfolioViewModel: portfolioViewModel, transactionsViewModel: transactionsViewModel, currentPricesViewModel: currentPricesViewModel)
         currentPricesViewModel.currentPrices = makeCurrentPrices()
@@ -45,12 +44,10 @@ class PortfolioFlowTests: XCTestCase {
     // MARK: - Helpers
     
     private func makeSUT(
-        transactions: [Transaction],
+        store: InMemoryStore = .withStoredData,
         file: StaticString = #filePath,
         line: UInt = #line
     ) -> (PortfolioFlow, TransactionsViewModel, PortfolioViewModel, CurrentPricesViewModel) {
-        let store = InMemoryTransactionsStore()
-        store.transactions = transactions
         let transactionsViewModel = TransactionsViewModel(store: store)
         transactionsViewModel.retrieve()
         let portfolioViewModel = PortfolioViewModel()
