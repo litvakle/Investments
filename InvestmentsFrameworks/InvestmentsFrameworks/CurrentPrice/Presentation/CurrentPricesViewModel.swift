@@ -15,6 +15,10 @@ public class CurrentPricesViewModel: ObservableObject {
     @Published public private(set) var loadingTickets = Set<String>()
     @Published public var error: String?
 
+    var isLoading: Bool {
+        !loadingTickets.isEmpty
+    }
+    
     public let loader: CurrentPriceLoader
     var cancellables = Set<AnyCancellable>()
     
@@ -23,6 +27,7 @@ public class CurrentPricesViewModel: ObservableObject {
     }
     
     public func loadPrices(for tickets: [String]) {
+        guard !isLoading else { return }
         error = nil
         
         tickets.forEach { [weak self] ticket in

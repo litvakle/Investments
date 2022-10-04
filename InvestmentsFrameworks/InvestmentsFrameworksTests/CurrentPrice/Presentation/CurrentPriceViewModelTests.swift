@@ -18,13 +18,21 @@ class CurrentPriceViewModelTests: XCTestCase {
     
     func test_loadPrices_requestsLoader() {
         let (sut, loader) = makeSUT()
+        let tickets = ["AAA", "BBB"]
+        
+        sut.loadPrices(for: tickets)
+        
+        XCTAssertEqual(loader.requests.count, 2)
+    }
+    
+    func test_loadPrices_doesNotRequestLoaderIfItIsBusy() {
+        let (sut, loader) = makeSUT()
         let tickets0 = ["AAA", "BBB"]
         let tickets1 = ["CCC"]
         
         sut.loadPrices(for: tickets0)
         sut.loadPrices(for: tickets1)
-        
-        XCTAssertEqual(loader.requests.count, 3)
+        XCTAssertEqual(loader.requests.count, 2)
     }
     
     func test_loadPrices_deliversErrorOnErrorWithAtLeastOneTicket() {
