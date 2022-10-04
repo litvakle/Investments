@@ -46,15 +46,8 @@ class CurrentPricesAcceptranceTests: XCTestCase {
     
     func test_onLaunch_loadsCurrentPricesWhenUserHasConnectivity() throws {
         let sut = launch(httpClient: .online(response), store: .withStoredData)
+
         try sut.callOnAppear()
-        
-        let exp = expectation(description: "Wait for load prices")
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            exp.fulfill()
-        }
-        
-        wait(for: [exp], timeout: 0.5)
         
         XCTAssertTrue((try sut.portfolioView().price(at: 0).string()).contains("100"))
         XCTAssertTrue((try sut.portfolioView().price(at: 1).string()).contains("200"))
@@ -66,21 +59,9 @@ class CurrentPricesAcceptranceTests: XCTestCase {
         let onlineSUT = launch(httpClient: .online(response), store: sharedStore)
         try onlineSUT.callOnAppear()
         
-        let exp0 = expectation(description: "Wait for load and cache prices")
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            exp0.fulfill()
-        }
-        wait(for: [exp0], timeout: 0.5)
-        
         let offlineSUT = launch(httpClient: .offline, store: sharedStore)
         try offlineSUT.callOnAppear()
         
-        let exp1 = expectation(description: "Wait for load prices")
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            exp1.fulfill()
-        }
-        wait(for: [exp1], timeout: 1)
-
         XCTAssertTrue((try offlineSUT.portfolioView().price(at: 0).string()).contains("100"))
         XCTAssertTrue((try offlineSUT.portfolioView().price(at: 1).string()).contains("200"))
         XCTAssertTrue((try offlineSUT.portfolioView().price(at: 2).string()).contains("300"))
