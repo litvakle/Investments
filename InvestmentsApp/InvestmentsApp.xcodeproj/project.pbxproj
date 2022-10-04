@@ -42,7 +42,7 @@
 		3AAAA87E28D9B72600E0DF6B /* AlertViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA87D28D9B72600E0DF6B /* AlertViewModelTests.swift */; };
 		3AAAA88028D9B7B400E0DF6B /* AlertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA87F28D9B7B400E0DF6B /* AlertViewModel.swift */; };
 		3AAAA88228D9B93000E0DF6B /* MainFlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA88128D9B93000E0DF6B /* MainFlowTests.swift */; };
-		3AAAA88428D9B95000E0DF6B /* MainFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA88328D9B95000E0DF6B /* MainFlow.swift */; };
+		3AAAA88428D9B95000E0DF6B /* TransactionsFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA88328D9B95000E0DF6B /* TransactionsFlow.swift */; };
 		3AAAA88C28D9C10B00E0DF6B /* NullStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA88B28D9C10B00E0DF6B /* NullStore.swift */; };
 		3AAAA88E28D9C21E00E0DF6B /* TransactionsViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA88D28D9C21E00E0DF6B /* TransactionsViewModelFactory.swift */; };
 		3AAAA89328D9E4B800E0DF6B /* TransactionsViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA89228D9E4B800E0DF6B /* TransactionsViewTests.swift */; };
@@ -108,7 +108,7 @@
 		3AAAA87D28D9B72600E0DF6B /* AlertViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewModelTests.swift; sourceTree = "<group>"; };
 		3AAAA87F28D9B7B400E0DF6B /* AlertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewModel.swift; sourceTree = "<group>"; };
 		3AAAA88128D9B93000E0DF6B /* MainFlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlowTests.swift; sourceTree = "<group>"; };
-		3AAAA88328D9B95000E0DF6B /* MainFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlow.swift; sourceTree = "<group>"; };
+		3AAAA88328D9B95000E0DF6B /* TransactionsFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsFlow.swift; sourceTree = "<group>"; };
 		3AAAA88B28D9C10B00E0DF6B /* NullStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NullStore.swift; sourceTree = "<group>"; };
 		3AAAA88D28D9C21E00E0DF6B /* TransactionsViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsViewModelFactory.swift; sourceTree = "<group>"; };
 		3AAAA89228D9E4B800E0DF6B /* TransactionsViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsViewTests.swift; sourceTree = "<group>"; };
@@ -248,7 +248,7 @@
 			children = (
 				3AAAA88928D9C07D00E0DF6B /* Helpers */,
 				3AAAA81E28D2DDC900E0DF6B /* InvestmentsApp.swift */,
-				3AAAA88328D9B95000E0DF6B /* MainFlow.swift */,
+				3AAAA88328D9B95000E0DF6B /* TransactionsFlow.swift */,
 				3AA9C1B228DB4B1A00C1E37B /* ContentView.swift */,
 				3A7648E928E2A77C00B810B7 /* PortfolioFlow.swift */,
 				3AAAA87F28D9B7B400E0DF6B /* AlertViewModel.swift */,
@@ -460,7 +460,7 @@
 				3A14587628E1D25C00AD1EF5 /* PortfolioView.swift in Sources */,
 				3A76493E28EACC6D00B810B7 /* CurrentPricesLoaderFactory.swift in Sources */,
 				3AAAA82128D2DDC900E0DF6B /* TransactionsView.swift in Sources */,
-				3AAAA88428D9B95000E0DF6B /* MainFlow.swift in Sources */,
+				3AAAA88428D9B95000E0DF6B /* TransactionsFlow.swift in Sources */,
 				3A7648EA28E2A77C00B810B7 /* PortfolioFlow.swift in Sources */,
 				3AAAA83828D309B500E0DF6B /* Date+Helpers.swift in Sources */,
 				3AAAA88028D9B7B400E0DF6B /* AlertViewModel.swift in Sources */,

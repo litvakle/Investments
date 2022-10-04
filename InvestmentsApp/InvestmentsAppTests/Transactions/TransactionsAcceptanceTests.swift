@@ -49,32 +49,32 @@ class TransactionsAcceptanceTests: XCTestCase {
     }
     
     func test_onAddNewTransaction_navigatesToTransactionView() throws {
-        let (sut, mainFlow, _) = makeSUT()
+        let (sut, transactionsFlow, _) = makeSUT()
         let transactionsView = try sut.transactionsView()
         
-        XCTAssertFalse(mainFlow.navigationState.isActive)
+        XCTAssertFalse(transactionsFlow.navigationState.isActive)
         
         try transactionsView.addNewTransaction().tap()
         
-        XCTAssertTrue(mainFlow.navigationState.isActive)
+        XCTAssertTrue(transactionsFlow.navigationState.isActive)
     }
     
     func test_onSaveNewTransaction_dismissesTransactionViewAndRendersSavedTransaction() throws {
-        let (sut, mainFlow, transactionsViewModel) = makeSUT()
+        let (sut, transactionsFlow, transactionsViewModel) = makeSUT()
         let transactionsView = try sut.transactionsView()
         
-        mainFlow.selectedTransaction = Transaction(ticket: "MMM", type: .buy, quantity: 10, price:2, sum: 20)
-        mainFlow.navigationState.activate()
+        transactionsFlow.selectedTransaction = Transaction(ticket: "MMM", type: .buy, quantity: 10, price:2, sum: 20)
+        transactionsFlow.navigationState.activate()
         
         let transactionView = try sut.transactionView()
         
-        XCTAssertTrue(mainFlow.navigationState.isActive)
+        XCTAssertTrue(transactionsFlow.navigationState.isActive)
         XCTAssertEqual(transactionsViewModel.transactions.count, 2)
         XCTAssertEqual(try transactionsView.transactions().count, 2)
         
         try transactionView.saveTransaction().tap()
         
-        XCTAssertFalse(mainFlow.navigationState.isActive)
+        XCTAssertFalse(transactionsFlow.navigationState.isActive)
         XCTAssertEqual(transactionsViewModel.transactions.count, 3)
         XCTAssertEqual(try transactionsView.transactions().count, 3)
     }
@@ -85,10 +85,10 @@ class TransactionsAcceptanceTests: XCTestCase {
         store: InMemoryStore = storeWithStoredTransactions,
         file: StaticString = #filePath,
         line: UInt = #line
-    ) -> (sut: ContentView, mainFlow: MainFlow, transactionsViewModel: TransactionsViewModel) {
+    ) -> (sut: ContentView, transactionsFlow: TransactionsFlow, transactionsViewModel: TransactionsViewModel) {
         let transactionsViewModel = TransactionsViewModelFactory.createViewModel(store: store)
         let alertViewModel = AlertViewModel()
-        let mainFlow = MainFlow()
+        let transactionsFlow = TransactionsFlow()
         let portfolioFlow = PortfolioFlow()
         let portfolioViewModel = PortfolioViewModel()
         let currentPricesFlow = CurrentPricesFlow()
@@ -99,7 +99,7 @@ class TransactionsAcceptanceTests: XCTestCase {
             portfolioViewModel: portfolioViewModel,
             currentPricesViewModel: currentPricesViewModel,
             alertViewModel: alertViewModel,
-            mainFlow: mainFlow,
+            transactionsFlow: transactionsFlow,
             portfolioFlow: portfolioFlow,
             currentPricesFlow: currentPricesFlow
         )
@@ -110,10 +110,10 @@ class TransactionsAcceptanceTests: XCTestCase {
         trackForMemoryLeaks(alertViewModel, file: file, line: line)
         trackForMemoryLeaks(currentPriceLoader, file: file, line: line)
         trackForMemoryLeaks(currentPricesViewModel, file: file, line: line)
-        trackForMemoryLeaks(mainFlow, file: file, line: line)
+        trackForMemoryLeaks(transactionsFlow, file: file, line: line)
         trackForMemoryLeaks(portfolioFlow, file: file, line: line)
         
-        return (sut, mainFlow, transactionsViewModel)
+        return (sut, transactionsFlow, transactionsViewModel)
     }
     
     private func currentPriceLoader() -> AnyPublisher<CurrentPrice, Error> {

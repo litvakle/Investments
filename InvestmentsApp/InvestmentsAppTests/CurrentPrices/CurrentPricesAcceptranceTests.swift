@@ -75,7 +75,7 @@ class CurrentPricesAcceptranceTests: XCTestCase {
     ) -> (ContentView, TransactionsViewModel, CurrentPricesViewModel, CurrentPriceLoaderSpy, AlertViewModel) {
         let transactionsViewModel = TransactionsViewModelFactory.createViewModel(store: store)
         let alertViewModel = AlertViewModel()
-        let mainFlow = MainFlow()
+        let transactionsFlow = TransactionsFlow()
         let portfolioViewModel = PortfolioViewModel()
         let portfolioFlow = PortfolioFlow()
         let currentPriceLoader = CurrentPriceLoaderSpy()
@@ -86,7 +86,7 @@ class CurrentPricesAcceptranceTests: XCTestCase {
             portfolioViewModel: portfolioViewModel,
             currentPricesViewModel: currentPricesViewModel,
             alertViewModel: alertViewModel,
-            mainFlow: mainFlow,
+            transactionsFlow: transactionsFlow,
             portfolioFlow: portfolioFlow,
             currentPricesFlow: currentPricesFlow
         )
@@ -94,7 +94,7 @@ class CurrentPricesAcceptranceTests: XCTestCase {
         trackForMemoryLeaks(portfolioViewModel, file: file, line: line)
         trackForMemoryLeaks(transactionsViewModel, file: file, line: line)
         trackForMemoryLeaks(alertViewModel, file: file, line: line)
-        trackForMemoryLeaks(mainFlow, file: file, line: line)
+        trackForMemoryLeaks(transactionsFlow, file: file, line: line)
         trackForMemoryLeaks(portfolioFlow, file: file, line: line)
         
         return (sut, transactionsViewModel, currentPricesViewModel, currentPriceLoader, alertViewModel)
@@ -108,7 +108,7 @@ class CurrentPricesAcceptranceTests: XCTestCase {
     ) -> ContentView {
         let transactionsViewModel = TransactionsViewModelFactory.createViewModel(store: store)
         let alertViewModel = AlertViewModel()
-        let mainFlow = MainFlow()
+        let transactionsFlow = TransactionsFlow()
         let portfolioViewModel = PortfolioViewModel()
         let portfolioFlow = PortfolioFlow()
         let loaderFactory = CurrentPricesLoaderFactory(
@@ -124,7 +124,7 @@ class CurrentPricesAcceptranceTests: XCTestCase {
             portfolioViewModel: portfolioViewModel,
             currentPricesViewModel: currentPricesViewModel,
             alertViewModel: alertViewModel,
-            mainFlow: mainFlow,
+            transactionsFlow: transactionsFlow,
             portfolioFlow: portfolioFlow,
             currentPricesFlow: currentPricesFlow
         )
@@ -132,7 +132,7 @@ class CurrentPricesAcceptranceTests: XCTestCase {
         trackForMemoryLeaks(portfolioViewModel, file: file, line: line)
         trackForMemoryLeaks(transactionsViewModel, file: file, line: line)
         trackForMemoryLeaks(alertViewModel, file: file, line: line)
-        trackForMemoryLeaks(mainFlow, file: file, line: line)
+        trackForMemoryLeaks(transactionsFlow, file: file, line: line)
         trackForMemoryLeaks(portfolioFlow, file: file, line: line)
         
         return sut

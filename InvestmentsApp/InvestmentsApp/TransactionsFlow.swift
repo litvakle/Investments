@@ -1,5 +1,5 @@
 //
-//  MainFlow.swift
+//  TransactionsFlow.swift
 //  InvestmentsApp
 //
 //  Created by Lev Litvak on 20.09.2022.
@@ -9,7 +9,7 @@ import Combine
 import InvestmentsFrameworks
 import SwiftUI
 
-class MainFlow: ObservableObject {
+class TransactionsFlow: ObservableObject {
     @Published var navigationState = NavigationState()
     @Published var selectedTransaction: InvestmentTransaction?
     

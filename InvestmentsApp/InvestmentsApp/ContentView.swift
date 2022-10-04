@@ -13,7 +13,7 @@ struct ContentView: View {
     @ObservedObject var portfolioViewModel: PortfolioViewModel
     @ObservedObject var currentPricesViewModel: CurrentPricesViewModel
     @ObservedObject var alertViewModel: AlertViewModel
-    @ObservedObject var mainFlow: MainFlow
+    @ObservedObject var transactionsFlow: TransactionsFlow
     @ObservedObject var portfolioFlow: PortfolioFlow
     @ObservedObject var currentPricesFlow: CurrentPricesFlow
     
@@ -27,7 +27,7 @@ struct ContentView: View {
             }
             
             NavigationView {
-                mainFlow.showTransactionsView(transactionsViewModel: transactionsViewModel)
+                transactionsFlow.showTransactionsView(transactionsViewModel: transactionsViewModel)
             }.tabItem {
                 Image(systemName: "list.bullet.circle")
             }
@@ -39,7 +39,7 @@ struct ContentView: View {
         })
         .accessibilityIdentifier("MAIN_TAB_VIEW")
         .onAppear {
-            mainFlow.setupSubscriptions(
+            transactionsFlow.setupSubscriptions(
                 transactionsViewModel: transactionsViewModel,
                 alertViewModel: alertViewModel
             )

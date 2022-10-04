@@ -20,7 +20,7 @@ private let store = StoreFactory.create()
 struct InvestmentsApp: App {
     @StateObject var transactionsViewModel = TransactionsViewModelFactory.createViewModel(store: store)
     @StateObject var alertViewModel = AlertViewModel()
-    @StateObject var mainFlow = MainFlow()
+    @StateObject var transactionsFlow = TransactionsFlow()
     @StateObject var portfolioFlow = PortfolioFlow()
     @StateObject var portfolioViewModel = PortfolioViewModel()
     @StateObject var currentPricesViewModel = CurrentPricesViewModel(loader: CurrentPricesLoaderFactory(httpClient: httpClient, baseURL: baseURL, token: token, store: store).makeRemoteCurrentPriceLoader)
@@ -33,7 +33,7 @@ struct InvestmentsApp: App {
                 portfolioViewModel: portfolioViewModel,
                 currentPricesViewModel: currentPricesViewModel,
                 alertViewModel: alertViewModel,
-                mainFlow: mainFlow,
+                transactionsFlow: transactionsFlow,
                 portfolioFlow: portfolioFlow,
                 currentPricesFlow: currentPricesFlow)
         }

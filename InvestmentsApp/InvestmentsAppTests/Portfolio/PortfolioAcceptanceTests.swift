@@ -42,7 +42,7 @@ class PortfolioAcceptanceTests: XCTestCase {
     ) -> (ContentView, TransactionsViewModel) {
         let transactionsViewModel = TransactionsViewModelFactory.createViewModel(store: store)
         let alertViewModel = AlertViewModel()
-        let mainFlow = MainFlow()
+        let transactionsFlow = TransactionsFlow()
         let portfolioViewModel = PortfolioViewModel()
         let portfolioFlow = PortfolioFlow()
         let currentPricesFlow = CurrentPricesFlow()
@@ -52,7 +52,7 @@ class PortfolioAcceptanceTests: XCTestCase {
             portfolioViewModel: portfolioViewModel,
             currentPricesViewModel: CurrentPricesViewModel(loader: currentPriceLoader.loadPublisher),
             alertViewModel: alertViewModel,
-            mainFlow: mainFlow,
+            transactionsFlow: transactionsFlow,
             portfolioFlow: portfolioFlow,
             currentPricesFlow: currentPricesFlow
         )
@@ -61,7 +61,7 @@ class PortfolioAcceptanceTests: XCTestCase {
         trackForMemoryLeaks(portfolioViewModel, file: file, line: line)
         trackForMemoryLeaks(transactionsViewModel, file: file, line: line)
         trackForMemoryLeaks(alertViewModel, file: file, line: line)
-        trackForMemoryLeaks(mainFlow, file: file, line: line)
+        trackForMemoryLeaks(transactionsFlow, file: file, line: line)
         trackForMemoryLeaks(portfolioFlow, file: file, line: line)
         trackForMemoryLeaks(currentPricesFlow, file: file, line: line)
         

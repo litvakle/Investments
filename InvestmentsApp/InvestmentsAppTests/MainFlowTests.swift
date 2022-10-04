@@ -1,5 +1,5 @@
 //
-//  MainFlowTests.swift
+//  TransactionsFlowTests.swift
 //  InvestmentsAppTests
 //
 //  Created by Lev Litvak on 20.09.2022.
@@ -9,12 +9,12 @@ import XCTest
 import InvestmentsFrameworks
 @testable import InvestmentsApp
 
-class MainFlowTests: XCTestCase {
+class TransactionsFlowTests: XCTestCase {
     func test_transactionsError_leadsToAlert() {
         let store = TransactionsStoreStub()
         let transactionsViewModel = TransactionsViewModel(store: store)
         let alertViewModel = AlertViewModel()
-        let sut = MainFlow()
+        let sut = TransactionsFlow()
         sut.setupSubscriptions(
             transactionsViewModel: transactionsViewModel,
             alertViewModel: alertViewModel
