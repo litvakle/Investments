@@ -156,6 +156,7 @@
 		3A14587328E1D24900AD1EF5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3A7648E928E2A77C00B810B7 /* PortfolioFlow.swift */,
 				3A14587528E1D25C00AD1EF5 /* PortfolioView.swift */,
 			);
 			path = Views;
@@ -248,9 +249,7 @@
 			children = (
 				3AAAA88928D9C07D00E0DF6B /* Helpers */,
 				3AAAA81E28D2DDC900E0DF6B /* InvestmentsApp.swift */,
-				3AAAA88328D9B95000E0DF6B /* TransactionsFlow.swift */,
 				3AA9C1B228DB4B1A00C1E37B /* ContentView.swift */,
-				3A7648E928E2A77C00B810B7 /* PortfolioFlow.swift */,
 				3AAAA87F28D9B7B400E0DF6B /* AlertViewModel.swift */,
 				3AAAA83B28D30CC200E0DF6B /* Transactions */,
 				3A14587228E1D23E00AD1EF5 /* Portfolio */,
@@ -301,6 +300,7 @@
 			isa = PBXGroup;
 			children = (
 				3AAAA86B28D755EF00E0DF6B /* Helpers */,
+				3AAAA88328D9B95000E0DF6B /* TransactionsFlow.swift */,
 				3AAAA82028D2DDC900E0DF6B /* TransactionsView.swift */,
 				3AAAA83528D303B300E0DF6B /* TransactionView.swift */,
 			);
