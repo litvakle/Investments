@@ -18,7 +18,6 @@
 		3A76493928E6DC6400B810B7 /* CurrentPricesAcceptranceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A76493828E6DC6400B810B7 /* CurrentPricesAcceptranceTests.swift */; };
 		3A76493C28E6F63300B810B7 /* CurrentPriceLoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A76493B28E6F63300B810B7 /* CurrentPriceLoaderSpy.swift */; };
 		3A76493E28EACC6D00B810B7 /* CurrentPricesLoaderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A76493D28EACC6D00B810B7 /* CurrentPricesLoaderFactory.swift */; };
-		3A76494028EACCD800B810B7 /* CombineHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A76493F28EACCD800B810B7 /* CombineHelpers.swift */; };
 		3AA9C1A828D9E94200C1E37B /* ViewInspector in Frameworks */ = {isa = PBXBuildFile; productRef = 3AA9C1A728D9E94200C1E37B /* ViewInspector */; };
 		3AA9C1AA28DAE4FC00C1E37B /* TransactionViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA9C1A928DAE4FC00C1E37B /* TransactionViewTests.swift */; };
 		3AA9C1AD28DAE56B00C1E37B /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA9C1AC28DAE56B00C1E37B /* XCTestCase+MemoryLeakTracking.swift */; };
@@ -85,7 +84,6 @@
 		3A76493828E6DC6400B810B7 /* CurrentPricesAcceptranceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentPricesAcceptranceTests.swift; sourceTree = "<group>"; };
 		3A76493B28E6F63300B810B7 /* CurrentPriceLoaderSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentPriceLoaderSpy.swift; sourceTree = "<group>"; };
 		3A76493D28EACC6D00B810B7 /* CurrentPricesLoaderFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentPricesLoaderFactory.swift; sourceTree = "<group>"; };
-		3A76493F28EACCD800B810B7 /* CombineHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineHelpers.swift; sourceTree = "<group>"; };
 		3AA9C1A928DAE4FC00C1E37B /* TransactionViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewTests.swift; sourceTree = "<group>"; };
 		3AA9C1AC28DAE56B00C1E37B /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
 		3AA9C1AE28DB1DC100C1E37B /* TransactionsAcceptanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsAcceptanceTests.swift; sourceTree = "<group>"; };
@@ -344,7 +342,6 @@
 			isa = PBXGroup;
 			children = (
 				3AA9C1B428DB4BEB00C1E37B /* TransactionsStoreFactory.swift */,
-				3A76493F28EACCD800B810B7 /* CombineHelpers.swift */,
 				3AAAA88B28D9C10B00E0DF6B /* NullStore.swift */,
 			);
 			path = Helpers;
@@ -461,7 +458,6 @@
 			files = (
 				3AAAA86F28D98D9C00E0DF6B /* TransactionsViewModel+Preview.swift in Sources */,
 				3A14587628E1D25C00AD1EF5 /* PortfolioView.swift in Sources */,
-				3A76494028EACCD800B810B7 /* CombineHelpers.swift in Sources */,
 				3A76493E28EACC6D00B810B7 /* CurrentPricesLoaderFactory.swift in Sources */,
 				3AAAA82128D2DDC900E0DF6B /* TransactionsView.swift in Sources */,
 				3AAAA88428D9B95000E0DF6B /* MainFlow.swift in Sources */,
