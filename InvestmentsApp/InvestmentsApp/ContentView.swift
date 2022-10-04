@@ -39,6 +39,8 @@ struct ContentView: View {
         })
         .accessibilityIdentifier("MAIN_TAB_VIEW")
         .onAppear {
+            transactionsViewModel.retrieve()
+            
             transactionsFlow.setupSubscriptions(
                 transactionsViewModel: transactionsViewModel,
                 alertViewModel: alertViewModel

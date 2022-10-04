@@ -15,15 +15,16 @@ private let httpClient = URLSessionHTTPClient(session: URLSession(configuration:
 private let baseURL = URL(string: "https://finnhub.io/api")!
 private let token = "ccfe31iad3ifmhk0t53g"
 private let store = StoreFactory.create()
+private let currentPriceLoader = CurrentPricesLoaderFactory(httpClient: httpClient, baseURL: baseURL, token: token, store: store).makeRemoteCurrentPriceLoaderWithLocalFeedback
 
 @main
 struct InvestmentsApp: App {
-    @StateObject var transactionsViewModel = TransactionsViewModelFactory.createViewModel(store: store)
+    @StateObject var transactionsViewModel = TransactionsViewModel(store: store)
     @StateObject var alertViewModel = AlertViewModel()
     @StateObject var transactionsFlow = TransactionsFlow()
     @StateObject var portfolioFlow = PortfolioFlow()
     @StateObject var portfolioViewModel = PortfolioViewModel()
-    @StateObject var currentPricesViewModel = CurrentPricesViewModel(loader: CurrentPricesLoaderFactory(httpClient: httpClient, baseURL: baseURL, token: token, store: store).makeRemoteCurrentPriceLoader)
+    @StateObject var currentPricesViewModel = CurrentPricesViewModel(loader: currentPriceLoader)
     @StateObject var currentPricesFlow = CurrentPricesFlow()
     
     var body: some Scene {
@@ -35,7 +36,8 @@ struct InvestmentsApp: App {
                 alertViewModel: alertViewModel,
                 transactionsFlow: transactionsFlow,
                 portfolioFlow: portfolioFlow,
-                currentPricesFlow: currentPricesFlow)
+                currentPricesFlow: currentPricesFlow
+            )
         }
     }
 }
