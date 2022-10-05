@@ -32,6 +32,7 @@ public class TransactionsViewModel: ObservableObject {
                 transactions[index] = transaction
             } else {
                 transactions.append(transaction)
+                transactions.sort(by: { $0.date > $1.date })
             }
         } catch {
             self.error = error

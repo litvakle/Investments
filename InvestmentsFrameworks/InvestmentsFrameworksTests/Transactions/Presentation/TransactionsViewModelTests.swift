@@ -66,15 +66,19 @@ class TransactionsViewModelTests: XCTestCase {
         XCTAssertEqual(sut.error as? NSError, anyNSError())
     }
     
-    func test_save_savesTransactions() {
+    func test_save_savesTransactionAndSortTransactions() {
         let (sut, store) = makeSUT()
-        let transactions = makeTransactions()
+        let calendar = Calendar(identifier: .gregorian)
+        let now = Date()
+        let oneMonthAgo = calendar.date(byAdding: .month, value: -1, to: now)!
+        let transaction0 = Transaction(date: oneMonthAgo, ticket: "QQQ", type: .sell, quantity: 1.5, price: 100, sum: 150)
+        let transaction1 = Transaction(date: now, ticket: "VOO", type: .buy, quantity: 2, price: 250, sum: 500)
         
         store.completeSavingSuccessfully()
-        sut.save(transactions[0])
-        sut.save(transactions[1])
+        sut.save(transaction0)
+        sut.save(transaction1)
         
-        XCTAssertEqual(sut.transactions, transactions)
+        XCTAssertEqual(sut.transactions, [transaction1, transaction0])
     }
     
     func test_save_overridesPreviouslyExistingTransactionWithTheSameID() {

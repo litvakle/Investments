@@ -35,7 +35,7 @@ class TransactionsViewTests: XCTestCase {
     
     func test_transactionView_handlesTransactionSelect() throws {
         var selectedTransactions = [Transaction?]()
-        let (sut, viewModel, store) = makeSUT(onSelect: { selectedTransaction in
+        let (sut, viewModel, _) = makeSUT(onSelect: { selectedTransaction in
             selectedTransactions.append(selectedTransaction)
         })
         
@@ -48,12 +48,12 @@ class TransactionsViewTests: XCTestCase {
         try firstRowButton.tap()
         try secondRowButton.tap()
         
-        XCTAssertEqual(selectedTransactions, [store.transactions[0], store.transactions[0], store.transactions[1]])
+        XCTAssertEqual(selectedTransactions, [viewModel.transactions[0], viewModel.transactions[0], viewModel.transactions[1]])
     }
     
     func test_transactionView_handlesTransactionDelete() throws {
         var deletedTransactions = [Transaction]()
-        let (sut, viewModel, store) = makeSUT(onDelete: { deletedTransaction in
+        let (sut, viewModel, _) = makeSUT(onDelete: { deletedTransaction in
             deletedTransactions.append(deletedTransaction)
         })
         
@@ -62,7 +62,7 @@ class TransactionsViewTests: XCTestCase {
         let indexSet: IndexSet = [0]
         try sut.transactions().callOnDelete(indexSet)
         
-        XCTAssertEqual(deletedTransactions, [store.transactions[0]])
+        XCTAssertEqual(deletedTransactions, [viewModel.transactions[0]])
     }
     
     func test_transactionView_handlesAddNewTransaction() throws {
