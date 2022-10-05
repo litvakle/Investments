@@ -27,6 +27,9 @@ struct TransactionView: View {
             }
             .listRowSeparator(.hidden)
         }
+        .animation(.easeInOut, value: vm.ticketErrorMessage)
+        .animation(.easeInOut, value: vm.quantityErrorMessage)
+        .animation(.easeInOut, value: vm.sumErrorMessage)
         .navigationTitle("Transaction")
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
@@ -54,7 +57,7 @@ struct TransactionView: View {
     }
     
     private var ticket: some View {
-        VStack {
+        Group {
             HStack {
                 Text("Ticket")
                 
@@ -64,7 +67,7 @@ struct TransactionView: View {
                     .textInputAutocapitalization(.characters)
                     .disableAutocorrection(true)
                     .accessibilityIdentifier("TICKET")
-            }
+            }.padding(.bottom, 0)
                 
             if let ticketErrorMessage = vm.ticketErrorMessage {
                 Text(ticketErrorMessage)
@@ -82,7 +85,7 @@ struct TransactionView: View {
             locale: .current
         )
         
-        return VStack {
+        return Group {
             HStack {
                 Text("Quantity")
                 
@@ -108,7 +111,7 @@ struct TransactionView: View {
             currencyCode: "USD"
         )
         
-        return VStack {
+        return Group {
             HStack {
                 Text("Sum")
                 
