@@ -27,10 +27,9 @@ public class CurrentPricesFlow: ObservableObject {
             .store(in: &cancellables)
         
         currentPricesViewModel.$error
-            .dropFirst()
             .filter { $0 != nil }
-            .sink { _ in
-                alertViewModel.showAlert(title: "Error", message: "Error loading current prices")
+            .sink { errorMessage in
+                alertViewModel.showAlert(title: "Error", message: errorMessage ?? "")
             }
             .store(in: &cancellables)
     }

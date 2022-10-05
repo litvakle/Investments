@@ -11,21 +11,25 @@ import InvestmentsFrameworks
 import Combine
 
 typealias InvestmentTransaction = InvestmentsFrameworks.Transaction
-private let httpClient = URLSessionHTTPClient(session: URLSession(configuration: .ephemeral))
-private let baseURL = URL(string: "https://finnhub.io/api")!
-private let token = "ccfe31iad3ifmhk0t53g"
+
 private let store = StoreFactory.create()
-private let currentPriceLoader = CurrentPricesLoaderFactory(httpClient: httpClient, baseURL: baseURL, token: token, store: store).makeRemoteCurrentPriceLoaderWithLocalFeedback
+private let root = UIComposer(
+    httpClient: URLSessionHTTPClient(session: URLSession(configuration: .ephemeral)),
+    transactionsStore: store,
+    currentPricesStore: store,
+    baseURL: URL(string: "https://finnhub.io/api")!,
+    token: "ccfe31iad3ifmhk0t53g"
+)
 
 @main
 struct InvestmentsApp: App {
-    @StateObject var transactionsViewModel = TransactionsViewModel(store: store)
-    @StateObject var alertViewModel = AlertViewModel()
-    @StateObject var transactionsFlow = TransactionsFlow()
-    @StateObject var portfolioFlow = PortfolioFlow()
-    @StateObject var portfolioViewModel = PortfolioViewModel()
-    @StateObject var currentPricesViewModel = CurrentPricesViewModel(loader: currentPriceLoader)
-    @StateObject var currentPricesFlow = CurrentPricesFlow()
+    @StateObject var transactionsViewModel = root.transactionsViewModel
+    @StateObject var alertViewModel = root.alertViewModel
+    @StateObject var transactionsFlow = root.transactionsFlow
+    @StateObject var portfolioFlow = root.portfolioFlow
+    @StateObject var portfolioViewModel = root.portfolioViewModel
+    @StateObject var currentPricesViewModel = root.currentPricesViewModel
+    @StateObject var currentPricesFlow = root.currentPricesFlow
     
     var body: some Scene {
         WindowGroup {

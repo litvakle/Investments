@@ -16,6 +16,7 @@ struct ContentView: View {
     @ObservedObject var transactionsFlow: TransactionsFlow
     @ObservedObject var portfolioFlow: PortfolioFlow
     @ObservedObject var currentPricesFlow: CurrentPricesFlow
+    var currentPricesLoaderFactory: CurrentPricesLoaderFactory?
     
     var body: some View {
         TabView {
@@ -37,24 +38,5 @@ struct ContentView: View {
         }, message: {
             Text(alertViewModel.message)
         })
-        .accessibilityIdentifier("MAIN_TAB_VIEW")
-        .onAppear {
-            transactionsViewModel.retrieve()
-            
-            transactionsFlow.setupSubscriptions(
-                transactionsViewModel: transactionsViewModel,
-                alertViewModel: alertViewModel
-            )
-            portfolioFlow.setupSubscriptions(
-                portfolioViewModel: portfolioViewModel,
-                transactionsViewModel: transactionsViewModel,
-                currentPricesViewModel: currentPricesViewModel
-            )
-            currentPricesFlow.setupSubscriptions(
-                currentPricesViewModel: currentPricesViewModel,
-                transactionsViewModel: transactionsViewModel,
-                alertViewModel: alertViewModel
-            )
-        }
     }
 }

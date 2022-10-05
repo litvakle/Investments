@@ -11,9 +11,10 @@ import InvestmentsFrameworks
 
 class CurrentPricesLoaderFactory {
     private let httpClient: HTTPClient
-    private var baseURL: URL
-    private var token: String
-    private var store: CurrentPricesStore
+    private let baseURL: URL
+    private let token: String
+    private let store: CurrentPricesStore
+    var onRemoteLoaderError: (() -> Void)?
     
     init(httpClient: HTTPClient, baseURL: URL, token: String, store: CurrentPricesStore) {
         self.httpClient = httpClient
@@ -25,13 +26,16 @@ class CurrentPricesLoaderFactory {
     func makeRemoteCurrentPriceLoaderWithLocalFeedback(for ticket: String) -> AnyPublisher<CurrentPrice, Error> {
         makeRemoteCurrentPriceLoader(for: ticket)
             .caching(to: store, for: ticket)
-            .fallback(to: { [store] in
-                store.loadCurrentPricePublisher(for: ticket)
+            .dispatchOnMainQueue()
+            .fallback(to: { [weak self, store] in
+                
+                self?.onRemoteLoaderError?()
+                return store.loadCurrentPricePublisher(for: ticket)
             })
             .eraseToAnyPublisher()
     }
     
-    func makeRemoteCurrentPriceLoader(for ticket: String) -> AnyPublisher<CurrentPrice, Error> {
+    private func makeRemoteCurrentPriceLoader(for ticket: String) -> AnyPublisher<CurrentPrice, Error> {
         let url = CurrentPriceEndPoint.get(forTicket: ticket).url(baseURL: baseURL, token: token)
 
         return httpClient
