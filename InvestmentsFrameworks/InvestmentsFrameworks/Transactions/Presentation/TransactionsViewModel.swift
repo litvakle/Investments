@@ -19,7 +19,7 @@ public class TransactionsViewModel: ObservableObject {
     
     public func retrieve() {
         do {
-            transactions = try store.retrieve()
+            transactions = try store.retrieve().sorted(by: { $0.date > $1.date })
         } catch {
             self.error = error
         }

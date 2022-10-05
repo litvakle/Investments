@@ -32,14 +32,20 @@ class TransactionsViewModelTests: XCTestCase {
         XCTAssertEqual(sut.error as? NSError, anyNSError())
     }
     
-    func test_retrieve_receivesRetrievedTransactions() {
+    func test_retrieve_receivesRetrievedTransactionsAndSortThem() {
         let (sut, store) = makeSUT()
-        let transactions = makeTransactions()
+        let calendar = Calendar(identifier: .gregorian)
+        let now = Date()
+        let oneMonthAgo = calendar.date(byAdding: .month, value: -1, to: now)!
+        let transactions = [
+            Transaction(date: oneMonthAgo, ticket: "VOO", type: .buy, quantity: 2, price: 250, sum: 500),
+            Transaction(date: now, ticket: "QQQ", type: .sell, quantity: 1.5, price: 100, sum: 150)
+        ]
         
         store.completeRetrival(with: transactions)
         sut.retrieve()
         
-        XCTAssertEqual(sut.transactions, transactions)
+        XCTAssertEqual(sut.transactions, transactions.sorted(by: { $0.date > $1.date }))
     }
     
     func test_save_requestsStoreToSaveTransaction() {
