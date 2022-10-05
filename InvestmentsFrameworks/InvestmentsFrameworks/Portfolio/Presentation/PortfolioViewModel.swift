@@ -60,7 +60,8 @@ public class PortfolioViewModel: ObservableObject {
             expenses += item.expenses
         }
         
-        summary = PortfolioSummary(cost: cost, profit: profit, profitPercent: profit / expenses)
+        let profitPercent = (expenses != 0 ? profit / expenses : 0)
+        summary = PortfolioSummary(cost: cost, profit: profit, profitPercent: profitPercent)
     }
 }
 
