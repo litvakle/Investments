@@ -23,6 +23,7 @@ struct PortfolioView: View {
             }
             .accessibilityIdentifier("PORTFOLIO_ITEMS")
         }
+        .listStyle(.insetGrouped)
         .navigationTitle("Portfolio")
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {

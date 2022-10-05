@@ -36,6 +36,7 @@ struct TransactionsView: View {
             .accessibilityIdentifier("TRANSACTIONS")
             .onDelete(perform: delete)
         }
+        .listStyle(.insetGrouped)
     }
         
     private func delete(indexSet: IndexSet) {
@@ -49,7 +50,6 @@ struct TransactionsView: View {
             onTransactionSelect?(.none)
         } label: {
             Image(systemName: "plus")
-                .padding(.horizontal)
         }
         .accessibilityIdentifier("ADD_NEW_TRANSACTION")
     }
