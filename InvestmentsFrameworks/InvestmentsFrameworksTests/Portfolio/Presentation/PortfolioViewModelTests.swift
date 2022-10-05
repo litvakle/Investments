@@ -16,7 +16,7 @@ class PortfolioViewModelTests: XCTestCase {
         let expectedPortfolio = makePortfolioItems(with: currentPrices)
         let expectedSummary = makePortfolioSummary(with: currentPrices)
         
-        sut.createItems(for: transactions, with: currentPrices)
+        sut.calcPortfolio(for: transactions, with: currentPrices)
         
         XCTAssertEqual(sut.items, expectedPortfolio)
         XCTAssertEqual(sut.summary.cost, expectedSummary.cost)

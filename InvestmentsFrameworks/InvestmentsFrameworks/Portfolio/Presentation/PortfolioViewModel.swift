@@ -13,7 +13,7 @@ public class PortfolioViewModel: ObservableObject {
     
     public init() {}
     
-    public func createItems(for transactions: [Transaction], with currentPrices: CurrentPrices) {
+    public func calcPortfolio(for transactions: [Transaction], with currentPrices: CurrentPrices) {
         let totalData = totalData(for: transactions)
         calcItems(totalData: totalData, currentPrices: currentPrices)
         calcSummary()

@@ -19,7 +19,7 @@ class PortfolioViewTests: XCTestCase {
         let transactions = makePortfolioTransactions()
         let expectedPortfolio = makePortfolioItems()
 
-        viewModel.createItems(for: transactions, with: CurrentPrices())
+        viewModel.calcPortfolio(for: transactions, with: CurrentPrices())
         
         XCTAssertEqual(try sut.items().count, 3)
         XCTAssertEqual(try sut.ticket(at: 0).string(), expectedPortfolio[0].ticket)

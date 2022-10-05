@@ -18,7 +18,7 @@ class PortfolioFlow: ObservableObject {
     func setupSubscriptions(portfolioViewModel: PortfolioViewModel, transactionsViewModel: TransactionsViewModel, currentPricesViewModel: CurrentPricesViewModel) {
         Publishers.CombineLatest(transactionsViewModel.$transactions, currentPricesViewModel.$currentPrices)
             .sink { transactions, currentPrices in
-                portfolioViewModel.createItems(for: transactions, with: currentPrices)
+                portfolioViewModel.calcPortfolio(for: transactions, with: currentPrices)
             }
             .store(in: &cancellables)
     }

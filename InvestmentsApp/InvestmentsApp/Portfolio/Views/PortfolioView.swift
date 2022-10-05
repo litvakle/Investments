@@ -119,7 +119,7 @@ struct PortfolioRow: View {
 struct PortfolioView_Previews: PreviewProvider {
     static var viewModel: PortfolioViewModel {
         let viewModel = PortfolioViewModel()
-        viewModel.createItems(for: [
+        viewModel.calcPortfolio(for: [
             InvestmentTransaction(ticket: "BBB", type: .buy, quantity: 1, price: 10, sum: 10),
             InvestmentTransaction(ticket: "AAA", type: .buy, quantity: 1, price: 10, sum: 10),
             InvestmentTransaction(ticket: "AAA", type: .buy, quantity: 2, price: 20, sum: 20),
