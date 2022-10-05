@@ -265,11 +265,11 @@
 		3AAAA81D28D2DDC900E0DF6B /* InvestmentsApp */ = {
 			isa = PBXGroup;
 			children = (
-				3AAAA88928D9C07D00E0DF6B /* Helpers */,
 				3AAAA81E28D2DDC900E0DF6B /* InvestmentsApp.swift */,
 				3A303F6728ED52EB008B66CD /* UIComposer.swift */,
 				3AA9C1B228DB4B1A00C1E37B /* ContentView.swift */,
 				3AAAA87F28D9B7B400E0DF6B /* AlertViewModel.swift */,
+				3AAAA88928D9C07D00E0DF6B /* Helpers */,
 				3AAAA83B28D30CC200E0DF6B /* Transactions */,
 				3A14587228E1D23E00AD1EF5 /* Portfolio */,
 				3A76493528E6C01D00B810B7 /* CurrentPrices */,

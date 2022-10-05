@@ -33,3 +33,7 @@ public func makePortfolioItems(with currentPrices: CurrentPrices = CurrentPrices
         PortfolioItem(ticket: "CCC", quantity: 1, price: 0, cost: 0, expenses: 30, income: 0, profit: -30, profitPercent: -1)
     ]
 }
+
+public func makePortfolioSummary(with currentPrices: CurrentPrices = CurrentPrices()) -> PortfolioSummary {
+    PortfolioSummary(cost: 270, profit: 75, profitPercent: 0.34)
+}

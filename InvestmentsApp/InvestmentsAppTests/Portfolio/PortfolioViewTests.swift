@@ -36,6 +36,18 @@ class PortfolioViewTests: XCTestCase {
         XCTAssertNoThrow(try sut.profitPercent(at: 1))
     }
     
+    func test_portfolioView_rendersPortfolioSummary() throws {
+        let (sut, viewModel) = makeSUT()
+        let transactions = makePortfolioTransactions()
+        let currentPrices = makeCurrentPrices()
+
+        viewModel.calcPortfolio(for: transactions, with: currentPrices)
+        
+        XCTAssertNoThrow(try sut.summaryCost())
+        XCTAssertNoThrow(try sut.summaryProfit())
+        XCTAssertNoThrow(try sut.summaryProfitPercent())
+    }
+    
     func test_refresh_invokesOnRefresh() throws {
         var onRefreshInvokesCount = 0
         let (sut, _) = makeSUT {
@@ -99,5 +111,17 @@ extension PortfolioView {
     
     func refresh() throws -> InspectableView<ViewType.Button> {
         try self.inspect().find(viewWithAccessibilityIdentifier: "REFRESH").button()
+    }
+    
+    func summaryCost() throws -> InspectableView<ViewType.Text> {
+        try self.inspect().find(viewWithAccessibilityIdentifier: "SUMMARY_COST").text()
+    }
+    
+    func summaryProfit() throws -> InspectableView<ViewType.Text> {
+        try self.inspect().find(viewWithAccessibilityIdentifier: "SUMMARY_PROFIT").text()
+    }
+    
+    func summaryProfitPercent() throws -> InspectableView<ViewType.Text> {
+        try self.inspect().find(viewWithAccessibilityIdentifier: "SUMMARY_PROFIT_PERCENT").text()
     }
 }
