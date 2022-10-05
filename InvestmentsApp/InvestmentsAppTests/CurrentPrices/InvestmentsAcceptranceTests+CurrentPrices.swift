@@ -51,7 +51,7 @@ extension InvestmentsAcceptranceTests {
         XCTAssertTrue((try sut.portfolioView().price(at: 2).string()).contains("300"))
     }
     
-    func test_onLaunch_loadsCachedCurrentPricesWhenUserHasNoConnectivity() throws {
+    func test_onLaunch_loadsCachedCurrentPricesWhenUserHasNoConnectivityAndShowError() throws {
         let sharedStore = InMemoryStore.withStoredData
         let _ = makeSUT(httpClient: .online(response), store: sharedStore)
         let offlineSUT = makeSUT(httpClient: .offline, store: sharedStore)
