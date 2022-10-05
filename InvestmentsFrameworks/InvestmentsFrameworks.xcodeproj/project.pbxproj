@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3A14586928E1C3DB00AD1EF5 /* PortfolioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A14586828E1C3DB00AD1EF5 /* PortfolioTests.swift */; };
+		3A14586928E1C3DB00AD1EF5 /* PortfolioViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A14586828E1C3DB00AD1EF5 /* PortfolioViewModelTests.swift */; };
 		3A14586C28E1CE9800AD1EF5 /* PortfolioViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A14586B28E1CE9800AD1EF5 /* PortfolioViewModel.swift */; };
 		3A7648E228E1E76700B810B7 /* PortfolioTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7648E128E1E76700B810B7 /* PortfolioTestHelpers.swift */; };
 		3A7648EF28E309AE00B810B7 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7648EE28E309AE00B810B7 /* HTTPClient.swift */; };
@@ -68,7 +68,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3A14586828E1C3DB00AD1EF5 /* PortfolioTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioTests.swift; sourceTree = "<group>"; };
+		3A14586828E1C3DB00AD1EF5 /* PortfolioViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioViewModelTests.swift; sourceTree = "<group>"; };
 		3A14586B28E1CE9800AD1EF5 /* PortfolioViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioViewModel.swift; sourceTree = "<group>"; };
 		3A7648E128E1E76700B810B7 /* PortfolioTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioTestHelpers.swift; sourceTree = "<group>"; };
 		3A7648EE28E309AE00B810B7 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
@@ -167,7 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				3A7648E028E1E71200B810B7 /* Helpers */,
-				3A14586828E1C3DB00AD1EF5 /* PortfolioTests.swift */,
+				3A14586828E1C3DB00AD1EF5 /* PortfolioViewModelTests.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -725,7 +725,7 @@
 				3AAAA7DF28D1E66700E0DF6B /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 				3AAAA7E228D1ED4400E0DF6B /* NSManagedObjectContext+Stub.swift in Sources */,
 				3A7648E228E1E76700B810B7 /* PortfolioTestHelpers.swift in Sources */,
-				3A14586928E1C3DB00AD1EF5 /* PortfolioTests.swift in Sources */,
+				3A14586928E1C3DB00AD1EF5 /* PortfolioViewModelTests.swift in Sources */,
 				3A76490928E416F900B810B7 /* CoreDataCurrentPricesStoreTests.swift in Sources */,
 				3A7648FD28E3129400B810B7 /* CurrentPriceMapperTests.swift in Sources */,
 			);

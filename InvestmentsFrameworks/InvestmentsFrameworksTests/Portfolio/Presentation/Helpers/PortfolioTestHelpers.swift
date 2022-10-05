@@ -35,4 +35,8 @@ public func makePortfolioItems(with currentPrices: CurrentPrices = CurrentPrices
     ]
 }
 
+public func makePortfolioSummary(with currentPrices: CurrentPrices = CurrentPrices()) -> PortfolioSummary {
+    PortfolioSummary(cost: 270, profit: 75, profitPercent: 0.34)
+}
+
 

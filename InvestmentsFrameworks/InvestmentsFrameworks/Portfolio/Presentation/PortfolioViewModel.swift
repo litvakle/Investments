@@ -9,11 +9,19 @@ import Foundation
 
 public class PortfolioViewModel: ObservableObject {
     @Published private(set) public var items = [PortfolioItem]()
+    @Published private(set) public var summary = PortfolioSummary()
     
     public init() {}
     
     public func createItems(for transactions: [Transaction], with currentPrices: CurrentPrices) {
-        var totalData = [String: (quantity: Double, expenses: Double, income: Double)]()
+        let totalData = totalData(for: transactions)
+        calcItems(totalData: totalData, currentPrices: currentPrices)
+        calcSummary()
+    }
+    
+    private typealias TotalData = [String: (quantity: Double, expenses: Double, income: Double)]
+    private func totalData(for transactions: [Transaction]) -> TotalData {
+        var totalData = TotalData()
         transactions.forEach { transaction in
             let ticket = transaction.ticket
             let type = transaction.type
@@ -27,6 +35,10 @@ public class PortfolioViewModel: ObservableObject {
             )
         }
         
+        return totalData
+    }
+    
+    private func calcItems(totalData: TotalData, currentPrices: CurrentPrices) {
         items = totalData.map { item in
             let ticket = item.key
             let price = currentPrices[ticket]?.price ?? 0
@@ -36,6 +48,19 @@ public class PortfolioViewModel: ObservableObject {
             
             return PortfolioItem(ticket: ticket, quantity: item.value.quantity, price: price, cost: cost, expenses: item.value.expenses, income: item.value.income, profit: profit, profitPercent: profitPercent)
         }.sorted(by: { $0.ticket < $1.ticket })
+    }
+    
+    private func calcSummary() {
+        var cost: Double = 0
+        var profit: Double = 0
+        var expenses: Double = 0
+        items.forEach { item in
+            cost += item.cost
+            profit += item.profit
+            expenses += item.expenses
+        }
+        
+        summary = PortfolioSummary(cost: cost, profit: profit, profitPercent: profit / expenses)
     }
 }
 
@@ -60,6 +85,18 @@ public struct PortfolioItem: Equatable, Identifiable {
         self.cost = cost
         self.expenses = expenses
         self.income = income
+        self.profit = profit
+        self.profitPercent = profitPercent
+    }
+}
+
+public struct PortfolioSummary: Equatable {
+    public let cost: Double
+    public let profit: Double
+    public let profitPercent: Double
+    
+    public init(cost: Double = 0, profit: Double = 0, profitPercent: Double = 0) {
+        self.cost = cost
         self.profit = profit
         self.profitPercent = profitPercent
     }
