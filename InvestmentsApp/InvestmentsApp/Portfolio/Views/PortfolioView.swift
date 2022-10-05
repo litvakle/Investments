@@ -100,14 +100,12 @@ struct PortfolioRow: View {
                 Spacer()
                 cost
             }
-            .padding(.bottom, 3)
             
             HStack {
                 quantity
                 Spacer()
                 price
             }
-            .padding(.bottom, 3)
             
             HStack {
                 profit
@@ -148,10 +146,13 @@ struct PortfolioRow: View {
     var profit: some View {
         let formatter = NumberFormatter.currencyFormatter(minFractionDigits: 2, maxFractionDigits: 2, currencyCode: "USD", locale: .current)
         
-        return (Text("Profit: ") + Text(NSNumber(value: item.profit), formatter: formatter))
-            .multilineTextAlignment(.trailing)
-            .foregroundColor(item.profit >= 0 ? .green : .red)
-            .accessibilityIdentifier("PROFIT")
+        return (
+            Text("Profit: ") +
+            Text(NSNumber(value: item.profit), formatter: formatter)
+                .foregroundColor(item.profit >= 0 ? .green : .red)
+        )
+        .multilineTextAlignment(.trailing)
+        .accessibilityIdentifier("PROFIT")
     }
     
     var profitPercent: some View {
