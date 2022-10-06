@@ -1,5 +1,7 @@
 # Investments
 
+[![CI](https://github.com/litvakle/Investments/actions/workflows/CI.yml/badge.svg)](https://github.com/litvakle/Investments/actions/workflows/CI.yml)
+
 ## BDD Specs
 
 ### Story: Transactions list
