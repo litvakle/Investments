@@ -15,7 +15,7 @@ public class CurrentPricesViewModel: ObservableObject {
     @Published public private(set) var loadingTickets = Set<String>()
     @Published public var error: String?
 
-    var isLoading: Bool {
+    public var isLoading: Bool {
         !loadingTickets.isEmpty
     }
     

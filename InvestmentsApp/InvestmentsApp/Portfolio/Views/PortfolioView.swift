@@ -10,12 +10,19 @@ import InvestmentsFrameworks
 
 struct PortfolioView: View {
     @ObservedObject var viewModel: PortfolioViewModel
+    let isLoading: Bool
     let onRefresh: () -> Void
     
     var body: some View {
         List {
             Section {
-                summary
+                if isLoading {
+                    ProgressView()
+                        .accessibilityIdentifier("LOADING_INDICATOR")
+                        .frame(maxWidth: .infinity)
+                } else {
+                    summary
+                }
             }
             
             ForEach(viewModel.items) { item in
@@ -184,6 +191,9 @@ struct PortfolioView_Previews: PreviewProvider {
     }
     
     static var previews: some View {
-        PortfolioView(viewModel: viewModel, onRefresh: {})
+        Group {
+            PortfolioView(viewModel: viewModel, isLoading: false, onRefresh: {})
+            PortfolioView(viewModel: viewModel, isLoading: true, onRefresh: {})
+        }
     }
 }

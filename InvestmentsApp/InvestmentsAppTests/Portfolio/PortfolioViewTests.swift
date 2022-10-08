@@ -60,15 +60,24 @@ class PortfolioViewTests: XCTestCase {
         XCTAssertEqual(onRefreshInvokesCount, 2)
     }
     
+    func test_onLoadingPrices_RenderLoadingIndicator() throws {
+        let (loadingSUT, _) = makeSUT(isLoading: true)
+        let (nonLoadingSUT, _) = makeSUT(isLoading: false)
+        
+        XCTAssertNoThrow(try loadingSUT.loadingIndicator())
+        XCTAssertThrowsError(try nonLoadingSUT.loadingIndicator())
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(
+        isLoading: Bool = false,
         onRefresh: @escaping () -> Void = { },
         file: StaticString = #filePath,
         line: UInt = #line
     ) -> (PortfolioView, PortfolioViewModel) {
         let viewModel = PortfolioViewModel()
-        let sut = PortfolioView(viewModel: viewModel, onRefresh: onRefresh)
+        let sut = PortfolioView(viewModel: viewModel, isLoading: isLoading, onRefresh: onRefresh)
         
         trackForMemoryLeaks(viewModel, file: file, line: line)
         
@@ -123,5 +132,9 @@ extension PortfolioView {
     
     func summaryProfitPercent() throws -> InspectableView<ViewType.Text> {
         try self.inspect().find(viewWithAccessibilityIdentifier: "SUMMARY_PROFIT_PERCENT").text()
+    }
+    
+    func loadingIndicator() throws -> InspectableView<ViewType.ProgressView> {
+        try self.inspect().find(viewWithAccessibilityIdentifier: "LOADING_INDICATOR").progressView()
     }
 }
