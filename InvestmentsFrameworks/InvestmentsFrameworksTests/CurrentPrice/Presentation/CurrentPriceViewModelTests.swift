@@ -98,21 +98,22 @@ class CurrentPriceViewModelTests: XCTestCase {
         XCTAssertEqual(sut.currentPrices["CCC"]?.price, 30)
     }
     
-    func test_loadPrices_makesLoadingIndicatorsForEachTicketOnAtStartAndOffAfterLoading() {
+    func test_loadPrices_makesOverallLoadingIndicatorsAndForEachTicketOnAtStartAndOffAfterLoading() {
         let (sut, loader) = makeSUT()
-        let tickets = ["AAA", "BBB", "CCC"]
+        let tickets = ["AAA", "BBB"]
         
+        XCTAssertFalse(sut.isLoading)
         sut.loadPrices(for: tickets)
-        XCTAssertEqual(sut.loadingTickets, ["AAA", "BBB", "CCC"])
+        XCTAssertEqual(sut.loadingTickets, ["AAA", "BBB"])
+        XCTAssertTrue(sut.isLoading)
         
         loader.completeCurrentPriceLoading(with: CurrentPrice(price: 100), at: 1)
-        XCTAssertEqual(sut.loadingTickets, ["AAA", "CCC"])
-        
-        loader.completeCurrentPriceLoadingWithError(at: 2)
         XCTAssertEqual(sut.loadingTickets, ["AAA"])
+        XCTAssertTrue(sut.isLoading)
         
-        loader.completeCurrentPriceLoading(with: CurrentPrice(price: 100), at: 0)
+        loader.completeCurrentPriceLoadingWithError(at: 0)
         XCTAssertEqual(sut.loadingTickets, [])
+        XCTAssertFalse(sut.isLoading)
     }
     
     func test_refresh_invokesLoadingPricesForAllExistingTickets() {
