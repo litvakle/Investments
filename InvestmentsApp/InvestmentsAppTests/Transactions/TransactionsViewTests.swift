@@ -15,17 +15,14 @@ extension TransactionRow: Inspectable {}
 
 class TransactionsViewTests: XCTestCase {
     func test_transactionView_rendersTransactions() throws {
-        let (sut, viewModel, store) = makeSUT()
-        
-        viewModel.retrieve()
+        let store = InMemoryStore.withStoredData
+        let sut  = makeSUT(store: .withStoredData)
         
         XCTAssertEqual(try sut.transactions().count, store.transactions.count)
     }
     
     func test_transactionView_rendersTransactionProperties() throws {
-        let (sut, viewModel, _) = makeSUT()
-        
-        viewModel.retrieve()
+        let sut = makeSUT()
         
         XCTAssertFalse(try sut.ticket(at: 0).string().isEmpty)
         XCTAssertFalse(try sut.date(at: 0).string().isEmpty)
@@ -35,11 +32,9 @@ class TransactionsViewTests: XCTestCase {
     
     func test_transactionView_handlesTransactionSelect() throws {
         var selectedTransactions = [Transaction?]()
-        let (sut, viewModel, _) = makeSUT(onSelect: { selectedTransaction in
+        let sut = makeSUT(onSelect: { selectedTransaction in
             selectedTransactions.append(selectedTransaction)
         })
-        
-        viewModel.retrieve()
         
         let firstRowButton = try sut.transactions().button(0)
         let secondRowButton = try sut.transactions().button(1)
@@ -48,26 +43,24 @@ class TransactionsViewTests: XCTestCase {
         try firstRowButton.tap()
         try secondRowButton.tap()
         
-        XCTAssertEqual(selectedTransactions, [viewModel.transactions[0], viewModel.transactions[0], viewModel.transactions[1]])
+        XCTAssertEqual(selectedTransactions, [sut.transactions[0], sut.transactions[0], sut.transactions[1]])
     }
     
     func test_transactionView_handlesTransactionDelete() throws {
         var deletedTransactions = [Transaction]()
-        let (sut, viewModel, _) = makeSUT(onDelete: { deletedTransaction in
+        let sut = makeSUT(onDelete: { deletedTransaction in
             deletedTransactions.append(deletedTransaction)
         })
-        
-        viewModel.retrieve()
         
         let indexSet: IndexSet = [0]
         try sut.transactions().callOnDelete(indexSet)
         
-        XCTAssertEqual(deletedTransactions, [viewModel.transactions[0]])
+        XCTAssertEqual(deletedTransactions, [sut.transactions[0]])
     }
     
     func test_transactionView_handlesAddNewTransaction() throws {
         var addNewTransactionInvokesCount = 0
-        let (sut, _, _) = makeSUT(onSelect: { _ in
+        let sut = makeSUT(onSelect: { _ in
             addNewTransactionInvokesCount += 1
         })
         
@@ -80,21 +73,23 @@ class TransactionsViewTests: XCTestCase {
     // MARK: - Helpers
     
     private func makeSUT(
+        store: InMemoryStore = .withStoredData,
         onSelect: @escaping (Transaction?) -> Void = { _ in },
         onDelete: @escaping (Transaction) -> Void = { _ in },
         file: StaticString = #filePath,
         line: UInt = #line
-    ) -> (sut: TransactionsView, viewModel: TransactionsViewModel, store: InMemoryStore) {
+    ) -> TransactionsView {
         let store = InMemoryStore.withStoredData
         let viewModel = TransactionsViewModel(store: store)
+        viewModel.retrieve()
         let sut = TransactionsView(
-            viewModel: viewModel,
+            transactions: viewModel.transactions,
             onTransactionSelect: onSelect,
             onTransactionDelete: onDelete)
         
         trackForMemoryLeaks(store, file: file, line: line)
         trackForMemoryLeaks(viewModel, file: file, line: line)
         
-        return (sut, viewModel, store)
+        return sut
     }
 }

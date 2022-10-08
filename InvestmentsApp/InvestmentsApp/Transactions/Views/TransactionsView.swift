@@ -9,7 +9,7 @@ import SwiftUI
 import InvestmentsFrameworks
 
 struct TransactionsView: View {
-    @ObservedObject var viewModel: TransactionsViewModel
+    let transactions: [InvestmentTransaction]
     var onTransactionSelect: ((InvestmentTransaction?) -> Void)?
     var onTransactionDelete: ((InvestmentTransaction) -> Void)?
     
@@ -25,7 +25,7 @@ struct TransactionsView: View {
     
     private var transactionsList: some View {
         List {
-            ForEach(viewModel.transactions) { transaction in
+            ForEach(transactions) { transaction in
                 Button {
                     onTransactionSelect?(transaction)
                 } label: {
@@ -41,7 +41,7 @@ struct TransactionsView: View {
         
     private func delete(indexSet: IndexSet) {
         if let index = indexSet.first {
-            onTransactionDelete?(viewModel.transactions[index])
+            onTransactionDelete?(transactions[index])
         }
     }
     
@@ -86,11 +86,11 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         return Group {
             NavigationView {
-                TransactionsView(viewModel: TransactionsViewModel.previewModel())
+                TransactionsView(transactions: InvestmentTransaction.previewData)
             }
             
             NavigationView {
-                TransactionsView(viewModel: TransactionsViewModel.previewModel())
+                TransactionsView(transactions: InvestmentTransaction.previewData)
                     .preferredColorScheme(.dark)
             }
         }

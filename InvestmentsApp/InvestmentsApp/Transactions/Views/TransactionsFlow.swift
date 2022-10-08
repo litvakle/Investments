@@ -44,7 +44,7 @@ class TransactionsFlow: ObservableObject {
     }
     
     private func makeTransactionsView(transactionsViewModel: TransactionsViewModel) -> TransactionsView {
-        var view = TransactionsView(viewModel: transactionsViewModel)
+        var view = TransactionsView(transactions: transactionsViewModel.transactions)
         view.onTransactionSelect = { [weak self] transactionToSelect in
             self?.selectedTransaction = transactionToSelect
             self?.navigationState.activate()

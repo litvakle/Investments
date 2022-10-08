@@ -24,26 +24,25 @@ extension InvestmentsAcceptranceTests {
     
     func test_onSaveTransaction_rendersSavedTransaction() throws {
         let sut = makeSUT(httpClient: .offline, store: storeWithStoredTransactions)
-        let transactionsView = try sut.transactionsView()
-        
-        sut.transactionsViewModel.save(Transaction())
+        let count = try sut.transactionsView().transactions().count
 
-        XCTAssertEqual(try transactionsView.transactions().count, 3)
+        sut.transactionsViewModel.save(Transaction())
+        
+        XCTAssertEqual(try sut.transactionsView().transactions().count, count + 1)
     }
     
     func test_onDeleteTransaction_doesNotRenderDeletedTransaction() throws {
         let sut = makeSUT(httpClient: .offline, store: storeWithStoredTransactions)
-        let transactionsView = try sut.transactionsView()
         
-        XCTAssertEqual(try transactionsView.transactions().count, 2)
+        XCTAssertEqual(try sut.transactionsView().transactions().count, 2)
         
         let indexSet: IndexSet = [0]
-        try transactionsView.transactions().callOnDelete(indexSet)
-        XCTAssertEqual(try transactionsView.transactions().count, 1)
+        try sut.transactionsView().transactions().callOnDelete(indexSet)
+        XCTAssertEqual(try sut.transactionsView().transactions().count, 1)
         XCTAssertEqual(sut.transactionsViewModel.transactions.count, 1)
         
-        try transactionsView.transactions().callOnDelete(indexSet)
-        XCTAssertEqual(try transactionsView.transactions().count, 0)
+        try sut.transactionsView().transactions().callOnDelete(indexSet)
+        XCTAssertEqual(try sut.transactionsView().transactions().count, 0)
         XCTAssertEqual(sut.transactionsViewModel.transactions.count, 0)
     }
     
@@ -58,22 +57,19 @@ extension InvestmentsAcceptranceTests {
     
     func test_onSaveNewTransaction_dismissesTransactionViewAndRendersSavedTransaction() throws {
         let sut = makeSUT(httpClient: .offline, store: storeWithStoredTransactions)
-        let transactionsView = try sut.transactionsView()
         
         sut.transactionsFlow.selectedTransaction = Transaction(ticket: "MMM", type: .buy, quantity: 10, price:2, sum: 20)
         sut.transactionsFlow.navigationState.activate()
         
-        let transactionView = try sut.transactionView()
-        
         XCTAssertTrue(sut.transactionsFlow.navigationState.isActive)
         XCTAssertEqual(sut.transactionsViewModel.transactions.count, 2)
-        XCTAssertEqual(try transactionsView.transactions().count, 2)
+        XCTAssertEqual(try sut.transactionsView().transactions().count, 2)
         
-        try transactionView.saveTransaction().tap()
+        try sut.transactionView().saveTransaction().tap()
         
         XCTAssertFalse(sut.transactionsFlow.navigationState.isActive)
         XCTAssertEqual(sut.transactionsViewModel.transactions.count, 3)
-        XCTAssertEqual(try transactionsView.transactions().count, 3)
+        XCTAssertEqual(try sut.transactionsView().transactions().count, 3)
     }
     
     // MARK: - Helpers
