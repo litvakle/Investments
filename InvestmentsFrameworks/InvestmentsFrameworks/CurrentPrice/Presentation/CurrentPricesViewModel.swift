@@ -12,7 +12,7 @@ public typealias CurrentPriceLoader = (String) -> AnyPublisher<CurrentPrice, Err
 
 public class CurrentPricesViewModel: ObservableObject {
     @Published public var currentPrices = CurrentPrices()
-    @Published public private(set) var loadingTickets = Set<String>()
+    @Published public var loadingTickets = Set<String>()
     @Published public var error: String?
 
     public var isLoading: Bool {

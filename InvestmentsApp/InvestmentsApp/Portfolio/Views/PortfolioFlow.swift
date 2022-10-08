@@ -27,7 +27,7 @@ class PortfolioFlow: ObservableObject {
         portfolioViewModel: PortfolioViewModel,
         currentPricesViewModel: CurrentPricesViewModel
     ) -> some View {
-        PortfolioView(
+        return PortfolioView(
             viewModel: portfolioViewModel,
             isLoading: currentPricesViewModel.isLoading,
             onRefresh: currentPricesViewModel.refreshPrices

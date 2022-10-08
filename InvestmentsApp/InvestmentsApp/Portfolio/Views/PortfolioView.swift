@@ -16,15 +16,8 @@ struct PortfolioView: View {
     var body: some View {
         List {
             Section {
-                if isLoading {
-                    ProgressView()
-                        .accessibilityIdentifier("LOADING_INDICATOR")
-                        .frame(maxWidth: .infinity)
-                } else {
-                    summary
-                }
+                summary
             }
-            
             ForEach(viewModel.items) { item in
                 PortfolioRow(for: item)
             }
@@ -34,9 +27,18 @@ struct PortfolioView: View {
         .navigationTitle("Portfolio")
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
-                refresh
+                if isLoading {
+                    loadingIndicator
+                } else {
+                    refresh
+                }
             }
         }
+    }
+    
+    var loadingIndicator: some View {
+        ProgressView()
+            .accessibilityIdentifier("LOADING_INDICATOR")
     }
     
     var summary: some View {
@@ -192,8 +194,23 @@ struct PortfolioView_Previews: PreviewProvider {
     
     static var previews: some View {
         Group {
-            PortfolioView(viewModel: viewModel, isLoading: false, onRefresh: {})
-            PortfolioView(viewModel: viewModel, isLoading: true, onRefresh: {})
+            NavigationView {
+                PortfolioView(viewModel: viewModel, isLoading: false, onRefresh: {})
+            }
+            
+            NavigationView {
+                PortfolioView(viewModel: viewModel, isLoading: true, onRefresh: {})
+            }
+            
+            NavigationView {
+                PortfolioView(viewModel: viewModel, isLoading: false, onRefresh: {})
+            }
+            .preferredColorScheme(.dark)
+            
+            NavigationView {
+                PortfolioView(viewModel: viewModel, isLoading: true, onRefresh: {})
+            }
+            .preferredColorScheme(.dark)
         }
     }
 }

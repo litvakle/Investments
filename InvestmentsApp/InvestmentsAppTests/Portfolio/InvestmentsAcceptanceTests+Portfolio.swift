@@ -29,10 +29,30 @@ extension InvestmentsAcceptranceTests {
         
         XCTAssertEqual(try sut.portfolioView().items().count, 3)
     }
+    
+    func test_portfolio_rendersLoadingIndicatorWhileLoadingCurrentPrices() throws {
+        let sut = makeSUT(httpClient: .offline, store: .withStoredData)
+        
+        XCTAssertThrowsError(try sut.portfolioView().loadingIndicator())
+        sut.currentPricesViewModel.simulateStartLoading()
+        XCTAssertNoThrow(try sut.portfolioView().loadingIndicator())
+        sut.currentPricesViewModel.simulateFinishLoading()
+        XCTAssertThrowsError(try sut.portfolioView().loadingIndicator())
+    }
 }
 
 extension ContentView {
     func portfolioView() throws -> PortfolioView {
         try self.inspect().find(PortfolioView.self).actualView()
+    }
+}
+
+private extension CurrentPricesViewModel {
+    func simulateStartLoading() {
+        loadingTickets.insert("AAA")
+    }
+    
+    func simulateFinishLoading() {
+        loadingTickets.removeAll()
     }
 }
