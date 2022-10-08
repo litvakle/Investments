@@ -49,6 +49,7 @@
 		3AAAA88C28D9C10B00E0DF6B /* NullStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA88B28D9C10B00E0DF6B /* NullStore.swift */; };
 		3AAAA88E28D9C21E00E0DF6B /* TransactionsViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA88D28D9C21E00E0DF6B /* TransactionsViewModelFactory.swift */; };
 		3AAAA89328D9E4B800E0DF6B /* TransactionsViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA89228D9E4B800E0DF6B /* TransactionsViewTests.swift */; };
+		3AAF93BF28F15A29009E8369 /* PortfolioRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAF93BE28F15A29009E8369 /* PortfolioRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,6 +119,7 @@
 		3AAAA88B28D9C10B00E0DF6B /* NullStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NullStore.swift; sourceTree = "<group>"; };
 		3AAAA88D28D9C21E00E0DF6B /* TransactionsViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsViewModelFactory.swift; sourceTree = "<group>"; };
 		3AAAA89228D9E4B800E0DF6B /* TransactionsViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsViewTests.swift; sourceTree = "<group>"; };
+		3AAF93BE28F15A29009E8369 /* PortfolioRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +166,7 @@
 			children = (
 				3A7648E928E2A77C00B810B7 /* PortfolioFlow.swift */,
 				3A14587528E1D25C00AD1EF5 /* PortfolioView.swift */,
+				3AAF93BE28F15A29009E8369 /* PortfolioRow.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -492,6 +495,7 @@
 				3AAAA88C28D9C10B00E0DF6B /* NullStore.swift in Sources */,
 				3AAAA88E28D9C21E00E0DF6B /* TransactionsViewModelFactory.swift in Sources */,
 				3AAAA86D28D7562000E0DF6B /* ActivatableNavigationLink.swift in Sources */,
+				3AAF93BF28F15A29009E8369 /* PortfolioRow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
