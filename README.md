@@ -2,46 +2,71 @@
 
 [![CI](https://github.com/litvakle/Investments/actions/workflows/CI.yml/badge.svg)](https://github.com/litvakle/Investments/actions/workflows/CI.yml)
 
+## About
+
+The app's purpose is to have an instrument for real-time monitoring of the profit of user investments portfolio. Just open the app and see the answer! 
+
+I used the TDD approach (write the test - write code - refactor). The workspace consists of two projects:
+- Investments frameworks (platform-agnostic, runs on macOS and iOS)
+- Investments App (platform-specific, runs on iOS).
+Frameworks know nothing about the app. App imports frameworks for the desired functionality.
+
+The app propagates the Dependency Injection principe, and the central part is a Composition Root (class UIComposer). I used Combine, especially in a Composition, to create a price loader publisher and to maintain subscriptions between different app states. The Combine is extremely useful since you can replace decorators and adapters with standard predefined operators. You can see it in CurrentPriceLoaderFactory.
+
+For the UI, I used the SwiftUI framework and the ViewInspector to make tests for SwiftUI views. 
+
+## App Architecture
+
+![](architecture.png)
+
 ## BDD Specs
 
 ### Story: Transactions list
 
 #### Narrative
 
->As a user of the App
->I want to store information about my transactions
->So I can see all my transactions in the App
+```
+As a user of the App
+I want to store information about my transactions
+So I can see all my transactions in the App
+```
 
 ##### Scenarios (acceptance criteria)
 
-> Given the user with stored transactions
+```
+Given the user with stored transactions
 When the user enters 'Transactions'
 He sees a list of stored transactions
+```
 
-> Given the user editing a stored transaction
+```
+Given the user editing a stored transaction
 When he saves it
 He sees the transaction in a stored transactions
+```
 
-> Given the user removing a stored transaction
+```
+Given the user removing a stored transaction
 When he removes it
 He doesn't see the transaction in a stored transactions
+```
 
-## Use cases
+### Use cases
 
-### Display Transactions
+#### Display Transactions
 
 Data:
-- Date interval
+-
 
 Primary course (happy path)
-1. Execute "RetrieveTransactions" command with above Data
+1. Execute "RetrieveTransactions" command
 2. System encodes stored Transactions
 3. System delivers successful result
 
 Storage retrival error (sad path)
 1. System delivers retrival error
 
-### Delete Transaction
+#### Delete Transaction
 
 Data:
 - Transaction (id)
@@ -60,35 +85,43 @@ Storage removal error (sad path)
 
 #### Narrative
 
->As a user of the App
->I want to ba able to add new transactions
->So I can store all new transactions in the app
+```
+As a user of the App
+I want to ba able to add new transactions
+So I can store all new transactions in the app
+```
 
 ##### Scenarios (acceptance criteria)
 
-> Given the user adding a new transaction
-When the user enters 'Quantity' and 'Price'
-The system calculates 'Sum'
-
-> Given the user adding a new transaction
-When the user enters 'Sum'
+```
+Given the user adding a new transaction
+When the user enters 'Quantity' and 'Sum'
 The system calculates 'Price'
+```
 
-> Given the user adding a new transaction
+```
+Given the user adding a new transaction
 When the user tap 'Save'
 The system checks the correcthness of all fields
+```
 
-> Given the user adding a new transaction
+```
+Given the user adding a new transaction
 When the user tap 'Save' and system validates all the fields
 The system does not save transaction unitl all fields are correct
+```
 
-> Given the user adding a new transaction
+```
+Given the user adding a new transaction
 When he saves it
 He sees the transaction in a stored transactions
+```
 
-> Given the user adding a new transaction
+```
+Given the user adding a new transaction
 When he cancels it
 He doesn't see the transaction in a stored transactions
+```
 
 ## Use cases
 
@@ -107,7 +140,6 @@ Primary course (happy path)
 2. System validates fields
 - Ticket - 3 or 4 letters
 - Quantity > 0
-- Price > 0
 - Sum > 0
 3. System delivers successful result
 
@@ -119,35 +151,47 @@ Storage saving error (sad path)
 
 #### Narrative
 
->As a user of the App
->I want to see summary information about my portfolio
->So I can simply understand what tickets I own and how much money I spent
+```
+As a user of the App
+I want to see summary information about my portfolio
+So I can simply understand my profit or loss
+```
 
 ##### Scenarios (acceptance criteria)
 
-> Given the user with no transactions
+```
+Given the user with no transactions
 When the user opens 'Portfolio'
 He sees an empty view
+```
 
-> Given the user with stored transactions
+```
+Given the user with stored transactions
 When the user enters 'Portflio'
-He sees a tickets list with total spent some for each ticket
+He sees a tickets list with total current cost, profit and detailed data for each ticket
+```
 
-> Given the user with stored transactions
+```
+Given the user with stored transactions
 When the user saves new transaction and enters 'Portflio'
 He sees an updated portfolio
+```
 
 ## Use cases
 
 ### Display portfolio
 
 Data:
-- Date interval
+- 
 
 Primary course (happy path)
 1. Retrieve transactions from storage
-2. Calculate total spent for each ticket
-3. System delivers successful result
+2. Get current prices fot tickets
+3. Calculate portoflio items and portfolio summary
+4. System delivers successful result
 
 Storage retrival error (sad path)
 1. System delivers retrival error
+
+Current prices retrival error (sad path)
+1. System delivers current prices retrieval error

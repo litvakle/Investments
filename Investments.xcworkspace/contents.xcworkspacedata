@@ -5,6 +5,9 @@
       location = "group:README.md">
    </FileRef>
    <FileRef
+      location = "group:architecture.png">
+   </FileRef>
+   <FileRef
       location = "container:InvestmentsFrameworks/InvestmentsFrameworks.xcodeproj">
    </FileRef>
    <FileRef
