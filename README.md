@@ -51,23 +51,26 @@ When he removes it
 He doesn't see the transaction in a stored transactions
 ```
 
-### Use cases
+#### Use cases
 
-#### Display Transactions
+##### Display Transactions
 
+```
 Data:
--
 
 Primary course (happy path)
 1. Execute "RetrieveTransactions" command
 2. System encodes stored Transactions
-3. System delivers successful result
+3. System uploads transactions to a Remote transactions storage
+4. System delivers successful result
 
 Storage retrival error (sad path)
 1. System delivers retrival error
+```
 
-#### Delete Transaction
+##### Delete Transaction
 
+```
 Data:
 - Transaction (id)
 
@@ -79,7 +82,7 @@ Primary course (happy path)
 
 Storage removal error (sad path)
 1. System delivers removal error
-
+```
 
 ### Story: Add new transaction
 
@@ -123,10 +126,11 @@ When he cancels it
 He doesn't see the transaction in a stored transactions
 ```
 
-## Use cases
+#### Use cases
 
-### Save Transaction
+##### Save Transaction
 
+```
 Data:
 - Date
 - Type
@@ -145,7 +149,7 @@ Primary course (happy path)
 
 Storage saving error (sad path)
 1. System delivers error for each of velidating fields
-
+```
 
 ### Story: Portfolio
 
@@ -177,12 +181,12 @@ When the user saves new transaction and enters 'Portflio'
 He sees an updated portfolio
 ```
 
-## Use cases
+#### Use cases
 
-### Display portfolio
+##### Display portfolio
 
+```
 Data:
-- 
 
 Primary course (happy path)
 1. Retrieve transactions from storage
@@ -195,3 +199,108 @@ Storage retrival error (sad path)
 
 Current prices retrival error (sad path)
 1. System delivers current prices retrieval error
+```
+
+### Story: Current prices
+
+#### Narrative
+
+```
+As a user of the App
+I want to see current prices of my items
+So then I can see total cost of my profile and calc profit
+```
+
+##### Scenarios (acceptance criteria)
+
+```
+Given the user with internet connection
+When the user opens 'Portfolio'
+The system loads current prices via the Internet
+```
+
+```
+Given the user without internet connection
+When the user opens 'Portfolio'
+The system loads current prices from the cache
+```
+
+#### Use cases
+
+##### Load current prices from remote
+
+```
+Data:
+- Ticket
+
+Primary course (happy path)
+1. Retrieve data from the API
+2. Decode retrieved to a CurrentPrice model
+3. Save retrieved prices to cache
+4. System delivers successful result
+
+API connection error (sad path)
+1. System delivers connection error
+
+API invalid data error (sad path)
+1. System delivers invalid data error
+```
+
+##### Load current prices from Cache
+
+```
+Data:
+- Ticket
+
+Primary course (happy path)
+1. Retrieve data from the Cache
+2. Decode retrieved to a CurrentPrice model
+3. System delivers successful result
+
+Cache retrieval error (sad path)
+1. System delivers cache error
+```
+
+### Story: Portfolio (for WatchOS)
+
+#### Narrative
+
+```
+As a user of the App
+I want to see current cost and profit of my portfolio
+So I can simply understand my profit or loss without using my iPhone
+```
+
+##### Scenarios (acceptance criteria)
+
+```
+Given the user with no transactions
+When the user launches the app
+He sees an view with zero cost and profit
+```
+
+```
+Given the user with stored transactions
+When the user launches the app
+He sees a total current cost of his investments and his profit
+```
+
+#### Use cases
+
+##### Display portfolio
+
+```
+Data:
+
+Primary course (happy path)
+1. Retrieve transactions from remote storage
+2. Get current prices fot tickets
+3. Calculate portfolio summary
+4. System delivers successful result
+
+Remote storage retrival error (sad path)
+1. System delivers retrival error
+
+Current prices retrival error (sad path)
+1. System delivers current prices retrieval error
+```
