@@ -101,6 +101,14 @@ class URLSessionHTTPClientTests: XCTestCase {
         XCTAssertEqual(receivedError?.code, URLError.cancelled.rawValue)
     }
     
+    func test_putToURL_failsOnRequestError() {
+        let requestError = anyNSError()
+        
+        let receivedError = putResultErrorFor((data: nil, response: nil, error: requestError))
+        
+        XCTAssertNotNil(receivedError)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> HTTPClient {
