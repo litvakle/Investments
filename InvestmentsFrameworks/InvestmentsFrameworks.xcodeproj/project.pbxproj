@@ -48,6 +48,18 @@
 		3AAAA84628D348FD00E0DF6B /* TransactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA84528D348FC00E0DF6B /* TransactionViewModel.swift */; };
 		3AAAA84928D42BDD00E0DF6B /* NumberFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA84828D42BDD00E0DF6B /* NumberFormatterTests.swift */; };
 		3AAAA84C28D430AB00E0DF6B /* NumberFormatter+Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA84B28D430AB00E0DF6B /* NumberFormatter+Formatters.swift */; };
+		3AF7167A28F5B520008C4007 /* InvestmentsFrameworksWatchOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 3AF7167928F5B520008C4007 /* InvestmentsFrameworksWatchOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3AF7167E28F5B534008C4007 /* CombineHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A76494128EBE53F00B810B7 /* CombineHelpers.swift */; };
+		3AF7167F28F5B53D008C4007 /* NumberFormatter+Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA84B28D430AB00E0DF6B /* NumberFormatter+Formatters.swift */; };
+		3AF7168428F5B713008C4007 /* URLSessionHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7648F128E309EB00B810B7 /* URLSessionHTTPClient.swift */; };
+		3AF7168528F5B716008C4007 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7648EE28E309AE00B810B7 /* HTTPClient.swift */; };
+		3AF7168828F5B72A008C4007 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA7C928D05C3C00E0DF6B /* Transaction.swift */; };
+		3AF7168928F5B72D008C4007 /* CurrentPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A76490028E320ED00B810B7 /* CurrentPrice.swift */; };
+		3AF7168A28F5B734008C4007 /* CurrentPriceMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A76490228E3212500B810B7 /* CurrentPriceMapper.swift */; };
+		3AF7168B28F5B734008C4007 /* CurrentPriceEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A76492528E44F1700B810B7 /* CurrentPriceEndPoint.swift */; };
+		3AF7168C28F5B73A008C4007 /* CurrentPricesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A76490D28E41BB400B810B7 /* CurrentPricesStore.swift */; };
+		3AF7168F28F5B73E008C4007 /* CurrentPricesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A76492C28E5A45700B810B7 /* CurrentPricesViewModel.swift */; };
+		3AF7169528F5B751008C4007 /* PortfolioViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A14586B28E1CE9800AD1EF5 /* PortfolioViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,6 +121,8 @@
 		3AAAA84528D348FC00E0DF6B /* TransactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewModel.swift; sourceTree = "<group>"; };
 		3AAAA84828D42BDD00E0DF6B /* NumberFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormatterTests.swift; sourceTree = "<group>"; };
 		3AAAA84B28D430AB00E0DF6B /* NumberFormatter+Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NumberFormatter+Formatters.swift"; sourceTree = "<group>"; };
+		3AF7167728F5B520008C4007 /* InvestmentsFrameworksWatchOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = InvestmentsFrameworksWatchOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3AF7167928F5B520008C4007 /* InvestmentsFrameworksWatchOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InvestmentsFrameworksWatchOS.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +146,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AAAA7C128D051D000E0DF6B /* InvestmentsFrameworks.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3AF7167428F5B520008C4007 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,6 +387,7 @@
 				3AAAA7B128D0300A00E0DF6B /* InvestmentsFrameworks */,
 				3AAAA7BE28D051D000E0DF6B /* InvestmentsFrameworksTests */,
 				3A76491928E437AE00B810B7 /* APIEndToEndTests */,
+				3AF7167828F5B520008C4007 /* InvestmentsFrameworksWatchOS */,
 				3AAAA7B028D0300A00E0DF6B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -376,6 +398,7 @@
 				3AAAA7AF28D0300A00E0DF6B /* InvestmentsFrameworks.framework */,
 				3AAAA7BD28D051D000E0DF6B /* InvestmentsFrameworksTests.xctest */,
 				3A76491828E437AE00B810B7 /* APIEndToEndTests.xctest */,
+				3AF7167728F5B520008C4007 /* InvestmentsFrameworksWatchOS.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -537,6 +560,14 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		3AF7167828F5B520008C4007 /* InvestmentsFrameworksWatchOS */ = {
+			isa = PBXGroup;
+			children = (
+				3AF7167928F5B520008C4007 /* InvestmentsFrameworksWatchOS.h */,
+			);
+			path = InvestmentsFrameworksWatchOS;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -544,6 +575,14 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3AF7167228F5B520008C4007 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3AF7167A28F5B520008C4007 /* InvestmentsFrameworksWatchOS.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -604,6 +643,24 @@
 			productReference = 3AAAA7BD28D051D000E0DF6B /* InvestmentsFrameworksTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		3AF7167628F5B520008C4007 /* InvestmentsFrameworksWatchOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3AF7167B28F5B520008C4007 /* Build configuration list for PBXNativeTarget "InvestmentsFrameworksWatchOS" */;
+			buildPhases = (
+				3AF7167228F5B520008C4007 /* Headers */,
+				3AF7167328F5B520008C4007 /* Sources */,
+				3AF7167428F5B520008C4007 /* Frameworks */,
+				3AF7167528F5B520008C4007 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = InvestmentsFrameworksWatchOS;
+			productName = InvestmentsFrameworksWatchOS;
+			productReference = 3AF7167728F5B520008C4007 /* InvestmentsFrameworksWatchOS.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -624,6 +681,9 @@
 					3AAAA7BC28D051D000E0DF6B = {
 						CreatedOnToolsVersion = 13.4;
 					};
+					3AF7167628F5B520008C4007 = {
+						CreatedOnToolsVersion = 13.4;
+					};
 				};
 			};
 			buildConfigurationList = 3AAAA7A928D0300A00E0DF6B /* Build configuration list for PBXProject "InvestmentsFrameworks" */;
@@ -642,6 +702,7 @@
 				3AAAA7AE28D0300A00E0DF6B /* InvestmentsFrameworks */,
 				3AAAA7BC28D051D000E0DF6B /* InvestmentsFrameworksTests */,
 				3A76491728E437AE00B810B7 /* APIEndToEndTests */,
+				3AF7167628F5B520008C4007 /* InvestmentsFrameworksWatchOS */,
 			);
 		};
 /* End PBXProject section */
@@ -662,6 +723,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		3AAAA7BB28D051D000E0DF6B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3AF7167528F5B520008C4007 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -728,6 +796,24 @@
 				3A14586928E1C3DB00AD1EF5 /* PortfolioViewModelTests.swift in Sources */,
 				3A76490928E416F900B810B7 /* CoreDataCurrentPricesStoreTests.swift in Sources */,
 				3A7648FD28E3129400B810B7 /* CurrentPriceMapperTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3AF7167328F5B520008C4007 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3AF7168828F5B72A008C4007 /* Transaction.swift in Sources */,
+				3AF7168928F5B72D008C4007 /* CurrentPrice.swift in Sources */,
+				3AF7168F28F5B73E008C4007 /* CurrentPricesViewModel.swift in Sources */,
+				3AF7169528F5B751008C4007 /* PortfolioViewModel.swift in Sources */,
+				3AF7167F28F5B53D008C4007 /* NumberFormatter+Formatters.swift in Sources */,
+				3AF7168C28F5B73A008C4007 /* CurrentPricesStore.swift in Sources */,
+				3AF7167E28F5B534008C4007 /* CombineHelpers.swift in Sources */,
+				3AF7168528F5B716008C4007 /* HTTPClient.swift in Sources */,
+				3AF7168A28F5B734008C4007 /* CurrentPriceMapper.swift in Sources */,
+				3AF7168B28F5B734008C4007 /* CurrentPriceEndPoint.swift in Sources */,
+				3AF7168428F5B713008C4007 /* URLSessionHTTPClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -927,7 +1013,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Lev-Litvak.InvestmentsFrameworks";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator";
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator watchsimulator watchos";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -958,7 +1044,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Lev-Litvak.InvestmentsFrameworks";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator";
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator watchsimulator watchos";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
@@ -976,7 +1062,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Lev-Litvak.InvestmentsFrameworksTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "macosx iphonesimulator iphoneos";
+				SUPPORTED_PLATFORMS = "macosx iphonesimulator iphoneos watchsimulator watchos";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 			};
@@ -994,9 +1080,72 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Lev-Litvak.InvestmentsFrameworksTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "macosx iphonesimulator iphoneos";
+				SUPPORTED_PLATFORMS = "macosx iphonesimulator iphoneos watchsimulator watchos";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		3AF7167C28F5B520008C4007 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 836WWF38RW;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Lev-Litvak.InvestmentsFrameworksWatchOS";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 8.5;
+			};
+			name = Debug;
+		};
+		3AF7167D28F5B520008C4007 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 836WWF38RW;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Lev-Litvak.InvestmentsFrameworksWatchOS";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 8.5;
 			};
 			name = Release;
 		};
@@ -1035,6 +1184,15 @@
 			buildConfigurations = (
 				3AAAA7C528D051D000E0DF6B /* Debug */,
 				3AAAA7C628D051D000E0DF6B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3AF7167B28F5B520008C4007 /* Build configuration list for PBXNativeTarget "InvestmentsFrameworksWatchOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3AF7167C28F5B520008C4007 /* Debug */,
+				3AF7167D28F5B520008C4007 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
