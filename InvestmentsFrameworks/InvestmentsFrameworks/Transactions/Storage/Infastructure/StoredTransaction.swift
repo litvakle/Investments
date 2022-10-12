@@ -18,16 +18,6 @@ class StoredTransaction: NSManagedObject {
     @NSManaged var sum: Double
 }
 
-extension TransactionType {
-    func asString() -> String {
-        return self == .buy ? "buy" : "sell"
-    }
-    
-    static func fromString(_ type: String) -> TransactionType {
-        return type == "buy" ? .buy : .sell
-    }
-}
-
 extension StoredTransaction {
     static func allTransactions(in context: NSManagedObjectContext) throws -> [Transaction] {
         let request = NSFetchRequest<StoredTransaction>(entityName: entity().name!)

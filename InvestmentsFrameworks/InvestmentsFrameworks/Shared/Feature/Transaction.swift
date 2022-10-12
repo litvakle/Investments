@@ -31,3 +31,13 @@ public enum TransactionType {
     case buy
     case sell
 }
+
+public extension TransactionType {
+    func asString() -> String {
+        return self == .buy ? "buy" : "sell"
+    }
+    
+    static func fromString(_ type: String) -> TransactionType {
+        return type == "buy" ? .buy : .sell
+    }
+}
