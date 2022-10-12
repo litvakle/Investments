@@ -9,6 +9,7 @@ import Foundation
 
 public enum TransactionsEndPoint {
     case get
+    case put
     
     public func url(projectID: String) -> URL {
         switch self {
@@ -19,6 +20,8 @@ public enum TransactionsEndPoint {
             components.path = "/transactions.json"
 
             return components.url!
+        case .put:
+            return TransactionsEndPoint.get.url(projectID: projectID)
         }
     }
 }

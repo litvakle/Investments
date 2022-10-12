@@ -18,4 +18,14 @@ class TransactionsEndPointTests: XCTestCase {
         XCTAssertEqual(received.host, "projectID.firebaseio.com", "host")
         XCTAssertEqual(received.path, "/transactions.json", "path")
     }
+    
+    func test_transactions_putEndpointURL() {
+        let projectID = "projectID"
+        
+        let received = TransactionsEndPoint.put.url(projectID: projectID)
+        
+        XCTAssertEqual(received.scheme, "https", "scheme")
+        XCTAssertEqual(received.host, "projectID.firebaseio.com", "host")
+        XCTAssertEqual(received.path, "/transactions.json", "path")
+    }
 }
