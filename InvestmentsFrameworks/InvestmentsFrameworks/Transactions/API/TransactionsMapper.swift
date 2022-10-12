@@ -8,11 +8,25 @@
 import Foundation
 
 public class TransactionsMapper {
-    struct CurrentPriceAPI: Decodable {
-        let c: Double
+    struct TransactionAPI: Decodable {
+        let id: String
+        let date: Date
+        let ticket: String
+        let type: String
+        let quantity: Double
+        let price: Double
+        let sum: Double
         
-        var currentPrice: CurrentPrice {
-            CurrentPrice(price: c)
+        var transaction: Transaction {
+            Transaction(
+                id: UUID(uuidString: id) ?? UUID(),
+                date: date,
+                ticket: ticket,
+                type: TransactionType.fromString(type),
+                quantity: quantity,
+                price: price,
+                sum: sum
+            )
         }
     }
     
@@ -23,10 +37,12 @@ public class TransactionsMapper {
     
     public static var isOK: Int { 200 }
     
-    public static func map(_ data: Data, from response: HTTPURLResponse) throws -> CurrentPrice {
+    public static func map(_ data: Data, from response: HTTPURLResponse) throws -> [Transaction] {
         guard response.statusCode == isOK else { throw Error.connectionError }
-        guard let decoded = try? JSONDecoder().decode(CurrentPriceAPI.self, from: data) else { throw Error.invalidData }
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        guard let decoded = try? decoder.decode([TransactionAPI].self, from: data) else { throw Error.invalidData }
         
-        return decoded.currentPrice
+        return decoded.map { $0.transaction }
     }
 }
