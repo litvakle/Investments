@@ -10,7 +10,7 @@ import InvestmentsFrameworks
 
 class APIEndToEndTests: XCTestCase {
     func test_endToEndServerGETCurrentPricesResult_deliversSuccessfully() {
-        switch getCurrentPricesResult() {
+        switch getResult(url: currentPricesTestServerURL, mapper: CurrentPriceMapper.map) {
         case let .success(currentPrice)?:
             XCTAssertTrue(currentPrice.price > 0)
             
@@ -36,26 +36,6 @@ class APIEndToEndTests: XCTestCase {
     }
     
     // MARK: - Helpers
-    
-    private func getCurrentPricesResult(file: StaticString = #filePath, line: UInt = #line) -> Swift.Result<CurrentPrice, Error>? {
-        let client = ephemeralClient()
-        let exp = expectation(description: "Wait for load completion")
-        
-        var receivedResult: Swift.Result<CurrentPrice, Error>?
-        client.get(from: currentPricesTestServerURL) { result in
-            receivedResult = result.flatMap { (data, response) in
-                do {
-                    return .success(try CurrentPriceMapper.map(data, from: response))
-                } catch {
-                    return .failure(error)
-                }
-            }
-            exp.fulfill()
-        }
-        wait(for: [exp], timeout: 15.0)
-        
-        return receivedResult
-    }
     
     private func getResult<T>(
         file: StaticString = #filePath,
