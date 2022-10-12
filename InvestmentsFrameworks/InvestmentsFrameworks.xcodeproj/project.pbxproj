@@ -60,6 +60,8 @@
 		3AF7168C28F5B73A008C4007 /* CurrentPricesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A76490D28E41BB400B810B7 /* CurrentPricesStore.swift */; };
 		3AF7168F28F5B73E008C4007 /* CurrentPricesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A76492C28E5A45700B810B7 /* CurrentPricesViewModel.swift */; };
 		3AF7169528F5B751008C4007 /* PortfolioViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A14586B28E1CE9800AD1EF5 /* PortfolioViewModel.swift */; };
+		3AF7169928F6C7D3008C4007 /* TransactionsMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF7169828F6C7D3008C4007 /* TransactionsMapperTests.swift */; };
+		3AF7169C28F6C828008C4007 /* TransactionsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF7169B28F6C828008C4007 /* TransactionsMapper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,6 +125,8 @@
 		3AAAA84B28D430AB00E0DF6B /* NumberFormatter+Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NumberFormatter+Formatters.swift"; sourceTree = "<group>"; };
 		3AF7167728F5B520008C4007 /* InvestmentsFrameworksWatchOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = InvestmentsFrameworksWatchOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AF7167928F5B520008C4007 /* InvestmentsFrameworksWatchOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InvestmentsFrameworksWatchOS.h; sourceTree = "<group>"; };
+		3AF7169828F6C7D3008C4007 /* TransactionsMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsMapperTests.swift; sourceTree = "<group>"; };
+		3AF7169B28F6C828008C4007 /* TransactionsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsMapper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -438,6 +442,7 @@
 		3AAAA7D328D1E4B900E0DF6B /* Transactions */ = {
 			isa = PBXGroup;
 			children = (
+				3AF7169A28F6C819008C4007 /* API */,
 				3AAAA7D228D1E4AD00E0DF6B /* Storage */,
 				3AAAA7EE28D2D98500E0DF6B /* Presentation */,
 			);
@@ -509,6 +514,7 @@
 		3AAAA7E628D200C300E0DF6B /* Transactions */ = {
 			isa = PBXGroup;
 			children = (
+				3AF7169728F6C7B1008C4007 /* API */,
 				3AAAA7EB28D2188900E0DF6B /* Helpers */,
 				3AAAA7DB28D1E5AE00E0DF6B /* Storage */,
 				3AAAA7E728D2012800E0DF6B /* Presentation */,
@@ -566,6 +572,22 @@
 				3AF7167928F5B520008C4007 /* InvestmentsFrameworksWatchOS.h */,
 			);
 			path = InvestmentsFrameworksWatchOS;
+			sourceTree = "<group>";
+		};
+		3AF7169728F6C7B1008C4007 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				3AF7169828F6C7D3008C4007 /* TransactionsMapperTests.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		3AF7169A28F6C819008C4007 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				3AF7169B28F6C828008C4007 /* TransactionsMapper.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -771,6 +793,7 @@
 				3AAAA7CD28D0B05F00E0DF6B /* TransactionsStore.xcdatamodeld in Sources */,
 				3A76490328E3212500B810B7 /* CurrentPriceMapper.swift in Sources */,
 				3A14586C28E1CE9800AD1EF5 /* PortfolioViewModel.swift in Sources */,
+				3AF7169C28F6C828008C4007 /* TransactionsMapper.swift in Sources */,
 				3A76493128E5D8A000B810B7 /* StoredCurrentPrice.swift in Sources */,
 				3A76492D28E5A45700B810B7 /* CurrentPricesViewModel.swift in Sources */,
 			);
@@ -790,6 +813,7 @@
 				3AAAA84428D3335800E0DF6B /* TransactionViewModelTests.swift in Sources */,
 				3AAAA7ED28D2189E00E0DF6B /* SharedTransactionsTestHelpers.swift in Sources */,
 				3A7648F928E30A6A00B810B7 /* URLProtocolStub.swift in Sources */,
+				3AF7169928F6C7D3008C4007 /* TransactionsMapperTests.swift in Sources */,
 				3AAAA7DF28D1E66700E0DF6B /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 				3AAAA7E228D1ED4400E0DF6B /* NSManagedObjectContext+Stub.swift in Sources */,
 				3A7648E228E1E76700B810B7 /* PortfolioTestHelpers.swift in Sources */,
