@@ -40,12 +40,16 @@ public final class URLSessionHTTPClient: HTTPClient {
         return URLSessionTaskWrapper(wrapped: task)
     }
     
-    public func put(to url: URL) {
+    public func put(to url: URL, completion: @escaping (HTTPClient.Result) -> Void) -> HTTPClientTask {
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
         
-        session.dataTask(with: request) { _, _, _ in
-            
-        }.resume()
+        let task = session.dataTask(with: request) { _, _, error in
+            if let error = error {
+                completion(.failure(error))
+            }
+        }
+        task.resume()
+        return URLSessionTaskWrapper(wrapped: task)
     }
 }
