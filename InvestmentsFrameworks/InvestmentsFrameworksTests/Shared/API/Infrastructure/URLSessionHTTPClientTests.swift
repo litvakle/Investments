@@ -109,6 +109,18 @@ class URLSessionHTTPClientTests: XCTestCase {
         XCTAssertNotNil(receivedError)
     }
     
+    func test_putToURL_failsOnAllInvalidRepresentationCases() {
+        XCTAssertNotNil(putResultErrorFor((data: nil, response: nil, error: nil)))
+        XCTAssertNotNil(putResultErrorFor((data: nil, response: nonHTTPURLResponse(), error: nil)))
+        XCTAssertNotNil(putResultErrorFor((data: anyData(), response: nil, error: nil)))
+        XCTAssertNotNil(putResultErrorFor((data: anyData(), response: nil, error: anyNSError())))
+        XCTAssertNotNil(putResultErrorFor((data: nil, response: nonHTTPURLResponse(), error: anyNSError())))
+        XCTAssertNotNil(putResultErrorFor((data: nil, response: anyHTTPURLResponse(), error: anyNSError())))
+        XCTAssertNotNil(putResultErrorFor((data: anyData(), response: nonHTTPURLResponse(), error: anyNSError())))
+        XCTAssertNotNil(putResultErrorFor((data: anyData(), response: anyHTTPURLResponse(), error: anyNSError())))
+        XCTAssertNotNil(putResultErrorFor((data: anyData(), response: nonHTTPURLResponse(), error: nil)))
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> HTTPClient {
