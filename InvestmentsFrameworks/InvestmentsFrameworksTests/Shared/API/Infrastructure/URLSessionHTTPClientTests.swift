@@ -78,6 +78,23 @@ class URLSessionHTTPClientTests: XCTestCase {
         XCTAssertEqual(receivedValues?.response.statusCode, response.statusCode)
     }
     
+    // MARK: - PUT
+    
+    func test_putToURL_performsPUTRequestWithURL() {
+        let url = anyURL()
+        let exp = expectation(description: "Wait for request")
+        
+        URLProtocolStub.observeRequests { request in
+            XCTAssertEqual(request.url, url)
+            XCTAssertEqual(request.httpMethod, "PUT")
+            exp.fulfill()
+        }
+        
+        makeSUT().put(to: url) 
+        
+        wait(for: [exp], timeout: 1.0)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> HTTPClient {

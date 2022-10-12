@@ -39,4 +39,13 @@ public final class URLSessionHTTPClient: HTTPClient {
         task.resume()
         return URLSessionTaskWrapper(wrapped: task)
     }
+    
+    public func put(to url: URL) {
+        var request = URLRequest(url: url)
+        request.httpMethod = "PUT"
+        
+        session.dataTask(with: request) { _, _, _ in
+            
+        }.resume()
+    }
 }
