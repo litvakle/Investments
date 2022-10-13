@@ -82,15 +82,17 @@ class URLSessionHTTPClientTests: XCTestCase {
     
     func test_putToURL_performsPUTRequestWithURL() {
         let url = anyURL()
+        let data = anyData()
         let exp = expectation(description: "Wait for request")
         
         URLProtocolStub.observeRequests { request in
             XCTAssertEqual(request.url, url)
             XCTAssertEqual(request.httpMethod, "PUT")
+            XCTAssertEqual(request.allHTTPHeaderFields!["Content-Type"], "application/json")
             exp.fulfill()
         }
         
-        makeSUT().put(to: url) { _ in }
+        makeSUT().put(data, to: url) { _ in }
         
         wait(for: [exp], timeout: 1.0)
     }
@@ -119,6 +121,17 @@ class URLSessionHTTPClientTests: XCTestCase {
         XCTAssertNotNil(putResultErrorFor((data: anyData(), response: nonHTTPURLResponse(), error: anyNSError())))
         XCTAssertNotNil(putResultErrorFor((data: anyData(), response: anyHTTPURLResponse(), error: anyNSError())))
         XCTAssertNotNil(putResultErrorFor((data: anyData(), response: nonHTTPURLResponse(), error: nil)))
+    }
+    
+    func test_putToURL_succeedsOnHTTPURLResponseWithData() {
+        let data = anyData()
+        let response = anyHTTPURLResponse()
+        
+        let receivedValues = putResultValuesFor((data: data, response: response, error: nil))
+        
+        XCTAssertEqual(receivedValues?.data, data)
+        XCTAssertEqual(receivedValues?.response.url, response.url)
+        XCTAssertEqual(receivedValues?.response.statusCode, response.statusCode)
     }
     
     // MARK: - Helpers
@@ -173,8 +186,31 @@ class URLSessionHTTPClientTests: XCTestCase {
         return receivedResult
     }
     
-    private func putResultErrorFor(_ values: (data: Data?, response: URLResponse?, error: Error?)? = nil, taskHandler: (HTTPClientTask) -> Void = { _ in }, file: StaticString = #filePath, line: UInt = #line) -> Error? {
-        let result = resultFor(values, taskHandler: taskHandler, file: file, line: line)
+    private func putResultValuesFor(
+        _ values: (data: Data?, response: URLResponse?, error: Error?),
+        with data: Data = anyData(),
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) -> (data: Data, response: HTTPURLResponse)? {
+        let result = putResultFor(values, with: data, file: file, line: line)
+        
+        switch result {
+        case let .success(values):
+            return values
+        default:
+            XCTFail("Expected success, got \(result) instead", file: file, line: line)
+            return nil
+        }
+    }
+    
+    private func putResultErrorFor(
+        _ values: (data: Data?, response: URLResponse?, error: Error?)? = nil,
+        with data: Data = anyData(),
+        taskHandler: (HTTPClientTask) -> Void = { _ in },
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) -> Error? {
+        let result = putResultFor(values, with: data, taskHandler: taskHandler, file: file, line: line)
         
         switch result {
         case let .failure(error):
@@ -185,14 +221,20 @@ class URLSessionHTTPClientTests: XCTestCase {
         }
     }
     
-    private func putResultFor(_ values: (data: Data?, response: URLResponse?, error: Error?)?, taskHandler: (HTTPClientTask) -> Void = { _ in },  file: StaticString = #filePath, line: UInt = #line) -> HTTPClient.Result {
+    private func putResultFor(
+        _ values: (data: Data?, response: URLResponse?, error: Error?)?,
+        with data: Data,
+        taskHandler: (HTTPClientTask) -> Void = { _ in },
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) -> HTTPClient.Result {
         values.map { URLProtocolStub.stub(data: $0, response: $1, error: $2) }
         
         let sut = makeSUT(file: file, line: line)
         let exp = expectation(description: "Wait for completion")
         
         var receivedResult: HTTPClient.Result!
-        taskHandler(sut.put(to: anyURL()) { result in
+        taskHandler(sut.put(data, to: anyURL()) { result in
             receivedResult = result
             exp.fulfill()
         })

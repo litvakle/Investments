@@ -40,14 +40,22 @@ public final class URLSessionHTTPClient: HTTPClient {
         return URLSessionTaskWrapper(wrapped: task)
     }
     
-    public func put(to url: URL, completion: @escaping (HTTPClient.Result) -> Void) -> HTTPClientTask {
+    public func put(_ data: Data, to url: URL, completion: @escaping (HTTPClient.Result) -> Void) -> HTTPClientTask {
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = data
+        request.allHTTPHeaderFields = ["Content-Type": "application/json"]
         
-        let task = session.dataTask(with: request) { _, _, error in
+        let task = session.dataTask(with: request) { data, response, error in
             if let error = error {
                 completion(.failure(error))
+            } else if let data = data, let response = response as? HTTPURLResponse {
+                completion(.success((data, response)))
+            } else {
+                completion(.failure(UnexpectedValuesRepresentation()))
             }
+            
         }
         task.resume()
         return URLSessionTaskWrapper(wrapped: task)
