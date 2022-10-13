@@ -8,7 +8,7 @@
 import Foundation
 
 public class TransactionsMapper {
-    struct TransactionAPI: Decodable {
+    struct TransactionAPI: Codable {
         let id: String
         let date: Date
         let ticket: String
@@ -16,6 +16,16 @@ public class TransactionsMapper {
         let quantity: Double
         let price: Double
         let sum: Double
+        
+        init(from transaction: Transaction) {
+            self.id = transaction.id.uuidString
+            self.date = transaction.date
+            self.ticket = transaction.ticket
+            self.type = transaction.type.asString()
+            self.quantity = transaction.quantity
+            self.price = transaction.price
+            self.sum = transaction.sum
+        }
         
         var transaction: Transaction {
             Transaction(
@@ -44,5 +54,13 @@ public class TransactionsMapper {
         guard let decoded = try? decoder.decode([TransactionAPI].self, from: data) else { throw Error.invalidData }
         
         return decoded.map { $0.transaction }
+    }
+    
+    public static func map(_ transactions: [Transaction]) -> Data? {
+        let transactionsAPI = transactions.map { TransactionAPI(from: $0) }
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
+        
+        return try? encoder.encode(transactionsAPI)
     }
 }

@@ -61,6 +61,19 @@ class TransactionsMapperTests: XCTestCase {
         XCTAssertEqual(result, [item1.model, item2.model])
     }
     
+    func test_mapToData_makesCorrectData() {
+        let transactions = [
+            Transaction(id: UUID(), date: Date(timeIntervalSince1970: 1598627222), ticket: "AAA", type: .buy, quantity: 10, price: 2, sum: 20),
+            Transaction(id: UUID(), date: Date(timeIntervalSince1970: 1577881882), ticket: "BBB", type: .sell, quantity: 5, price: 20, sum: 100)
+        ]
+        
+        let data = TransactionsMapper.map(transactions)
+        XCTAssertNotNil(data)
+
+        let decodedTransactions = try? TransactionsMapper.map(data!, from: HTTPURLResponse(statusCode: 200))
+        XCTAssertEqual(decodedTransactions, transactions)
+    }
+    
     // MARK: - Helpers
     
     func makeJSON(_ data: [[String: Any]]) -> Data {
