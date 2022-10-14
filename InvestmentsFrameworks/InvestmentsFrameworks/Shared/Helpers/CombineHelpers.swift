@@ -47,6 +47,17 @@ public extension Publisher where Output == CurrentPrice {
     }
 }
 
+public extension Publisher where Output == [Transaction] {
+    func uploading(to httpClient: HTTPClient, with url: URL) -> AnyPublisher<Bool, Failure> {
+        compactMap(TransactionsMapper.map)
+            .map { data in
+                httpClient.put(data, to: url) { _ in }
+                return true
+            }
+            .eraseToAnyPublisher()
+    }
+}
+
 private extension CurrentPricesStore {
     func saveIgnoringResult(_ currentPrice: CurrentPrice, for ticket: String) {
         try? save(currentPrice, for: ticket)

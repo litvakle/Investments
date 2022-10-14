@@ -25,6 +25,15 @@ class TransactionsFlow: ObservableObject {
             .store(in: &cancellables)
     }
     
+    func setupSubscriptions(transactionsViewModel: TransactionsViewModel, httpClient: HTTPClient, url: URL) {
+        transactionsViewModel.$transactions
+            .dropFirst()
+            .removeDuplicates()
+            .uploading(to: httpClient, with: url)
+            .sink(receiveValue: { uploadSucceded in })
+            .store(in: &cancellables)
+    }
+    
     func showTransactionsView(transactionsViewModel: TransactionsViewModel) -> some View {
         let destination = makeTransactionView(
             transaction: selectedTransaction,
