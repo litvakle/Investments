@@ -32,22 +32,36 @@ class TransactionsFlowTests: XCTestCase {
         XCTAssertFalse(alertViewModel.message.isEmpty)
     }
     
-    func test_transactionsUpdate_leadsToPutRequestsToRemote() {
-        let store = TransactionsStoreStub()
+    func test_transactionsFlow_MakesPutRequestOnStoredTransactions() {
+        let store = InMemoryStore.withStoredData
         let transactionsViewModel = TransactionsViewModel(store: store)
         let sut = TransactionsFlow()
         let httpClient = HTTPClientSpy()
+        
+        transactionsViewModel.retrieve()
         sut.setupSubscriptions(
             transactionsViewModel: transactionsViewModel,
             httpClient: httpClient,
             url: URL(string: "http://any-url.com")!
         )
         
-        XCTAssertEqual(httpClient.putRequestsCallCount, 0, "Expected no requests until transactions changing")
+        XCTAssertEqual(httpClient.putRequestsCallCount, 1)
+    }
+    
+    func test_transactionsFlow_DoesNotMakePutRequestOnNoStoredTransactions() {
+        let store = InMemoryStore.empty
+        let transactionsViewModel = TransactionsViewModel(store: store)
+        let sut = TransactionsFlow()
+        let httpClient = HTTPClientSpy()
+        
         transactionsViewModel.retrieve()
-        XCTAssertEqual(httpClient.putRequestsCallCount, 1, "Expected requests after transactions changing")
-        transactionsViewModel.retrieve()
-        XCTAssertEqual(httpClient.putRequestsCallCount, 1, "Does not expect more requests since transactions have not been changed")
+        sut.setupSubscriptions(
+            transactionsViewModel: transactionsViewModel,
+            httpClient: httpClient,
+            url: URL(string: "http://any-url.com")!
+        )
+        
+        XCTAssertEqual(httpClient.putRequestsCallCount, 0)
     }
     
     // MARK: - Helpers

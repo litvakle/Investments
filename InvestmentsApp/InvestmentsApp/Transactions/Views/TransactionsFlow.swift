@@ -27,7 +27,7 @@ class TransactionsFlow: ObservableObject {
     
     func setupSubscriptions(transactionsViewModel: TransactionsViewModel, httpClient: HTTPClient, url: URL) {
         transactionsViewModel.$transactions
-            .dropFirst()
+            .drop(while: { $0.isEmpty })
             .removeDuplicates()
             .uploading(to: httpClient, with: url)
             .sink(receiveValue: { uploadSucceded in })
