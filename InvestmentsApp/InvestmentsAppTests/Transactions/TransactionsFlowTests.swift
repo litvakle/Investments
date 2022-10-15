@@ -12,10 +12,8 @@ import InvestmentsFrameworks
 
 class TransactionsFlowTests: XCTestCase {
     func test_transactionsError_leadsToAlert() {
-        let store = TransactionsStoreStub()
-        let transactionsViewModel = TransactionsViewModel(store: store)
-        let alertViewModel = AlertViewModel()
-        let sut = TransactionsFlow()
+        let (sut, transactionsViewModel, alertViewModel, _) = makeSUT(store: InMemoryStore.withStoredData)
+        
         sut.setupSubscriptions(
             transactionsViewModel: transactionsViewModel,
             alertViewModel: alertViewModel
@@ -33,12 +31,8 @@ class TransactionsFlowTests: XCTestCase {
     }
     
     func test_transactionsFlow_MakesPutRequestOnStoredTransactions() {
-        let store = InMemoryStore.withStoredData
-        let transactionsViewModel = TransactionsViewModel(store: store)
-        let sut = TransactionsFlow()
-        let httpClient = HTTPClientSpy()
+        let (sut, transactionsViewModel, _, httpClient) = makeSUT(store: InMemoryStore.withStoredData)
         
-        transactionsViewModel.retrieve()
         sut.setupSubscriptions(
             transactionsViewModel: transactionsViewModel,
             httpClient: httpClient,
@@ -49,12 +43,8 @@ class TransactionsFlowTests: XCTestCase {
     }
     
     func test_transactionsFlow_DoesNotMakePutRequestOnNoStoredTransactions() {
-        let store = InMemoryStore.empty
-        let transactionsViewModel = TransactionsViewModel(store: store)
-        let sut = TransactionsFlow()
-        let httpClient = HTTPClientSpy()
+        let (sut, transactionsViewModel, _, httpClient) = makeSUT(store: InMemoryStore.empty)
         
-        transactionsViewModel.retrieve()
         sut.setupSubscriptions(
             transactionsViewModel: transactionsViewModel,
             httpClient: httpClient,
@@ -65,6 +55,31 @@ class TransactionsFlowTests: XCTestCase {
     }
     
     // MARK: - Helpers
+    
+    private func makeSUT(
+        store: InMemoryStore,
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) -> (TransactionsFlow, TransactionsViewModel, AlertViewModel, HTTPClientSpy) {
+        let transactionsViewModel = TransactionsViewModel(store: store)
+        let sut = TransactionsFlow()
+        let httpClient = HTTPClientSpy()
+        
+        transactionsViewModel.retrieve()
+        
+        let alertViewModel = AlertViewModel()
+        sut.setupSubscriptions(
+            transactionsViewModel: transactionsViewModel,
+            alertViewModel: alertViewModel
+        )
+        
+        trackForMemoryLeaks(sut, file: file, line: line)
+        trackForMemoryLeaks(transactionsViewModel, file: file, line: line)
+        trackForMemoryLeaks(alertViewModel, file: file, line: line)
+        trackForMemoryLeaks(httpClient, file: file, line: line)
+        
+        return (sut, transactionsViewModel, alertViewModel, httpClient)
+    }
     
     private class TransactionsStoreStub: TransactionsStore {
         func retrieve() throws -> [Transaction] {
