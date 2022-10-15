@@ -54,6 +54,21 @@ class TransactionsFlowTests: XCTestCase {
         XCTAssertEqual(httpClient.putRequestsCallCount, 0)
     }
     
+    func test_transactionsFlow_DoesNotMakeDuplicatePutRequests() {
+        let (sut, transactionsViewModel, _, httpClient) = makeSUT(store: InMemoryStore.withStoredData)
+        sut.setupSubscriptions(
+            transactionsViewModel: transactionsViewModel,
+            httpClient: httpClient,
+            url: URL(string: "http://any-url.com")!
+        )
+        let transaction = Transaction(ticket: "ZZZ")
+        transactionsViewModel.save(transaction)
+        let count = httpClient.putRequestsCallCount
+        
+        transactionsViewModel.save(transaction)
+        XCTAssertEqual(httpClient.putRequestsCallCount, count)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(
