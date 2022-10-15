@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		3A14586928E1C3DB00AD1EF5 /* PortfolioViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A14586828E1C3DB00AD1EF5 /* PortfolioViewModelTests.swift */; };
 		3A14586C28E1CE9800AD1EF5 /* PortfolioViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A14586B28E1CE9800AD1EF5 /* PortfolioViewModel.swift */; };
+		3A38BFD528FA870E00427B59 /* TransactionsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF7169B28F6C828008C4007 /* TransactionsMapper.swift */; };
+		3A38BFD628FA871200427B59 /* TransactionsEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF716A128F6DE56008C4007 /* TransactionsEndPoint.swift */; };
 		3A7648E228E1E76700B810B7 /* PortfolioTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7648E128E1E76700B810B7 /* PortfolioTestHelpers.swift */; };
 		3A7648EF28E309AE00B810B7 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7648EE28E309AE00B810B7 /* HTTPClient.swift */; };
 		3A7648F228E309EB00B810B7 /* URLSessionHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7648F128E309EB00B810B7 /* URLSessionHTTPClient.swift */; };
@@ -836,6 +838,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AF7168828F5B72A008C4007 /* Transaction.swift in Sources */,
+				3A38BFD528FA870E00427B59 /* TransactionsMapper.swift in Sources */,
 				3AF7168928F5B72D008C4007 /* CurrentPrice.swift in Sources */,
 				3AF7168F28F5B73E008C4007 /* CurrentPricesViewModel.swift in Sources */,
 				3AF7169528F5B751008C4007 /* PortfolioViewModel.swift in Sources */,
@@ -843,6 +846,7 @@
 				3AF7168C28F5B73A008C4007 /* CurrentPricesStore.swift in Sources */,
 				3AF7167E28F5B534008C4007 /* CombineHelpers.swift in Sources */,
 				3AF7168528F5B716008C4007 /* HTTPClient.swift in Sources */,
+				3A38BFD628FA871200427B59 /* TransactionsEndPoint.swift in Sources */,
 				3AF7168A28F5B734008C4007 /* CurrentPriceMapper.swift in Sources */,
 				3AF7168B28F5B734008C4007 /* CurrentPriceEndPoint.swift in Sources */,
 				3AF7168428F5B713008C4007 /* URLSessionHTTPClient.swift in Sources */,
