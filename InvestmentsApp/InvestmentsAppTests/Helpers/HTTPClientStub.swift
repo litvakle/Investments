@@ -13,6 +13,8 @@ class HTTPClientStub: HTTPClient {
         func cancel() {}
     }
     
+    var putRequestsCallCount = 0
+    
     private let stub: (URL) -> HTTPClient.Result
     
     init(stub: @escaping (URL) -> HTTPClient.Result) {
@@ -25,6 +27,7 @@ class HTTPClientStub: HTTPClient {
     }
     
     func put(_ data: Data, to url: URL, completion: @escaping (HTTPClient.Result) -> Void) -> HTTPClientTask {
+        putRequestsCallCount += 1
         completion(stub(url))
         return Task()
     }

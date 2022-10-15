@@ -72,6 +72,19 @@ extension InvestmentsAcceptranceTests {
         XCTAssertEqual(try sut.transactionsView().transactions().count, 3)
     }
     
+    func test_onChangeTransactions_requestsToRemote() throws {
+        let httpClient: HTTPClientStub = .online(response)
+        let sut = makeSUT(httpClient: httpClient, store: storeWithStoredTransactions)
+
+        XCTAssertEqual(httpClient.putRequestsCallCount, 0)
+        
+        sut.transactionsViewModel.retrieve()
+        XCTAssertEqual(httpClient.putRequestsCallCount, 1)
+
+        sut.transactionsViewModel.retrieve()
+        XCTAssertEqual(httpClient.putRequestsCallCount, 1)
+    }
+    
     // MARK: - Helpers
     
     private var storeWithStoredTransactions: InMemoryStore {

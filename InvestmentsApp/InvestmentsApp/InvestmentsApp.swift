@@ -18,7 +18,8 @@ private let root = UIComposer(
     transactionsStore: store,
     currentPricesStore: store,
     baseURL: URL(string: "https://finnhub.io/api")!,
-    token: "ccfe31iad3ifmhk0t53g"
+    token: "ccfe31iad3ifmhk0t53g",
+    transactionsProjectID: "investments-3b67e-default-rtdb"
 )
 
 @main

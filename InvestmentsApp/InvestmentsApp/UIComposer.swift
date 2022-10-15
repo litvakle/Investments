@@ -22,7 +22,8 @@ class UIComposer {
         transactionsStore: TransactionsStore,
         currentPricesStore: CurrentPricesStore,
         baseURL: URL,
-        token: String
+        token: String,
+        transactionsProjectID: String
     ) {
         transactionsViewModel = TransactionsViewModel(store: transactionsStore)
         transactionsViewModel.retrieve()
@@ -40,6 +41,12 @@ class UIComposer {
             transactionsViewModel: transactionsViewModel,
             alertViewModel: alertViewModel
         )
+        transactionsFlow.setupSubscriptions(
+            transactionsViewModel: transactionsViewModel,
+            httpClient: httpClient,
+            url: TransactionsEndPoint.put.url(projectID: transactionsProjectID)
+        )
+        
         portfolioFlow.setupSubscriptions(
             portfolioViewModel: portfolioViewModel,
             transactionsViewModel: transactionsViewModel,

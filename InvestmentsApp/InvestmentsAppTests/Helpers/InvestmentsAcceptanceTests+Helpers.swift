@@ -24,7 +24,8 @@ extension InvestmentsAcceptranceTests {
             transactionsStore: store,
             currentPricesStore: store,
             baseURL: URL(string: "http://base-url.com")!,
-            token: "token"
+            token: "token",
+            transactionsProjectID: "A project ID"
         )
         
         let sut = ContentView(
