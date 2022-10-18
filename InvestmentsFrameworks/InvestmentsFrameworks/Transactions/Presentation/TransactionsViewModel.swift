@@ -38,7 +38,6 @@ public class TransactionsViewModel: ObservableObject {
                 if case let .failure(error) = completion {
                     self?.error = error
                 }
-                print("1111")
                 self?.isRetrieving = false
             }, receiveValue: { [weak self] retrievedTransactions in
                 self?.transactions = retrievedTransactions.sorted(by: { $0.date > $1.date })
