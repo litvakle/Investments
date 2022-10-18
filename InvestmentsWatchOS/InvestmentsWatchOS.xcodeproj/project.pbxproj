@@ -16,7 +16,6 @@
 		3AF7165328F59A8F008C4007 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AF7165228F59A8F008C4007 /* Assets.xcassets */; };
 		3AF7165628F59A8F008C4007 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AF7165528F59A8F008C4007 /* Preview Assets.xcassets */; };
 		43EE6E5228FE986300E0BB96 /* InvestmentsFrameworks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43EE6E5128FE986300E0BB96 /* InvestmentsFrameworks.framework */; };
-		43EE6E5328FE986300E0BB96 /* InvestmentsFrameworks.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43EE6E5128FE986300E0BB96 /* InvestmentsFrameworks.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,17 +56,6 @@
 				3AF7163D28F59A8B008C4007 /* InvestmentsWatchOS WatchKit App.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3AF7168328F5B554008C4007 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				43EE6E5328FE986300E0BB96 /* InvestmentsFrameworks.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -207,7 +195,6 @@
 				3AF7164328F59A8E008C4007 /* Sources */,
 				3AF7164428F59A8E008C4007 /* Frameworks */,
 				3AF7164528F59A8E008C4007 /* Resources */,
-				3AF7168328F5B554008C4007 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
