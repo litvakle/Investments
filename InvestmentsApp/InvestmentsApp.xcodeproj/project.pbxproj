@@ -41,7 +41,6 @@
 		3AAAA83A28D30AE100E0DF6B /* Double+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA83928D30AE100E0DF6B /* Double+Helpers.swift */; };
 		3AAAA84128D3148A00E0DF6B /* Transaction+PreviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA84028D3148A00E0DF6B /* Transaction+PreviewData.swift */; };
 		3AAAA86D28D7562000E0DF6B /* ActivatableNavigationLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA86C28D7561F00E0DF6B /* ActivatableNavigationLink.swift */; };
-		3AAAA86F28D98D9C00E0DF6B /* TransactionsViewModel+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA86E28D98D9B00E0DF6B /* TransactionsViewModel+Preview.swift */; };
 		3AAAA87E28D9B72600E0DF6B /* AlertViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA87D28D9B72600E0DF6B /* AlertViewModelTests.swift */; };
 		3AAAA88028D9B7B400E0DF6B /* AlertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA87F28D9B7B400E0DF6B /* AlertViewModel.swift */; };
 		3AAAA88228D9B93000E0DF6B /* TransactionsFlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA88128D9B93000E0DF6B /* TransactionsFlowTests.swift */; };
@@ -109,7 +108,6 @@
 		3AAAA83928D30AE100E0DF6B /* Double+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Helpers.swift"; sourceTree = "<group>"; };
 		3AAAA84028D3148A00E0DF6B /* Transaction+PreviewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Transaction+PreviewData.swift"; sourceTree = "<group>"; };
 		3AAAA86C28D7561F00E0DF6B /* ActivatableNavigationLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivatableNavigationLink.swift; sourceTree = "<group>"; };
-		3AAAA86E28D98D9B00E0DF6B /* TransactionsViewModel+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TransactionsViewModel+Preview.swift"; sourceTree = "<group>"; };
 		3AAAA87428D9B6C000E0DF6B /* InvestmentsAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InvestmentsAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AAAA87D28D9B72600E0DF6B /* AlertViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewModelTests.swift; sourceTree = "<group>"; };
 		3AAAA87F28D9B7B400E0DF6B /* AlertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewModel.swift; sourceTree = "<group>"; };
@@ -330,7 +328,6 @@
 			isa = PBXGroup;
 			children = (
 				3AAAA84028D3148A00E0DF6B /* Transaction+PreviewData.swift */,
-				3AAAA86E28D98D9B00E0DF6B /* TransactionsViewModel+Preview.swift */,
 			);
 			path = Transactions;
 			sourceTree = "<group>";
@@ -473,7 +470,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3AAAA86F28D98D9C00E0DF6B /* TransactionsViewModel+Preview.swift in Sources */,
 				3A14587628E1D25C00AD1EF5 /* PortfolioView.swift in Sources */,
 				3A76493E28EACC6D00B810B7 /* CurrentPricesLoaderFactory.swift in Sources */,
 				3A303F6828ED52EB008B66CD /* UIComposer.swift in Sources */,
