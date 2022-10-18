@@ -49,7 +49,7 @@ class CurrentPricesFlowTests: XCTestCase {
         file: StaticString = #filePath,
         line: UInt = #line
     ) -> (CurrentPricesFlow, TransactionsViewModel, CurrentPricesViewModel, CurrentPriceLoaderSpy, AlertViewModel) {
-        let transactionsViewModel = TransactionsViewModel(store: store)
+        let transactionsViewModel = TransactionsViewModel(retriever: store.retrivePublisher, saver: store.savePublisher, deleter: store.deletePublisher)
         transactionsViewModel.retrieve()
         let currentPriceLoader = CurrentPriceLoaderSpy()
         let currentPricesViewModel = CurrentPricesViewModel(loader: currentPriceLoader.loadPublisher)

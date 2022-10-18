@@ -25,7 +25,11 @@ class UIComposer {
         token: String,
         transactionsProjectID: String
     ) {
-        transactionsViewModel = TransactionsViewModel(store: transactionsStore)
+        transactionsViewModel = TransactionsViewModel(
+            retriever: transactionsStore.retrivePublisher,
+            saver: transactionsStore.savePublisher,
+            deleter: transactionsStore.deletePublisher
+        )
         transactionsViewModel.retrieve()
         
         let currentPricesLoaderFactory = CurrentPricesLoaderFactory(

@@ -39,6 +39,45 @@ public extension CurrentPricesStore {
     }
 }
 
+public extension TransactionsRetriever {
+    func retrivePublisher() -> AnyPublisher<[Transaction], Error> {
+        return Deferred {
+            Future { completion in
+                completion(Result {
+                    try self.retrieve()
+                })
+            }
+        }
+        .eraseToAnyPublisher()
+    }
+}
+
+public extension TransactionsSaver {
+    func savePublisher(for transaction: Transaction) -> AnyPublisher<Void, Error> {
+        return Deferred {
+            Future { completion in
+                completion(Result {
+                    try self.save(transaction)
+                })
+            }
+        }
+        .eraseToAnyPublisher()
+    }
+}
+
+public extension TransactionsDeleter {
+    func deletePublisher(for transaction: Transaction) -> AnyPublisher<Void, Error> {
+        return Deferred {
+            Future { completion in
+                completion(Result {
+                    try self.delete(transaction)
+                })
+            }
+        }
+        .eraseToAnyPublisher()
+    }
+}
+
 public extension Publisher where Output == CurrentPrice {
     func caching(to cache: CurrentPricesStore, for ticket: String) -> AnyPublisher<Output, Failure> {
         handleEvents(receiveOutput: { currentPrice in

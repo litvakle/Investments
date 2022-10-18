@@ -80,7 +80,7 @@ class TransactionsViewTests: XCTestCase {
         line: UInt = #line
     ) -> TransactionsView {
         let store = InMemoryStore.withStoredData
-        let viewModel = TransactionsViewModel(store: store)
+        let viewModel = TransactionsViewModel(retriever: store.retrivePublisher, saver: store.savePublisher, deleter: store.deletePublisher)
         viewModel.retrieve()
         let sut = TransactionsView(
             transactions: viewModel.transactions,

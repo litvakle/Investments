@@ -48,7 +48,7 @@ class PortfolioFlowTests: XCTestCase {
         file: StaticString = #filePath,
         line: UInt = #line
     ) -> (PortfolioFlow, TransactionsViewModel, PortfolioViewModel, CurrentPricesViewModel) {
-        let transactionsViewModel = TransactionsViewModel(store: store)
+        let transactionsViewModel = TransactionsViewModel(retriever: store.retrivePublisher, saver: store.savePublisher, deleter: store.deletePublisher)
         transactionsViewModel.retrieve()
         let portfolioViewModel = PortfolioViewModel()
         let currentPriceLoader = CurrentPriceLoaderSpy()

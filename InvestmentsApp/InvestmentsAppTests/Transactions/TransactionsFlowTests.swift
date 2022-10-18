@@ -77,7 +77,7 @@ class TransactionsFlowTests: XCTestCase {
         file: StaticString = #filePath,
         line: UInt = #line
     ) -> (TransactionsFlow, TransactionsViewModel, AlertViewModel, HTTPClientSpy) {
-        let transactionsViewModel = TransactionsViewModel(store: store)
+        let transactionsViewModel = TransactionsViewModel(retriever: store.retrivePublisher, saver: store.savePublisher, deleter: store.deletePublisher)
         let sut = TransactionsFlow()
         let httpClient = HTTPClientSpy()
         let alertViewModel = AlertViewModel()
