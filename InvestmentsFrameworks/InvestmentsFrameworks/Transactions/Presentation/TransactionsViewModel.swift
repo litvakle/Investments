@@ -6,47 +6,74 @@
 //
 
 import Foundation
+import Combine
 
 public class TransactionsViewModel: ObservableObject {
-    private let store: TransactionsStore
+    public typealias RetrievePublisher = (() -> AnyPublisher<[Transaction], Error>)
+    public typealias SavePublisher = ((Transaction) -> AnyPublisher<Void, Error>)
+    public typealias DeletePublisher = ((Transaction) -> AnyPublisher<Void, Error>)
+    
+    private let retriever: RetrievePublisher?
+    private let saver: SavePublisher?
+    private let deleter: DeletePublisher?
     
     @Published public var error: Error?
     @Published public private(set) var transactions = [Transaction]()
     
-    public init(store: TransactionsStore) {
-        self.store = store
+    private var cancellables = Set<AnyCancellable>()
+    
+    public init(retriever: RetrievePublisher?, saver: SavePublisher?, deleter: DeletePublisher?) {
+        self.retriever = retriever
+        self.saver = saver
+        self.deleter = deleter
     }
     
     public func retrieve() {
-        do {
-            transactions = try store.retrieve().sorted(by: { $0.date > $1.date })
-        } catch {
-            self.error = error
-        }
+        guard let retriever = retriever else { return }
+
+        retriever()
+            .sink(receiveCompletion: { completion in
+                if case let .failure(error) = completion {
+                    self.error = error
+                }
+            }, receiveValue: { [weak self] retrievedTransactions in
+                self?.transactions = retrievedTransactions.sorted(by: { $0.date > $1.date })
+            })
+            .store(in: &cancellables)
     }
     
     public func save(_ transaction: Transaction) {
-        do {
-            try store.save(transaction)
-            if let index = transactions.firstIndex(where: { $0.id == transaction.id }) {
-                transactions[index] = transaction
-            } else {
-                transactions.append(transaction)
-                transactions.sort(by: { $0.date > $1.date })
+        guard let saver = saver else { return }
+        
+        saver(transaction)
+            .sink { completion in
+                if case let .failure(error) = completion {
+                    self.error = error
+                }
+            } receiveValue: { [weak self] _ in
+                if let index = self?.transactions.firstIndex(where: { $0.id == transaction.id }) {
+                    self?.transactions[index] = transaction
+                } else {
+                    self?.transactions.append(transaction)
+                    self?.transactions.sort(by: { $0.date > $1.date })
+                }
             }
-        } catch {
-            self.error = error
-        }
+            .store(in: &cancellables)
     }
     
     public func delete(_ transaction: Transaction) {
-        do {
-            try store.delete(transaction)
-            if let index = transactions.firstIndex(where: { $0.id == transaction.id }) {
-                transactions.remove(at: index)
+        guard let deleter = deleter else { return }
+
+        deleter(transaction)
+            .sink { completion in
+                if case let .failure(error) = completion {
+                    self.error = error
+                }
+            } receiveValue: { [weak self] _ in
+                if let index = self?.transactions.firstIndex(where: { $0.id == transaction.id }) {
+                    self?.transactions.remove(at: index)
+                }
             }
-        } catch {
-            self.error = error
-        }
+            .store(in: &cancellables)
     }
 }
