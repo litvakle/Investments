@@ -17,6 +17,7 @@ public class TransactionsViewModel: ObservableObject {
     private let saver: SavePublisher?
     private let deleter: DeletePublisher?
     
+    @Published public private(set) var isRetrieving = false
     @Published public var error: Error?
     @Published public private(set) var transactions = [Transaction]()
     
@@ -31,11 +32,14 @@ public class TransactionsViewModel: ObservableObject {
     public func retrieve() {
         guard let retriever = retriever else { return }
 
+        isRetrieving = true
         retriever()
-            .sink(receiveCompletion: { completion in
+            .sink(receiveCompletion: { [weak self] completion in
                 if case let .failure(error) = completion {
-                    self.error = error
+                    self?.error = error
                 }
+                print("1111")
+                self?.isRetrieving = false
             }, receiveValue: { [weak self] retrievedTransactions in
                 self?.transactions = retrievedTransactions.sorted(by: { $0.date > $1.date })
             })

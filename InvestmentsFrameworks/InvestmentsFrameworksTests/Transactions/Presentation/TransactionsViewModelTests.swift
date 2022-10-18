@@ -52,6 +52,19 @@ class TransactionsViewModelTests: XCTestCase {
         XCTAssertEqual(sut.transactions, transactions.sorted(by: { $0.date > $1.date }))
     }
     
+    func test_retrieve_togglesRetrievalIndicatorOnStartAndFinishRetrieval() {
+        let (sut, store) = makeSUT()
+
+        sut.retrieve()
+        XCTAssertTrue(sut.isRetrieving)
+        store.completeRetrieval(with: [], at: 0)
+        XCTAssertFalse(sut.isRetrieving)
+
+        sut.retrieve()
+        store.completeRetrieval(withError: anyNSError(), at: 1)
+        XCTAssertFalse(sut.isRetrieving)
+    }
+    
     func test_save_requestsStoreToSaveTransaction() {
         let (sut, store) = makeSUT()
         let transaction = makeTransaction()
