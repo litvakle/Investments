@@ -14,10 +14,24 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3AF7167628F5B520008C4007"
-               BuildableName = "InvestmentsFrameworksWatchOS.framework"
-               BlueprintName = "InvestmentsFrameworksWatchOS"
-               ReferencedContainer = "container:InvestmentsFrameworks.xcodeproj">
+               BlueprintIdentifier = "3AF7163B28F59A8B008C4007"
+               BuildableName = "InvestmentsWatchOS WatchKit App.app"
+               BlueprintName = "InvestmentsWatchOS WatchKit App"
+               ReferencedContainer = "container:InvestmentsWatchOS.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "3AF7163728F59A8B008C4007"
+               BuildableName = "InvestmentsWatchOS.app"
+               BlueprintName = "InvestmentsWatchOS"
+               ReferencedContainer = "container:InvestmentsWatchOS.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -26,21 +40,8 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES"
-      codeCoverageEnabled = "YES"
-      onlyGenerateCoverageForSpecifiedTargets = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO"
-            testExecutionOrdering = "random">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3AAAA7BC28D051D000E0DF6B"
-               BuildableName = "InvestmentsFrameworksTests.xctest"
-               BlueprintName = "InvestmentsFrameworksTests"
-               ReferencedContainer = "container:InvestmentsFrameworks.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
@@ -53,6 +54,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "3AF7163B28F59A8B008C4007"
+            BuildableName = "InvestmentsWatchOS WatchKit App.app"
+            BlueprintName = "InvestmentsWatchOS WatchKit App"
+            ReferencedContainer = "container:InvestmentsWatchOS.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -60,15 +71,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3AF7167628F5B520008C4007"
-            BuildableName = "InvestmentsFrameworksWatchOS.framework"
-            BlueprintName = "InvestmentsFrameworksWatchOS"
-            ReferencedContainer = "container:InvestmentsFrameworks.xcodeproj">
+            BlueprintIdentifier = "3AF7163B28F59A8B008C4007"
+            BuildableName = "InvestmentsWatchOS WatchKit App.app"
+            BlueprintName = "InvestmentsWatchOS WatchKit App"
+            ReferencedContainer = "container:InvestmentsWatchOS.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
