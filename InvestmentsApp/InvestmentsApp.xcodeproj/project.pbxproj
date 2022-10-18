@@ -41,8 +41,6 @@
 		3AAAA83A28D30AE100E0DF6B /* Double+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA83928D30AE100E0DF6B /* Double+Helpers.swift */; };
 		3AAAA84128D3148A00E0DF6B /* Transaction+PreviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA84028D3148A00E0DF6B /* Transaction+PreviewData.swift */; };
 		3AAAA86D28D7562000E0DF6B /* ActivatableNavigationLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA86C28D7561F00E0DF6B /* ActivatableNavigationLink.swift */; };
-		3AAAA87E28D9B72600E0DF6B /* AlertViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA87D28D9B72600E0DF6B /* AlertViewModelTests.swift */; };
-		3AAAA88028D9B7B400E0DF6B /* AlertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA87F28D9B7B400E0DF6B /* AlertViewModel.swift */; };
 		3AAAA88228D9B93000E0DF6B /* TransactionsFlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA88128D9B93000E0DF6B /* TransactionsFlowTests.swift */; };
 		3AAAA88428D9B95000E0DF6B /* TransactionsFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA88328D9B95000E0DF6B /* TransactionsFlow.swift */; };
 		3AAAA88C28D9C10B00E0DF6B /* NullStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA88B28D9C10B00E0DF6B /* NullStore.swift */; };
@@ -109,8 +107,6 @@
 		3AAAA84028D3148A00E0DF6B /* Transaction+PreviewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Transaction+PreviewData.swift"; sourceTree = "<group>"; };
 		3AAAA86C28D7561F00E0DF6B /* ActivatableNavigationLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivatableNavigationLink.swift; sourceTree = "<group>"; };
 		3AAAA87428D9B6C000E0DF6B /* InvestmentsAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InvestmentsAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3AAAA87D28D9B72600E0DF6B /* AlertViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewModelTests.swift; sourceTree = "<group>"; };
-		3AAAA87F28D9B7B400E0DF6B /* AlertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewModel.swift; sourceTree = "<group>"; };
 		3AAAA88128D9B93000E0DF6B /* TransactionsFlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsFlowTests.swift; sourceTree = "<group>"; };
 		3AAAA88328D9B95000E0DF6B /* TransactionsFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsFlow.swift; sourceTree = "<group>"; };
 		3AAAA88B28D9C10B00E0DF6B /* NullStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NullStore.swift; sourceTree = "<group>"; };
@@ -165,14 +161,6 @@
 				3AAF93BE28F15A29009E8369 /* PortfolioRow.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		3A303F6D28ED54D9008B66CD /* Alert */ = {
-			isa = PBXGroup;
-			children = (
-				3AAAA87D28D9B72600E0DF6B /* AlertViewModelTests.swift */,
-			);
-			path = Alert;
 			sourceTree = "<group>";
 		};
 		3A7648E328E1E95700B810B7 /* Helpers */ = {
@@ -267,7 +255,6 @@
 				3AAAA81E28D2DDC900E0DF6B /* InvestmentsApp.swift */,
 				3A303F6728ED52EB008B66CD /* UIComposer.swift */,
 				3AA9C1B228DB4B1A00C1E37B /* ContentView.swift */,
-				3AAAA87F28D9B7B400E0DF6B /* AlertViewModel.swift */,
 				3AAAA88928D9C07D00E0DF6B /* Helpers */,
 				3AAAA83B28D30CC200E0DF6B /* Transactions */,
 				3A14587228E1D23E00AD1EF5 /* Portfolio */,
@@ -344,7 +331,6 @@
 			isa = PBXGroup;
 			children = (
 				3AA9C1AB28DAE55400C1E37B /* Helpers */,
-				3A303F6D28ED54D9008B66CD /* Alert */,
 				3AA9C1B628DB52DC00C1E37B /* Transactions */,
 				3A14586F28E1CFDA00AD1EF5 /* Portfolio */,
 				3A76493228E6A7EF00B810B7 /* CurrentPrices */,
@@ -477,7 +463,6 @@
 				3AAAA88428D9B95000E0DF6B /* TransactionsFlow.swift in Sources */,
 				3A7648EA28E2A77C00B810B7 /* PortfolioFlow.swift in Sources */,
 				3AAAA83828D309B500E0DF6B /* Date+Helpers.swift in Sources */,
-				3AAAA88028D9B7B400E0DF6B /* AlertViewModel.swift in Sources */,
 				3AAAA83A28D30AE100E0DF6B /* Double+Helpers.swift in Sources */,
 				3AA9C1B528DB4BEB00C1E37B /* TransactionsStoreFactory.swift in Sources */,
 				3AAAA84128D3148A00E0DF6B /* Transaction+PreviewData.swift in Sources */,
@@ -504,7 +489,6 @@
 				3AAAA89328D9E4B800E0DF6B /* TransactionsViewTests.swift in Sources */,
 				3AA9C1BB28E1830700C1E37B /* SharedTestHelpers.swift in Sources */,
 				3A7648E828E2A65500B810B7 /* PortfolioFlowTests.swift in Sources */,
-				3AAAA87E28D9B72600E0DF6B /* AlertViewModelTests.swift in Sources */,
 				3A7648EC28E2ACE200B810B7 /* InvestmentsAcceptanceTests+Portfolio.swift in Sources */,
 				3AA9C1B128DB40E200C1E37B /* InMemoryStore.swift in Sources */,
 				3A303F6C28ED540C008B66CD /* HTTPClientStub.swift in Sources */,

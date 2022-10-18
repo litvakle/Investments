@@ -1,8 +1,8 @@
 //
 //  AlertViewModel.swift
-//  InvestmentsApp
+//  InvestmentsFrameworks
 //
-//  Created by Lev Litvak on 20.09.2022.
+//  Created by Lev Litvak on 18.10.2022.
 //
 
 import Foundation
