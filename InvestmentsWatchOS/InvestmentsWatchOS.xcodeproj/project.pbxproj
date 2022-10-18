@@ -8,7 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		3A38BFDA28FA933400427B59 /* PortfolioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A38BFD928FA933400427B59 /* PortfolioView.swift */; };
-		3AF7163D28F59A8B008C4007 /* InvestmentsWatchOS WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 3AF7163C28F59A8B008C4007 /* InvestmentsWatchOS WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		3A69252F28FE8CF70095AB2E /* CurrentPricesFlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A69252E28FE8CF70095AB2E /* CurrentPricesFlowTests.swift */; };
+		3AF7163D28F59A8B008C4007 /* InvestmentsWatchOS WatchKit App.app in Embed Watch Content */ = {isa =import XCTest
+import InvestmentsApp
+
+class AlertViewModelTests: XCTestCase {
+    func test_showAlert_modifiesAlertStateAndProperties() {
+        let sut = AlertViewModel()
+        
+        XCTAssertEqual(sut.isActive, false)
+        XCTAssertEqual(sut.title, "")
+        XCTAssertEqual(sut.message, "")
+        
+        sut.showAlert(title: "Any title", message: "Any message")
+        XCTAssertEqual(sut.isActive, true)
+        XCTAssertEqual(sut.title, "Any title")
+        XCTAssertEqual(sut.message, "Any message")
+    }
+}PBXBuildFile; fileRef = 3AF7163C28F59A8B008C4007 /* InvestmentsWatchOS WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		3AF7164228F59A8D008C4007 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AF7164128F59A8D008C4007 /* Assets.xcassets */; };
 		3AF7164828F59A8E008C4007 /* InvestmentsWatchOS WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3AF7164728F59A8E008C4007 /* InvestmentsWatchOS WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		3AF7164D28F59A8E008C4007 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF7164C28F59A8E008C4007 /* ContentView.swift */; };
@@ -21,6 +38,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		3A69252928FE8CD30095AB2E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3AF7163228F59A8B008C4007 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3AF7164628F59A8E008C4007;
+			remoteInfo = "InvestmentsWatchOS WatchKit Extension";
+		};
 		3AF7163E28F59A8B008C4007 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3AF7163228F59A8B008C4007 /* Project object */;
@@ -75,6 +99,8 @@
 
 /* Begin PBXFileReference section */
 		3A38BFD928FA933400427B59 /* PortfolioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioView.swift; sourceTree = "<group>"; };
+		3A69252528FE8CD30095AB2E /* InvestmentsWatchOS WatchKit ExtensionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "InvestmentsWatchOS WatchKit ExtensionTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3A69252E28FE8CF70095AB2E /* CurrentPricesFlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentPricesFlowTests.swift; sourceTree = "<group>"; };
 		3AF7163828F59A8B008C4007 /* InvestmentsWatchOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InvestmentsWatchOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AF7163C28F59A8B008C4007 /* InvestmentsWatchOS WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "InvestmentsWatchOS WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AF7164128F59A8D008C4007 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -92,6 +118,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		3A69252228FE8CD30095AB2E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3AF7164428F59A8E008C4007 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -111,11 +144,20 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		3A69252628FE8CD30095AB2E /* InvestmentsWatchOS WatchKit ExtensionTests */ = {
+			isa = PBXGroup;
+			children = (
+				3A69252E28FE8CF70095AB2E /* CurrentPricesFlowTests.swift */,
+			);
+			path = "InvestmentsWatchOS WatchKit ExtensionTests";
+			sourceTree = "<group>";
+		};
 		3AF7163128F59A8B008C4007 = {
 			isa = PBXGroup;
 			children = (
 				3AF7164028F59A8B008C4007 /* InvestmentsWatchOS WatchKit App */,
 				3AF7164B28F59A8E008C4007 /* InvestmentsWatchOS WatchKit Extension */,
+				3A69252628FE8CD30095AB2E /* InvestmentsWatchOS WatchKit ExtensionTests */,
 				3AF7163928F59A8B008C4007 /* Products */,
 				3AF7166528F59ABF008C4007 /* Frameworks */,
 			);
@@ -127,6 +169,7 @@
 				3AF7163828F59A8B008C4007 /* InvestmentsWatchOS.app */,
 				3AF7163C28F59A8B008C4007 /* InvestmentsWatchOS WatchKit App.app */,
 				3AF7164728F59A8E008C4007 /* InvestmentsWatchOS WatchKit Extension.appex */,
+				3A69252528FE8CD30095AB2E /* InvestmentsWatchOS WatchKit ExtensionTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -175,6 +218,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		3A69252428FE8CD30095AB2E /* InvestmentsWatchOS WatchKit ExtensionTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3A69252D28FE8CD30095AB2E /* Build configuration list for PBXNativeTarget "InvestmentsWatchOS WatchKit ExtensionTests" */;
+			buildPhases = (
+				3A69252128FE8CD30095AB2E /* Sources */,
+				3A69252228FE8CD30095AB2E /* Frameworks */,
+				3A69252328FE8CD30095AB2E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3A69252A28FE8CD30095AB2E /* PBXTargetDependency */,
+			);
+			name = "InvestmentsWatchOS WatchKit ExtensionTests";
+			productName = "InvestmentsWatchOS WatchKit ExtensionTests";
+			productReference = 3A69252528FE8CD30095AB2E /* InvestmentsWatchOS WatchKit ExtensionTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		3AF7163728F59A8B008C4007 /* InvestmentsWatchOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3AF7166228F59A8F008C4007 /* Build configuration list for PBXNativeTarget "InvestmentsWatchOS" */;
@@ -237,6 +298,11 @@
 				LastSwiftUpdateCheck = 1340;
 				LastUpgradeCheck = 1340;
 				TargetAttributes = {
+					3A69252428FE8CD30095AB2E = {
+						CreatedOnToolsVersion = 13.4;
+						LastSwiftMigration = 1340;
+						TestTargetID = 3AF7164628F59A8E008C4007;
+					};
 					3AF7163728F59A8B008C4007 = {
 						CreatedOnToolsVersion = 13.4;
 					};
@@ -264,11 +330,19 @@
 				3AF7163728F59A8B008C4007 /* InvestmentsWatchOS */,
 				3AF7163B28F59A8B008C4007 /* InvestmentsWatchOS WatchKit App */,
 				3AF7164628F59A8E008C4007 /* InvestmentsWatchOS WatchKit Extension */,
+				3A69252428FE8CD30095AB2E /* InvestmentsWatchOS WatchKit ExtensionTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		3A69252328FE8CD30095AB2E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3AF7163628F59A8B008C4007 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -296,6 +370,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		3A69252128FE8CD30095AB2E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A69252F28FE8CF70095AB2E /* CurrentPricesFlowTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3AF7164328F59A8E008C4007 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -310,6 +392,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		3A69252A28FE8CD30095AB2E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3AF7164628F59A8E008C4007 /* InvestmentsWatchOS WatchKit Extension */;
+			targetProxy = 3A69252928FE8CD30095AB2E /* PBXContainerItemProxy */;
+		};
 		3AF7163F28F59A8B008C4007 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 3AF7163B28F59A8B008C4007 /* InvestmentsWatchOS WatchKit App */;
@@ -323,6 +410,59 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		3A69252B28FE8CD30095AB2E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 836WWF38RW;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Lev-Litvak.InvestmentsWatchOS-WatchKit-ExtensionTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/InvestmentsWatchOS WatchKit Extension.appex/InvestmentsWatchOS WatchKit Extension";
+				WATCHOS_DEPLOYMENT_TARGET = 8.5;
+			};
+			name = Debug;
+		};
+		3A69252C28FE8CD30095AB2E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 836WWF38RW;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Lev-Litvak.InvestmentsWatchOS-WatchKit-ExtensionTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/InvestmentsWatchOS WatchKit Extension.appex/InvestmentsWatchOS WatchKit Extension";
+				WATCHOS_DEPLOYMENT_TARGET = 8.5;
+			};
+			name = Release;
+		};
 		3AF7165828F59A8F008C4007 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -578,6 +718,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3A69252D28FE8CD30095AB2E /* Build configuration list for PBXNativeTarget "InvestmentsWatchOS WatchKit ExtensionTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3A69252B28FE8CD30095AB2E /* Debug */,
+				3A69252C28FE8CD30095AB2E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		3AF7163528F59A8B008C4007 /* Build configuration list for PBXProject "InvestmentsWatchOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
