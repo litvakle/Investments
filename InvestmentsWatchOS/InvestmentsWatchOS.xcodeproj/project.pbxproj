@@ -35,13 +35,6 @@
 			remoteGlobalIDString = 3AF7164628F59A8E008C4007;
 			remoteInfo = "InvestmentsWatchOS WatchKit Extension";
 		};
-		3AF716AE28FA83E6008C4007 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3AF7163228F59A8B008C4007 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3AF7164628F59A8E008C4007;
-			remoteInfo = "InvestmentsWatchOS WatchKit Extension";
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -96,7 +89,6 @@
 		3AF7166A28F59C94008C4007 /* InvestmentsFrameworks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = InvestmentsFrameworks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AF7166E28F59CED008C4007 /* InvestmentsFrameworks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = InvestmentsFrameworks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AF7168028F5B554008C4007 /* InvestmentsFrameworksWatchOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = InvestmentsFrameworksWatchOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3AF716AA28FA83E6008C4007 /* InvestmentsWatchOS WatchKit ExtensionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "InvestmentsWatchOS WatchKit ExtensionTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,13 +97,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AF7168128F5B554008C4007 /* InvestmentsFrameworksWatchOS.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3AF716A728FA83E6008C4007 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,7 +116,6 @@
 			children = (
 				3AF7164028F59A8B008C4007 /* InvestmentsWatchOS WatchKit App */,
 				3AF7164B28F59A8E008C4007 /* InvestmentsWatchOS WatchKit Extension */,
-				3AF716AB28FA83E6008C4007 /* InvestmentsWatchOS WatchKit ExtensionTests */,
 				3AF7163928F59A8B008C4007 /* Products */,
 				3AF7166528F59ABF008C4007 /* Frameworks */,
 			);
@@ -143,7 +127,6 @@
 				3AF7163828F59A8B008C4007 /* InvestmentsWatchOS.app */,
 				3AF7163C28F59A8B008C4007 /* InvestmentsWatchOS WatchKit App.app */,
 				3AF7164728F59A8E008C4007 /* InvestmentsWatchOS WatchKit Extension.appex */,
-				3AF716AA28FA83E6008C4007 /* InvestmentsWatchOS WatchKit ExtensionTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -187,13 +170,6 @@
 				3AF7166628F59ABF008C4007 /* InvestmentsFrameworks.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		3AF716AB28FA83E6008C4007 /* InvestmentsWatchOS WatchKit ExtensionTests */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "InvestmentsWatchOS WatchKit ExtensionTests";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -251,24 +227,6 @@
 			productReference = 3AF7164728F59A8E008C4007 /* InvestmentsWatchOS WatchKit Extension.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
 		};
-		3AF716A928FA83E6008C4007 /* InvestmentsWatchOS WatchKit ExtensionTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3AF716B028FA83E6008C4007 /* Build configuration list for PBXNativeTarget "InvestmentsWatchOS WatchKit ExtensionTests" */;
-			buildPhases = (
-				3AF716A628FA83E6008C4007 /* Sources */,
-				3AF716A728FA83E6008C4007 /* Frameworks */,
-				3AF716A828FA83E6008C4007 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				3AF716AF28FA83E6008C4007 /* PBXTargetDependency */,
-			);
-			name = "InvestmentsWatchOS WatchKit ExtensionTests";
-			productName = "InvestmentsWatchOS WatchKit ExtensionTests";
-			productReference = 3AF716AA28FA83E6008C4007 /* InvestmentsWatchOS WatchKit ExtensionTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -288,10 +246,6 @@
 					3AF7164628F59A8E008C4007 = {
 						CreatedOnToolsVersion = 13.4;
 					};
-					3AF716A928FA83E6008C4007 = {
-						CreatedOnToolsVersion = 13.4;
-						TestTargetID = 3AF7164628F59A8E008C4007;
-					};
 				};
 			};
 			buildConfigurationList = 3AF7163528F59A8B008C4007 /* Build configuration list for PBXProject "InvestmentsWatchOS" */;
@@ -310,7 +264,6 @@
 				3AF7163728F59A8B008C4007 /* InvestmentsWatchOS */,
 				3AF7163B28F59A8B008C4007 /* InvestmentsWatchOS WatchKit App */,
 				3AF7164628F59A8E008C4007 /* InvestmentsWatchOS WatchKit Extension */,
-				3AF716A928FA83E6008C4007 /* InvestmentsWatchOS WatchKit ExtensionTests */,
 			);
 		};
 /* End PBXProject section */
@@ -340,13 +293,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3AF716A828FA83E6008C4007 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -358,13 +304,6 @@
 				3AF7164D28F59A8E008C4007 /* ContentView.swift in Sources */,
 				3AF7165128F59A8E008C4007 /* ComplicationController.swift in Sources */,
 				3A38BFDA28FA933400427B59 /* PortfolioView.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3AF716A628FA83E6008C4007 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -380,11 +319,6 @@
 			isa = PBXTargetDependency;
 			target = 3AF7164628F59A8E008C4007 /* InvestmentsWatchOS WatchKit Extension */;
 			targetProxy = 3AF7164928F59A8E008C4007 /* PBXContainerItemProxy */;
-		};
-		3AF716AF28FA83E6008C4007 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 3AF7164628F59A8E008C4007 /* InvestmentsWatchOS WatchKit Extension */;
-			targetProxy = 3AF716AE28FA83E6008C4007 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -641,46 +575,6 @@
 			};
 			name = Release;
 		};
-		3AF716B128FA83E6008C4007 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 836WWF38RW;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Lev-Litvak.InvestmentsWatchOS-WatchKit-ExtensionTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/InvestmentsWatchOS WatchKit Extension.appex/InvestmentsWatchOS WatchKit Extension";
-				WATCHOS_DEPLOYMENT_TARGET = 8.5;
-			};
-			name = Debug;
-		};
-		3AF716B228FA83E6008C4007 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 836WWF38RW;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Lev-Litvak.InvestmentsWatchOS-WatchKit-ExtensionTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/InvestmentsWatchOS WatchKit Extension.appex/InvestmentsWatchOS WatchKit Extension";
-				WATCHOS_DEPLOYMENT_TARGET = 8.5;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -716,15 +610,6 @@
 			buildConfigurations = (
 				3AF7166328F59A8F008C4007 /* Debug */,
 				3AF7166428F59A8F008C4007 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		3AF716B028FA83E6008C4007 /* Build configuration list for PBXNativeTarget "InvestmentsWatchOS WatchKit ExtensionTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3AF716B128FA83E6008C4007 /* Debug */,
-				3AF716B228FA83E6008C4007 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

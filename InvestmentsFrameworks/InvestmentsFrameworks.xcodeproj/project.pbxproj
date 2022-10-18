@@ -66,6 +66,7 @@
 		3AF7169C28F6C828008C4007 /* TransactionsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF7169B28F6C828008C4007 /* TransactionsMapper.swift */; };
 		3AF716A028F6D92C008C4007 /* TransactionsEndPointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF7169F28F6D92C008C4007 /* TransactionsEndPointTests.swift */; };
 		3AF716A228F6DE56008C4007 /* TransactionsEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF716A128F6DE56008C4007 /* TransactionsEndPoint.swift */; };
+		3AFDED5028FE80E400BFB45F /* TransactionsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA7C728D054B000E0DF6B /* TransactionsStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -843,6 +844,7 @@
 				3AF7168F28F5B73E008C4007 /* CurrentPricesViewModel.swift in Sources */,
 				3AF7169528F5B751008C4007 /* PortfolioViewModel.swift in Sources */,
 				3AF7167F28F5B53D008C4007 /* NumberFormatter+Formatters.swift in Sources */,
+				3AFDED5028FE80E400BFB45F /* TransactionsStore.swift in Sources */,
 				3AF7168C28F5B73A008C4007 /* CurrentPricesStore.swift in Sources */,
 				3AF7167E28F5B534008C4007 /* CombineHelpers.swift in Sources */,
 				3AF7168528F5B716008C4007 /* HTTPClient.swift in Sources */,
