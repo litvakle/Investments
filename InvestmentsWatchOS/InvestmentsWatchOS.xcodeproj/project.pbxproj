@@ -15,8 +15,6 @@
 		3AF7165128F59A8E008C4007 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF7165028F59A8E008C4007 /* ComplicationController.swift */; };
 		3AF7165328F59A8F008C4007 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AF7165228F59A8F008C4007 /* Assets.xcassets */; };
 		3AF7165628F59A8F008C4007 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AF7165528F59A8F008C4007 /* Preview Assets.xcassets */; };
-		3AF7168128F5B554008C4007 /* InvestmentsFrameworksWatchOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AF7168028F5B554008C4007 /* InvestmentsFrameworksWatchOS.framework */; };
-		3AF7168228F5B554008C4007 /* InvestmentsFrameworksWatchOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3AF7168028F5B554008C4007 /* InvestmentsFrameworksWatchOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,7 +63,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				3AF7168228F5B554008C4007 /* InvestmentsFrameworksWatchOS.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -94,7 +91,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3AF7168128F5B554008C4007 /* InvestmentsFrameworksWatchOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

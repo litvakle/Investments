@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import InvestmentsFrameworksWatchOS
 
 struct ContentView: View {
     var body: some View {
