@@ -8,25 +8,11 @@
 import Foundation
 import InvestmentsFrameworks
 
-class NullStore {}
-
-extension NullStore: TransactionsStore {
-    func retrieve() throws -> [InvestmentTransaction] {
-        return []
-    }
-    
-    func save(_ transaction: InvestmentTransaction) throws {
-    }
-    
-    func delete(_ transaction: InvestmentTransaction) throws {
-    }
-}
-
 extension NullStore: CurrentPricesStore {
-    func save(_ currentPrice: CurrentPrice, for ticket: String) throws {
+    public func save(_ currentPrice: CurrentPrice, for ticket: String) throws {
     }
     
-    func retrieve(for ticket: String) throws -> CurrentPrice? {
+    public func retrieve(for ticket: String) throws -> CurrentPrice? {
         return nil
     }
 }

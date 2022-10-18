@@ -52,6 +52,7 @@
 		3AF7169C28F6C828008C4007 /* TransactionsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF7169B28F6C828008C4007 /* TransactionsMapper.swift */; };
 		3AF716A028F6D92C008C4007 /* TransactionsEndPointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF7169F28F6D92C008C4007 /* TransactionsEndPointTests.swift */; };
 		3AF716A228F6DE56008C4007 /* TransactionsEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF716A128F6DE56008C4007 /* TransactionsEndPoint.swift */; };
+		43EE6E5728FE9C9600E0BB96 /* NullStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EE6E5628FE9C9600E0BB96 /* NullStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,6 +119,7 @@
 		3AF7169B28F6C828008C4007 /* TransactionsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsMapper.swift; sourceTree = "<group>"; };
 		3AF7169F28F6D92C008C4007 /* TransactionsEndPointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsEndPointTests.swift; sourceTree = "<group>"; };
 		3AF716A128F6DE56008C4007 /* TransactionsEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsEndPoint.swift; sourceTree = "<group>"; };
+		43EE6E5628FE9C9600E0BB96 /* NullStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NullStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -437,6 +439,7 @@
 			children = (
 				3AAAA7D828D1E54300E0DF6B /* CoreDataTransactionsStore+TransactionsStore.swift */,
 				3AAAA7CE28D0B13B00E0DF6B /* StoredTransaction.swift */,
+				43EE6E5628FE9C9600E0BB96 /* NullStore.swift */,
 			);
 			path = Infastructure;
 			sourceTree = "<group>";
@@ -740,6 +743,7 @@
 				3A76492628E44F1700B810B7 /* CurrentPriceEndPoint.swift in Sources */,
 				3AAAA7CD28D0B05F00E0DF6B /* TransactionsStore.xcdatamodeld in Sources */,
 				3A76490328E3212500B810B7 /* CurrentPriceMapper.swift in Sources */,
+				43EE6E5728FE9C9600E0BB96 /* NullStore.swift in Sources */,
 				3A14586C28E1CE9800AD1EF5 /* PortfolioViewModel.swift in Sources */,
 				3AF716A228F6DE56008C4007 /* TransactionsEndPoint.swift in Sources */,
 				3AF7169C28F6C828008C4007 /* TransactionsMapper.swift in Sources */,
