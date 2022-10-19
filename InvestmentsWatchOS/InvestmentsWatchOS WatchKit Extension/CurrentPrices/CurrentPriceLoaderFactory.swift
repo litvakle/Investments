@@ -5,6 +5,7 @@
 //  Created by Lev Litvak on 18.10.2022.
 //
 
+import Foundation
 import Combine
 import InvestmentsFrameworks
 
