@@ -9,14 +9,28 @@ import SwiftUI
 import InvestmentsFrameworksWatchOS
 
 struct ContentView: View {
+    @ObservedObject var transactionsViewModel: TransactionsViewModel
+    @ObservedObject var portfolioViewModel: PortfolioViewModel
+    @ObservedObject var currentPricesViewModel: CurrentPricesViewModel
+    @ObservedObject var alertViewModel: AlertViewModel
+   
+    let transactionsFlow: TransactionsFlow
+    let portfolioFlow: PortfolioFlow
+    let currentPricesFlow: CurrentPricesFlow
+    
     var body: some View {
-        Text("Hello, World!")
-            .padding()
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+        PortfolioView(
+            cost: portfolioViewModel.summary.cost,
+            profit: portfolioViewModel.summary.profit,
+            profitPercent: portfolioViewModel.summary.profitPercent,
+            isLoading: transactionsViewModel.isRetrieving || currentPricesViewModel.isLoading,
+            onRefresh: transactionsViewModel.retrieve
+        )
+        .alert(alertViewModel.title, isPresented: $alertViewModel.isActive, actions: {
+            Button("OK", action: {})
+        }, message: {
+            Text(alertViewModel.message)
+        })
+        
     }
 }

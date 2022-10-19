@@ -58,7 +58,7 @@
             testExecutionOrdering = "random">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3A69252428FE8CD30095AB2E"
+               BlueprintIdentifier = "3A65FDB728FE91E600D3AEAA"
                BuildableName = "InvestmentsWatchOS WatchKit ExtensionTests.xctest"
                BlueprintName = "InvestmentsWatchOS WatchKit ExtensionTests"
                ReferencedContainer = "container:InvestmentsWatchOS.xcodeproj">

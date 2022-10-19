@@ -11,8 +11,10 @@
 		3A14586C28E1CE9800AD1EF5 /* PortfolioViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A14586B28E1CE9800AD1EF5 /* PortfolioViewModel.swift */; };
 		3A38BFD528FA870E00427B59 /* TransactionsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF7169B28F6C828008C4007 /* TransactionsMapper.swift */; };
 		3A38BFD628FA871200427B59 /* TransactionsEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF716A128F6DE56008C4007 /* TransactionsEndPoint.swift */; };
-		3A69253328FE8EC50095AB2E /* AlertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A69253228FE8EC50095AB2E /* AlertViewModel.swift */; };
-		3A69253628FE8F070095AB2E /* AlertViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A69253528FE8F070095AB2E /* AlertViewModelTests.swift */; };
+		3A65FDB028FE909C00D3AEAA /* AlertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A65FDAF28FE909C00D3AEAA /* AlertViewModel.swift */; };
+		3A65FDB328FE90CC00D3AEAA /* AlertViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A65FDB228FE90CC00D3AEAA /* AlertViewModelTests.swift */; };
+		3A65FDC328FE929F00D3AEAA /* TransactionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAAA7EF28D2D99600E0DF6B /* TransactionsViewModel.swift */; };
+		3A65FDC428FE92FE00D3AEAA /* AlertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A65FDAF28FE909C00D3AEAA /* AlertViewModel.swift */; };
 		3A7648E228E1E76700B810B7 /* PortfolioTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7648E128E1E76700B810B7 /* PortfolioTestHelpers.swift */; };
 		3A7648EF28E309AE00B810B7 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7648EE28E309AE00B810B7 /* HTTPClient.swift */; };
 		3A7648F228E309EB00B810B7 /* URLSessionHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7648F128E309EB00B810B7 /* URLSessionHTTPClient.swift */; };
@@ -91,8 +93,8 @@
 /* Begin PBXFileReference section */
 		3A14586828E1C3DB00AD1EF5 /* PortfolioViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioViewModelTests.swift; sourceTree = "<group>"; };
 		3A14586B28E1CE9800AD1EF5 /* PortfolioViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioViewModel.swift; sourceTree = "<group>"; };
-		3A69253228FE8EC50095AB2E /* AlertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewModel.swift; sourceTree = "<group>"; };
-		3A69253528FE8F070095AB2E /* AlertViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewModelTests.swift; sourceTree = "<group>"; };
+		3A65FDAF28FE909C00D3AEAA /* AlertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewModel.swift; sourceTree = "<group>"; };
+		3A65FDB228FE90CC00D3AEAA /* AlertViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewModelTests.swift; sourceTree = "<group>"; };
 		3A7648E128E1E76700B810B7 /* PortfolioTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioTestHelpers.swift; sourceTree = "<group>"; };
 		3A7648EE28E309AE00B810B7 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		3A7648F128E309EB00B810B7 /* URLSessionHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClient.swift; sourceTree = "<group>"; };
@@ -208,18 +210,18 @@
 			path = Presentation;
 			sourceTree = "<group>";
 		};
-		3A69253128FE8EA20095AB2E /* Presentation */ = {
+		3A65FDAE28FE908E00D3AEAA /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				3A69253228FE8EC50095AB2E /* AlertViewModel.swift */,
+				3A65FDAF28FE909C00D3AEAA /* AlertViewModel.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
 		};
-		3A69253428FE8EF30095AB2E /* Presentation */ = {
+		3A65FDB128FE90B600D3AEAA /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				3A69253528FE8F070095AB2E /* AlertViewModelTests.swift */,
+				3A65FDB228FE90CC00D3AEAA /* AlertViewModelTests.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -500,7 +502,7 @@
 				3A7648ED28E3096E00B810B7 /* API */,
 				3A76491128E422BD00B810B7 /* Storage */,
 				3A76491328E4230400B810B7 /* Feature */,
-				3A69253128FE8EA20095AB2E /* Presentation */,
+				3A65FDAE28FE908E00D3AEAA /* Presentation */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -580,7 +582,7 @@
 			isa = PBXGroup;
 			children = (
 				3A7648F328E30A2200B810B7 /* API */,
-				3A69253428FE8EF30095AB2E /* Presentation */,
+				3A65FDB128FE90B600D3AEAA /* Presentation */,
 				3AAAA84828D42BDD00E0DF6B /* NumberFormatterTests.swift */,
 			);
 			path = Shared;
@@ -808,7 +810,7 @@
 				3A76491028E41C9F00B810B7 /* CoreDataCurrentPricesStore.swift in Sources */,
 				3AAAA7D128D0B36D00E0DF6B /* CoreDataHelpers.swift in Sources */,
 				3A76494228EBE54000B810B7 /* CombineHelpers.swift in Sources */,
-				3A69253328FE8EC50095AB2E /* AlertViewModel.swift in Sources */,
+				3A65FDB028FE909C00D3AEAA /* AlertViewModel.swift in Sources */,
 				3AAAA7D728D1E51F00E0DF6B /* CoreDataStore.swift in Sources */,
 				3A7648EF28E309AE00B810B7 /* HTTPClient.swift in Sources */,
 				3A76490128E320ED00B810B7 /* CurrentPrice.swift in Sources */,
@@ -845,7 +847,7 @@
 				3AAAA7C028D051D000E0DF6B /* CoreDataTransactionsStoreTests.swift in Sources */,
 				3A7648F628E30A3E00B810B7 /* URLSessionHTTPClientTests.swift in Sources */,
 				3AAAA84428D3335800E0DF6B /* TransactionViewModelTests.swift in Sources */,
-				3A69253628FE8F070095AB2E /* AlertViewModelTests.swift in Sources */,
+				3A65FDB328FE90CC00D3AEAA /* AlertViewModelTests.swift in Sources */,
 				3AAAA7ED28D2189E00E0DF6B /* SharedTransactionsTestHelpers.swift in Sources */,
 				3A7648F928E30A6A00B810B7 /* URLProtocolStub.swift in Sources */,
 				3AF7169928F6C7D3008C4007 /* TransactionsMapperTests.swift in Sources */,
@@ -863,7 +865,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AF7168828F5B72A008C4007 /* Transaction.swift in Sources */,
+				3A65FDC328FE929F00D3AEAA /* TransactionsViewModel.swift in Sources */,
 				3A38BFD528FA870E00427B59 /* TransactionsMapper.swift in Sources */,
+				3A65FDC428FE92FE00D3AEAA /* AlertViewModel.swift in Sources */,
 				3AF7168928F5B72D008C4007 /* CurrentPrice.swift in Sources */,
 				3AF7168F28F5B73E008C4007 /* CurrentPricesViewModel.swift in Sources */,
 				3AF7169528F5B751008C4007 /* PortfolioViewModel.swift in Sources */,
@@ -1175,7 +1179,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 8.5;
+				WATCHOS_DEPLOYMENT_TARGET = 8.1;
 			};
 			name = Debug;
 		};
@@ -1207,7 +1211,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 8.5;
+				WATCHOS_DEPLOYMENT_TARGET = 8.1;
 			};
 			name = Release;
 		};

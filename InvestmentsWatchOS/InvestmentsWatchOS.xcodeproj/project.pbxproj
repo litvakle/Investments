@@ -8,24 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		3A38BFDA28FA933400427B59 /* PortfolioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A38BFD928FA933400427B59 /* PortfolioView.swift */; };
-		3A69252F28FE8CF70095AB2E /* CurrentPricesFlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A69252E28FE8CF70095AB2E /* CurrentPricesFlowTests.swift */; };
-		3AF7163D28F59A8B008C4007 /* InvestmentsWatchOS WatchKit App.app in Embed Watch Content */ = {isa =import XCTest
-import InvestmentsApp
-
-class AlertViewModelTests: XCTestCase {
-    func test_showAlert_modifiesAlertStateAndProperties() {
-        let sut = AlertViewModel()
-        
-        XCTAssertEqual(sut.isActive, false)
-        XCTAssertEqual(sut.title, "")
-        XCTAssertEqual(sut.message, "")
-        
-        sut.showAlert(title: "Any title", message: "Any message")
-        XCTAssertEqual(sut.isActive, true)
-        XCTAssertEqual(sut.title, "Any title")
-        XCTAssertEqual(sut.message, "Any message")
-    }
-}PBXBuildFile; fileRef = 3AF7163C28F59A8B008C4007 /* InvestmentsWatchOS WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		3A65FDC228FE91FE00D3AEAA /* CurrentPricesFlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A65FDC128FE91FE00D3AEAA /* CurrentPricesFlowTests.swift */; };
+		3A65FDC728FEAF0C00D3AEAA /* InMemoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A65FDC628FEAF0C00D3AEAA /* InMemoryStore.swift */; };
+		3A65FDC928FEAF4800D3AEAA /* CurrentPriceLoaderSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A65FDC828FEAF4800D3AEAA /* CurrentPriceLoaderSpy.swift */; };
+		3A65FDCB28FEAF8100D3AEAA /* XCTestCase + MemoryLeaksTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A65FDCA28FEAF8100D3AEAA /* XCTestCase + MemoryLeaksTracking.swift */; };
+		3A65FDCD28FEAFB700D3AEAA /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A65FDCC28FEAFB700D3AEAA /* SharedTestHelpers.swift */; };
+		3A65FDCF28FEAFD700D3AEAA /* CurrentPricesFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A65FDCE28FEAFD700D3AEAA /* CurrentPricesFlow.swift */; };
+		3A65FDD128FEB04200D3AEAA /* PortfolioFlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A65FDD028FEB04200D3AEAA /* PortfolioFlowTests.swift */; };
+		3A65FDD328FEB5B100D3AEAA /* PortfolioFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A65FDD228FEB5B100D3AEAA /* PortfolioFlow.swift */; };
+		3A65FDD528FEB64D00D3AEAA /* AcceptranceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A65FDD428FEB64D00D3AEAA /* AcceptranceTests.swift */; };
+		3A65FDD728FEC6A000D3AEAA /* UIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A65FDD628FEC6A000D3AEAA /* UIComposer.swift */; };
+		3A65FDD928FEC6CC00D3AEAA /* TransactionsLoaderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A65FDD828FEC6CC00D3AEAA /* TransactionsLoaderFactory.swift */; };
+		3A65FDDB28FEC6E900D3AEAA /* CurrentPriceLoaderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A65FDDA28FEC6E900D3AEAA /* CurrentPriceLoaderFactory.swift */; };
+		3A65FDDD28FECF0F00D3AEAA /* TransactionsFlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A65FDDC28FECF0F00D3AEAA /* TransactionsFlowTests.swift */; };
+		3A65FDDF28FED02E00D3AEAA /* TransactionsFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A65FDDE28FED02E00D3AEAA /* TransactionsFlow.swift */; };
+		3A65FDE128FED1A900D3AEAA /* HTTPClientStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A65FDE028FED1A900D3AEAA /* HTTPClientStub.swift */; };
+		3AF7163D28F59A8B008C4007 /* InvestmentsWatchOS WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 3AF7163C28F59A8B008C4007 /* InvestmentsWatchOS WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		3AF7164228F59A8D008C4007 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AF7164128F59A8D008C4007 /* Assets.xcassets */; };
 		3AF7164828F59A8E008C4007 /* InvestmentsWatchOS WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3AF7164728F59A8E008C4007 /* InvestmentsWatchOS WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		3AF7164D28F59A8E008C4007 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF7164C28F59A8E008C4007 /* ContentView.swift */; };
@@ -38,7 +36,7 @@ class AlertViewModelTests: XCTestCase {
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		3A69252928FE8CD30095AB2E /* PBXContainerItemProxy */ = {
+		3A65FDBC28FE91E600D3AEAA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3AF7163228F59A8B008C4007 /* Project object */;
 			proxyType = 1;
@@ -99,8 +97,22 @@ class AlertViewModelTests: XCTestCase {
 
 /* Begin PBXFileReference section */
 		3A38BFD928FA933400427B59 /* PortfolioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioView.swift; sourceTree = "<group>"; };
-		3A69252528FE8CD30095AB2E /* InvestmentsWatchOS WatchKit ExtensionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "InvestmentsWatchOS WatchKit ExtensionTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3A69252E28FE8CF70095AB2E /* CurrentPricesFlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentPricesFlowTests.swift; sourceTree = "<group>"; };
+		3A65FDB828FE91E600D3AEAA /* InvestmentsWatchOS WatchKit ExtensionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "InvestmentsWatchOS WatchKit ExtensionTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3A65FDC128FE91FE00D3AEAA /* CurrentPricesFlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentPricesFlowTests.swift; sourceTree = "<group>"; };
+		3A65FDC628FEAF0C00D3AEAA /* InMemoryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryStore.swift; sourceTree = "<group>"; };
+		3A65FDC828FEAF4800D3AEAA /* CurrentPriceLoaderSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentPriceLoaderSpy.swift; sourceTree = "<group>"; };
+		3A65FDCA28FEAF8100D3AEAA /* XCTestCase + MemoryLeaksTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase + MemoryLeaksTracking.swift"; sourceTree = "<group>"; };
+		3A65FDCC28FEAFB700D3AEAA /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
+		3A65FDCE28FEAFD700D3AEAA /* CurrentPricesFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentPricesFlow.swift; sourceTree = "<group>"; };
+		3A65FDD028FEB04200D3AEAA /* PortfolioFlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioFlowTests.swift; sourceTree = "<group>"; };
+		3A65FDD228FEB5B100D3AEAA /* PortfolioFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioFlow.swift; sourceTree = "<group>"; };
+		3A65FDD428FEB64D00D3AEAA /* AcceptranceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceptranceTests.swift; sourceTree = "<group>"; };
+		3A65FDD628FEC6A000D3AEAA /* UIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIComposer.swift; sourceTree = "<group>"; };
+		3A65FDD828FEC6CC00D3AEAA /* TransactionsLoaderFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsLoaderFactory.swift; sourceTree = "<group>"; };
+		3A65FDDA28FEC6E900D3AEAA /* CurrentPriceLoaderFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentPriceLoaderFactory.swift; sourceTree = "<group>"; };
+		3A65FDDC28FECF0F00D3AEAA /* TransactionsFlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsFlowTests.swift; sourceTree = "<group>"; };
+		3A65FDDE28FED02E00D3AEAA /* TransactionsFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsFlow.swift; sourceTree = "<group>"; };
+		3A65FDE028FED1A900D3AEAA /* HTTPClientStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientStub.swift; sourceTree = "<group>"; };
 		3AF7163828F59A8B008C4007 /* InvestmentsWatchOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InvestmentsWatchOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AF7163C28F59A8B008C4007 /* InvestmentsWatchOS WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "InvestmentsWatchOS WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AF7164128F59A8D008C4007 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -118,7 +130,7 @@ class AlertViewModelTests: XCTestCase {
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		3A69252228FE8CD30095AB2E /* Frameworks */ = {
+		3A65FDB528FE91E600D3AEAA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -144,12 +156,54 @@ class AlertViewModelTests: XCTestCase {
 			path = Views;
 			sourceTree = "<group>";
 		};
-		3A69252628FE8CD30095AB2E /* InvestmentsWatchOS WatchKit ExtensionTests */ = {
+		3A65FDB928FE91E600D3AEAA /* InvestmentsWatchOS WatchKit ExtensionTests */ = {
 			isa = PBXGroup;
 			children = (
-				3A69252E28FE8CF70095AB2E /* CurrentPricesFlowTests.swift */,
+				3A65FDC528FEAEF300D3AEAA /* Helpers */,
+				3A65FDC128FE91FE00D3AEAA /* CurrentPricesFlowTests.swift */,
+				3A65FDDC28FECF0F00D3AEAA /* TransactionsFlowTests.swift */,
+				3A65FDD028FEB04200D3AEAA /* PortfolioFlowTests.swift */,
+				3A65FDD428FEB64D00D3AEAA /* AcceptranceTests.swift */,
 			);
 			path = "InvestmentsWatchOS WatchKit ExtensionTests";
+			sourceTree = "<group>";
+		};
+		3A65FDC528FEAEF300D3AEAA /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				3A65FDC628FEAF0C00D3AEAA /* InMemoryStore.swift */,
+				3A65FDCC28FEAFB700D3AEAA /* SharedTestHelpers.swift */,
+				3A65FDC828FEAF4800D3AEAA /* CurrentPriceLoaderSpy.swift */,
+				3A65FDE028FED1A900D3AEAA /* HTTPClientStub.swift */,
+				3A65FDCA28FEAF8100D3AEAA /* XCTestCase + MemoryLeaksTracking.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		3A65FDE228FED2E000D3AEAA /* Transactions */ = {
+			isa = PBXGroup;
+			children = (
+				3A65FDDE28FED02E00D3AEAA /* TransactionsFlow.swift */,
+				3A65FDD828FEC6CC00D3AEAA /* TransactionsLoaderFactory.swift */,
+			);
+			path = Transactions;
+			sourceTree = "<group>";
+		};
+		3A65FDE328FED2F100D3AEAA /* CurrentPrices */ = {
+			isa = PBXGroup;
+			children = (
+				3A65FDCE28FEAFD700D3AEAA /* CurrentPricesFlow.swift */,
+				3A65FDDA28FEC6E900D3AEAA /* CurrentPriceLoaderFactory.swift */,
+			);
+			path = CurrentPrices;
+			sourceTree = "<group>";
+		};
+		3A65FDE428FED2FF00D3AEAA /* Portfolio */ = {
+			isa = PBXGroup;
+			children = (
+				3A65FDD228FEB5B100D3AEAA /* PortfolioFlow.swift */,
+			);
+			path = Portfolio;
 			sourceTree = "<group>";
 		};
 		3AF7163128F59A8B008C4007 = {
@@ -157,7 +211,7 @@ class AlertViewModelTests: XCTestCase {
 			children = (
 				3AF7164028F59A8B008C4007 /* InvestmentsWatchOS WatchKit App */,
 				3AF7164B28F59A8E008C4007 /* InvestmentsWatchOS WatchKit Extension */,
-				3A69252628FE8CD30095AB2E /* InvestmentsWatchOS WatchKit ExtensionTests */,
+				3A65FDB928FE91E600D3AEAA /* InvestmentsWatchOS WatchKit ExtensionTests */,
 				3AF7163928F59A8B008C4007 /* Products */,
 				3AF7166528F59ABF008C4007 /* Frameworks */,
 			);
@@ -169,7 +223,7 @@ class AlertViewModelTests: XCTestCase {
 				3AF7163828F59A8B008C4007 /* InvestmentsWatchOS.app */,
 				3AF7163C28F59A8B008C4007 /* InvestmentsWatchOS WatchKit App.app */,
 				3AF7164728F59A8E008C4007 /* InvestmentsWatchOS WatchKit Extension.appex */,
-				3A69252528FE8CD30095AB2E /* InvestmentsWatchOS WatchKit ExtensionTests.xctest */,
+				3A65FDB828FE91E600D3AEAA /* InvestmentsWatchOS WatchKit ExtensionTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -185,9 +239,13 @@ class AlertViewModelTests: XCTestCase {
 		3AF7164B28F59A8E008C4007 /* InvestmentsWatchOS WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
-				3AF7164C28F59A8E008C4007 /* ContentView.swift */,
 				3AF7164E28F59A8E008C4007 /* InvestmentsWatchOSApp.swift */,
+				3AF7164C28F59A8E008C4007 /* ContentView.swift */,
+				3A65FDD628FEC6A000D3AEAA /* UIComposer.swift */,
 				3AF7165028F59A8E008C4007 /* ComplicationController.swift */,
+				3A65FDE228FED2E000D3AEAA /* Transactions */,
+				3A65FDE328FED2F100D3AEAA /* CurrentPrices */,
+				3A65FDE428FED2FF00D3AEAA /* Portfolio */,
 				3A38BFD828FA932200427B59 /* Views */,
 				3AF7165228F59A8F008C4007 /* Assets.xcassets */,
 				3AF7165728F59A8F008C4007 /* Info.plist */,
@@ -218,22 +276,22 @@ class AlertViewModelTests: XCTestCase {
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		3A69252428FE8CD30095AB2E /* InvestmentsWatchOS WatchKit ExtensionTests */ = {
+		3A65FDB728FE91E600D3AEAA /* InvestmentsWatchOS WatchKit ExtensionTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3A69252D28FE8CD30095AB2E /* Build configuration list for PBXNativeTarget "InvestmentsWatchOS WatchKit ExtensionTests" */;
+			buildConfigurationList = 3A65FDC028FE91E600D3AEAA /* Build configuration list for PBXNativeTarget "InvestmentsWatchOS WatchKit ExtensionTests" */;
 			buildPhases = (
-				3A69252128FE8CD30095AB2E /* Sources */,
-				3A69252228FE8CD30095AB2E /* Frameworks */,
-				3A69252328FE8CD30095AB2E /* Resources */,
+				3A65FDB428FE91E600D3AEAA /* Sources */,
+				3A65FDB528FE91E600D3AEAA /* Frameworks */,
+				3A65FDB628FE91E600D3AEAA /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				3A69252A28FE8CD30095AB2E /* PBXTargetDependency */,
+				3A65FDBD28FE91E600D3AEAA /* PBXTargetDependency */,
 			);
 			name = "InvestmentsWatchOS WatchKit ExtensionTests";
 			productName = "InvestmentsWatchOS WatchKit ExtensionTests";
-			productReference = 3A69252528FE8CD30095AB2E /* InvestmentsWatchOS WatchKit ExtensionTests.xctest */;
+			productReference = 3A65FDB828FE91E600D3AEAA /* InvestmentsWatchOS WatchKit ExtensionTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		3AF7163728F59A8B008C4007 /* InvestmentsWatchOS */ = {
@@ -298,7 +356,7 @@ class AlertViewModelTests: XCTestCase {
 				LastSwiftUpdateCheck = 1340;
 				LastUpgradeCheck = 1340;
 				TargetAttributes = {
-					3A69252428FE8CD30095AB2E = {
+					3A65FDB728FE91E600D3AEAA = {
 						CreatedOnToolsVersion = 13.4;
 						LastSwiftMigration = 1340;
 						TestTargetID = 3AF7164628F59A8E008C4007;
@@ -330,13 +388,13 @@ class AlertViewModelTests: XCTestCase {
 				3AF7163728F59A8B008C4007 /* InvestmentsWatchOS */,
 				3AF7163B28F59A8B008C4007 /* InvestmentsWatchOS WatchKit App */,
 				3AF7164628F59A8E008C4007 /* InvestmentsWatchOS WatchKit Extension */,
-				3A69252428FE8CD30095AB2E /* InvestmentsWatchOS WatchKit ExtensionTests */,
+				3A65FDB728FE91E600D3AEAA /* InvestmentsWatchOS WatchKit ExtensionTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		3A69252328FE8CD30095AB2E /* Resources */ = {
+		3A65FDB628FE91E600D3AEAA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -370,11 +428,19 @@ class AlertViewModelTests: XCTestCase {
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		3A69252128FE8CD30095AB2E /* Sources */ = {
+		3A65FDB428FE91E600D3AEAA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A69252F28FE8CF70095AB2E /* CurrentPricesFlowTests.swift in Sources */,
+				3A65FDC228FE91FE00D3AEAA /* CurrentPricesFlowTests.swift in Sources */,
+				3A65FDD528FEB64D00D3AEAA /* AcceptranceTests.swift in Sources */,
+				3A65FDDD28FECF0F00D3AEAA /* TransactionsFlowTests.swift in Sources */,
+				3A65FDE128FED1A900D3AEAA /* HTTPClientStub.swift in Sources */,
+				3A65FDC728FEAF0C00D3AEAA /* InMemoryStore.swift in Sources */,
+				3A65FDD128FEB04200D3AEAA /* PortfolioFlowTests.swift in Sources */,
+				3A65FDCD28FEAFB700D3AEAA /* SharedTestHelpers.swift in Sources */,
+				3A65FDC928FEAF4800D3AEAA /* CurrentPriceLoaderSpy.swift in Sources */,
+				3A65FDCB28FEAF8100D3AEAA /* XCTestCase + MemoryLeaksTracking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -384,18 +450,24 @@ class AlertViewModelTests: XCTestCase {
 			files = (
 				3AF7164F28F59A8E008C4007 /* InvestmentsWatchOSApp.swift in Sources */,
 				3AF7164D28F59A8E008C4007 /* ContentView.swift in Sources */,
+				3A65FDD928FEC6CC00D3AEAA /* TransactionsLoaderFactory.swift in Sources */,
+				3A65FDD328FEB5B100D3AEAA /* PortfolioFlow.swift in Sources */,
 				3AF7165128F59A8E008C4007 /* ComplicationController.swift in Sources */,
+				3A65FDCF28FEAFD700D3AEAA /* CurrentPricesFlow.swift in Sources */,
+				3A65FDDF28FED02E00D3AEAA /* TransactionsFlow.swift in Sources */,
+				3A65FDDB28FEC6E900D3AEAA /* CurrentPriceLoaderFactory.swift in Sources */,
 				3A38BFDA28FA933400427B59 /* PortfolioView.swift in Sources */,
+				3A65FDD728FEC6A000D3AEAA /* UIComposer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		3A69252A28FE8CD30095AB2E /* PBXTargetDependency */ = {
+		3A65FDBD28FE91E600D3AEAA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 3AF7164628F59A8E008C4007 /* InvestmentsWatchOS WatchKit Extension */;
-			targetProxy = 3A69252928FE8CD30095AB2E /* PBXContainerItemProxy */;
+			targetProxy = 3A65FDBC28FE91E600D3AEAA /* PBXContainerItemProxy */;
 		};
 		3AF7163F28F59A8B008C4007 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -410,7 +482,7 @@ class AlertViewModelTests: XCTestCase {
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		3A69252B28FE8CD30095AB2E /* Debug */ = {
+		3A65FDBE28FE91E600D3AEAA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -437,7 +509,7 @@ class AlertViewModelTests: XCTestCase {
 			};
 			name = Debug;
 		};
-		3A69252C28FE8CD30095AB2E /* Release */ = {
+		3A65FDBF28FE91E600D3AEAA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -603,7 +675,7 @@ class AlertViewModelTests: XCTestCase {
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 8.5;
+				WATCHOS_DEPLOYMENT_TARGET = 8.1;
 			};
 			name = Debug;
 		};
@@ -635,7 +707,7 @@ class AlertViewModelTests: XCTestCase {
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 8.5;
+				WATCHOS_DEPLOYMENT_TARGET = 8.1;
 			};
 			name = Release;
 		};
@@ -660,7 +732,7 @@ class AlertViewModelTests: XCTestCase {
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 8.5;
+				WATCHOS_DEPLOYMENT_TARGET = 8.1;
 			};
 			name = Debug;
 		};
@@ -685,7 +757,7 @@ class AlertViewModelTests: XCTestCase {
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 8.5;
+				WATCHOS_DEPLOYMENT_TARGET = 8.1;
 			};
 			name = Release;
 		};
@@ -718,11 +790,11 @@ class AlertViewModelTests: XCTestCase {
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3A69252D28FE8CD30095AB2E /* Build configuration list for PBXNativeTarget "InvestmentsWatchOS WatchKit ExtensionTests" */ = {
+		3A65FDC028FE91E600D3AEAA /* Build configuration list for PBXNativeTarget "InvestmentsWatchOS WatchKit ExtensionTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3A69252B28FE8CD30095AB2E /* Debug */,
-				3A69252C28FE8CD30095AB2E /* Release */,
+				3A65FDBE28FE91E600D3AEAA /* Debug */,
+				3A65FDBF28FE91E600D3AEAA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

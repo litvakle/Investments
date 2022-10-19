@@ -63,14 +63,13 @@ struct PortfolioView: View {
     }
     
     var refresh: some View {
-        Group {
-            if isLoading {
-                Text("Fetching data...")
-                    .frame(maxWidth: .infinity)
-            } else {
-                Button("Refresh", action: onRefresh)
-            }
+        Button {
+            onRefresh()
+        } label: {
+            Text(isLoading ? "Fetching data..." : "Refresh")
+                .frame(maxWidth: .infinity)
         }
+        .disabled(isLoading)
     }
 }
 

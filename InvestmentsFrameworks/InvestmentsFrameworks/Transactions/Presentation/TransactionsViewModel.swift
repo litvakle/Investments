@@ -34,6 +34,7 @@ public class TransactionsViewModel: ObservableObject {
 
         isRetrieving = true
         retriever()
+            .dispatchOnMainQueue()
             .sink(receiveCompletion: { [weak self] completion in
                 if case let .failure(error) = completion {
                     self?.error = error
@@ -49,6 +50,7 @@ public class TransactionsViewModel: ObservableObject {
         guard let saver = saver else { return }
         
         saver(transaction)
+            .dispatchOnMainQueue()
             .sink { completion in
                 if case let .failure(error) = completion {
                     self.error = error
@@ -68,6 +70,7 @@ public class TransactionsViewModel: ObservableObject {
         guard let deleter = deleter else { return }
 
         deleter(transaction)
+            .dispatchOnMainQueue()
             .sink { completion in
                 if case let .failure(error) = completion {
                     self.error = error
