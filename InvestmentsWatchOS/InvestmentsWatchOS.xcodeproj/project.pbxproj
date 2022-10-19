@@ -23,6 +23,8 @@
 		3A65FDDD28FECF0F00D3AEAA /* TransactionsFlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A65FDDC28FECF0F00D3AEAA /* TransactionsFlowTests.swift */; };
 		3A65FDDF28FED02E00D3AEAA /* TransactionsFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A65FDDE28FED02E00D3AEAA /* TransactionsFlow.swift */; };
 		3A65FDE128FED1A900D3AEAA /* HTTPClientStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A65FDE028FED1A900D3AEAA /* HTTPClientStub.swift */; };
+		3AF3857028FFC9E100942337 /* InvestmentsFrameworks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AF3856F28FFC9E000942337 /* InvestmentsFrameworks.framework */; };
+		3AF3857128FFC9E100942337 /* InvestmentsFrameworks.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3AF3856F28FFC9E000942337 /* InvestmentsFrameworks.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3AF7163D28F59A8B008C4007 /* InvestmentsWatchOS WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 3AF7163C28F59A8B008C4007 /* InvestmentsWatchOS WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		3AF7164228F59A8D008C4007 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AF7164128F59A8D008C4007 /* Assets.xcassets */; };
 		3AF7164828F59A8E008C4007 /* InvestmentsWatchOS WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3AF7164728F59A8E008C4007 /* InvestmentsWatchOS WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -31,8 +33,6 @@
 		3AF7165128F59A8E008C4007 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF7165028F59A8E008C4007 /* ComplicationController.swift */; };
 		3AF7165328F59A8F008C4007 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AF7165228F59A8F008C4007 /* Assets.xcassets */; };
 		3AF7165628F59A8F008C4007 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AF7165528F59A8F008C4007 /* Preview Assets.xcassets */; };
-		3AF7168128F5B554008C4007 /* InvestmentsFrameworksWatchOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AF7168028F5B554008C4007 /* InvestmentsFrameworksWatchOS.framework */; };
-		3AF7168228F5B554008C4007 /* InvestmentsFrameworksWatchOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3AF7168028F5B554008C4007 /* InvestmentsFrameworksWatchOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,7 +88,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				3AF7168228F5B554008C4007 /* InvestmentsFrameworksWatchOS.framework in Embed Frameworks */,
+				3AF3857128FFC9E100942337 /* InvestmentsFrameworks.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -113,6 +113,7 @@
 		3A65FDDC28FECF0F00D3AEAA /* TransactionsFlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsFlowTests.swift; sourceTree = "<group>"; };
 		3A65FDDE28FED02E00D3AEAA /* TransactionsFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsFlow.swift; sourceTree = "<group>"; };
 		3A65FDE028FED1A900D3AEAA /* HTTPClientStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientStub.swift; sourceTree = "<group>"; };
+		3AF3856F28FFC9E000942337 /* InvestmentsFrameworks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = InvestmentsFrameworks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AF7163828F59A8B008C4007 /* InvestmentsWatchOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InvestmentsWatchOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AF7163C28F59A8B008C4007 /* InvestmentsWatchOS WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "InvestmentsWatchOS WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AF7164128F59A8D008C4007 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -141,7 +142,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3AF7168128F5B554008C4007 /* InvestmentsFrameworksWatchOS.framework in Frameworks */,
+				3AF3857028FFC9E100942337 /* InvestmentsFrameworks.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,6 +266,7 @@
 		3AF7166528F59ABF008C4007 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3AF3856F28FFC9E000942337 /* InvestmentsFrameworks.framework */,
 				3AF7168028F5B554008C4007 /* InvestmentsFrameworksWatchOS.framework */,
 				3AF7166E28F59CED008C4007 /* InvestmentsFrameworks.framework */,
 				3AF7166A28F59C94008C4007 /* InvestmentsFrameworks.framework */,
