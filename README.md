@@ -6,13 +6,13 @@
 
 The app's purpose is to have an instrument for real-time monitoring of the profit of user investments portfolio. Just open the app and see the answer! 
 
-I used the TDD approach (write the test - write code - refactor). The workspace consists of three projects:
-- Investments frameworks (platform-agnostic, runs on macOS and iOS)
+I used the TDD approach (write a test - write code - refactor). The workspace consists of three projects:
+- Investments frameworks (platform-agnostic, runs on macOS, iOS, and watchOS)
 - Investments App for iOS (platform-specific, runs on iOS)
 - Investments App for watchOS (platform-specific, runs on watchOS)
-Frameworks know nothing about the app. Apps import frameworks for the desired functionality.
+Frameworks know nothing about the app—apps import frameworks for the desired functionality.
 
-The app propagates the Dependency Injection principe, and the central part is a Composition Root (class UIComposer). I used Combine to create a price loader publisher and to maintain subscriptions between different app states. The Combine is extremely useful since you can replace decorators and adapters with standard predefined operators.
+The app propagates the Dependency Injection principle, and the central part is a Composition Root (classes UIComposer for iOS and watchOS apps). All operations with loading/saving/deleting transactions and loading/caching current prices are implemented with the Combine. It allows us to use any infrastructure under the Combine publishers. For example, the iOS app loads transactions from the CoreDataStore, which works sync, and watchOS app loads transactions async from the remote API. All we need to do is to make different load publishers for iOS and watchOS and inject them into a TransactionsViewModel. And since Apple already tests Combine, we don't need to write unit tests for publishers. We should make only high-level acceptance tests. Without Combine, we would have to make decorator/adapter classes and write unit tests for them. Besides that, Combine is also used to maintain subscriptions between different app states. 
 
 For the UI, I used the SwiftUI framework and the ViewInspector to make tests for SwiftUI views. 
 
