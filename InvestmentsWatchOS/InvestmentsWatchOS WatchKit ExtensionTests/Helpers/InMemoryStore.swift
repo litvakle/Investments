@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import InvestmentsFrameworksWatchOS
+import InvestmentsFrameworks
 
 class InMemoryStore: TransactionsStore {
     var transactions: [Transaction]

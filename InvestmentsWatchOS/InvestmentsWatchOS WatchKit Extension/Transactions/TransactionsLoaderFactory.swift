@@ -6,7 +6,7 @@
 //
 
 import Combine
-import InvestmentsFrameworksWatchOS
+import InvestmentsFrameworks
 
 class TransactionsLoaderFactory {
     let httpClient: HTTPClient

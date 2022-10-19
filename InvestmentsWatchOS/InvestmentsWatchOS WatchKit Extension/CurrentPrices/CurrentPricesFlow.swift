@@ -6,7 +6,7 @@
 //
 
 import Combine
-import InvestmentsFrameworksWatchOS
+import InvestmentsFrameworks
 
 class CurrentPricesFlow {
     private var cancellables = Set<AnyCancellable>()

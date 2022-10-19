@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import InvestmentsFrameworksWatchOS
+import InvestmentsFrameworks
 
 class UIComposer {
     var transactionsViewModel: TransactionsViewModel

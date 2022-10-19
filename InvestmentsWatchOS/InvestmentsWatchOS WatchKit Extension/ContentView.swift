@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import InvestmentsFrameworksWatchOS
+import InvestmentsFrameworks
 
 struct ContentView: View {
     @ObservedObject var transactionsViewModel: TransactionsViewModel

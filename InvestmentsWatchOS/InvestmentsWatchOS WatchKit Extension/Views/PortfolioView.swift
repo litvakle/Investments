@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import InvestmentsFrameworksWatchOS
+import InvestmentsFrameworks
 
 struct PortfolioView: View {
     let cost: Double

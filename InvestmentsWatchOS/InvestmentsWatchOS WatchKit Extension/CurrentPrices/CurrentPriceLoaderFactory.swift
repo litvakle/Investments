@@ -6,7 +6,7 @@
 //
 
 import Combine
-import InvestmentsFrameworksWatchOS
+import InvestmentsFrameworks
 
 class CurrentPriceLoaderFactory {
     let httpClient: HTTPClient

@@ -6,7 +6,7 @@
 //
 
 import Combine
-import InvestmentsFrameworksWatchOS
+import InvestmentsFrameworks
 
 class PortfolioFlow {
     var cancellables = Set<AnyCancellable>()

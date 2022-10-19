@@ -6,7 +6,7 @@
 //
 
 import XCTest
-import InvestmentsFrameworksWatchOS
+import InvestmentsFrameworks
 @testable import InvestmentsWatchOS_WatchKit_Extension
 
 class TransactionsFlowTests: XCTestCase {

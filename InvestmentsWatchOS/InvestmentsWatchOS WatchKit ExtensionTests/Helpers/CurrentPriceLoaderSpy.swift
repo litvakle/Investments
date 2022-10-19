@@ -6,7 +6,7 @@
 //
 
 import Combine
-import InvestmentsFrameworksWatchOS
+import InvestmentsFrameworks
 
 public class CurrentPriceLoaderSpy {
     public var requests = [(ticket: String, publisher: PassthroughSubject<CurrentPrice, Error>)]()

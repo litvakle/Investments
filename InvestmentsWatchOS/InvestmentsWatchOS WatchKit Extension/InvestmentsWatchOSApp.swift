@@ -6,9 +6,9 @@
 //
 
 import SwiftUI
-import InvestmentsFrameworksWatchOS
+import InvestmentsFrameworks
 
-typealias InvestmentTransaction = InvestmentsFrameworksWatchOS.Transaction
+typealias InvestmentTransaction = InvestmentsFrameworks.Transaction
 
 private let root = UIComposer(
     httpClient: URLSessionHTTPClient(session: URLSession(configuration: .ephemeral)),
