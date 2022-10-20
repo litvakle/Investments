@@ -12,8 +12,15 @@ import Combine
 
 typealias InvestmentTransaction = InvestmentsFrameworks.Transaction
 
+private var scheduler: AnyDispatchQueueScheduler = DispatchQueue (
+    label: "com.litvaklev.infra.queue",
+    qos: .userInitiated,
+    attributes: .concurrent
+).eraseToAnyScheduler()
+
 private let store = StoreFactory.create()
 private let root = UIComposer(
+    scheduler: scheduler,
     httpClient: URLSessionHTTPClient(session: URLSession(configuration: .ephemeral)),
     transactionsStore: store,
     currentPricesStore: store,

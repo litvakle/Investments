@@ -10,13 +10,15 @@ import Combine
 import InvestmentsFrameworks
 
 class CurrentPricesLoaderFactory {
+    private let scheduler: AnyDispatchQueueScheduler
     private let httpClient: HTTPClient
     private let baseURL: URL
     private let token: String
     private let store: CurrentPricesStore
     var onRemoteLoaderError: (() -> Void)?
     
-    init(httpClient: HTTPClient, baseURL: URL, token: String, store: CurrentPricesStore) {
+    init(scheduler: AnyDispatchQueueScheduler, httpClient: HTTPClient, baseURL: URL, token: String, store: CurrentPricesStore) {
+        self.scheduler = scheduler
         self.httpClient = httpClient
         self.baseURL = baseURL
         self.token = token
@@ -26,9 +28,9 @@ class CurrentPricesLoaderFactory {
     func makeRemoteCurrentPriceLoaderWithLocalFeedback(for ticket: String) -> AnyPublisher<CurrentPrice, Error> {
         makeRemoteCurrentPriceLoader(for: ticket)
             .caching(to: store, for: ticket)
+            .subscribe(on: scheduler)
             .dispatchOnMainQueue()
             .fallback(to: { [weak self, store] in
-                
                 self?.onRemoteLoaderError?()
                 return store.loadCurrentPricePublisher(for: ticket)
             })
@@ -41,6 +43,7 @@ class CurrentPricesLoaderFactory {
         return httpClient
             .getPublisher(url: url)
             .tryMap(CurrentPriceMapper.map)
+            .subscribe(on: scheduler)
             .eraseToAnyPublisher()
     }
 }

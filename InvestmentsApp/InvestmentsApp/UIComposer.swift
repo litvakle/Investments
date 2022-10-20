@@ -18,6 +18,7 @@ class UIComposer {
     var currentPricesFlow = CurrentPricesFlow()
     
     init(
+        scheduler: AnyDispatchQueueScheduler,
         httpClient: HTTPClient,
         transactionsStore: TransactionsStore,
         currentPricesStore: CurrentPricesStore,
@@ -25,15 +26,18 @@ class UIComposer {
         token: String,
         transactionsProjectID: String
     ) {
+        let transactionsPublishersFactory = TransactionsPublishersFactory(
+            scheduler: scheduler, retriever: transactionsStore, saver: transactionsStore, deleter: transactionsStore
+        )
         transactionsViewModel = TransactionsViewModel(
-            retriever: transactionsStore.retrivePublisher,
-            saver: transactionsStore.savePublisher,
-            deleter: transactionsStore.deletePublisher
+            retriever: transactionsPublishersFactory.makeLocalTransactionsRetriever,
+            saver: transactionsPublishersFactory.makeLocalTransactionsSaver,
+            deleter: transactionsPublishersFactory.makeLocalTransactionsDeleter
         )
         transactionsViewModel.retrieve()
         
         let currentPricesLoaderFactory = CurrentPricesLoaderFactory(
-            httpClient: httpClient, baseURL: baseURL, token: token, store: currentPricesStore
+            scheduler: scheduler, httpClient: httpClient, baseURL: baseURL, token: token, store: currentPricesStore
         )
         let currentPriceLoader = currentPricesLoaderFactory.makeRemoteCurrentPriceLoaderWithLocalFeedback
         currentPricesViewModel = CurrentPricesViewModel(loader: currentPriceLoader)

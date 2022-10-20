@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 import XCTest
 import InvestmentsFrameworks
 @testable import InvestmentsApp
@@ -20,6 +21,7 @@ extension InvestmentsAcceptranceTests {
         line: UInt = #line
     ) -> ContentView {
         let root = UIComposer(
+            scheduler: AnyDispatchQueueScheduler.immediateOnMainQueue,
             httpClient: httpClient,
             transactionsStore: store,
             currentPricesStore: store,
