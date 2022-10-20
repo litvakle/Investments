@@ -39,6 +39,18 @@ public class CoreDataStore {
         }
     }
     
+    func performSync<R>(_ action: (NSManagedObjectContext) -> Result<R, Error>) throws -> R {
+        let context = self.context
+        var result: Result<R, Error>!
+        context.performAndWait { result = action(context) }
+        
+        if case .failure = result {
+            context.rollback()
+        }
+        
+        return try result.get()
+    }
+    
     deinit {
         cleanUpReferencesToPersistentStores()
     }
